@@ -1,0 +1,6 @@
+{
+  "status": "PROVISIONAL_COLD_EMPTY_DIARY_NOT_ADMITTED",
+  "historySha256": "d05b54fa61062499823f5b239c284b5962529c06855a0a60e6464f3465a93def",
+  "sourceReports": [],
+  "scope": "Fictional premise; bounded search is not universal proof."
+}

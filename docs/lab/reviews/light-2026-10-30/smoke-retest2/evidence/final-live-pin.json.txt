@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-02T10:08:16.574845+00:00",
+  "live": {
+    "app": "smoke",
+    "framework": "4.8.0",
+    "commit": "f71cc0c6203c1f5c0c57daa1b33de64df51eff82",
+    "dirty": false
+  },
+  "rawSha256": "7545044cdb02a6313b48981662c87db8f398dea99c570cc9f85a3009dff7caf2",
+  "matchesAdmittedPin": true,
+  "scope": "Actualpostcollectioncleanreleasepin. Not freshnessofallassets/perception/runtimebackend/owneracceptance."
+}

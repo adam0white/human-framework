@@ -1,0 +1,448 @@
+{
+  "verdict": "CLEAR",
+  "reviewerIdentity": "/root/neighbours_packet_qualification_review",
+  "reviewerConfiguration": "Inherited default Codex final review; no independently verified serving-model identity",
+  "candidatePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate",
+  "manifestSha256": "2bdb21af6708556d367eeeaad4df520634a5d768ecf511025dc90f552746b2aa",
+  "payloadCount": 43,
+  "payloadSizeAndHashMismatches": [],
+  "scope": "Independent static candidate conclusions/qualification review only; not seal/merge/publication/owner approval",
+  "requiredFixes": [],
+  "checks": {
+    "NC1": "Retained. No observed image-view event; all five viewing/layout claims remain unverified participant claims. Saved PNGs and DOM text do not prove perception.",
+    "NC2": "Retained. Current 2130/2480/4205/2 stdout coverage is bounded; selected histories and latest own reports are not full archives or independent comprehension proof. Four standing current-history hashes/line counts and latest own append bytes independently match maps.",
+    "NC3": "Retained. Twelve current report mentions differ by 1 ms, plus two Mei differences. Original response/report and wall values remain distinct; no normalization or timing cause.",
+    "NC4": "Retained. Nia phone stop 56.041 precedes automatic 60.037 capture. Both Nia stops precede 60; no new gameplay or first-minute diary inferred.",
+    "NC5": "Retained. Leonie 59.155 premature note remains alongside corrected 61.439 note. Rosa 68.325 desktop note is stopping-wrap activity. No session reaches 180; no pulse due or automatic capture viewed claim.",
+    "NC6": "Retained. Failed Leonie quoted call precedes corrected request. Disabled/absent/stale/covered/ended-skip errors are recorded and not promoted to product defects or silently erased.",
+    "NC7": "Retained. Quick-label pressed responses and closes are bounded UI events. Rosa desktop selected confused. No observed typing/Submit/toggle; defaults are claims. No backend receipt, actual recording or consent state proof.",
+    "NC8": "Retained. Emre availability changed from 12:15 to 13:00 with unknown consumer/cause. Nia refusal explains current work and does not guarantee a later break. Rosa did not inspect desktop journal; zero does not prove ineffective work.",
+    "NC9": "Retained. Rosa stale controls do not reproduce a defect at human 1–3 second pace. Stable-selection preference only. Grouped inconsistent/incomplete concept counts and reported no-rereads cannot become cognitive measurement.",
+    "NC10": "Retained. Raw Leonie acceptance records later choice, not an instruction requiring repeated asking or guaranteed work. Her three asks are explicitly nonblocking. Mei save untested and offered-hour question unreached.",
+    "NC11": "Retained. Original 75213 exit 1 with qualified Mei singleton stays separate from 72317 exit 0 with four. Original Emre administrative missing-path report has no play/retention. No full-five native-zero, cap reset, third panel, owner acceptance, human enjoyment prediction or serving-model identity."
+  },
+  "meiNFChecks": {
+    "NF1": "Retain absent image-view/perception proof.",
+    "NF2": "Retain 1721 stdout lines versus receipt/comprehension and final 41-line range exceeding 40.",
+    "NF3": "Retain disallowed ls and unmatched-quote failure; inline cleanup supplied.",
+    "NF4": "Retain raw 74.518/report 74.519 and raw 5.489/report 5.490.",
+    "NF5": "Retain phone post-stop 60.104 image versus 41.117 stop; desktop 62.232 diary; no 180 pulse.",
+    "NF6": "Exclude desktop BUDGET from voluntary retention. Phone BORED is voluntary same-evening carryover.",
+    "NF7": "Untested save and unreached prior offered-hour question remain; reached Ece clarity is bounded.",
+    "NF8": "Pressed labels/closed Feedback do not prove submission, ingestion, recording or consent; SDK intent separate.",
+    "NF9": "Original exit 1 and administrative Emre are not five-person success, ending, cut, new iteration or acceptance."
+  },
+  "inheritedFamiliesAssessment": "W/SW/NR/SWF retained through exact prior and selected-history records; no new independent full historical audit or retroactive receipt/perception repair",
+  "counts": {
+    "deviceStops": 10,
+    "voluntaryUnfinishedStops": 9,
+    "excludedBudgetStops": 1,
+    "observedEndings": 0,
+    "cuts": 0,
+    "rankedAsks": 10,
+    "reachedBlockerAsks": 3,
+    "priorLeads": 2,
+    "preferences": 5
+  },
+  "verified": {
+    "all43PayloadSizesAndHashes": true,
+    "all32AuditEvidenceSizesAndHashes": true,
+    "literalExtractionByteAndCodepointSpans": 26,
+    "standingHistoryHashesLineCountsAndLatestOwnAppendBytes": 4,
+    "standingDiariesFullReportOnce": 4
+  },
+  "capacityFailureProvenance": "Root-attested tool notification only; no child artifact/native session/vendor log; Terra replacement not recovered Sol artifact",
+  "supplementaryCapacityRecord": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-auditor-capacity-failure-record.json",
+    "sha256": "b016f3cdd7803669efe3394040c4beb63044f4cf0301672a36c99473e4dd594d",
+    "bytes": 674,
+    "independentVendorProof": false
+  },
+  "evidenceFiles": [
+    {
+      "path": "README.md",
+      "sha256": "008ba9cc8c1ed50bdadd3a3e40ad038c199c48b99f502acffcea315b1f5a561f",
+      "bytes": 1487
+    },
+    {
+      "path": "asks.md",
+      "sha256": "3bdc32309abd1e3ec608939318e2bb54f8e94ebf80c322ac0b728c45bc11e595",
+      "bytes": 5186
+    },
+    {
+      "path": "emre/brief.md",
+      "sha256": "7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5",
+      "bytes": 8851
+    },
+    {
+      "path": "emre/diary-continuation.md",
+      "sha256": "e13fb2489ef3100b8fc7ac9b0591886cf611346590bc160552044d4801139434",
+      "bytes": 9076
+    },
+    {
+      "path": "emre/history-source-map.json",
+      "sha256": "2464ea450be3da5e3ec6c6135a3175db2c822dd8a4a4718785f3e149a156c64f",
+      "bytes": 30650
+    },
+    {
+      "path": "emre/report.md",
+      "sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+      "bytes": 8768
+    },
+    {
+      "path": "evidence/continuation-input-manifest.json",
+      "sha256": "3fc07bcf8379590a6be66bcc185eb7e10b9562fd46d25ad29b51441f974c58b6",
+      "bytes": 2351
+    },
+    {
+      "path": "evidence/continuation-previous-player-return.json",
+      "sha256": "f248d35cf2de5daf721db96c7968f0f5dc9b90c1800fbd8767122f82c61c02a0",
+      "bytes": 1496
+    },
+    {
+      "path": "evidence/continuation-protocol-audit.json",
+      "sha256": "63a453bff8f1e7eec08a60a720aee61e72c2bad0aef295040dd40924a3acf046",
+      "bytes": 225165
+    },
+    {
+      "path": "evidence/continuation-protocol-audit.md",
+      "sha256": "43b31d35c5eb3db120937aadf9a1d465807c87ec2077a0e9776269d762b2e3e7",
+      "bytes": 14952
+    },
+    {
+      "path": "evidence/continuation-root-admission.json",
+      "sha256": "aa8edb1f35a467a68fd1e9de6d968c33f4d4457219ebb667f0724dab948622fe",
+      "bytes": 3921
+    },
+    {
+      "path": "evidence/continuation-root-return.json",
+      "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07",
+      "bytes": 3457
+    },
+    {
+      "path": "evidence/final-live-pin.json",
+      "sha256": "9306f968be33d32e488968fc8e37075d052020923d37f6252c95ac1dfbf078aa",
+      "bytes": 382
+    },
+    {
+      "path": "evidence/literal-extraction.json",
+      "sha256": "a8b1b0d2ce0252da9ede85baea6354cf8ba72a0b86fec34b6ff21fe8ccf1b78a",
+      "bytes": 36392
+    },
+    {
+      "path": "evidence/literal-extraction.md",
+      "sha256": "a73f90fc212b1c4ceb1d92175e151024497c0cc365edb54fc744d5bb48df97f8",
+      "bytes": 29369
+    },
+    {
+      "path": "evidence/mei-singleton-root-qualification.json",
+      "sha256": "39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42",
+      "bytes": 4090
+    },
+    {
+      "path": "evidence/original-previous-player-return.json",
+      "sha256": "d5aaab6216911a31e0b0364ff05e2f96a0fe9082a61a06b9960166c0fd7aace7",
+      "bytes": 658
+    },
+    {
+      "path": "evidence/preliminary-sdk-source-proof.json",
+      "sha256": "bba4da93479b5e82dac4c937caa928e6d67e734ade4c8349b8bab864b2de63b5",
+      "bytes": 2260
+    },
+    {
+      "path": "evidence/prior-method-qualifications.json",
+      "sha256": "2874a81565a43d5845ef33664d287810d932a02a02b38bfda72404806ea15a9c",
+      "bytes": 5348
+    },
+    {
+      "path": "evidence/prior-root-qualification.json",
+      "sha256": "082b49c8192175b6999295e47bba20fa19da3aa9a0530e37e65b6ceab8dba8c7",
+      "bytes": 7279
+    },
+    {
+      "path": "evidence/prior-source-map.json",
+      "sha256": "7a206264c1858a7c30515627bfb4ffd6ca1d7d8bdd3d447b81f2a595d5950f3c",
+      "bytes": 8272
+    },
+    {
+      "path": "evidence/root-ask-triage.json",
+      "sha256": "803f4af48a4ad6236c34dd5e9af53962244df66c30a23a56c8f5901d0e6d1aef",
+      "bytes": 17130
+    },
+    {
+      "path": "evidence/root-literal-reaction-check.json",
+      "sha256": "6f8a7974c48a60fb2325fa0fde23a461743313eef36ba48a9ef08e877b21d06c",
+      "bytes": 3073
+    },
+    {
+      "path": "evidence/root-qualification.json",
+      "sha256": "316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e",
+      "bytes": 6592
+    },
+    {
+      "path": "evidence/source-delivery-verification.json",
+      "sha256": "3e9b3054e6a0473f7e1cb483701130c767dfe67cace2f920ac5836feec426857",
+      "bytes": 8505
+    },
+    {
+      "path": "leonie/brief.md",
+      "sha256": "4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c",
+      "bytes": 8118
+    },
+    {
+      "path": "leonie/history-source-map.json",
+      "sha256": "efe965f672c345ae60a201624b87ed05f6217810e043f87e0e63ec5cb357281e",
+      "bytes": 242
+    },
+    {
+      "path": "leonie/report.md",
+      "sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+      "bytes": 6385
+    },
+    {
+      "path": "logical-testers.md",
+      "sha256": "dd99c1117e3126a52bfc37aae21036ad90a234db8d71f2e2d4525e2d348a3836",
+      "bytes": 1413
+    },
+    {
+      "path": "mei/brief.md",
+      "sha256": "7fc93613746551effc26c847c071f97e01407e6242dbba90deac47c95c529b15",
+      "bytes": 8063
+    },
+    {
+      "path": "mei/diary-continuation.md",
+      "sha256": "7c05835af2ac19a0fa3ceca178a1a626e70ef437dcaed0a0d4b88dfa0891d06d",
+      "bytes": 8054
+    },
+    {
+      "path": "mei/history-source-map.json",
+      "sha256": "78b89b60506f715297aac4630eed3bb34b3f814c39b59675e5fdceb93ed6043f",
+      "bytes": 6578
+    },
+    {
+      "path": "mei/report.md",
+      "sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+      "bytes": 7747
+    },
+    {
+      "path": "methodology.md",
+      "sha256": "cdad0ff2ce4f21e4fe161c2877e9e397cb31072aef332445366d8491a9e1a09a",
+      "bytes": 4925
+    },
+    {
+      "path": "nia/brief.md",
+      "sha256": "1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2",
+      "bytes": 8250
+    },
+    {
+      "path": "nia/diary-continuation.md",
+      "sha256": "ba8532892e6f99d2b486a73036985661fa915f85fd1985a1d27eab66079ec516",
+      "bytes": 5805
+    },
+    {
+      "path": "nia/history-source-map.json",
+      "sha256": "29cd050c6bd9dea9a6b714c41655d14a60fac6b5cf2eb327eb8224a583d6009a",
+      "bytes": 71571
+    },
+    {
+      "path": "nia/report.md",
+      "sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+      "bytes": 5498
+    },
+    {
+      "path": "rosa/brief.md",
+      "sha256": "424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff",
+      "bytes": 8546
+    },
+    {
+      "path": "rosa/diary-continuation.md",
+      "sha256": "117a2d53fdfe1f1afb7f6e1063167ad3356bbf331533debfe899fe50c8cfce0d",
+      "bytes": 12900
+    },
+    {
+      "path": "rosa/history-source-map.json",
+      "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877",
+      "bytes": 125752
+    },
+    {
+      "path": "rosa/report.md",
+      "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "bytes": 12592
+    },
+    {
+      "path": "source-map.json",
+      "sha256": "ae393661d2f5e4d6520003155627f56f7d311a1a9d7384c5f7785238b9cbd5b4",
+      "bytes": 23532
+    }
+  ],
+  "boundRawAuditEvidence": {
+    "neighbours-final-continuation4-controller/finalizer-audit.json": {
+      "sha256": "f6c0639414ac3ad85cd5d2220aa1fec17d7551cfd090b63acd1b12f75bc6b666",
+      "bytes": 2722980,
+      "lines": 29030
+    },
+    "neighbours-final-continuation4-controller/root-return.json": {
+      "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07",
+      "bytes": 3457,
+      "lines": 68
+    },
+    "neighbours-final-continuation4-controller/root-admission.json": {
+      "sha256": "aa8edb1f35a467a68fd1e9de6d968c33f4d4457219ebb667f0724dab948622fe",
+      "bytes": 3921,
+      "lines": 68
+    },
+    "neighbours-final-mei-root-qualification.json": {
+      "sha256": "39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42",
+      "bytes": 4090,
+      "lines": 86
+    },
+    "neighbours-final-continuation4-inputs/emre/report.md": {
+      "sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+      "bytes": 8768,
+      "lines": 65
+    },
+    "neighbours-final-continuation4-inputs/emre/brief.md": {
+      "sha256": "7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5",
+      "bytes": 8851,
+      "lines": 66
+    },
+    "neighbours-final-continuation4-inputs/emre/transcript.jsonl": {
+      "sha256": "0afad06c4c39d08b3c95ba393a5885e221896e7df4775a14edd596ab24c9e81b",
+      "bytes": 649663,
+      "lines": 251
+    },
+    "neighbours-final-continuation4-inputs/emre/own-history.md": {
+      "sha256": "aec2b9f96ebb4eecac3499f6c7b778deb394c0b1f3dd10d3725d08badc667ef8",
+      "bytes": 264393,
+      "lines": 2130
+    },
+    "neighbours-final-continuation4-inputs/emre/completion.json": {
+      "sha256": "e547d503a014814f809a943ce35668493e072ca851918e7742cbfa64f11e9fab",
+      "bytes": 98756,
+      "lines": 4100
+    },
+    "neighbours-final-continuation4-inputs/emre/phone/wall-clock.jsonl": {
+      "sha256": "e2c375180c61a30db31aad279def4332c3e5b6a66b6a499053500efd8c7d0e1f",
+      "bytes": 8839,
+      "lines": 32
+    },
+    "neighbours-final-continuation4-inputs/emre/desktop/wall-clock.jsonl": {
+      "sha256": "aab8060012c16e4de276a55d64f1061c3743fd2a6adccb8a4721e7fb27b715d1",
+      "bytes": 11489,
+      "lines": 40
+    },
+    "neighbours-final-continuation4-inputs/nia/report.md": {
+      "sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+      "bytes": 5498,
+      "lines": 45
+    },
+    "neighbours-final-continuation4-inputs/nia/brief.md": {
+      "sha256": "1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2",
+      "bytes": 8250,
+      "lines": 56
+    },
+    "neighbours-final-continuation4-inputs/nia/transcript.jsonl": {
+      "sha256": "a5206a82cf0925f79bfc9e17eb82c0ab6e724e698c3d0476f283ba0a6ccb2304",
+      "bytes": 534615,
+      "lines": 209
+    },
+    "neighbours-final-continuation4-inputs/nia/own-history.md": {
+      "sha256": "a790c94a524ba24d67cac6c619ffa6da169d32685969d943c1dbb75e4510cf6a",
+      "bytes": 301293,
+      "lines": 2480
+    },
+    "neighbours-final-continuation4-inputs/nia/completion.json": {
+      "sha256": "580997db13bcb54b97009e0168d30248159beb16faecd8f016721402d6fb90c2",
+      "bytes": 84110,
+      "lines": 3306
+    },
+    "neighbours-final-continuation4-inputs/nia/phone/wall-clock.jsonl": {
+      "sha256": "f26779b8de4448d1d155e8828a035eac54220b6f14742c7e79ec5af50be6df2f",
+      "bytes": 6529,
+      "lines": 24
+    },
+    "neighbours-final-continuation4-inputs/nia/desktop/wall-clock.jsonl": {
+      "sha256": "d9263b00ec41ef4c358523a9b3693dee9e754e93a75d4f7d7ef53c1da326fe8b",
+      "bytes": 4905,
+      "lines": 18
+    },
+    "neighbours-final-continuation4-inputs/rosa/report.md": {
+      "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+      "bytes": 12592,
+      "lines": 89
+    },
+    "neighbours-final-continuation4-inputs/rosa/brief.md": {
+      "sha256": "424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff",
+      "bytes": 8546,
+      "lines": 57
+    },
+    "neighbours-final-continuation4-inputs/rosa/transcript.jsonl": {
+      "sha256": "02925547fdd7c4363fb0e9bf5b54891b865d1046902b3a5d731054cf46bad238",
+      "bytes": 748689,
+      "lines": 314
+    },
+    "neighbours-final-continuation4-inputs/rosa/own-history.md": {
+      "sha256": "384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d",
+      "bytes": 465002,
+      "lines": 4205
+    },
+    "neighbours-final-continuation4-inputs/rosa/completion.json": {
+      "sha256": "79e89191da1f47fb2510855f4b43bf8e534f073ce148b2ebd40ab435f23a2ef1",
+      "bytes": 88837,
+      "lines": 3638
+    },
+    "neighbours-final-continuation4-inputs/rosa/phone/wall-clock.jsonl": {
+      "sha256": "bcb8780884c955dbeceabacb4c6604de122b4586ed2afb1edcb2c59314491c62",
+      "bytes": 8665,
+      "lines": 24
+    },
+    "neighbours-final-continuation4-inputs/rosa/desktop/wall-clock.jsonl": {
+      "sha256": "d953dd594dfcf7db56485e314f62e42f51cb9502ded23aeea7b362dc49992591",
+      "bytes": 6863,
+      "lines": 21
+    },
+    "neighbours-final-continuation4-inputs/leonie/report.md": {
+      "sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+      "bytes": 6385,
+      "lines": 41
+    },
+    "neighbours-final-continuation4-inputs/leonie/brief.md": {
+      "sha256": "4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c",
+      "bytes": 8118,
+      "lines": 55
+    },
+    "neighbours-final-continuation4-inputs/leonie/transcript.jsonl": {
+      "sha256": "56ff8982d8801537d6449bb637acfb55816ab65b142f2deb6215da004f39acf2",
+      "bytes": 373941,
+      "lines": 155
+    },
+    "neighbours-final-continuation4-inputs/leonie/own-history.md": {
+      "sha256": "d05b54fa61062499823f5b239c284b5962529c06855a0a60e6464f3465a93def",
+      "bytes": 56,
+      "lines": 2
+    },
+    "neighbours-final-continuation4-inputs/leonie/completion.json": {
+      "sha256": "d2bd95ec3a73ecc3e22ab6ad01ecfbbd44667d05ed3a643648482cc2fcb1ffa8",
+      "bytes": 97759,
+      "lines": 4051
+    },
+    "neighbours-final-continuation4-inputs/leonie/phone/wall-clock.jsonl": {
+      "sha256": "bf9bced358f4f06cbc862b0ef1d28958566f3f62542898cee0dce677da3c7b02",
+      "bytes": 12195,
+      "lines": 44
+    },
+    "neighbours-final-continuation4-inputs/leonie/desktop/wall-clock.jsonl": {
+      "sha256": "459415f875dfaaeb90b3aafa5e2d2cbf65051700aca7635bdb72a9990834c2ce",
+      "bytes": 8572,
+      "lines": 32
+    }
+  },
+  "reviewMarkdown": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-qualification-review.md",
+    "sha256": "f9ebe6d9c8d5780c4edafa62f11bd938d0cec8890c0821834dcb0dc57db36147",
+    "bytes": 9221
+  },
+  "runtimeOwned": false,
+  "worktreesOwned": [],
+  "cleanup": "git worktree list not applicable: no repository touched or worktree created"
+}

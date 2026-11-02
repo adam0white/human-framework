@@ -1,0 +1,19 @@
+# Packet limits review — CLEAR
+
+Manifest SHA256: `7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d`.
+
+All 20 payload hashes and sizes match. No concrete correction is required within this review lens. The companion JSON binds every examined packet and raw input by SHA256 and size.
+
+Seven last-gameplay raw responses contain both ending markers. Rosa phone/desktop and Leire desktop remain three voluntary unfinished stops. Raw wall logs show exactly five post-stop rows, all automatic first-minute shots, with no later gameplay. Completed transcript item types do not establish image delivery or perception. Image access stays UNVERIFIABLE.
+
+Integration D3–D7 and D9–D11 preserve the evidence limits. Root qualification D1–D12 preserves them separately. Three Days returners, Rosa first Days/franchise experienced, and fictional cold Leire remain distinct. Selected-history stdout coverage does not establish model delivery or comprehension. Feedback draft and Back evidence does not establish submission, consent attribution, backend behavior or serving identity. Stored process cleanup and release-pin receipts do not become live reviewer observations.
+
+The original finalizer HOLD is retained as historical evidence. The later root qualification is collection qualification. The packet remains a candidate. Neither fact establishes game completion, owner acceptance, source correctness or release approval.
+
+The first fixed retest requires a second fix and same-standing retest for Rosa’s reached wording question. Leire’s related question is nonblocking. The packet does not claim the fix introduced the wording, causal improvement, an iteration reset or authorization for a third ordinary panel.
+
+Sources: `integration-notes.md`, `logical-testers.md`, root qualification, protocol review and ask review; retained raw wall-clock and transcript records at the exact input hashes in the companion JSON. Each last-gameplay ending was checked against its cited original transcript response. Selected-history coverage summaries show no uncovered selected lines and ranges of at most 40 lines; comprehension remains unverified.
+
+This is an evidence-limits and protocol review only. It grants no source, CI, completion, release or owner approval.
+
+Cleanup: only the requested review `.md` and `.json` were written. No runtime, browser, tests, build, install, git, worktree or workers were used. No repository was touched; `git worktree list` is not applicable.

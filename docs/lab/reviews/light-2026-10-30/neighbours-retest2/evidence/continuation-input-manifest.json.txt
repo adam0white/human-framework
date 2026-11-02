@@ -1,0 +1,80 @@
+{
+  "status": "NOT_ADMITTED",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 376,
+      "sha256": "d6316d7340502317b3b1160a202cd911082af2ea66a2af27a7c3b1e1da786036"
+    },
+    {
+      "path": "cohort.json",
+      "bytes": 2580,
+      "sha256": "9c680006c651840fa0c7f60504031bd2051732d5b2d2ddb2f2d4e0c039b9ae7f"
+    },
+    {
+      "path": "emre/brief.md",
+      "bytes": 8851,
+      "sha256": "7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5"
+    },
+    {
+      "path": "emre/history-source-map.json",
+      "bytes": 30650,
+      "sha256": "2464ea450be3da5e3ec6c6135a3175db2c822dd8a4a4718785f3e149a156c64f"
+    },
+    {
+      "path": "emre/own-history.md",
+      "bytes": 264393,
+      "sha256": "aec2b9f96ebb4eecac3499f6c7b778deb394c0b1f3dd10d3725d08badc667ef8"
+    },
+    {
+      "path": "leonie/brief.md",
+      "bytes": 8118,
+      "sha256": "4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c"
+    },
+    {
+      "path": "leonie/history-source-map.json",
+      "bytes": 242,
+      "sha256": "efe965f672c345ae60a201624b87ed05f6217810e043f87e0e63ec5cb357281e"
+    },
+    {
+      "path": "leonie/own-history.md",
+      "bytes": 56,
+      "sha256": "d05b54fa61062499823f5b239c284b5962529c06855a0a60e6464f3465a93def"
+    },
+    {
+      "path": "nia/brief.md",
+      "bytes": 8250,
+      "sha256": "1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2"
+    },
+    {
+      "path": "nia/history-source-map.json",
+      "bytes": 71571,
+      "sha256": "29cd050c6bd9dea9a6b714c41655d14a60fac6b5cf2eb327eb8224a583d6009a"
+    },
+    {
+      "path": "nia/own-history.md",
+      "bytes": 301293,
+      "sha256": "a790c94a524ba24d67cac6c619ffa6da169d32685969d943c1dbb75e4510cf6a"
+    },
+    {
+      "path": "plan.json",
+      "bytes": 3244,
+      "sha256": "aa440df36599af0cb29eb33e28498f247ea6c63df39725ef7591da943599c15a"
+    },
+    {
+      "path": "rosa/brief.md",
+      "bytes": 8546,
+      "sha256": "424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff"
+    },
+    {
+      "path": "rosa/history-source-map.json",
+      "bytes": 125752,
+      "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877"
+    },
+    {
+      "path": "rosa/own-history.md",
+      "bytes": 465002,
+      "sha256": "384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d"
+    }
+  ]
+}

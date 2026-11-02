@@ -1,0 +1,183 @@
+{
+  "at": "2026-11-02T10:10:10.741024+00:00",
+  "status": "ROOT_FINAL_QUALIFIED_ASK_TRIAGE_DATED_RECORD_PENDING",
+  "literalExtractionSha256": "5fe08ceffb4f706ec8b088f0fb70879d8da2cc32b5aa7e356880ed7c6fc64525",
+  "asks": [
+    {
+      "id": "F-3123",
+      "tester": "jonas",
+      "literalAsk": "1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya\u2019s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work.",
+      "fullReturnLiteral": "**I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**",
+      "classification": "preference",
+      "target": "fix:smoke",
+      "date": "2026-11-10",
+      "rootQualificationDraft": "Taste request after two successes, not evidence every order is easy; keep danger and difficulty.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/jonas/report.md",
+        "reportSha256": "2b9cf1b9095b96336b9efedcf640b9c99341d94df5f66ff2a4e9c6cc1d9e873b",
+        "byteStart": 155,
+        "byteEnd": 429,
+        "line": 5
+      }
+    },
+    {
+      "id": "F-3124",
+      "tester": "aisha",
+      "literalAsk": "1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "classification": "unresolved-prior-clarity-lead",
+      "target": "fix:smoke",
+      "date": "2026-11-03",
+      "rootQualificationDraft": "Earlier death-account ask encountered again; reached death while following, quit before ending. No ending-context absence proved.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+        "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+        "byteStart": 187,
+        "byteEnd": 329,
+        "line": 5
+      }
+    },
+    {
+      "id": "F-3125",
+      "tester": "aisha",
+      "literalAsk": "2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "date": "2026-11-10",
+      "rootQualificationDraft": "Preserve observed walking destination/estimate/smoke slowdown clarity; no new blocker.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+        "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+        "byteStart": 330,
+        "byteEnd": 439,
+        "line": 6
+      }
+    },
+    {
+      "id": "F-3126",
+      "tester": "aisha",
+      "literalAsk": "3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions.",
+      "fullReturnLiteral": "I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "date": "2026-11-10",
+      "rootQualificationDraft": "Preserve independent neighbour help and motives; no guaranteed compliance or new blocker.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/aisha/report.md",
+        "reportSha256": "70c1daa604ce22f14effd8f6b1cb0e34c91b38c46fa1c9221f611024fab872bd",
+        "byteStart": 440,
+        "byteEnd": 585,
+        "line": 7
+      }
+    },
+    {
+      "id": "F-3127",
+      "tester": "diego",
+      "literalAsk": "1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs.",
+      "fullReturnLiteral": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.",
+      "classification": "reached-clarity-lead-not-new-blocker",
+      "target": "fix:smoke",
+      "date": "2026-11-03",
+      "rootQualificationDraft": "Stopped follower discovered at street; missed transition, exact stop cause unknown. Inspect notice without removing follower autonomy or difficulty.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/report.md",
+        "reportSha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+        "byteStart": 174,
+        "byteEnd": 304,
+        "line": 5
+      }
+    },
+    {
+      "id": "F-3128",
+      "tester": "diego",
+      "literalAsk": "2. Show more clearly how much danger a neighbour is in before I choose who waits. \u201cSmoke is making breathing difficult\u201d gave me urgency, but not a sense of how much time Derya had.",
+      "fullReturnLiteral": "**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.",
+      "classification": "reached-clarity-lead-not-new-blocker",
+      "target": "fix:smoke",
+      "date": "2026-11-03",
+      "rootQualificationDraft": "Breathing warning observed but individual urgency unclear; inspect qualitative danger without mandated numerical countdown or softened danger.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/report.md",
+        "reportSha256": "29fe436ccad3706a3c13b59849ee46badcbd3a2dcaa842f4ffbcfc482221b1f0",
+        "byteStart": 305,
+        "byteEnd": 489,
+        "line": 6
+      }
+    },
+    {
+      "id": "F-3129",
+      "tester": "rosa",
+      "literalAsk": "1. **Keep the current instruction consistent with the latest answer.** On the phone, \u201cThe bundle is tied\u201d appeared while Sevim still showed \u201ctying the books\u201d and the hint told me to wait. This was the new blocking question I reached.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "classification": "reached-blocker-qualified-cause",
+      "target": "fix:smoke",
+      "date": "2026-11-03",
+      "rootQualificationDraft": "Tied event plus tying status/wait hint retained in driver response; later hint corrected. Snapshot delay complicates cause; no permanently broken books action or human-speed reproduction established.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+        "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+        "byteStart": 166,
+        "byteEnd": 407,
+        "line": 5
+      }
+    },
+    {
+      "id": "F-3130",
+      "tester": "rosa",
+      "literalAsk": "2. Put \u201cTurn on Torch, then Show the stair\u201d at the first moment I need it. That instruction was clear when it appeared.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "classification": "preference",
+      "target": "fix:smoke",
+      "date": "2026-11-10",
+      "rootQualificationDraft": "Instruction was understood when reached during stopping; inspect earlier placement, preserve action prerequisites.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+        "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+        "byteStart": 408,
+        "byteEnd": 531,
+        "line": 6
+      }
+    },
+    {
+      "id": "F-3131",
+      "tester": "rosa",
+      "literalAsk": "3. Keep the neighbours\u2019 concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.",
+      "fullReturnLiteral": "I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.",
+      "classification": "preservation-preference",
+      "target": "fix:smoke",
+      "date": "2026-11-10",
+      "rootQualificationDraft": "Preserve concrete replies, belongings and outside confirmation; no new blocker.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/report.md",
+        "reportSha256": "7f54de31b2c4f5f547c6c3a53aca6b50ea2ac489044722f45fd6c489356a9a3b",
+        "byteStart": 532,
+        "byteEnd": 687,
+        "line": 7
+      }
+    },
+    {
+      "id": "F-3132",
+      "tester": "iria",
+      "literalAsk": "1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached.",
+      "fullReturnLiteral": "I would not voluntarily return tonight; I would leave the desktop game paused, not running.",
+      "classification": "reached-blocker-qualified-cause",
+      "target": "fix:smoke",
+      "date": "2026-11-03",
+      "rootQualificationDraft": "Hacer death while following occurred before stair closure; participant did not understand separate air urgency. Inspect qualitative communication, not survival guarantee or numerical countdown mandate.",
+      "askSource": {
+        "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/iria/report.md",
+        "reportSha256": "5d0ba2e83d6c76e272c13161a55fd5fbf170273b2d63a00052bee312adc8bf56",
+        "byteStart": 106,
+        "byteEnd": 329,
+        "line": 5
+      }
+    }
+  ],
+  "twoIterationCap": true,
+  "noThirdOrdinaryPanel": true,
+  "scope": "Root has FULLread5reports and checked literal spans/rawendingtext. Draft engineering/taste routing, audit pending. Dates do not close originalasks or invent accepted causes.",
+  "rootQualificationSha256": "a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9",
+  "rootVerified": true,
+  "qualifications": "SF1\u2013SF14 and inherited limits remain attached in full"
+}

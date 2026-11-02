@@ -1,0 +1,45 @@
+**Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.
+
+**Ranked asks**
+
+1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs.
+2. Show more clearly how much danger a neighbour is in before I choose who waits. “Smoke is making breathing difficult” gave me urgency, but not a sense of how much time Derya had.
+
+I’m Diego Silva, a 28-year-old sound editor from Recife. I played two fresh games on the same evening: **360×690 touch phone**, then **1280×800 desktop with keyboard and mouse**. Neither used an imported save or matched seed. Both reached “Everyone is out.” I stopped at **113.341 seconds** on phone and **131.770 seconds** on desktop, so the three-minute pulse and later checkpoints were not reached.
+
+I issued explicit reads covering all 1,843 lines of my supplied history, but the combined output was truncated. I cannot establish that I received the full middle portion: **lines 201–1680 are potentially unread**. The last line I did receive was **“End of supplied own history.”** I used the visible Smoke return record, including its qualification that the earlier Sevim conflict’s cause and eventual outcome were unknown.
+
+On the phone, getting Hacer out again felt good. Selecting her started a walk with a destination and estimate, and the torch and speech steps gave clear answers. Burak checked the stair and escaped on his own. Derya’s status changed between my named taps, so the driver rejected several names as stale while the clock ran. A direct tap on her visible control worked. That was a driver interaction problem I could work around; I cannot attribute it to the game itself.
+
+On desktop I tried taking Derya along while collecting Hacer. Both were marked following, but by the time I reached the street Derya had stopped upstairs and asked me to come back. I missed the moment she stopped and do not know exactly why. Going back cost time and made the choice feel consequential; finding her again and getting everyone out was the best part of this visit.
+
+**Diary — phone**
+
+These are the reactions I logged, in order. Times are driver elapsed seconds; engagement is out of five.
+
+- **6.594s, note, 4:** “Hacer is home and Sevim is away. I remember losing Hacer before, so I want her out first.”
+- **33.993s, note, 4:** “Hacer follows and Burak got himself out. The walk estimate gives me something to watch; Derya is catching her breath while I take Hacer down.”
+- **64.552s, first minute, 3:** “Hacer is out and that feels good. Now Derya changes status between my named taps and I cannot select her; the clock keeps going. I will try the screen directly.”
+- **85.102s, note, 4:** “The direct tap worked. Derya follows, but now her breathing is difficult; I do not know how much time she has.”
+- **100.317s, note, 4:** “I am waiting for Derya to reach the street. The warning makes this trip tense.” The returned screen showed that she had reached it and the ending had appeared.
+- **102.434s, want quit, FINISHED, 4:** “Everyone is out. I am satisfied with this run and would stop here.”
+- **113.341s, stop, FINISHED, 4:** “Stopping after everyone got out. Hacer and Derya followed me; Burak escaped alone. I selected I am stopping and closed Feedback without typing or sending.”
+
+**Diary — desktop**
+
+- **7.062s, note, 3:** “Another night on desktop. Sevim is away again, so I cannot revisit the books. I will go to Derya first this time.”
+- **33.039s, note, 4:** “Derya follows. I am collecting Hacer on the way instead of making two trips; the keys respond and the stated walk time helps me judge it.”
+- **59.997s, first minute, 4 — premature:** “Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.”
+- **62.384s, first minute, 4:** “Both women are following and Burak is out. I chose one combined trip; thick smoke now makes the estimate 29 seconds. I can understand the tradeoff, though I still cannot see their individual breathing time.”
+- **84.430s, note, 4:** “Hacer made it but Derya stopped upstairs and asks me to come back. I missed when she stopped; I thought both were beside me. Going back.”
+- **121.173s, note, 4:** “I have gone back for Derya and she follows again. I am watching for her to stop this time.” The returned screen showed that she had reached the street and the ending had appeared.
+- **124.068s, want quit, FINISHED, 4:** “Everyone is out again. I would stop here; going back for Derya gave my mistake a consequence and recovering her felt good.”
+- **131.770s, stop, FINISHED, 4:** “Stopping after everyone got out. I had to return for Derya, and I am glad I could. I selected I am stopping and closed Feedback without typing or sending.”
+
+I revisited my earlier question about **movement feedback**: the phone gave a destination and walk estimate after selection, and the viewed stairwell showed the labelled YOU figure. I also saw the breathing warning again, but no individual time remaining. I could not revisit the earlier **Sevim tied-versus-tying conflict** because she was away in both nights. I reached no new blocking ask.
+
+I viewed [phone opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/a-001.png), [phone stairwell]( /Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/phone/a-002.png), [desktop opening]( /Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/b-001.png), and [desktop stairwell]( /Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/diego/desktop/b-002.png). The phone view fit the building, status row and action buttons on screen; the desktop view showed Derya upstairs and my figure at the street. A further phone screenshot was requested but I did not view it.
+
+At each ending, Feedback offered “I'm stopping.” I selected it, saw it marked pressed, and closed with **Not now**. I typed no note and pressed no Submit. I did not open Feedback during the phone selection confusion; that was a missed instruction. Recording, consent, owner profile and settings remained at their defaults, and I retained the agent query.
+
+I created no worktree, server, browser or process; the coordinator owns the drivers. I touched no repository, so there is no `git worktree list` result to report.

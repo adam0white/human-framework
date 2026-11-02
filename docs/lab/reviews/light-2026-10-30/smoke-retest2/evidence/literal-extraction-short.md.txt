@@ -1,0 +1,48 @@
+# Literal extraction
+
+Offsets and complete selected lines are in the JSON. Line and offset ends are exclusive for byte/codepoint positions; line numbers are one-based.
+
+## jonas
+
+Last agent message equals report bytes: True; equals after one terminal newline: False.
+
+L1: **I would not return voluntarily for another attempt tonight; I have seen the two orders I wanted to try. I would not leave it running.**
+L5: 1. Give me a harder choice after I learn the torch-and-follow routine, with visible clues about its cost. Both orders succeeded here, although Derya’s breathing warning made the second trip feel consequential. I cannot tell from two runs how often either order would work.
+L7: I reached no new blocking ask.
+
+## aisha
+
+Last agent message equals report bytes: True; equals after one terminal newline: False.
+
+L1: I would come back another evening to see another night, but I would want the account of a death to recognise the help I tried to give; I would not leave it running.
+L5: 1. When someone dies, acknowledge what I tried. Derya died while following me down, and the line I saw did not mention that I had reached her.
+L6: 2. Keep the walking destination, estimate and smoke slowdown messages. They made movement much clearer to me.
+L7: 3. Keep the neighbours able to help one another. Burak checking the stair and helping Sevim gave him a place in the night beyond my instructions.
+L9: I reached no new blocking ask. The death account was an earlier ask that I encountered again.
+
+## diego
+
+Last agent message equals report bytes: True; equals after one terminal newline: False.
+
+L1: **Would I return voluntarily?** I might return another evening: rescuing Derya after leaving her behind was satisfying. I would not leave the game running.
+L5: 1. Make it easier to notice when someone stops following. I reached the street on desktop before I saw Derya had stopped upstairs.
+L6: 2. Show more clearly how much danger a neighbour is in before I choose who waits. “Smoke is making breathing difficult” gave me urgency, but not a sense of how much time Derya had.
+L39: I revisited my earlier question about **movement feedback**: the phone gave a destination and walk estimate after selection, and the viewed stairwell showed the labelled YOU figure. I also saw the breathing warning again, but no individual time remaining. I could not revisit the earlier **Sevim tied-versus-tying conflict** because she was away in both nights. I reached no new blocking ask.
+
+## rosa
+
+Last agent message equals report bytes: True; equals after one terminal newline: False.
+
+L1: I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+L5: 1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached.
+L6: 2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared.
+L7: 3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.
+L81: I would return on a quieter evening because Sevim’s books made the rescue personal. I would prefer the large screen. I would close both games now; I would not leave the emergency running while doing something else.
+
+## iria
+
+Last agent message equals report bytes: True; equals after one terminal newline: False.
+
+L1: I would not voluntarily return tonight; I would leave the desktop game paused, not running.
+L5: 1. Help me understand how urgently a neighbour needs air, separate from the time until the stair closes. Hacer died while following me, and I did not understand how much time she had. This is the new blocking ask I reached.
+

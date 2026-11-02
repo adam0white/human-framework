@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-11-01T21:55:26.094926+00:00",
+  "sourceCommit": "6077ea23f5307ca02da1001c0f840bdb6826eee6",
+  "prior7bProofSha256": "f6d3f81d14a43fd5d8e6459c77ba40fbaa845f413d960b187ce398ccd66db535",
+  "allNineCurrentSourceFilesExact": [
+    {
+      "path": "neighbours/package.json",
+      "sha256": "a5bc788dc6d6c08fa5d18c3a7392c2f942a152a3bea246deffa89b6c1927e9dc",
+      "bytes": 1676,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/pnpm-lock.yaml",
+      "sha256": "00b0fced05e552c920899347cd6b8d6aa3a3cd7989b0127a1932263bbc0359eb",
+      "bytes": 58473,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/src/main.tsx",
+      "sha256": "99ab714d77aca831f83fa31a1ddf75f9100374ac0be1c0a432911df9cf1e122c",
+      "bytes": 365,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/src/entry.ts",
+      "sha256": "07bf1b38fa8d2d8eb53d5e565a7f16ba291dc3c2a5c7fa5cd3ecc85d647bc8c5",
+      "bytes": 746,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/src/render.tsx",
+      "sha256": "4ba20e69e342e992d5f6681e906a23497bf302ac80871b61c2600807b4247bfd",
+      "bytes": 335,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/src/ui/lab.tsx",
+      "sha256": "8e6513e66861d7e7c2f6898fd30888bd903bb73474afae7b2b4da31af89e7ce7",
+      "bytes": 3290,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/src/ui/useVisitorSession.ts",
+      "sha256": "94794cee8f815e33ca9cb9a5b60a5f4f56209d2d497d28f48ecb2c19e9eb0f8a",
+      "bytes": 63470,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/vendor/adam0white-lab-client-0.4.15.tgz",
+      "sha256": "a317b83fdbf9239a9fea729d9ec7a95cf5b2c54d87d70d780148720a7e2a2eb7",
+      "bytes": 57398,
+      "byteEqualPriorQualifiedSource": true
+    },
+    {
+      "path": "neighbours/vendor/adam0white-lab-kit-0.5.17.tgz",
+      "sha256": "e31e2d632617a3b680e7ba5f0d0e5f3e8c477f5584277e1302cb83177091db16",
+      "bytes": 34093,
+      "byteEqualPriorQualifiedSource": true
+    }
+  ],
+  "scope": "static source transfer only; new served chunk and delivery proof, final admission still pending"
+}

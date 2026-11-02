@@ -1,0 +1,76 @@
+# Continuation four: static protocol audit
+
+Eight recorded stops are voluntary and unfinished; no stop has reason BUDGET, TOOL, or FINISHED. Root retains qualification and routing. The four-person continuation and original qualified Mei singleton are distinct epochs. Original session 75213 exited 1; continuation session 72317 exited 0. This is not a full-five native-zero run or proof of a capacity reset. Root admission, return and prior Mei qualification are in the evidence inventory below.
+
+Seconds are wall-clock elapsed values; report times are reproduced separately. Line references use one-based JSONL or Markdown lines. Detailed events, every completed command, history ranges and time-difference candidates are in the accompanying JSON.
+
+## Emre
+- phone: stop 102.825 s, BORED (wall-clock line 32); checkpoint events: first_minute/shot 60.041 s (line 17), first_minute/log 68.587 s (line 21). Last event: stop/log at 102.825 s, line 32. Feedback/settings events: {'name': 'Feedback'} at line 18, {'name': "I'm confused"} at line 19, {'name': 'Close Feedback'} at line 20, {'name': 'Feedback'} at line 29, {'name': "I'm stopping"} at line 30, {'name': 'Close Feedback'} at line 31.
+- desktop: stop 94.323 s, BORED (wall-clock line 40); checkpoint events: first_minute/shot 60.085 s (line 21), first_minute/log 61.558 s (line 22). Last event: stop/log at 94.323 s, line 40. Feedback/settings events: {'name': 'Feedback'} at line 18, {'name': "I'm confused"} at line 19, {'name': 'Close Feedback'} at line 20, {'name': 'Feedback'} at line 32, {'name': "I'm confused"} at line 33, {'name': 'Close Feedback'} at line 34, {'name': 'Feedback'} at line 37, {'name': "I'm stopping"} at line 38, {'name': 'Close Feedback'} at line 39.
+- History: 2130/2130 lines matched completed command stdout; 54 ranges, 0 over 40 lines. This establishes output coverage, not comprehension. Image-view tool events: 0; saved images and report claims of viewing do not prove perception. Cut: None; no ending observed.
+- Nonzero commands: none. Other non-curl/non-history commands: none. Driver errors: desktop wall line 23 Start your own hour: help repair the hall is shown but disabled right now (game state, not a driver failure), desktop wall line 28 Inspect Flooded hall · Needs help is not on the page now, and it was not in the last reply either; copy one full name from clickable in this reply (not a driver failure).
+- Report/wall one-millisecond differences: report line 33 76.3 vs desktop line 30 76.299.
+
+## Nia
+- phone: stop 56.041 s, BORED (wall-clock line 23); checkpoint events: first_minute/shot 60.037 s (line 24). Last event: first_minute/shot at 60.037 s, line 24. Feedback/settings events: {'name': 'Feedback'} at line 20, {'name': "I'm stopping"} at line 21, {'name': 'Close Feedback'} at line 22.
+- desktop: stop 36.011 s, BORED (wall-clock line 18); checkpoint events: none. Last event: stop/log at 36.011 s, line 18. Feedback/settings events: {'name': 'Feedback'} at line 15, {'name': "I'm stopping"} at line 16, {'name': 'Close Feedback'} at line 17.
+- History: 2480/2480 lines matched completed command stdout; 62 ranges, 0 over 40 lines. This establishes output coverage, not comprehension. Image-view tool events: 0; saved images and report claims of viewing do not prove perception. Cut: None; no ending observed.
+- Nonzero commands: none. Other non-curl/non-history commands: none. Driver errors: .
+- Report/wall one-millisecond differences: report line 18 28.947 vs phone line 12 28.946; report line 25 25.875 vs desktop line 13 25.874.
+
+## Rosa
+- phone: stop 88.892 s, FRUSTRATED (wall-clock line 24); checkpoint events: first_minute/shot 60.074 s (line 16), first_minute/log 64.09 s (line 17). Last event: stop/log at 88.892 s, line 24. Feedback/settings events: {'name': 'Feedback'} at line 21, {'name': "I'm stopping"} at line 22, {'name': 'Close Feedback'} at line 23.
+- desktop: stop 86.727 s, CONFUSED (wall-clock line 21); checkpoint events: first_minute/shot 60.077 s (line 15), first_minute/log 68.325 s (line 17). Last event: stop/log at 86.727 s, line 21. Feedback/settings events: {'name': 'Feedback'} at line 18, {'name': "I'm confused"} at line 19, {'name': 'Close Feedback'} at line 20.
+- History: 4205/4205 lines matched completed command stdout; 106 ranges, 0 over 40 lines. This establishes output coverage, not comprehension. Image-view tool events: 0; saved images and report claims of viewing do not prove perception. Cut: None; no ending observed.
+- Nonzero commands: none. Other non-curl/non-history commands: transcript line 5 /bin/zsh -lc 'cat /Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md'. Driver errors: phone wall line 13 Ece · Visit neighbours at the hall is not on the page now; it was listed 3 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure), phone wall line 14 Nora · Repair the flood-damaged hall is not on the page now; it was listed 5 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure), phone wall line 18 Bilal: Go and inspect the hall timber is not on the page now; it was listed 10 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure).
+- Report/wall one-millisecond differences: report line 19 0.318 vs phone line 2 0.317; report line 23 0.301 vs desktop line 2 0.3; report line 29 11.316 vs phone line 4 11.315; report line 30 33.745 vs phone line 9 33.744; report line 61 11.316 vs phone line 4 11.315; report line 71 51.851 vs phone line 14 51.85; report line 73 79.43 vs phone line 21 79.429; report line 73 84.396 vs phone line 23 84.395.
+
+## Leonie
+- phone: stop 99.621 s, BORED (wall-clock line 44); checkpoint events: first_minute/log 59.155 s (line 25), first_minute/shot 60.045 s (line 26), first_minute/log 61.439 s (line 27). Last event: stop/log at 99.621 s, line 44. Feedback/settings events: {'name': 'Feedback'} at line 11, {'name': "I'm confused"} at line 12, {'name': 'Close Feedback'} at line 13, {'name': 'Feedback'} at line 41, {'name': "I'm stopping"} at line 42, {'name': 'Close Feedback'} at line 43.
+- desktop: stop 80 s, TASTE (wall-clock line 32); checkpoint events: first_minute/shot 60.077 s (line 24), first_minute/log 62.74 s (line 26). Last event: stop/log at 80 s, line 32. Feedback/settings events: {'name': 'Feedback'} at line 29, {'name': "I'm stopping"} at line 30, {'name': 'Close Feedback'} at line 31.
+- History: 2/2 lines matched completed command stdout; 1 ranges, 0 over 40 lines. This establishes output coverage, not comprehension. Image-view tool events: 0; saved images and report claims of viewing do not prove perception. Cut: None; no ending observed.
+- Nonzero commands: transcript line 27 exit 1. Other non-curl/non-history commands: none. Driver errors: phone wall line 31 Cannot tap Inspect Flooded hall: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure), phone wall line 37 Stop advancing is not on the page now; it was listed 2 s ago and the page has changed; copy one full name from clickable in this reply (game state, not a driver failure).
+- Report/wall one-millisecond differences: report line 29 28.913 vs desktop line 12 28.912.
+
+## Interpretation and limits
+
+All stops precede 180 seconds, so no three-minute pulse or later checkpoint was due. Nia stopped both devices before 60 seconds; phone automatic image at 60.037 s came after the 56.041 s stop (phone wall lines 23–24), with no later gameplay in that log. Léonie phone first-minute note at 59.155 s was early; the valid later note is 61.439 s (phone lines 25–27). Automatic captures are not evidence of a viewed image.
+Feedback labels and closes are recorded in the wall logs and their returned transcript output; no typed note, Submit, or recording/consent setting change is observed in the inventoried commands. Pressed-state claims and backend delivery or actual recording state are separate; no delivery is established. Rosa's desktop selected confused, not stopping. Léonie's failed quoted command is transcript line 27; the subsequent successful tap is in her phone wall log. Rosa's cleanup-rule cat is a supplied cleanup instruction and is listed, not silently classified as unallowed.
+Emre's desktop tools were reported available and later in use after game time advanced; the record does not identify a consumer or prove loss. Nia's busy-question refusal is an observed response; a later break was not tested. Rosa's zero-after-work is an uncertainty, and she did not inspect the journal on that desktop session; her grouped concept counts are incomplete and internally inconsistent (report lines 47–59). Léonie's 'directed to ask again' is her interpretation; acceptance records a later decision, not a guaranteed outcome. These observations do not establish a game cause. Raw transcript locators: Emre lines 162 and 166 (12:15 availability to 13:00 in-use); Nia line 160 (explicit refusal and suggested later opportunity); Rosa desktop lines 297–304 (zero after work); Léonie line 135 (acceptance recorded, waiting for later decision, no guarantee).
+
+The prior Mei qualification carries NF1–NF9 limitations; it is not a new Mei audit. Per-person evidence inventory and exact command/range/event locators are in the JSON. Reports are participant claims; recorded tool output is not independent perception or comprehension. The audit did not run the game, helpers, tests, network, browser, installation, or process probes.
+
+## Evidence inventory
+
+- `neighbours-final-continuation4-controller/finalizer-audit.json` — 2722980 bytes; SHA-256 `f6c0639414ac3ad85cd5d2220aa1fec17d7551cfd090b63acd1b12f75bc6b666`; 29030 lines.
+- `neighbours-final-continuation4-controller/root-return.json` — 3457 bytes; SHA-256 `d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07`; 68 lines.
+- `neighbours-final-continuation4-controller/root-admission.json` — 3921 bytes; SHA-256 `aa8edb1f35a467a68fd1e9de6d968c33f4d4457219ebb667f0724dab948622fe`; 68 lines.
+- `neighbours-final-mei-root-qualification.json` — 4090 bytes; SHA-256 `39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42`; 86 lines.
+- `neighbours-final-continuation4-inputs/emre/report.md` — 8768 bytes; SHA-256 `7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607`; 65 lines.
+- `neighbours-final-continuation4-inputs/emre/brief.md` — 8851 bytes; SHA-256 `7dfb0e925bd389f412964a9c27a6658ee2f54a4a1ab62970eea13b91e17d07b5`; 66 lines.
+- `neighbours-final-continuation4-inputs/emre/transcript.jsonl` — 649663 bytes; SHA-256 `0afad06c4c39d08b3c95ba393a5885e221896e7df4775a14edd596ab24c9e81b`; 251 lines.
+- `neighbours-final-continuation4-inputs/emre/own-history.md` — 264393 bytes; SHA-256 `aec2b9f96ebb4eecac3499f6c7b778deb394c0b1f3dd10d3725d08badc667ef8`; 2130 lines.
+- `neighbours-final-continuation4-inputs/emre/completion.json` — 98756 bytes; SHA-256 `e547d503a014814f809a943ce35668493e072ca851918e7742cbfa64f11e9fab`; 4100 lines.
+- `neighbours-final-continuation4-inputs/emre/phone/wall-clock.jsonl` — 8839 bytes; SHA-256 `e2c375180c61a30db31aad279def4332c3e5b6a66b6a499053500efd8c7d0e1f`; 32 lines.
+- `neighbours-final-continuation4-inputs/emre/desktop/wall-clock.jsonl` — 11489 bytes; SHA-256 `aab8060012c16e4de276a55d64f1061c3743fd2a6adccb8a4721e7fb27b715d1`; 40 lines.
+- `neighbours-final-continuation4-inputs/nia/report.md` — 5498 bytes; SHA-256 `7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e`; 45 lines.
+- `neighbours-final-continuation4-inputs/nia/brief.md` — 8250 bytes; SHA-256 `1af6ba69f3a89adb55f503dfe7306e8f7a63a41e104da7eb7bcd6c1c97bcc0a2`; 56 lines.
+- `neighbours-final-continuation4-inputs/nia/transcript.jsonl` — 534615 bytes; SHA-256 `a5206a82cf0925f79bfc9e17eb82c0ab6e724e698c3d0476f283ba0a6ccb2304`; 209 lines.
+- `neighbours-final-continuation4-inputs/nia/own-history.md` — 301293 bytes; SHA-256 `a790c94a524ba24d67cac6c619ffa6da169d32685969d943c1dbb75e4510cf6a`; 2480 lines.
+- `neighbours-final-continuation4-inputs/nia/completion.json` — 84110 bytes; SHA-256 `580997db13bcb54b97009e0168d30248159beb16faecd8f016721402d6fb90c2`; 3306 lines.
+- `neighbours-final-continuation4-inputs/nia/phone/wall-clock.jsonl` — 6529 bytes; SHA-256 `f26779b8de4448d1d155e8828a035eac54220b6f14742c7e79ec5af50be6df2f`; 24 lines.
+- `neighbours-final-continuation4-inputs/nia/desktop/wall-clock.jsonl` — 4905 bytes; SHA-256 `d9263b00ec41ef4c358523a9b3693dee9e754e93a75d4f7d7ef53c1da326fe8b`; 18 lines.
+- `neighbours-final-continuation4-inputs/rosa/report.md` — 12592 bytes; SHA-256 `4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2`; 89 lines.
+- `neighbours-final-continuation4-inputs/rosa/brief.md` — 8546 bytes; SHA-256 `424aa4346a8b7dea65c43d5d25c7b9e5b5304fe071b8f2ba8137d836697d53ff`; 57 lines.
+- `neighbours-final-continuation4-inputs/rosa/transcript.jsonl` — 748689 bytes; SHA-256 `02925547fdd7c4363fb0e9bf5b54891b865d1046902b3a5d731054cf46bad238`; 314 lines.
+- `neighbours-final-continuation4-inputs/rosa/own-history.md` — 465002 bytes; SHA-256 `384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d`; 4205 lines.
+- `neighbours-final-continuation4-inputs/rosa/completion.json` — 88837 bytes; SHA-256 `79e89191da1f47fb2510855f4b43bf8e534f073ce148b2ebd40ab435f23a2ef1`; 3638 lines.
+- `neighbours-final-continuation4-inputs/rosa/phone/wall-clock.jsonl` — 8665 bytes; SHA-256 `bcb8780884c955dbeceabacb4c6604de122b4586ed2afb1edcb2c59314491c62`; 24 lines.
+- `neighbours-final-continuation4-inputs/rosa/desktop/wall-clock.jsonl` — 6863 bytes; SHA-256 `d953dd594dfcf7db56485e314f62e42f51cb9502ded23aeea7b362dc49992591`; 21 lines.
+- `neighbours-final-continuation4-inputs/leonie/report.md` — 6385 bytes; SHA-256 `5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d`; 41 lines.
+- `neighbours-final-continuation4-inputs/leonie/brief.md` — 8118 bytes; SHA-256 `4f1ba2c5627018dce8f4eecf6aa9d5f0ea5d099afb3974ffd22d9c692991a88c`; 55 lines.
+- `neighbours-final-continuation4-inputs/leonie/transcript.jsonl` — 373941 bytes; SHA-256 `56ff8982d8801537d6449bb637acfb55816ab65b142f2deb6215da004f39acf2`; 155 lines.
+- `neighbours-final-continuation4-inputs/leonie/own-history.md` — 56 bytes; SHA-256 `d05b54fa61062499823f5b239c284b5962529c06855a0a60e6464f3465a93def`; 2 lines.
+- `neighbours-final-continuation4-inputs/leonie/completion.json` — 97759 bytes; SHA-256 `d2bd95ec3a73ecc3e22ab6ad01ecfbbd44667d05ed3a643648482cc2fcb1ffa8`; 4051 lines.
+- `neighbours-final-continuation4-inputs/leonie/phone/wall-clock.jsonl` — 12195 bytes; SHA-256 `bf9bced358f4f06cbc862b0ef1d28958566f3f62542898cee0dce677da3c7b02`; 44 lines.
+- `neighbours-final-continuation4-inputs/leonie/desktop/wall-clock.jsonl` — 8572 bytes; SHA-256 `459415f875dfaaeb90b3aafa5e2d2cbf65051700aca7635bdb72a9990834c2ce`; 32 lines.

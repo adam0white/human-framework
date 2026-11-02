@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-02T10:04:35.868800+00:00",
+  "rootVerified": true,
+  "actualToolSession": 89152,
+  "controllerExit": 0,
+  "actualCompletionChunk": "e852f6",
+  "controllerIdentitySha256": "331aca909a9ac4b567b6dd2b27af0118b68c2663827bef19323bdd03bb2af392",
+  "sampledIdentityCount": 480,
+  "goneCount": 480,
+  "reusedOriginalGone": [],
+  "sameIdentityLive": false,
+  "unknownObserved": [],
+  "currentSameUserTaskCwdSurvivors": [],
+  "unknownCurrent": [],
+  "profilesAbsent": {
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-jonas-_n9_10qd": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-aisha-gkxr3ry_": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-diego-_gj6abi0": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-rosa-24e0fdcc": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-iria-bvzzhyhu": true
+  },
+  "ports": {
+    "26800": "bind-free",
+    "26801": "bind-free",
+    "26802": "bind-free",
+    "26803": "bind-free",
+    "26804": "bind-free",
+    "26805": "bind-free",
+    "26806": "bind-free",
+    "26807": "bind-free",
+    "26808": "bind-free",
+    "26809": "bind-free",
+    "26820": "bind-free"
+  },
+  "frozenPayloadsStable": 17,
+  "completionHashes": {
+    "jonas": "5569d777a26a560cfefc7c33da1d3895d85c8c6e9d73eca15b591e25549be004",
+    "aisha": "8bbc52015b80a78c38066346e8895bb048309d8af1fb1724cb6fb8995badd716",
+    "diego": "926e1149fe9ef391cec8f48b9461d9931f655697daf567871bbfa1afdb5d0402",
+    "rosa": "35e253985180d4d7610f60bab63819da6dae6dcf690df76f2b89de933a2a19c4",
+    "iria": "75af53145205b5bd5512f4cd81abe39eb42b0f760e838e098205dfca4d407691"
+  },
+  "reportsRead": false,
+  "priorBindFailure": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-first-bind-failure.json",
+    "sha256": "0479d481cba5e1f1c1b47ff9617a521348554e46465d075287b0c2dd32be760b",
+    "qualification": "First snapshot failed with EADDRINUSE at unknown port. New diagnostic10:04:15 had all11BINDfree/connectionrefused/lsof no listeners; transient cause not established. Fresh fullsnapshot passed; no source or gameplay retried."
+  },
+  "limits": "Sampled PID/birth/exe and currentreadablecwd, profiles, BINDports only; not universal unseenprocessproof or play outcome."
+}

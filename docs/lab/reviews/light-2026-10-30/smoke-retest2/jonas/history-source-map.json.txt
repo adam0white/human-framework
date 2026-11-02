@@ -1,0 +1,120 @@
+{
+  "status": "PRIVATE_PERSON_HISTORY_DRAFT_NOT_ADMITTED",
+  "tester": "jonas",
+  "baseline": {
+    "history": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/own-history.md",
+      "sha256": "ed3384b93d16771ad845e41a4483e8c73b9d51adba8ad81a8c61643ade41ab9a"
+    },
+    "map": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex/jonas/history-source-map.json",
+      "sha256": "c59ff973b893e45b910868bc4323883d335df418fb79f9a4258ddb2d7d6c816a"
+    },
+    "outputByteRange": [
+      0,
+      231754
+    ],
+    "byteExactPrefix": true,
+    "lines": 2314
+  },
+  "segments": [
+    {
+      "packet": "smoke-retest1",
+      "order": 1,
+      "actualCompletionEnd": "2026-10-31T15:25:52.769557+00:00",
+      "source": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/report.md",
+        "sha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138"
+      },
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/report.md",
+        "sha256": "ed71baf2d1b2a1448a44b1bce3334e17651bdb41d18fc6b4fe6c781a80bf8138"
+      },
+      "composition": "exact_report_in_text_fence",
+      "reportByteRange": [
+        231805,
+        239160
+      ],
+      "reportLineRange": [
+        2321,
+        2383
+      ],
+      "continuationByteRange": [
+        231797,
+        239165
+      ],
+      "qualificationByteRange": [
+        239165,
+        239952
+      ],
+      "qualificationSources": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/smoke-retest1/jonas/director-method-qualification.json",
+          "sha256": "46b8e4ff35ca92bb0db5a12bbb4a4c9a094f51d700f8e9076ebad4b51218e56b"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke1-root-finalization.json",
+          "sha256": "36debae88ccaa269a389eb85f4879dafcc3a5e2717a341d8561559295152a476"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-codex-root-closure.json",
+          "sha256": "b323a4c426fae9b3a435c0f723a9a18b7505ac605ffc28cbba50bbbae59d1f6e"
+        }
+      ],
+      "reportOccurrences": 1
+    },
+    {
+      "packet": "stairwell-retest2",
+      "order": 2,
+      "actualCompletionEnd": "2026-11-01T09:56:01.838476+00:00",
+      "source": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/jonas/report.md",
+        "sha256": "234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b"
+      },
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/jonas/report.md",
+        "sha256": "234e040836271e8ba7e7a469c2ae698e7341a0d41d54cb958d7a529bd374ea3b"
+      },
+      "composition": "exact_report_in_text_fence",
+      "reportByteRange": [
+        240007,
+        247329
+      ],
+      "reportLineRange": [
+        2393,
+        2440
+      ],
+      "continuationByteRange": [
+        239999,
+        247334
+      ],
+      "qualificationByteRange": [
+        247334,
+        247900
+      ],
+      "qualificationSources": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-root-qualification.json",
+          "sha256": "9a6bfff826d45b737f46e96d0514371b4ea57b84538dd3d48a71b4c3a491300b"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/stairwell-retest2/method-qualification.json",
+          "sha256": "96fad930ce5c194e2ac9bb8eb8858e68ac4bc3b52e5b1a92cecce34d3532b481"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/stairwell-retest2-packet-root-seal.json",
+          "sha256": "18f309e74cac5ba7afe92982cf097fc6b83451df40a67e802fefd6b069e2019a"
+        }
+      ],
+      "reportOccurrences": 1
+    }
+  ],
+  "historySha256": "d11e9c55197988370287a162c81a2fa6f0118644df8134ef4d92bb15900fed99",
+  "historyBytes": 247930,
+  "historyLines": 2445,
+  "warning": "Earlier embedded end markers do not end the current file. Read through the stated final marker. Selected history is not a full archive; preserve inherited limits.",
+  "qualificationSource": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-gap-qualification.json",
+    "sha256": "53ce48c0c6dc925121c407522cc5f3a0a110a8b3b8566ab59bdcc7ab1fe3e534"
+  }
+}

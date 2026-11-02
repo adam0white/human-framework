@@ -1,0 +1,67 @@
+{
+  "at": "2026-11-02T10:04:15.240526+00:00",
+  "ports": [
+    {
+      "port": 26800,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26801,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26802,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26803,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26804,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26805,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26806,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26807,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26808,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26809,
+      "connectEx": 61,
+      "bind": "free"
+    },
+    {
+      "port": 26820,
+      "connectEx": 61,
+      "bind": "free"
+    }
+  ],
+  "lsofExit": 1,
+  "lsofStdout": "",
+  "lsofStderr": "",
+  "failedRootPhysicalToolChunk": "34b99e",
+  "failedRootPhysicalExit": 1,
+  "rootReceiptsNotWritten": true,
+  "reportsRead": false
+}

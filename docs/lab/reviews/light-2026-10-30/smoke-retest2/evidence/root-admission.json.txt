@@ -1,0 +1,72 @@
+{
+  "status": "ROOT_ADMITTED_SMOKE_FINAL",
+  "epoch": "SMOKE_FINAL",
+  "admitted": true,
+  "cpuReturned": true,
+  "freshPinConfirmed": true,
+  "freshCapacityConfirmed": true,
+  "freshDiskConfirmed": true,
+  "workers": 1,
+  "globalCapacityMax": 4,
+  "cleanup": "drivers-first-verified-join",
+  "modelPolicy": {
+    "jonas": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    },
+    "aisha": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    },
+    "diego": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    },
+    "rosa": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "iria": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    }
+  },
+  "helperHashes": {
+    "controller.py": "e303930504fd65e613b226bc223723da7ef06ea4c5ea37efcc01811dbbfde31f",
+    "finalize.py": "02beb72f6d4c8904445e31e5b4bd13986405b8c3327826effac159379ec872c8",
+    "fresh-admission-root.py": "0ac8890d033c7d90266fd352078713877ad8bbed24acdc61d32b45628c072c06",
+    "observe.py": "2808761a620d26c34534db83262fa3c1a234b5071800d1c33e2c106869b40eec",
+    "root-return-check.py": "73edf02160bf71840cd89afc2da6297a374ad8966fe2e0c01b656128f785a56e",
+    "same-pid-bootstrap.py": "86452afe204b80dd8992223bb05cb9a0196adabddabc12678c2e8fa6c2995319"
+  },
+  "helperCandidateSha256": "d2127fa44c4ab35e881d3fbe6a9444340cfebba90c39cf836c1c222253a6b42a",
+  "hashes": {
+    "controller": "e303930504fd65e613b226bc223723da7ef06ea4c5ea37efcc01811dbbfde31f",
+    "finalizer": "02beb72f6d4c8904445e31e5b4bd13986405b8c3327826effac159379ec872c8",
+    "manifest": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+    "plan": "5211c2a1518a3747ead3f73bab77a0d6aab6739a3af91ce42767fcee7b150733",
+    "eligibility": "3602b4e7e8c530e46a78294c9b52fa89956ba7f2051de76e696dd6520d41d644",
+    "driver": "eb73d2586908f7f9565cfe005d03fba055e2d62dd6eaa4645ba34bebc3f73328",
+    "helpers": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "text": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "supervisor": "55d4a77e2724a0a79ed7dba415356a7ffd6cf7172ea567e8af9b69a7fd620b06",
+    "controlReturn": "f28310fbbe88a9fff87e761ce4c42c02b4e08c47a3c9363c82d32bd0a40fb97a",
+    "inputReview": "e1b8e7114da9bb0be1c7193d625d6e2ace3f67ab1c47e4fdde630ad2f090c63b",
+    "previousReturn": "eab96f851453f067331f4e6e6d15231ff6ee0f4a725da7bf3b2330c6978e3322",
+    "delivery": "03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d",
+    "sdkProof": "2d2a10786262ce708d3d693e5e653b699c45edace581d5e617a5e8bf45e69586"
+  },
+  "sourceReviewPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-source-review.json",
+  "sourceReviewSha256": "f35dadeab421c0953862daad8ab65d0163aa5017c86c08a84d1e053b4c4ca561",
+  "sourceReviewMdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-source-review.md",
+  "sourceReviewMdSha256": "ae4ae8cd6bd54397cd99623581a49059bb75f3ccaedda0a4694c036ae8a43209",
+  "qualificationReviewPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-qualification-review.json",
+  "qualificationReviewSha256": "1e86d8366dc1b3a7a7ead05c1490a38902a2488c2bb6546dbd0c8e647b429924",
+  "qualificationReviewMdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/independent-qualification-review.md",
+  "qualificationReviewMdSha256": "e9b304e3c13c574d132a1105567d038bfc83977f80908edc4024c1771f7e592f",
+  "at": "2026-11-02T09:37:31.150163+00:00",
+  "freshEvidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/fresh-admission-checks.json",
+  "freshEvidenceSha256": "955d85b62ac966d25088d4dd7ee34bd70430e6749c52d6d83f83d5f9f92d55f7",
+  "cpuReturnSha256": "3bb1d68520721d3dc19f330a26cb61e65e3ec4323a0b29406e129a08c20f1075",
+  "reportsRead": false
+}

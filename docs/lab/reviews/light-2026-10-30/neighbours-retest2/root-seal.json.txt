@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-02T08:45:31.239419+00:00",
+  "status": "ROOT_SEALED_FINAL_NEIGHBOURS_PACKET",
+  "packetPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/neighbours-retest2",
+  "manifestSha256": "2bdb21af6708556d367eeeaad4df520634a5d768ecf511025dc90f552746b2aa",
+  "payloads": 43,
+  "candidateCopiedByteExact": true,
+  "reviews": [
+    {
+      "jsonPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-fidelity-review.json",
+      "jsonSha256": "14c2624636899e14fb4c798d7e5fb4c20c56b4a1886f348e32c3794f18f31e90",
+      "mdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-fidelity-review.md",
+      "mdSha256": "6ee99ec3a83375f586a1880467b3f79e553b78fa7da4de875b60b3f53e63f080"
+    },
+    {
+      "jsonPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-qualification-review.json",
+      "jsonSha256": "9d12a25447eecfd1d61e230b3bac34d128abc5db5091344c7e8be05351d12a12",
+      "mdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-qualification-review.md",
+      "mdSha256": "f9ebe6d9c8d5780c4edafa62f11bd938d0cec8890c0821834dcb0dc57db36147"
+    }
+  ],
+  "rootFullReviewMarkdownAndOperativeJsonRead": true,
+  "rootReviewPathRecordsRehashed": 205,
+  "rootMechanicalChecks": {
+    "exactCopies": 34,
+    "literalSpans": 26,
+    "rawReactionStrings": 59,
+    "fullStandingDiaryBodies": 4,
+    "logicalTesterRows": 5,
+    "literalAsks": 10
+  },
+  "epochLimit": "Original75213exit1/qualifiedMei separately plus72317exit0/four current returns; never fullfive native0.",
+  "finishRemaining": "Game datedDeferredrecord exactreview/greenCI/integration; no further ordinary panel. Canonical HF packet/ledger publication separate pending.",
+  "reviewedStatusLabels": "Inside reviewed bytes NOTSEALED remains historical freeze label; this external root seal supersedes only packet sealing state, not source/merge/publication/owner acceptance."
+}

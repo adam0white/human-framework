@@ -1,0 +1,66 @@
+# Coordinator metadata — derived diary continuation; candidate frozen for independent review, NOT SEALED
+
+Standing tester: mei. The complete current report follows, unchanged, beginning immediately after the marker. This file is derived; report.md is the exact source copy.
+
+--- BEGIN VERBATIM REPORT ---
+I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running.
+
+**Ranked asks**
+
+1. Keep my town available to resume. I want to continue the repair work I started, but I did not test whether the save works.
+2. Say whether a released offered hour can become owed again if the neighbour later does what I requested. That was unresolved on my previous visit; I did not reach that situation this time.
+
+I am Mei Tan, 53, an accountant and carer in Singapore. This was a return visit to Neighbours. I used the assigned agent-marked URL and started a fresh, independent town on each device, with no imported save or matched seed.
+
+- **Laptop:** 1280×800 keyboard and mouse. Stopped at **74.519 real seconds**, Day 1 at 11:00.
+- **Phone:** 360×690 touch, on my other device the same evening. Stopped at **41.117 real seconds**, Day 1 at 09:00.
+
+Neither game ended. The laptop reached the first-minute checkpoint; the phone stopped before it. Neither reached the 180-second pulse checkpoint. I did not wait to reach either checkpoint.
+
+I read the supplied own history through line **1721**, in explicit ranges. The last line read was **“End of supplied own history.”** Exact unread ranges: **none**. It is a selected history, not my complete archive.
+
+At **5.046 seconds**, the visible Mill Bridge title and flooded-hall introduction prompted a confident memory of following Nora and offering an hour that was later released. At **24.035 seconds**, Ece’s answer and status prompted my memory of being puzzled by those words on the previous visit. On the phone, the opening reminded me of the laptop town I had just played; I did not recognize another earlier encounter there.
+
+The town still felt active without requiring me to direct everyone. I liked that conversation paused time, that my own repair hour had an end time, and that the journal recorded both my work and Ece’s visit. Nora’s explanation for keeping the hall closed gave the repair goal a concrete reason. On the phone, Derya’s account of a scheduling error felt careful: she did not claim to know why her training invitations stopped, and she kept other matters private.
+
+**Diary — laptop**
+
+These are my logged reactions in order, unedited. Times are driver elapsed seconds; engagement is the value I entered.
+
+- **5.046 s, note, engagement 4:** “Mill Bridge and the flooded hall remind me of following Nora and offering an hour that was later released. I am confident of that memory. I want to see the hall progress.”
+- **24.035 s, note, engagement 4, Day 1 08:00:** “Ece says she will do it, and the new explanation separates that first answer from her later choice. I remember being puzzled by those words last time. I understand that she has not started yet; I will let time move.”
+- **35.783 s, note, engagement 4, Day 1 08:15:** “I can give my own hour directly. The walk is included and it says work ends at 10:00. That is a commitment I can compare with the day.”
+- **48.135 s, note, engagement 4, Day 1 10:00:** “My hour ended and the hall now shows one of twelve repairs. Nora kept it closed because timber is wet and supports loose. I like having a reason for the closure, though I cannot tell whose work made that one repair.”
+- **57.797 s, note, engagement 4, Day 1 10:15:** “The journal confirms I helped repair the hall and records Ece beginning and finishing her visit. That answers my question about my hour. I like seeing both outcomes with times.”
+- **62.232 s, first_minute, engagement 4, Day 1 10:15:** “The explanation of Ece's first answer is clearer than my last visit, and the journal records her visit and my repair hour. I like the times and the reason the hall remains shut. I would like to see more of the town later.”
+- **64.739 s, want_quit, BUDGET, engagement 4, Day 1 10:15:** “I would stop here this evening after my hour. I want to return to this town and see the hall progress, provided my place is kept.”
+- **74.519 s, stop, BUDGET, engagement 4, Day 1 11:00:** “Stopping on Day 1 at 11:00 after my repair hour. Ece visited and the journal recorded my work. I chose I am stopping and closed Feedback without typing or submitting. I would return to a saved town.”
+
+My first attempt to log the first-minute note failed with `zsh:1: unmatched "`. It was not recorded; the successful line is above. My quit wish stood.
+
+**Diary — phone**
+
+- **5.490 s, note, engagement 4:** “The opening fits my phone and reminds me of the town I just left on the laptop. I will start another town and meet someone else.”
+- **18.665 s, note, engagement 4, Day 1 08:00:** “Derya told me about reporting a scheduling error and losing training invitations, but does not know whether they were connected. I appreciate that uncertainty and her privacy. She needs sleep after her shift, so I will leave her to it.”
+- **27.213 s, note, engagement 4, Day 1 09:00:** “I lent tools for one credit; the result says five tools are available and two credits remain. The cost and result are clear. Derya is asleep as she needed to be.”
+- **30.038 s, want_quit, BORED, engagement 3, Day 1 09:00:** “I would stop on the phone now. I enjoyed hearing Derya and lending tools, but I have already played the opening on the laptop and would rather continue that town another evening.”
+- **41.117 s, stop, BORED, engagement 3, Day 1 09:00:** “Stopping on the phone at Day 1 09:00. Derya shared what she wished, then slept; I lent tools and have two credits left. I chose I am stopping and closed Feedback without typing or submitting. I would rather return to the laptop town.”
+
+That quit wish also stood. I enjoyed the new conversation, but did not want to repeat the opening further on the phone.
+
+**Clarity and comparison**
+
+My last Neighbours visit left me unsure how Ece’s “I will do it” related to “waiting for a later decision.” This time the game explicitly separated her first answer from a later choice or start, said she still chooses, and told me to close the conversation to let time move. She then chose the visit, and the journal recorded its beginning and end. That explanation answered my immediate uncertainty in the situation I reached.
+
+I did not make a conditional hour offer this visit, so I cannot say whether a released hour could later become owed again. That was a blocking question I reached on an earlier visit, not a blocker in these sessions. I also did not test resuming either town, reopening the hall, or the full phone conversation form.
+
+**Screens and feedback**
+
+I actually viewed two screenshots:
+
+- [Laptop opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/desktop/a-001.png>): the title, flood introduction, large entry button and recording notice were readable.
+- [Phone opening](</Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/phone/b-001.png>): the introduction and large entry button fit at 360 pixels wide; the recording notice sat along the bottom.
+
+I did not view gameplay screenshots. The phone controls I used responded, and the visible result confirmed the tool purchase. On both devices I opened Feedback at stopping, selected **“I'm stopping”**, saw it marked pressed, and closed Feedback. I typed no note and submitted nothing. Recording and consent stayed at their defaults.
+
+I would not leave the town running: neighbours and their commitments change as time moves. The coordinator owns the drivers and browsers. I started no helpers or processes and touched no repository, so I have no worktree to list. I made one disallowed `ls` call before reading the history; it listed workspace filenames and did not change the game.

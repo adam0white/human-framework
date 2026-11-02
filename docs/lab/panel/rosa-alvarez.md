@@ -3890,3 +3890,301 @@ I created no worktree, branch, server, browser or helper process and touched no 
 ---
 COORDINATOR METHOD QUALIFICATION (separate from the unchanged own report): Retained history stdout does not prove delivery or comprehension; inherited W/SW/NR/SWF and image-view limits remain. Screenshot files do not independently establish perception. Both actual stops were voluntary and unfinished; no ending was observed. Checkpoint obligation during a stopping wrap is unverified; automatic post-stop screenshots do not establish continued play. Requested model does not prove serving identity or causation. Current own stop projections: [{"tester":"rosa","device":"phone","wallRow":20,"elapsed":66.788,"reason":"CONFUSED","engagement":2,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."},{"tester":"rosa","device":"desktop","wallRow":14,"elapsed":42.194,"reason":"TASTE","engagement":3,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."}]; current own reported time differences: [{"tester":"rosa","device":"phone","wallRow":11,"transcriptLine":234,"wallElapsedLiteral":"34.679","driverResponseElapsedLiteral":"34.68","manuscriptTimeLiterals":["34.680"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."},{"tester":"rosa","device":"phone","wallRow":17,"transcriptLine":246,"wallElapsedLiteral":"57.71","driverResponseElapsedLiteral":"57.711","manuscriptTimeLiterals":["57.711"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."},{"tester":"rosa","device":"desktop","wallRow":8,"transcriptLine":265,"wallElapsedLiteral":"20.038","driverResponseElapsedLiteral":"20.039","manuscriptTimeLiterals":["20.039"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."},{"tester":"rosa","device":"desktop","wallRow":13,"transcriptLine":275,"wallElapsedLiteral":"39.05","driverResponseElapsedLiteral":"39.051","manuscriptTimeLiterals":["39.051"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."}]. No backend or owner acceptance is established.
 ```
+
+
+## 2026-11-02 — neighbours final fixed retest
+
+Coordinator metadata: qualified fictional AI evidence. Complete own report follows in the unedited continuation. All inherited and current qualifications remain attached in [methodology](../reviews/light-2026-10-30/neighbours-retest2/methodology.md.txt) and [external seal](../reviews/light-2026-10-30/neighbours-retest2/root-seal.json.txt). Internal pre-review labels are historical. No owner acceptance follows.
+
+```text
+# Coordinator metadata — derived diary continuation; candidate frozen for independent review, NOT SEALED
+
+Standing tester: rosa. The complete current report follows, unchanged, beginning immediately after the marker. This file is derived; report.md is the exact source copy.
+
+--- BEGIN VERBATIM REPORT ---
+I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. **Tell me what my repair hour accomplished.** After it ended, the hall still showed zero of twelve repairs. This was the blocking question I reached on desktop.
+2. Let me select a neighbour without their changing activity making the listed control disappear before my tap. This frustrated me on the phone.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was a return visit to *Neighbours*. Both sessions started through **Enter Mill Bridge** on the driver-opened agent-marked page. Each used a fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | Game clock |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 88.892 | FRUSTRATED | Day 1 13:45 |
+| B | 1280×800 desktop, mouse actions | 86.727 | CONFUSED | Day 1 13:00 |
+
+Both stops were my choice. Neither session reached the 20-minute ceiling or a game ending.
+
+I read all **4,205 supplied history lines** before play, in separate explicit ranges of at most 40 lines. No response was truncated. The final range was **4201–4205**. The last line read was **“End of supplied own history.” Exact unread ranges: none.** The history is selected, not my complete archive. Its earlier reading, image and continuity qualifications remain attached to the earlier records.
+
+The phone title appeared at **0.318 seconds**. Reopening a flooded hall remained an understandable reason to help. The text and broad Enter button were comfortable. I wanted to find out whether accepting Ece’s later offer was clearer than on my previous visit.
+
+Instead, I spent the morning trying to meet people. I reached the hall, but Ece changed activities before my next selection. Nora then moved before my tap. Selecting her current workshop activity worked, and I liked seeing that she had kept her promise to repair the doors. Later, Bilal’s activity changed before another selection. I felt hurried and stopped without speaking to anyone.
+
+The desktop title appeared at **0.301 seconds**. Its introduction was fully visible and comfortable. I chose a different action: give an hour of my own work. The game immediately said I was working until 09:45 and had one hour left that day. That felt clear and useful. Later, the work status had ended, but the hall still showed **0 of 12 repairs**. I could not tell what I had accomplished.
+
+**Diary — successful log strings, unchanged and in order**
+
+Phone:
+
+- **11.316 s — note, engagement 4, title:** “The flood and hall bring back my earlier visits. I am confident I remember Bilal agreeing and Ece offering to help later. I want to see what accepting means now. The text and broad button are comfortable. Title concepts 10: games, information, menu, flood, hall, rebuilding, independent decisions, other ways in, town download, linked recording. No reread.”
+- **33.745 s — note, engagement 4, Day 1 08:30:** “I am walking to the hall again. The arrival time is plain. Town concepts 16: day, clock, weather, repairs, credits, hall choice, river, eight places, high water, closed hall, six neighbours, their activities, nearby hearing, walking, Skip explanation, journal and help. Hall adds 6: twelve repairs, inspection, current place, arrival, own hour, separately promised hour. No reread. Loading added download size and first-visit delay: 2.”
+- **64.090 s — first_minute, engagement 3, Day 1 11:45:** “I reached the hall but Ece left before my tap, and Nora moved before the next. The morning ran from 09:15 to 11:45 while I tried to choose. I feel hurried. Nora kept her door promise, which pleases me, but I have spoken to nobody. Person screens add 10 concepts: recorded activity end, no guaranteed break, awake hearing, personal questions, refusal, privacy, return to move time, occupation, family, promise result. I recognise Nora and Ece from my previous Neighbours visit confidently; Ece being a courier does not prove she is the woman from Two Voices. No reread.”
+- **75.003 s — want_quit, FRUSTRATED, engagement 2, Day 1 12:45:** “Now Bilal has moved too. I have spent the morning trying to select people and have asked nobody anything. I like Nora keeping her promise, but chasing changing names makes me feel hurried. I would stop on the phone.”
+- **88.892 s — stop, FRUSTRATED, engagement 2, Day 1 13:45:** “I stop on the phone. I liked seeing Nora keep her promise, but Ece, Nora and Bilal changed activities before my taps and I spoke to nobody. I felt hurried rather than helped. No sentence needed rereading. Menu concepts 17: pause, journal, colours, pace, four speeds, saved towns, studies, compare outcomes, recorded studies, feedback, full screen, games, new game, saved people, recording, privacy, debug and resume. Feedback concepts 10: close, stopping, confused, three verdicts, note, name, what is sent, copy, submit. I chose stopping, saw it pressed and closed; I typed and submitted nothing. I would close it.”
+
+Desktop:
+
+- **8.991 s — note, engagement 3, title:** “The same flooded hall recalls my phone tonight and earlier Neighbours visits confidently. The wide title is comfortable and its beginning is visible. Same 10 title concepts. No new person recognition and no reread. This time I would like to do an hour myself instead of chasing someone.”
+- **43.506 s — note, engagement 4, Day 1 09:00:** “Starting my own hour gave an immediate result: working until 09:45 and one hour left today. That is clearer than chasing people. I like Nora refusing to open wet timber. Same 16 town groups and 6 hall groups as phone, plus town record and automatic work: 2. The record adds wet timber, loose supports and following a person: 3. Loading repeated 2 concepts. No reread.”
+- **58.825 s — want_quit, CONFUSED, engagement 2, Day 1 12:00:** “I gave my own hour and now it is noon, but the hall still says zero of twelve repairs. Every tool is in use. I do not know what my hour achieved. The map and plain work button pleased me, but I would stop here rather than give another hour without knowing. No reread; this is uncertainty about the result.”
+- **68.325 s — first_minute, engagement 2, Day 1 13:00:** “I understood how to start my own hour, and the large map is easy to follow. But after it ended I could not see what changed: still zero repairs. The disabled repair now explains that tools are all in use; that adds one concept. I have decided to stop and am checking Feedback, not continuing work. Menu has the same groups as phone. No reread.”
+- **86.727 s — stop, CONFUSED, engagement 2, Day 1 13:00:** “I stop on the big screen. Starting my own repair hour was clear, but afterward I still saw zero of twelve repairs and could not tell what I accomplished. The large map is comfortable; its small place labels are helped by the named buttons. No sentence needed rereading. Menu groups are the same as phone; Feedback has the same 10 groups. I chose confused, saw it pressed and closed Feedback. I typed and submitted nothing. I would close it now and return only if I could understand the result of my work.”
+
+Both quit wishes remained through Feedback. The phone engagement fell from 4 to 2. Desktop rose from 3 to 4 when my work started, then fell to 2 when I could not understand its result.
+
+I reread **no sentence** on either device. My two-reread stopping rule did not trigger. The difficulty was acting before people moved and understanding what happened after work.
+
+My concept counts were contemporaneous grouped estimates. They were not exhaustive: the phone town line says 16 but lists 17 groups; the menu line says 17 but lists 18. The Feedback line says 10 but lists nine groups when the three verdicts are grouped together. I also did not separately count every work option, family detail or milestone when it appeared. These are limits of my counting, not evidence that those screens introduced no further concepts.
+
+| Reached screen | Logged concept groups | Rereads |
+|---|---:|---|
+| Title, both | 10 | None |
+| Loading, both | 2 | None |
+| Town, both | 16 claimed; 17 listed | None |
+| Hall details, both | 6 additional groups | None |
+| Ece and Nora details, phone | 10 additional groups | None |
+| Desktop record and automatic work | 2 groups, plus 3 record details | None |
+| Desktop tools refusal | 1 additional concept | None |
+| Menu, both | 17 claimed; 18 listed | None |
+| Feedback, both | 10 claimed; nine grouped items listed | None |
+
+Recognition came from ordinary visible cues. At **11.316 seconds**, the flood and hall prompted confident memories of my recorded Bilal request and Ece’s later offer. At **64.090 seconds**, Nora’s promise result and Ece’s courier details prompted recognition of my previous Neighbours encounters. Ece’s courier work still did **not** establish that she was the person from *Two Voices*. At **8.991 seconds on desktop**, the title recalled both the phone session and earlier Neighbours visits. I recorded no new recognition of another person.
+
+I actually viewed three screenshots:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/phone/a-001.png), captured at **2.612 s**: readable introduction, broad Enter button, simple river illustration and recording notice along the bottom.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-001.png), captured at **2.389 s**: fully visible introduction beneath the illustration, large text and broad button.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/desktop/b-002.png), captured at **47.222 s**: town map on the left, neighbour controls and town record on the right. The place labels were small. The named controls were readable. The red “you” marker helped me locate myself at the hall.
+
+I viewed no phone gameplay image or screenshot of the later hall result. Those observations rely on the driver’s visible text and controls. I took one manual screenshot on phone and two on desktop. I requested and viewed no automatic checkpoint image.
+
+The phone produced three stale-control errors: Ece at **47.166 s**, Nora at **51.851 s**, and Bilal at **67.162 s**. Each reply identified changed game state. Selecting Nora’s updated name worked at **56.691 s**. These do not establish broken controls. There were no desktop driver errors. I cannot establish why the clock advanced as quickly as it did between some calls.
+
+On phone, Feedback opened at **79.430 s**. **“I'm stopping”** showed as pressed at **81.519 s**, and **Close Feedback** worked at **84.396 s**. On desktop, Feedback opened at **71.638 s**. **“I'm confused”** showed as pressed at **75.526 s**, and Close Feedback worked at **78.832 s**. Both labels were offered on both devices. I typed no note and pressed no Submit.
+
+Compared with my supplied Neighbours reports:
+
+- The desktop introduction remained fully visible, as in my previous retest.
+- I did not accept Ece’s alternative, so I cannot assess my earlier acceptance question or the previous person’s response remaining in a new conversation.
+- I did not ask Bilal to repair, so his earlier unavailable-repair outcome remains untested.
+- I did not use Skip or open its explanation. My earlier question about its advance remains unanswered by this visit.
+- My own work produced a clear starting status, but its later result became the new blocking question I actually reached.
+
+Both first-minute notes were logged after 60 seconds. The desktop note occurred during the stopping check; it was not further repair play. Neither session reached 180 seconds, so no pulse was due. I did not reach a reopened hall, later evenings or an ending.
+
+I still like the ordinary purpose of helping a town recover and the neighbours having their own obligations. This evening left me less willing to continue alone. I would close the game. I would consider another evening if I could understand what my work achieved and meet someone without feeling rushed.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns driver and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.
+```
+
+
+## 2026-11-02 — smoke final fixed retest
+
+Coordinator metadata: qualified fictional AI evidence. Complete own report follows in the unedited continuation. All inherited and current qualifications remain attached in [methodology](../reviews/light-2026-10-30/smoke-retest2/methodology.md.txt) and [external seal](../reviews/light-2026-10-30/smoke-retest2/root-seal.json.txt). Internal pre-review labels are historical. No owner acceptance follows.
+
+```text
+# Rosa standing diary continuation
+
+Coordinator note: Full current report follows verbatim. Root qualifications, including visual access UNVERIFIABLE and history delivery limits, are outside the report in ../methodology.md and ../evidence/root-qualification.json.
+
+I would return voluntarily another evening on the large screen to help the other neighbours, but I would close it now and not leave it running.
+
+My ranked asks are:
+
+1. **Keep the current instruction consistent with the latest answer.** On the phone, “The bundle is tied” appeared while Sevim still showed “tying the books” and the hint told me to wait. This was the new blocking question I reached.
+2. Put “Turn on Torch, then Show the stair” at the first moment I need it. That instruction was clear when it appeared.
+3. Keep the neighbours’ concrete answers and the confirmation that they reached the street with their belongings. Sevim keeping her books mattered to me.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Smoke visit**, with prior franchise experience from my supplied history.
+
+I read all **4304 supplied history lines** before play, using explicit ranges of at most 40 lines and follow-up reads after truncated output. The final range was **4281–4304**. The actual last line read was **“End of supplied own history.” Exact unread ranges: none.** Earlier qualifications remain attached to those earlier records. This selected history supplies no earlier Smoke ask.
+
+Both sessions began through **Enter the stairwell →** on the driver-opened page at `https://smoke.adamwhite.work/?labRunSource=agent`. Each used its own fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | State when stopped |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 121.495 | CONFUSED | Paused on landing 1; stair closes in 93s |
+| B | 1280×800 desktop, keyboard and mouse | 95.331 | TASTE | Paused at street; Sevim and Burak outside; stair closes in 86s |
+
+Neither session reached the 20-minute ceiling or a game ending.
+
+The phone’s opening image at **3.439 seconds** felt inviting and readable. The goal was immediately understandable: get everyone who is home to the street. Helping Sevim tie her exercise books felt like an ordinary, considerate action. Her name and books reminded me of the school memories I enjoyed in *The Stairwell*, but I remained uncertain whether she was the same woman.
+
+The countdown made me hurry. At **52.228 seconds**, the log said the bundle was tied, while her status and instruction still told me she was tying it and I should wait. The gameplay image at **86.317 seconds** showed those messages together. I reread two sentences and chose to stop. During the stopping check at **102.203 seconds**, her status finally changed and the hint said, “Turn on Torch, then Show the stair.” I understood that instruction, but my wish to leave remained. I cannot establish why the earlier messages differed.
+
+Desktop was more satisfying. Burak was home this time, whereas he had been away on the phone. The number and speech keys produced visible results. I helped with the books, turned on the torch, showed Sevim the stair and asked her to follow. At **52.940 seconds**, the game confirmed that she reached the street with her books. Burak was outside too. I felt I had helped someone. I chose to leave after that rescue because I did not want another hurried climb that evening.
+
+These are all my successful diary strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **14.269 s — note, engagement 4:** “The smoke and getting neighbours to the street are clear. The large title and button are comfortable. I have not seen Smoke before. Title concepts 18: flats in Istanbul, smoke, rescue everyone home, approach by name, torch, speech, listening, following, stopped, Street leads down, landing movement, arrows or WASD, number selection, speech keys, recording, linked play, 180-day retention, privacy and menu recording control. No reread yet.”
+- **32.782 s — note, engagement 4:** “Sevim and her exercise books remind me of the school memories I liked in The Stairwell, but I do not know this is the same woman. I want to help her carry them. The countdown makes me hurry. Main screen concepts 20: countdown, thick and thin smoke, stair closing, breath cost, four named neighbours, away tonight, each stopped reason, selected neighbour, nearby speech, Come now, books, Walk with me, Show the stair, Torch toggle, Street destination, five walking destinations, current position, travel estimate, event log, catching breath. No sentence reread.”
+- **75.598 s — first_minute, engagement 3:** “I understand the rescue goal and reached Sevim. Helping tie her school books pleased me. Now the log says the bundle is tied, but her status still says tying and Show the stair is disabled. I am unsure which message to follow. No sentence needed rereading; the messages disagree. I opened confused Feedback, which filled the note itself. I typed nothing. Title count correction: 22 groups, adding Enter, feedback review, possible death and no effect on other games; the earlier 18 label was a miscount. Menu has 13 groups and Feedback 12, including recording, retention, privacy, queued history and public quote.”
+- **98.367 s — want_quit, CONFUSED, engagement 2:** “I reread two sentences: The bundle is tied. Wait while the bundle is tied. They give me opposite instructions, and Show the stair stays grey. I like helping with the books, but I cannot tell what to do and the seconds keep going. I would stop now. The picture confirms the same tying status and wait instruction.”
+- **121.495 s — stop, CONFUSED, engagement 2:** “I stop on the phone after the two rereads. Helping Sevim with the books pleased me, but the tied and still tying messages confused me while the countdown ran. Opening the pause menu finally changed the hint to Turn on Torch, then Show the stair. That is clear now, but I am ready to leave. I chose confused Feedback twice and closed with Not now. The note filled itself; I typed and submitted nothing. I would close it.”
+
+**Desktop**
+
+- **21.203 s — note, engagement 4:** “The large title is comfortable and I know the rescue goal from my phone tonight. Burak is home and checking the stair this time; on phone he was away. I press 1 and begin walking to Sevim, so the keyboard gives a visible result. Title has the same 22 concept groups. Main screen has the same 20 plus checking the way, waking Derya and the 06:10 instruction panel: 23. No reread on this device.”
+- **61.723 s — note, engagement 5:** “Sevim is outside with her books. That pleases me much more than just a score. Burak helped with the books and got himself out. B, F, R and T each gave a clear result here, and Street led her down. New concepts in this sequence 6: tying takes time, Burak helps, torch must be on, showing lights the route, following needs my movement, outside confirms rescue. No reread.”
+- **68.553 s — first_minute, engagement 5:** “The large screen and keyboard are clearer for me tonight. Sevim reached the street with her books, and Burak is outside too. I understand approach, help, light the stair, ask her to follow, then walk down. I have reread no sentence here. The countdown still makes me hurry, even with a satisfying rescue.”
+- **78.171 s — want_quit, TASTE, engagement 4:** “I am glad Sevim and the books are outside. I understand this sequence now, but the emergency countdown is more hurried than I want this evening. I would stop after this rescue rather than climb for the other two tonight. No reread; this is my choice of pace and mood.”
+- **95.331 s — stop, TASTE, engagement 4:** “I stop on the big screen for tonight. Sevim reached the street with her books and Burak is outside too. That was satisfying and the keys gave clear answers. I have reread no sentence here, but I do not want another hurried climb tonight. Menu has the same 13 groups and Feedback 12 as phone. I chose stopping, the note filled itself, and Not now returned to the menu. I typed and submitted nothing. I would close it and might return another evening on the large screen.”
+
+My phone quit wish followed these exact sentences:
+
+1. **“The bundle is tied.”**
+2. **“Wait while the bundle is tied.”**
+
+Both appeared on the rescue screen. I understood each sentence separately; together they made me reread to decide which instruction applied. That triggered my two-sentence stopping rule. I reread no sentence on desktop. Both quit wishes remained through Feedback.
+
+My concept counts were grouped estimates. The title count was mistaken in my first diary and still one short in its correction. The fuller accounting below includes familiar controls, settings and lab topics rather than counting only unfamiliar words.
+
+| Reached screen | Concepts presented | Count | Rereads |
+|---|---|---:|---|
+| Opening, both | Istanbul flats; smoke; rescue everyone home; approach by name; torch; speech; listening; following; stopped; Street leads down; landing movement; arrows/WASD; numbered selection; speech keys; Enter; recording; linked play; retention; recording control in menu; Feedback review; privacy; possible death; no effect on other games | 23 | None |
+| Phone rescue screen | Countdown; thick/thin smoke; closing stair; breath cost; four neighbours; absence; stopped reasons; selection; nearby speech; Come now; books; Walk with me; Show the stair; torch toggle; Street; landing destinations; position; travel estimate; event log; catching breath | 20 groups | Two quoted sentences |
+| Desktop rescue screen | Phone groups, plus checking the route, waking Derya and the 06:10 instruction panel | 23 groups | None |
+| Books and escort sequence | Tying time; help from Burak; torch prerequisite; showing the route; followers need my movement; outside confirms rescue | 6 additional groups | None on desktop |
+| Pause menu, both | Pause; Keep going; New game; full screen; All games; People across games; stopping; confused; download; recording control; linked history and retention; privacy; Feedback draft/submission boundary; Debug | 14 groups, correcting logged 13 | None |
+| Feedback, both | Three keep-playing choices; stopping; confused; optional note; optional name; queued history; What is sent; private note; possible public quote; lab privacy; Not now; Submit | 12 groups | None |
+
+I actually viewed four screenshots through successful `view_image` calls:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-001.png), **3.439 s**: cream introduction over a dark background, readable text and a broad Enter button. The privacy and recording text was smaller.
+- [Phone a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/phone/a-002.png), **86.317 s**: building above the log and controls. “You” helped locate me beside Sevim. The tied answer, tying status and wait hint were visible together. The status text and key letters were small.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-001.png), **2.970 s**: spacious centered introduction with comfortable text and a wide Enter button.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-inputs/rosa/desktop/b-002.png), **41.013 s**: building above the log and action controls, with a short instruction panel at left. I could see Sevim beside me, the torchlight and the street destination. The status text was easier to read than on the phone.
+
+I took two manual screenshots per device. I requested and viewed no automatic checkpoint image.
+
+Phone controls used were Enter, Sevim’s full named control, The books, pause, the confused shortcut, Not now and Keep going. Desktop used Enter, keys **1, B, F, R, T**, Street, pause, the stopping shortcut and Not now. There were no driver errors or retries.
+
+The driver’s log responses sometimes repeated the previous visible snapshot with a nonzero `snapshot_ms`; later input responses showed a newer countdown or status. I cannot separate the cause of that behavior from the game’s displayed updates. My confusion was real, but it does not establish a permanently broken books action.
+
+On phone, selecting **“I'm confused”** opened Feedback at **62.257 s** and again at **109.274 s**. The note automatically contained “I'm confused.” **Not now** closed it at **79.643 s** and **114.478 s**. On desktop, **“I'm stopping”** opened Feedback at **85.211 s**, automatically filled that text, and **Not now** returned to the menu at **88.597 s**. Both quick labels were offered. The responses did not mark a Feedback label as pressed, so I claim the observed draft text and successful closing, not a pressed state. I typed nothing and pressed no Submit.
+
+Both first-minute notes were logged after 60 seconds. Neither session reached 180 seconds, so no pulse was due. I did not rescue anyone on the phone. On desktop, Sevim and Burak were confirmed outside, while Derya and Hacer remained inside. Their conversations, rescues, the closing stair, possible deaths and the ending remain untested.
+
+I would return on a quieter evening because Sevim’s books made the rescue personal. I would prefer the large screen. I would close both games now; I would not leave the emergency running while doing something else.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns driver and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.
+```
+
+
+## 2026-11-02 - Days first fixed retest
+
+Coordinator metadata: this is a complete unchanged own report from fictional AI play. First fixed retest; second fix/retest remains required. All inherited limits, protocol D1-D11 and separate root D1-D12 remain in [integration notes](../reviews/light-2026-10-30/days-retest1/integration-notes.md.txt) and [root qualification](../reviews/light-2026-10-30/days-retest1/evidence/days-retest1102-root-qualification.json.txt). No image perception, history comprehension, backend state or owner acceptance follows. Original CANDIDATE/HOLD labels preserve freeze provenance; [external seal](../reviews/light-2026-10-30/days-retest1/root-seal.json.txt) qualifies collection only.
+
+```text
+I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Explain “no time to recuperate” beside the choice. I could not tell whether it meant no rest during that hour or no time left afterward.
+2. Keep the concrete results and personal boundaries: soup helps, checking costs an hour, and Selin can offer company without requiring the private story.
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Days visit**, with franchise experience from my supplied own history. The page called the game **Three Days**. This was the first fixed-build retest assignment, not a return visit for me.
+
+I read all **4429 supplied history lines** before play in explicit ranges of at most 40 lines. I repeated ranges after truncated combined output. The final range was **4401–4429**. The actual last line read was **“End of supplied own history.” Exact unread ranges: none.** Earlier qualifications remain attached to the earlier records. This selected history is not my complete archive.
+
+Both sessions began through **Begin the three days** on the driver-opened agent-marked page. Each used its own fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | State |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 120.975 | CONFUSED | Second day, “A living witness”; 3 hours free |
+| B | 1280×800 desktop, mouse actions | 57.253 | TASTE | First day, “A page folded inwards”; 4 hours free |
+
+Neither session reached the 20-minute ceiling or a game ending.
+
+The phone opening appeared at **0.408 seconds**. The warning about death and grief was sober and readable. I began at **20.481 seconds**. Accepting Hacer’s soup gave an immediate result: Leyla felt steadier and had one hour less. That was understandable. Checking the receipt before paying also felt like an ordinary, sensible action.
+
+Selin’s offer to sit without hearing the whole story held me most. Her family mattered too: asking her to help meant asking someone else to wait. I liked that Burak later corrected his account openly.
+
+The phone lost me at the next comparison choice. Leyla was already “Rested,” with three hours available, but the one-hour choice said there was “no time to recuperate.” I needed to reread that sentence. It was my second reread, so I chose to leave.
+
+The desktop opening appeared at **0.497 seconds**, and I began at **8.606 seconds**. Its opening contained more story than the phone’s: Rotterdam, Kemal’s coat, and differing views about receiving mourners. Hacer held the receipt in this run; Burak held it on the phone. These were separate fresh games. I cannot explain those differences from what I saw.
+
+Desktop felt comfortable, but I had read this beginning twice that evening. I stopped before repeating the account work. I reread no sentence on that device.
+
+**Diary — all successful reaction strings, unchanged and in order**
+
+Phone:
+
+- **15.359 s — note, engagement 4, Before the door opens:** “The opening is sober and readable. A parent has died; I can understand wanting to help with ordinary promises. Disputed account is vague so far, but I expect the story to explain. Opening dialog concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.”
+- **33.956 s — note, engagement 4, First day; 5 hours free:** “Hacer bringing soup and Leyla feeling steadier are kind and clear. Hacer and Burak are names from my supplied stories, but I do not know these are the same people. Reread 1: I believe the saying that a believer's soul remains suspended by a debt until it is paid. Suspended by a debt is difficult English for me; I understand he is frightened and wants payment. This screen has 14 groups: soup and steadiness, hour cost, two repair bills, advance returned, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking an open bill, free hours after visitors, second reader, savings payment, later recovery cost. I will check the paper.”
+- **64.198 s — first_minute, engagement 4, First day; 4 hours free:** “I understand the choices and their costs: soup helped, checking the receipt used an hour but no money. Selin, Halil and Nuran together remind me confidently of the widower and daughter in my supplied Voice record. Her offer to sit without the whole story is warm. One reread so far. This page adds 9 groups: notebook entries, private marriage, untold separation, last visit instruction, envelope, Selin and her family, company without disclosure, private comparison, help versus exposure and later harm.”
+- **80.430 s — note, engagement 4, Second day; 4 hours free:** “I like that Selin has her own family and can agree to a limited shift. Nobody needs my answer this minute is reassuring after Smoke. I am already rested, so another meal to recover enough to read seems unnecessary, but skipping makes me tired. I can understand the tradeoff. Envelope added 9 groups: preserved trust, later sorting, photograph and unsent letter, cross-city visit, broken lift, receiving visitors, family cost, bounded help, condolences once. Second morning adds 5: shift agreed, visit hour, no immediate hurry, rest hour, tiredness adding work or travel time. No second reread.”
+- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”
+- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”
+
+Desktop:
+
+- **17.017 s — note, engagement 4, First day; 6 hours free:** “The large opening is comfortable. This fresh game has more words than my phone: the coat, Rotterdam, and two views about receiving mourners. I like that they can disagree without a fight, but there are many people and obligations to hold in mind. No reread. Opening dialog has the same 12 groups. Door screen has 17: father and daughter, leave and Rotterdam, house remaining, soup, religious example, Hacer, Burak and accounts, notebook, envelope and Sukru, customs colleague, gathering disagreement, phone speaker, free hours, tiredness, privacy and marriage, two action costs, menu and games.”
+- **38.487 s — want_quit, TASTE, engagement 4, First day; 4 hours free:** “Selin offering company without asking for the whole story still moves me. The large room and notebooks are easy to understand, although the gold cost lines are small. Hacer has the receipt in this run, unlike Burak on the phone. I have read this beginning twice tonight and would stop here rather than repeat the account work. No sentence needed rereading on this device. Folded account has 14 groups and notebook has 9 as on phone.”
+- **57.253 s — stop, TASTE, engagement 4, First day; 4 hours free:** “I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.”
+
+Both quit wishes remained through Feedback. Phone engagement fell from **4 to 2**. Desktop remained at **4**; leaving there was a choice about repetition and the evening, not a failure to understand the reached choices.
+
+My two exact phone reread sentences were:
+
+1. **“I believe the saying that a believer's soul remains suspended by a debt until it is paid.”**
+2. **“1 hour to check the original you already have; no time to recuperate.”**
+
+The first was difficult figurative English. I understood Şükrü’s fear and continued. The second concerned the action I needed to choose, and its meaning remained uncertain. That triggered my stopping rule. No desktop sentence required rereading.
+
+My concept counts were grouped estimates, not precise measurements. They include familiar controls, settings and lab topics. The diary’s menu count says 10 but lists **11 groups**; Feedback says 8 but lists **9 groups**. Those corrections do not change the diary.
+
+| Reached screen | Concept accounting | Rereads |
+|---|---|---|
+| Opening dialog, both | 12 logged groups, including recording and Feedback | None |
+| Phone door | Retrospective 13 groups: family death, visitors, accounts, colleague, arrival history, account goal, promised visit, privacy, marriage, object choices, hours, tiredness, door cover; Menu and All games add 2 | None |
+| Desktop door | 17 logged groups | None |
+| Folded account, both | 14 logged groups | First phone reread |
+| Private notebook, both | 9 additional logged groups | None |
+| Envelope, phone | 9 additional logged groups | None |
+| Second morning, phone | 5 additional logged groups | None |
+| Living witness, phone | 7 additional logged groups | Second phone reread |
+| Menu, both | 11 listed groups, correcting logged 10 | None |
+| Feedback, both | 9 listed groups, correcting logged 8 | None |
+
+Recognition came from supplied memories. Hacer and Burak’s names alone did not establish shared identities. At **64.198 seconds**, Selin, Halil and Nuran together prompted confident recognition of the widower-and-daughter situation in my supplied Voice record. On desktop, the story recalled the phone session earlier that evening. I claim no earlier Days memory.
+
+I actually viewed four screenshots through `view_image`:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-001.png), captured at **3.152 s**: a tall cream opening dialog with readable text and both begin choices visible. The smaller warning text required more attention than the main instructions.
+- [Phone a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-002.png), captured at **95.194 s**: readable story text filled most of the screen. The room began at the bottom; the action choices were below the visible image. This image does not visually verify the disputed cost sentence.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-001.png), captured at **3.223 s**: a spacious opening dialog over the room and story column.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-002.png), captured at **28.248 s**: story on the left and a large illustrated room with two notebook choices on the right. The action text was readable; the gold cost lines were small.
+
+I took two manual screenshots per device. I requested and viewed no automatic checkpoint image. There were **no driver errors or retries**. I used named controls, with no keyboard input. Choices produced visible story and hour changes.
+
+On phone, I opened Feedback after the first confusion and again when stopping. **“I'm confused”** filled the note field at **46.313 s** and was selected again at **109.577 s**. **Back** returned to the menu at **48.813 s** and **114.395 s**. On desktop, **“I'm stopping”** filled the note at **48.867 s**, and Back returned to the menu at **52.051 s**. The responses showed draft text, not a pressed-state marker. I typed no note, pressed no Submit, and changed no recording or consent setting.
+
+The phone first-minute entry was logged at **64.198 s**, after actionable play. Desktop stopped before 60 seconds, so its first-minute checkpoint is untested. Neither session reached 180 seconds, so no pulse was due. I did not complete the private comparison, visit Şükrü, settle the account, reach the third evening or see an ending. Those remain untested.
+
+I would consider returning because these people’s obligations made sense to me, and Selin’s quiet company mattered. I would prefer the large screen. I would close both games now.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns both drivers and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.
+```

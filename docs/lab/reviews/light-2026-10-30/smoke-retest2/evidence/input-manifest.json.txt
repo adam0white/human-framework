@@ -1,0 +1,91 @@
+{
+  "status": "FROZEN_FOR_EXACT_INDEPENDENT_REVIEW_NOT_ADMITTED",
+  "files": [
+    {
+      "path": "jonas/brief.md",
+      "sha256": "bcb09bc915730a442cc6299cca4c1406beb324e5b6df0549c40691ae64dc5ddf",
+      "bytes": 7503
+    },
+    {
+      "path": "jonas/own-history.md",
+      "sha256": "d11e9c55197988370287a162c81a2fa6f0118644df8134ef4d92bb15900fed99",
+      "bytes": 247930
+    },
+    {
+      "path": "jonas/history-source-map.json",
+      "sha256": "4a726d99eb5ed1998ad6c662ead2e2b985e84b8402eb80d957cc052307789103",
+      "bytes": 4496
+    },
+    {
+      "path": "aisha/brief.md",
+      "sha256": "f495e9ba89dc378ca546f68d3f322dd9eff71e2f4ab6bd3e524e2013f77d4e4b",
+      "bytes": 7523
+    },
+    {
+      "path": "aisha/own-history.md",
+      "sha256": "41b68c9296ec00357c6f0042568d1a510557a2d8700579922caf3f99d2f1c8a6",
+      "bytes": 192855
+    },
+    {
+      "path": "aisha/history-source-map.json",
+      "sha256": "b642b16ee7fb91e6f289dd87ce77c970101d8279e0dbdb68b0daeeb519a84365",
+      "bytes": 2865
+    },
+    {
+      "path": "diego/brief.md",
+      "sha256": "be60aea4366d04e1c5d75986f9cf676adb52d4dbfe476f97b4ecf4e9d762b131",
+      "bytes": 7505
+    },
+    {
+      "path": "diego/own-history.md",
+      "sha256": "9c28a772d2ff19d8d3f76d388fe348a3e5b81e0249414243c9c8ae0bd35e014a",
+      "bytes": 190812
+    },
+    {
+      "path": "diego/history-source-map.json",
+      "sha256": "01cbfae5f6e9789cb769cbae46232857868a6b04854e96a4d3e143b9be1c69ae",
+      "bytes": 2823
+    },
+    {
+      "path": "rosa/brief.md",
+      "sha256": "cfd93f13d3e04646f966292641ed012a5bb7bea6fc3a1e525cd65b5545a91225",
+      "bytes": 7732
+    },
+    {
+      "path": "rosa/own-history.md",
+      "sha256": "41c7aa2ee038ce58cac3e60172f7a65886bbcfd2289747b185b1a7e3c7831379",
+      "bytes": 478949
+    },
+    {
+      "path": "rosa/history-source-map.json",
+      "sha256": "ba477603378d5acfb58a85a7ad8e7a17fc89a98f445c8dd58ed188809c86afcc",
+      "bytes": 3805
+    },
+    {
+      "path": "iria/brief.md",
+      "sha256": "d463122014e2e1ba66272c35fce536545f9cdec897d2925cea24d75b8a688805",
+      "bytes": 7676
+    },
+    {
+      "path": "iria/own-history.md",
+      "sha256": "cf8b8221133092ae80ede36ff6299e7eafb74d9213b52e1a58aa689ddf627e88",
+      "bytes": 57
+    },
+    {
+      "path": "iria/history-source-map.json",
+      "sha256": "55ec84a6052cf424008b7a703f7d2b63097fffc9045d6665153f3ce25fa84a33",
+      "bytes": 232
+    },
+    {
+      "path": "cohort.json",
+      "sha256": "c37275de835ca109510d56229dc0bd95256350f849c3940532f4ebc8bc3ce09e",
+      "bytes": 1994
+    },
+    {
+      "path": "plan.json",
+      "sha256": "5211c2a1518a3747ead3f73bab77a0d6aab6739a3af91ce42767fcee7b150733",
+      "bytes": 4055
+    }
+  ],
+  "scope": "17inputpayloads;3returners+Rosa firsttargetvisit+newIria cold;no four-returner claim/capreset. Servingidentityunknown;requestedmodels/efforts bound."
+}

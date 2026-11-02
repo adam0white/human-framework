@@ -1,0 +1,72 @@
+{
+  "at": "2026-11-02T10:04:39.551638+00:00",
+  "status": "SMOKE_FINAL_PHYSICAL_RETURN",
+  "controllerExited": true,
+  "controllerExit": 0,
+  "actualToolSession": 89152,
+  "actualControllerPid": 98022,
+  "controllerSha256": "e303930504fd65e613b226bc223723da7ef06ea4c5ea37efcc01811dbbfde31f",
+  "finalizerSha256": "02beb72f6d4c8904445e31e5b4bd13986405b8c3327826effac159379ec872c8",
+  "manifestSha256": "3c7bade0de493256e82360a43f7273bbf95f04df5f5ac7b699eb080342ca6872",
+  "completionHashes": {
+    "jonas": "5569d777a26a560cfefc7c33da1d3895d85c8c6e9d73eca15b591e25549be004",
+    "aisha": "8bbc52015b80a78c38066346e8895bb048309d8af1fb1724cb6fb8995badd716",
+    "diego": "926e1149fe9ef391cec8f48b9461d9931f655697daf567871bbfa1afdb5d0402",
+    "rosa": "35e253985180d4d7610f60bab63819da6dae6dcf690df76f2b89de933a2a19c4",
+    "iria": "75af53145205b5bd5512f4cd81abe39eb42b0f760e838e098205dfca4d407691"
+  },
+  "helperHashes": {
+    "controller.py": "e303930504fd65e613b226bc223723da7ef06ea4c5ea37efcc01811dbbfde31f",
+    "finalize.py": "02beb72f6d4c8904445e31e5b4bd13986405b8c3327826effac159379ec872c8",
+    "same-pid-bootstrap.py": "86452afe204b80dd8992223bb05cb9a0196adabddabc12678c2e8fa6c2995319",
+    "observe.py": "2808761a620d26c34534db83262fa3c1a234b5071800d1c33e2c106869b40eec",
+    "root-return-check.py": "73edf02160bf71840cd89afc2da6297a374ad8966fe2e0c01b656128f785a56e",
+    "fresh-admission-root.py": "0ac8890d033c7d90266fd352078713877ad8bbed24acdc61d32b45628c072c06"
+  },
+  "helperCandidateSha256": "d2127fa44c4ab35e881d3fbe6a9444340cfebba90c39cf836c1c222253a6b42a",
+  "underlyingCpuEvidence": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-physical-evidence.json",
+    "sha256": "f00f76b5f817e1d681262b954bc9e52fdf450b9d53149c89c407c890990511b6"
+  },
+  "actualNativeExitReceipt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/actual-native-exit-receipt.json",
+    "sha256": "0178420113b41e1ece6d0ba63858e0da449d01add96c06546d97784b3de0f7d6"
+  },
+  "freshCpuReturnReceipt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-controller/root-cpu-return.json",
+    "sha256": "533d4e5fa3aa5de2840eb1a5496b567b7b79dc09fa33fce79224bc36bff05141"
+  },
+  "sampledIdentityCount": 480,
+  "originalGone": 480,
+  "freshObservedLive": [],
+  "freshUnknownObserved": [],
+  "reusedPidOriginalIdentityGone": [],
+  "taskCwdSurvivors": [],
+  "sameUserCwdUnknown": [],
+  "profilesAbsent": {
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-jonas-_n9_10qd": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-aisha-gkxr3ry_": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-diego-_gj6abi0": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-rosa-24e0fdcc": true,
+    "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/smoke-final1102-light1030-iria-bvzzhyhu": true
+  },
+  "portsClosed": {
+    "26800": true,
+    "26801": true,
+    "26802": true,
+    "26803": true,
+    "26804": true,
+    "26805": true,
+    "26806": true,
+    "26807": true,
+    "26808": true,
+    "26809": true,
+    "26820": true
+  },
+  "allFrozenInputsStable": true,
+  "admittedBindingsStable": true,
+  "cleanupConfirmed": true,
+  "cpuReturned": true,
+  "reportsReadBeforeRootReturn": false,
+  "scope": "Five current completions, sampled PID/birth/exe identities, five profiles, eleven ports and current same-user task cwd; no global/unseen proof."
+}

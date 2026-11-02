@@ -1,0 +1,141 @@
+{
+  "at": "2026-11-02T08:35:29.198502+00:00",
+  "scope": "Root independently compares EVERY logged reaction literal with unchanged report body; timestamps separately audited. No perception/comprehension claim.",
+  "players": [
+    {
+      "name": "mei",
+      "devices": {
+        "phone": {
+          "loggedReactions": 5,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 19,
+              "elapsed": 41.117,
+              "reason": "BORED"
+            }
+          ]
+        },
+        "desktop": {
+          "loggedReactions": 8,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 36,
+              "elapsed": 74.518,
+              "reason": "BUDGET"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "emre",
+      "devices": {
+        "phone": {
+          "loggedReactions": 6,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 32,
+              "elapsed": 102.825,
+              "reason": "BORED"
+            }
+          ]
+        },
+        "desktop": {
+          "loggedReactions": 9,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 40,
+              "elapsed": 94.323,
+              "reason": "BORED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "nia",
+      "devices": {
+        "phone": {
+          "loggedReactions": 4,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 23,
+              "elapsed": 56.041,
+              "reason": "BORED"
+            }
+          ]
+        },
+        "desktop": {
+          "loggedReactions": 3,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 18,
+              "elapsed": 36.011,
+              "reason": "BORED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "rosa",
+      "devices": {
+        "phone": {
+          "loggedReactions": 5,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 24,
+              "elapsed": 88.892,
+              "reason": "FRUSTRATED"
+            }
+          ]
+        },
+        "desktop": {
+          "loggedReactions": 5,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 21,
+              "elapsed": 86.727,
+              "reason": "CONFUSED"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "leonie",
+      "devices": {
+        "phone": {
+          "loggedReactions": 8,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 44,
+              "elapsed": 99.621,
+              "reason": "BORED"
+            }
+          ]
+        },
+        "desktop": {
+          "loggedReactions": 6,
+          "notLiteralInReport": [],
+          "stopRows": [
+            {
+              "row": 32,
+              "elapsed": 80,
+              "reason": "TASTE"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

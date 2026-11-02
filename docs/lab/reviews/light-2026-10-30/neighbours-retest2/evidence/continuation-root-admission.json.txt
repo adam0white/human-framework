@@ -1,0 +1,68 @@
+{
+  "status": "ROOT_ADMITTED_CONTINUATION_FOUR",
+  "epoch": "CONTINUATION_FOUR",
+  "admitted": true,
+  "cpuReturned": true,
+  "freshPinConfirmed": true,
+  "freshCapacityConfirmed": true,
+  "freshDiskConfirmed": true,
+  "workers": 1,
+  "globalCapacityMax": 4,
+  "cleanup": "drivers-first-verified-join",
+  "modelPolicy": {
+    "emre": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    },
+    "nia": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    },
+    "rosa": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "leonie": {
+      "model": "gpt-6.1-terra",
+      "effort": "low"
+    }
+  },
+  "helperHashes": {
+    "controller.py": "4ffb9e1cacc5c192fd7f56150590ed67a07a99da1f56623121e10184e7ad6475",
+    "finalize.py": "ae1555e9c74bef1ca8d036cae0243705c0530756defde832ee4ac9ec67ec6800",
+    "fresh-admission-root.py": "8ccbdd936468a5119807721ca22fa4c27325c18111f7978b538733f1bfadeb6c",
+    "observe.py": "e1433bbc0b5c66fe5e478e80f4e83ccd3b60ad6cef018e2791dc3cf4a522c6ef",
+    "root-return-check.py": "7cfd3f8506bc179c86b27a82caa8eecaaa0637e6ddc9ea77c3bc41e3f065bca3",
+    "same-pid-bootstrap.py": "b94505365169d2fc20fddea6d0bee0cbe8a6a506b1ebfb2620eaf81166e1b832"
+  },
+  "helperCandidateSha256": "300e6fee259a733cd40bca1e23014ecbd1b1539afdc346a49f129142b61ce071",
+  "hashes": {
+    "controller": "4ffb9e1cacc5c192fd7f56150590ed67a07a99da1f56623121e10184e7ad6475",
+    "finalizer": "ae1555e9c74bef1ca8d036cae0243705c0530756defde832ee4ac9ec67ec6800",
+    "manifest": "3fc07bcf8379590a6be66bcc185eb7e10b9562fd46d25ad29b51441f974c58b6",
+    "eligibility": "5d7926ae92961df2dc4698965c6594ed3f5e11bc525005ef2941b054eddd7eda",
+    "driver": "eb73d2586908f7f9565cfe005d03fba055e2d62dd6eaa4645ba34bebc3f73328",
+    "helpers": "9855ce89e41c05c77177f3d0f1d6b7e4a46b29e550858c9dc7e9b522ef7a4acc",
+    "text": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "supervisor": "55d4a77e2724a0a79ed7dba415356a7ffd6cf7172ea567e8af9b69a7fd620b06",
+    "controlReturn": "f28310fbbe88a9fff87e761ce4c42c02b4e08c47a3c9363c82d32bd0a40fb97a",
+    "inputReview": "40c2e07090899325b9a61f0279d6155ce6f544b6008f2f0b46eeb40d59ba0382",
+    "previousReturn": "f248d35cf2de5daf721db96c7968f0f5dc9b90c1800fbd8767122f82c61c02a0",
+    "delivery": "3e9b3054e6a0473f7e1cb483701130c767dfe67cace2f920ac5836feec426857",
+    "sdkProof": "22ee219789e5fcf02bbc70fc7951d7f9769980658b894a453139dbf5a35d06a1",
+    "draftReview": "b1752fda3b1eb663ececa04bbea846f1d449493f1a1594b32b3d4ece07912782"
+  },
+  "sourceReviewPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/independent-source-review.json",
+  "sourceReviewSha256": "95099ed1af126ac141cf96253d309126c39a695f2ece8384ece31160e2df7f2c",
+  "sourceReviewMdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/independent-source-review.md",
+  "sourceReviewMdSha256": "57dc5f25132786077bd983fa27e97b0bbc29860ddd8ce50c0149ce72cf024a7d",
+  "qualificationReviewPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/independent-qualification-review.json",
+  "qualificationReviewSha256": "949f363cf72a3494308549afa8cd850f5ef6084916f76cf61d643290aaf4f84e",
+  "qualificationReviewMdPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/independent-qualification-review.md",
+  "qualificationReviewMdSha256": "7a30bd136ec3eb2e1fb4cc669f893fe1842c660c8ae4988055f2fa7162de8e91",
+  "at": "2026-11-02T08:07:44.781110+00:00",
+  "freshEvidencePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/fresh-admission-checks.json",
+  "freshEvidenceSha256": "14eaa45f18b1ae4e78ed1f1cc058dc8b62de357e16050d3dda5a9ed78a78b395",
+  "cpuReturnSha256": "288cf9b33cd7f3640ca2d65cf715dba13b9292c2d19d6da261fb744c7c837ed6",
+  "reportsRead": false
+}

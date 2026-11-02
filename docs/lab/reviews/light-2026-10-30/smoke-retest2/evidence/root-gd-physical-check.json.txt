@@ -1,0 +1,85 @@
+{
+  "at": "2026-11-02T09:37:26.732860+00:00",
+  "status": "ACTUAL_GD_RETURN_ROOT_FRESH_PHYSICAL_CHECK",
+  "producerActualReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/games-deferred/neighbours-final-record-check1102/root-return.json",
+    "sha256": "8fa5d5040d59617d06f10adf4526422709914918768dec003803b5f20d2c325c"
+  },
+  "observedSource": {
+    "path": "/Users/abdul/code/.lab-scratch/games-deferred/neighbours-final-record-check1102/observed-processes.json",
+    "sha256": "02ba2b99f3ec045898e2b67b03adc7591ed165497020a480dddb9c4fe6ffbc0f"
+  },
+  "gdHandoffLiteral": "## games-deferred \u2014 2026-11-02T09:36:16.164803+00:00\nNeighbours finalrecord NORMAL install/prepare/check:lane all0 undercapturedNode26.12, native72172EXIT0/completion89bf09. Lint/3typechecks/fulltests/imports/build passed; exactcounts inroot-return.json. Rootfresh11observedidentities absent/readablecurrenttaskcwd0/sourceunchanged; no browser/server/deploy. I RETURN exclusiveCPU/browserleaseNOW for parent\u2019s reserved nextordinarySmoke slot. No GD model/runtime active. HF4.16a33 targetCI/CodeQLgreen,packagepubstillUNRUN/freshadmissionfalse; queue normal1200publication afterSmoke actualnumeric/physicalreturn duringqualification. Hearsay17complete. Neighbours docs signing/exactreview/CI continueSTATIC only; all7trees retained andparkedHF4portbyteverified. During Smoke atmost2GDstaticmodels; NOinstall/test/lint/build/browser/deploy untilactualhandback.\n",
+  "gone": [
+    {
+      "pid": 96086,
+      "born": 1793611953.494073,
+      "exe": "/opt/homebrew/Cellar/pnpm/12.14.0/bin/pnpm",
+      "ppid": 74877
+    },
+    {
+      "pid": 96445,
+      "born": 1793611953.925705,
+      "exe": "/bin/bash",
+      "ppid": 96086
+    },
+    {
+      "pid": 96448,
+      "born": 1793611953.927251,
+      "exe": "/bin/bash",
+      "ppid": 96086
+    },
+    {
+      "pid": 96449,
+      "born": 1793611953.929474,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96445
+    },
+    {
+      "pid": 96465,
+      "born": 1793611954.102058,
+      "exe": "/bin/bash",
+      "ppid": 96449
+    },
+    {
+      "pid": 96551,
+      "born": 1793611956.420317,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96465
+    },
+    {
+      "pid": 96576,
+      "born": 1793611956.532983,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96551
+    },
+    {
+      "pid": 96585,
+      "born": 1793611957.096058,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96576
+    },
+    {
+      "pid": 96586,
+      "born": 1793611957.096343,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96576
+    },
+    {
+      "pid": 96590,
+      "born": 1793611957.09723,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96576
+    },
+    {
+      "pid": 96629,
+      "born": 1793611961.955022,
+      "exe": "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "ppid": 96576
+    }
+  ],
+  "reusedOriginalGone": [],
+  "sameIdentityLive": [],
+  "unknown": [],
+  "limits": "GD is actual producer of native72172 exit0/completion89bf09. Root independently rechecked11recordedPID/birth/executable identities and read literalexclusivehandoff; not a universal unseen process proof."
+}

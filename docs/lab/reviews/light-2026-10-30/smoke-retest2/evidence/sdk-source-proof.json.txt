@@ -1,0 +1,140 @@
+{
+  "at": "2026-11-02T09:16:41.351288+00:00",
+  "status": "ROOT_ADOPTED_STATIC_SDK_SOURCE_AND_SERVED_MARKER_PROOF",
+  "rootVerified": true,
+  "game": "smoke",
+  "commit": "f71cc0c6203c1f5c0c57daa1b33de64df51eff82",
+  "sdkVersion": "0.5.6",
+  "officialVendorArchiveByteEqual": true,
+  "lockIntegrityVerified": true,
+  "archiveSha256": "5a53bac1f0b5d236caed06d8a18c9089e0059b531eff1b9ae1b0e99162f72482",
+  "sourceCallChainRootRead": true,
+  "query": "labRunSource=agent",
+  "capturedSourceField": {
+    "runSource": "agent"
+  },
+  "urlRemovalExpected": true,
+  "freshServedMarkerReceipt": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/live-markers.json",
+  "sourceEvidenceFiles": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/adam0white-lab-client-0.5.6.tgz",
+      "sha256": "5a53bac1f0b5d236caed06d8a18c9089e0059b531eff1b9ae1b0e99162f72482",
+      "bytes": 63982
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_cast.js.txt",
+      "sha256": "4e990da57c736ce8d11614e86ce2399432b510c47532655205cab632bd034492",
+      "bytes": 58556
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_dialog.js.txt",
+      "sha256": "9cf98e76573647e2fdbec16672e341e36c69cd02c9a8d6774530dd853417dc85",
+      "bytes": 15888
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_feedback.js.txt",
+      "sha256": "59bbd1b9d29acda9c9923870ae21dacbcaaf34700c703243e44e00d463d8d011",
+      "bytes": 406
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_identity.js.txt",
+      "sha256": "ec3193f7405560d34e75bf94911e3bc6ed6bad3ef90cb6193b42a331d1ded8a7",
+      "bytes": 5085
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_index.js.txt",
+      "sha256": "6a3d2edec2c8e06bcf17c7d6daef9f24c34d9b1dbc7b64cecd0214f2d28a51eb",
+      "bytes": 34154
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_life.js.txt",
+      "sha256": "a49fbb35cc44812fedc67d9a4277dc8ceca59989f19aa8aa89d68a3aab337517",
+      "bytes": 12447
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_limits.js.txt",
+      "sha256": "1e6bfd42220e0fc347b66a98ad78dbbfba8324d6315a3c545d09bd6c969b62d4",
+      "bytes": 2242
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_linked.js.txt",
+      "sha256": "bcf0c142435a515c554f5aad92a190ed4ccb94d1b42529c7578be5fe6969ff9a",
+      "bytes": 17728
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_navigation.js.txt",
+      "sha256": "a0c47707fbf693c23a670c4763712aa0dd4a75f99f061f2609aef6340bd1b212",
+      "bytes": 3639
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_notice.js.txt",
+      "sha256": "0dea99d16bf06bd58d1f3bf69c9298d1fa95487c767173a3440b6ef8001bfe10",
+      "bytes": 2037
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_persona-portable.js.txt",
+      "sha256": "d367e2c1f0363ff18986e18b041c9b539bb78a0d0ba051dab7bd40a0798a01a4",
+      "bytes": 10806
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_persona.js.txt",
+      "sha256": "d72f430a825c50b4fcc81c3015f8368858f939a53c1364aaf87136385d7d73c6",
+      "bytes": 16058
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_portable-readers.js.txt",
+      "sha256": "dfe7003610da7b60556832ed48b9f300ad58b519f06b3bf0ea0863a69b66747d",
+      "bytes": 272
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_run-source.js.txt",
+      "sha256": "6e0ab2a0d494a2a427b56070001cb04e6d1d51614c7bb5bdc4b45bb867aac210",
+      "bytes": 647
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/archive-package_dist_util.js.txt",
+      "sha256": "38d769557cd0cfb1ee2ed56e926b2a04a1cdab7f1c5f073f4ae769212d92818e",
+      "bytes": 1587
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/live-index.html",
+      "sha256": "7ceb0028c320ecee1a0ecd36cebc120b3b3b902ff0a4b21c8e678c4aa89a34e4",
+      "bytes": 1270
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/live-markers.json",
+      "sha256": "44f0dcec9f83812b56187ec1b1b863734c36f13896220274915f657123d135bc",
+      "bytes": 6324
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/main.ts",
+      "sha256": "56e11ec205d4f458e67bcb5500b1e5e0df98a21ee1998c31c1b8506a4d591269",
+      "bytes": 33472
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/package.json",
+      "sha256": "fec4308b62f7e03c094b36a145900110d8e76d25ec754214599e9a35a15047f2",
+      "bytes": 1183
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/pnpm-lock.yaml",
+      "sha256": "343ba3234c796108e95ee8ceb961d1a77372f2dafb401b382929cc27bb993b38",
+      "bytes": 69632
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/release-metadata.json",
+      "sha256": "e008b0529e27ddebd94d477413de6c609b5914c577b94887164648ac8bc8fe13",
+      "bytes": 928
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/smoke/release.tgz",
+      "sha256": "5a53bac1f0b5d236caed06d8a18c9089e0059b531eff1b9ae1b0e99162f72482",
+      "bytes": 63982
+    }
+  ],
+  "combinedAudit": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102-result.json",
+    "sha256": "90399a267000bf6b3ae8a035abe22b72dc1cf2a7a45a4b16e4c3e5a02f10d0bd"
+  },
+  "limits": "Static released SDK callchain and servedbundle markers bound by hashes; markerpresence is not sourceequivalence or execution. No runtime/networkbackend attribution,who value,recording,consent or noteSubmit observed. Same publicdriver agentquery/default settings/no Submit."
+}

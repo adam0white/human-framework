@@ -1,0 +1,380 @@
+{
+  "at": "2026-11-02T08:38:05.568236+00:00",
+  "status": "ROOT_QUALIFIED_DATED_ASKS_FOR_FINAL_ITERATION",
+  "rows": [
+    {
+      "id": "F-3113",
+      "tester": "mei",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-10",
+      "classification": "preference",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+        "report_sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+        "lines": [
+          5,
+          5
+        ],
+        "codepoint_start": 142,
+        "codepoint_end_exclusive": 267,
+        "utf8_byte_start": 142,
+        "utf8_byte_end_exclusive": 267,
+        "exact_text": "1. Keep my town available to resume. I want to continue the repair work I started, but I did not test whether the save works."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+        "report_sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 123,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 123,
+        "exact_text": "I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running."
+      },
+      "rootQualification": "Resume desire untested; no save defect established."
+    },
+    {
+      "id": "F-3114",
+      "tester": "mei",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-03",
+      "classification": "prior-unreached-question",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+        "report_sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+        "lines": [
+          6,
+          6
+        ],
+        "codepoint_start": 268,
+        "codepoint_end_exclusive": 458,
+        "utf8_byte_start": 268,
+        "utf8_byte_end_exclusive": 458,
+        "exact_text": "2. Say whether a released offered hour can become owed again if the neighbour later does what I requested. That was unresolved on my previous visit; I did not reach that situation this time."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/report.md",
+        "report_sha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 123,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 123,
+        "exact_text": "I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running."
+      },
+      "rootQualification": "Prior offered-hour question was not reached again; no new blocker inferred."
+    },
+    {
+      "id": "F-3115",
+      "tester": "emre",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-03",
+      "classification": "unresolved-prior-clarity-lead",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+        "report_sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+        "lines": [
+          5,
+          5
+        ],
+        "codepoint_start": 154,
+        "codepoint_end_exclusive": 288,
+        "utf8_byte_start": 154,
+        "utf8_byte_end_exclusive": 292,
+        "exact_text": "1. Show what remains before the timber is safe and what another hour of work might do. Both timber hours ended with “still felt damp.”"
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+        "report_sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 131,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 131,
+        "exact_text": "I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight."
+      },
+      "rootQualification": "Timber-progress clarity question persists; preserve difficulty and approximate state."
+    },
+    {
+      "id": "F-3116",
+      "tester": "emre",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-03",
+      "classification": "reached-action-blocker-qualified-cause",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+        "report_sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+        "lines": [
+          6,
+          6
+        ],
+        "codepoint_start": 289,
+        "codepoint_end_exclusive": 443,
+        "utf8_byte_start": 293,
+        "utf8_byte_end_exclusive": 447,
+        "exact_text": "2. Show when a tool may become available for my own repair hour. On desktop, I lent three tools, then found every tool in use when I returned to the hall."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/emre/report.md",
+        "report_sha256": "7cf081427c19690f54e8320112861ce9dc036c44fbd89661bd90966f54ffd607",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 131,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 131,
+        "exact_text": "I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight."
+      },
+      "rootQualification": "Tools unavailable for chosen hour; other actions available. Time advanced after lending; allocation cause unknown, no disappearing-tool bug established."
+    },
+    {
+      "id": "F-3117",
+      "tester": "nia",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-03",
+      "classification": "reached-blocker",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/report.md",
+        "report_sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+        "lines": [
+          5,
+          5
+        ],
+        "codepoint_start": 207,
+        "codepoint_end_exclusive": 448,
+        "utf8_byte_start": 207,
+        "utf8_byte_end_exclusive": 452,
+        "exact_text": "1. Help me reach a personal conversation when someone is busy or moving. This was the **blocking ask I reached**: Nora’s handle question and Sam’s notebook question both asked me to wait, and I did not want to repeat that search for a break."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/report.md",
+        "report_sha256": "7e6ab91c7c2d9d937ad77fd28457e2ab9fd2c92293c37a46d1b526122fc3f82e",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 189,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 189,
+        "exact_text": "I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not return tonight or leave the game running."
+      },
+      "rootQualification": "Personal conversation unavailable during autonomous work; reason understood. Inspect practical access without guaranteed breaks or removing independent choices."
+    },
+    {
+      "id": "F-3118",
+      "tester": "rosa",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-03",
+      "classification": "reached-blocker",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+        "report_sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+        "lines": [
+          5,
+          5
+        ],
+        "codepoint_start": 192,
+        "codepoint_end_exclusive": 355,
+        "utf8_byte_start": 192,
+        "utf8_byte_end_exclusive": 355,
+        "exact_text": "1. **Tell me what my repair hour accomplished.** After it ended, the hall still showed zero of twelve repairs. This was the blocking question I reached on desktop."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+        "report_sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 169,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 169,
+        "exact_text": "I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running."
+      },
+      "rootQualification": "Completed work result not understood; no proof work had no effect. Inspect result/journal discoverability."
+    },
+    {
+      "id": "F-3119",
+      "tester": "rosa",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-10",
+      "classification": "timing-qualified-preference",
+      "ask": {
+        "kind": "ranked_ask",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+        "report_sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+        "lines": [
+          6,
+          6
+        ],
+        "codepoint_start": 356,
+        "codepoint_end_exclusive": 500,
+        "utf8_byte_start": 356,
+        "utf8_byte_end_exclusive": 500,
+        "exact_text": "2. Let me select a neighbour without their changing activity making the listed control disappear before my tap. This frustrated me on the phone."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+        "report_sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 169,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 169,
+        "exact_text": "I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running."
+      },
+      "rootQualification": "Three stale controls follow changing game state. No human1–3second timing reproduction or broken-control claim; inspect stable selection names as a preference."
+    },
+    {
+      "id": "F-3120",
+      "tester": "leonie",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-10",
+      "classification": "preference",
+      "ask": {
+        "kind": "ranked_ask_clause",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          3,
+          3
+        ],
+        "codepoint_start": 179,
+        "codepoint_end_exclusive": 285,
+        "utf8_byte_start": 179,
+        "utf8_byte_end_exclusive": 285,
+        "exact_text": "**1.** Show the result of my work where I chose it, so I do not have to find the journal to understand it."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 157,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 157,
+        "exact_text": "I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back."
+      },
+      "rootQualification": "Report explicitly says none of her asks blocked continuation. Journal explanation found; inspect result placement."
+    },
+    {
+      "id": "F-3121",
+      "tester": "leonie",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-10",
+      "classification": "preference",
+      "ask": {
+        "kind": "ranked_ask_clause",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          3,
+          3
+        ],
+        "codepoint_start": 286,
+        "codepoint_end_exclusive": 361,
+        "utf8_byte_start": 286,
+        "utf8_byte_end_exclusive": 363,
+        "exact_text": "**2.** Make a neighbour’s response feel less repetitive and administrative."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 157,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 157,
+        "exact_text": "I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back."
+      },
+      "rootQualification": "Taste preference for less repetitive administrative replies; preserve independent refusal and deferral."
+    },
+    {
+      "id": "F-3122",
+      "tester": "leonie",
+      "target": "fix:neighbours",
+      "targetDate": "2026-11-10",
+      "classification": "preference",
+      "ask": {
+        "kind": "ranked_ask_clause",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          3,
+          3
+        ],
+        "codepoint_start": 362,
+        "codepoint_end_exclusive": 443,
+        "utf8_byte_start": 364,
+        "utf8_byte_end_exclusive": 445,
+        "exact_text": "**3.** Give me a more natural way to meet someone without chasing their schedule."
+      },
+      "returnSentence": {
+        "kind": "return_statement",
+        "source_path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/leonie/report.md",
+        "report_sha256": "5351733da429ac5a5ade097269fbfd40e89682369fc92059961f95733710071d",
+        "lines": [
+          1,
+          1
+        ],
+        "codepoint_start": 0,
+        "codepoint_end_exclusive": 157,
+        "utf8_byte_start": 0,
+        "utf8_byte_end_exclusive": 157,
+        "exact_text": "I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back."
+      },
+      "rootQualification": "Taste preference for meeting people; preserve moving neighbours and their obligations."
+    }
+  ],
+  "sameIteration": true,
+  "completionRule": "Two fixed retest iterations reached; dated Deferred record integration remains before finish claim. No third ordinary panel.",
+  "epochLimit": "75213exit1/qualifiedMei singleton plus72317exit0/four returns, never full-five native0.",
+  "globalLimits": "FictionalAIpanel/source-unread, selected own histories only; no perception/comprehension/backend/owner acceptance inferred. Preserve W/SW/NR/SWF/NF qualifications and forthcoming current raw audit.",
+  "dispositions": {
+    "mei": "mixed",
+    "emre": "keep",
+    "nia": "mixed",
+    "rosa": "mixed",
+    "leonie": "mixed"
+  },
+  "dispositionLimits": {
+    "leonie": "Tentative curiosity another evening; no affirmative voluntary return commitment, no tonight. Mixed preserves uncertainty; literal sentence controls."
+  }
+}

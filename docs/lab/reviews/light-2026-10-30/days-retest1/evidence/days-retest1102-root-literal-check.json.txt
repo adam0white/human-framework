@@ -1,0 +1,927 @@
+{
+  "at": "2026-11-02T11:02:39.341076+00:00",
+  "allFiveReportsRootFullRead": true,
+  "allLastMessagesExact": true,
+  "allExcerptBytesCodepointsLinesVerified": true,
+  "excerpts": [
+    {
+      "tester": "emre",
+      "kind": "return_opening",
+      "sha256": "dae607410f26c179db871569a34b9add92081e5ff4d23af266f62e994d80ad41",
+      "bytes": [
+        0,
+        130
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "ranked_ask",
+      "sha256": "cb5b21e86b9a0480128cab0bbd0c19907a7e7e4dda6aad285b7387cf45636750",
+      "bytes": [
+        153,
+        300
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "ranked_ask",
+      "sha256": "68ce607f2db7208e4d3653116dc764f6599eed105d07b914f836124f3c438c31",
+      "bytes": [
+        301,
+        416
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "context",
+      "sha256": "fc08bc2ebc7b3971885bdcbe2562e8adf0226eb1904458bb2eab47634e4f13e3",
+      "bytes": [
+        418,
+        466
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "19d377da34ecba01bfe8b46b953d9eefa262242006f548f514f6c25ee0635090",
+      "bytes": [
+        1057,
+        1201
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "3396a3d9ee0c7409a252ec1be2116df867be8394bde9d17a9c20ad7ed516ce08",
+      "bytes": [
+        1202,
+        1330
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "efe5c9d6672659cb6f6b1af3ac53a7746fc743a52836ccc81cdff0f66b684f97",
+      "bytes": [
+        2317,
+        2513
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "016bc6b137d2b606394ba7c089f037e6cfac6f6dcc1957a4b2692eeecd94032a",
+      "bytes": [
+        2514,
+        2696
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "25a466a926f5ff6b1ab74ec05a28b9db6fc639d16be08d5ae00de64d853a8593",
+      "bytes": [
+        2697,
+        2885
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "a7046e7869560bf0560639746df24d97c45cd5b745f1739378dbdca319593bcd",
+      "bytes": [
+        2886,
+        3115
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "4255b9de3dd321914ba3c3b13278f0e3df00cfb946b22fac0ae8f1693c329783",
+      "bytes": [
+        3116,
+        3404
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "da4194246a7703e706ea97c2d71c66b83848f920179653aaa317a129c7539a25",
+      "bytes": [
+        3414,
+        3584
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "caf229c4f48eb7d36cf09b53350bf19e47ab9e5b259cb9923bf0965e0a2310fe",
+      "bytes": [
+        3585,
+        3784
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "92b4aebc7a6bac2fdaa9fbc9e06e1c8221ce0f00f14189fabbcb6c906e656f9d",
+      "bytes": [
+        3785,
+        3971
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "2122e28b9d6f8aa59d82c6a120762671cdac61adfaa6da7125063cd334148dd4",
+      "bytes": [
+        3972,
+        4229
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "073f2b39adb6297766d692ec99bcf8712a78f2ce9e9d3bf90575757d7bdedf9d",
+      "bytes": [
+        4230,
+        4442
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "diary",
+      "sha256": "88b29691e7a12cc26b393cde494fff9f3e5bdd2e36f2c848db6aaf6163177387",
+      "bytes": [
+        4443,
+        4711
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "context",
+      "sha256": "b3a0198511658eaea7b1a1cc759536ab1bb78ee498ae0d37278bc059d3c83043",
+      "bytes": [
+        4713,
+        5003
+      ]
+    },
+    {
+      "tester": "emre",
+      "kind": "context",
+      "sha256": "d3d17cea16bd80d5f364bed4880ba8fba08f7dbbd7dc63f7df47195ff290f577",
+      "bytes": [
+        5859,
+        6168
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "return_opening",
+      "sha256": "e061f00bd5c541d58ea1e1b524fd9094b0e9009994389a3c099440a07752cf91",
+      "bytes": [
+        0,
+        115
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "ranked_ask",
+      "sha256": "197955d1016b682b4e4ccb78926f20fb7c8deb3cbaa3c2b47cce7ce2ca80d650",
+      "bytes": [
+        138,
+        295
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "ranked_ask",
+      "sha256": "0444f87fdd77031da5fbd288b897f90b84e0747a427700d33f542e4bf29d021a",
+      "bytes": [
+        296,
+        365
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "ranked_ask",
+      "sha256": "780bf5873419685cdb6be0835a0f88f97edbb04db2389612c735dfccf9daa6c6",
+      "bytes": [
+        366,
+        493
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "8fa72bda4fdbc991ea4b3ec5af3caaaa45a822739c6e9e4e74f76ead0b57d18b",
+      "bytes": [
+        495,
+        791
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "aced4a87d78ad02eb04307c2734e086be0ea4af80a34db28f05ce1017ea9fbe8",
+      "bytes": [
+        793,
+        979
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "716414650a228b409728a0232862265663adf99cb5a92c715cfc5a73a7f731c7",
+      "bytes": [
+        981,
+        1370
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "274cf8c3d43894d17660eee53fd7d828041c4616ce260c41e33201fff099dd51",
+      "bytes": [
+        1372,
+        1725
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "ebb69681fff8e0bb0bafe7e299b7beb49b7a8a0459b6b1c37686bbfb286d6193",
+      "bytes": [
+        2322,
+        2643
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "6bd05b8421f101f301a350ec708734e75cc508c1f2d9d4c8dd5026c216c84917",
+      "bytes": [
+        2695,
+        2935
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "dd81d99216db110aec4a1f385b2a45efe2e4cad11fce4fa00592dc95f7dffaa7",
+      "bytes": [
+        2936,
+        3178
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "fd54d24f787ef257c7b30445e0055305f1d1526f5cb03b25b4fe6ab2630725f5",
+      "bytes": [
+        3179,
+        3424
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "059323f6e985ad3e19e0c41b75473c899d4d3182a8e622d395cb839bb6c2e405",
+      "bytes": [
+        3425,
+        3707
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "0f970c8cf203da918ab78c8c702c9b0083644cb261a79cd178bb83b23962897f",
+      "bytes": [
+        3708,
+        3926
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "443abe4337da31cf547ab56d601555c55297bd9d280a7da1160037bfa4434d52",
+      "bytes": [
+        3927,
+        4184
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "a9b928a8a4da854410bdb70f31b70052a830414c11ec932790362aa3765359a4",
+      "bytes": [
+        4194,
+        4410
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "beda68d16c82ca71032a5f0da1b64fa386171c495bdca84174f7b23202a341bf",
+      "bytes": [
+        4411,
+        4648
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "4a74823b879d01453311c00de4a924dc75641332e91f8d2857b2cd21c59c4c9d",
+      "bytes": [
+        4649,
+        4903
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "8bbd1177f84428b663200256f0e2c477c9cf068173bd637a5c048dd3e357735b",
+      "bytes": [
+        4904,
+        5126
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "e94089d16b6a6a95a06eb1a942abaed85d1393964497043dfd25199606f0663a",
+      "bytes": [
+        5127,
+        5355
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "diary",
+      "sha256": "998c14c0b03c611b9312f7800b707c6051730e3fad8c6c478f90acda5cde82b6",
+      "bytes": [
+        5356,
+        5619
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "8ece80f4c607626f8cef8f00952ff975b6408dd86a884d89ec30406a0261fb6c",
+      "bytes": [
+        5621,
+        5694
+      ]
+    },
+    {
+      "tester": "pavel",
+      "kind": "context",
+      "sha256": "66f69a6a11d6e571d5dbfdf93391b0ec2c9a62d6e94793d16da070caa56ee1ba",
+      "bytes": [
+        6558,
+        6824
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "return_opening",
+      "sha256": "920da679723f7e8bc06ad9357f17708119535679c412fb566b2d47775511baeb",
+      "bytes": [
+        0,
+        183
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "ranked_ask",
+      "sha256": "a8b607d4ca46e7673fd9450218010da7a75a60a5158e0bf76d8095a870a3467d",
+      "bytes": [
+        206,
+        308
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "ranked_ask",
+      "sha256": "1a87189bec7aa242ae382065c07dbc90db14d3d2fa57998fca214cf0d9c5ecb6",
+      "bytes": [
+        309,
+        411
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "18e58030267615ad419e84c2b6689281173d49702379ae958cedcf853f6dd59f",
+      "bytes": [
+        1608,
+        1757
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "bb9ec173da60e13f6d8387cee25a3ca713e4a06bcba0cd9773dbae96d7a83171",
+      "bytes": [
+        1758,
+        1920
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "4c0df21f1debe4097452b581634ae0befcf1108d055148bf38b4c8be5c928a8a",
+      "bytes": [
+        1921,
+        2132
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "82b413883051fd050355e6b5df7984884aa6750c92246a57f6b62340a06a63c3",
+      "bytes": [
+        2133,
+        2307
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "e2f6b76c43e23c47e42888b9b082ed074ccd16856490cda9627e08654187f5fc",
+      "bytes": [
+        2308,
+        2512
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "5414761287c9a9b9803e97b0413c8260396cae1d755c28c8f26c5196961bc036",
+      "bytes": [
+        2513,
+        2717
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "b7082100b4ae7a15ac691dca19b27e6a498dbed5d2b07d3c36dc5b660ccbb8be",
+      "bytes": [
+        2718,
+        2930
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "d891037c2ae2e2a46fca344b9a655e9807258f1eda950181e5ba029efc1794bd",
+      "bytes": [
+        2945,
+        3105
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "e5ac94ad42994b5f623039b5741eff5e9fb18c1b5fca391d44d716b8b1608b16",
+      "bytes": [
+        3106,
+        3281
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "378227135212d84bf49593e5dca0f2d72b7192c115e4fdb0cb8175617ce5ceac",
+      "bytes": [
+        3282,
+        3485
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "5a4f786881e48e5cd5273363aead3556546f5fc601f5b3e5d2075e1adc6583b2",
+      "bytes": [
+        3486,
+        3690
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "daa583a2f5ca50d3aa144c736b16f1f17af78af4f656184a7e5f501f840f0e26",
+      "bytes": [
+        3691,
+        3883
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "diary",
+      "sha256": "905b062b864f3a603c54e27bc26a14246c5a0337dcc6ef4070cb23ce83a3c658",
+      "bytes": [
+        3884,
+        4104
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "context",
+      "sha256": "6a629fd162702a1fe1736266c91e013f2aa56a7194c174c60355149c8d91a3a9",
+      "bytes": [
+        4106,
+        4418
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "context",
+      "sha256": "411730e841a8fcde36e18ef6bd8cc4138b2313852367a99ca89d3e55cac1a277",
+      "bytes": [
+        4420,
+        4723
+      ]
+    },
+    {
+      "tester": "tessa",
+      "kind": "context",
+      "sha256": "fc2d41865b306113bf6eec6166eef2adbdc75891729d62a432839aa8d1ab3ad7",
+      "bytes": [
+        4725,
+        5047
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "return_opening",
+      "sha256": "81a047fc90ee1828665ebab91dfbd5947bd964578331a242bb2ed69caf2633c2",
+      "bytes": [
+        0,
+        157
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "ranked_ask",
+      "sha256": "9fd8c032455c2a4ba1addda7c93e97cff5093963b3362d01e95d4fff26edb956",
+      "bytes": [
+        180,
+        323
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "ranked_ask",
+      "sha256": "d05ce36dbb5b671827f93523e20624c14ac4f5766a7258c5155809e87dcbeb94",
+      "bytes": [
+        324,
+        478
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "8534b6ce5635fb0d9284e67ea19f6510f03a5fd34e63e28dbd31bf81c888e917",
+      "bytes": [
+        480,
+        798
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "23781001d7c50eaf1c5ca2143bcc5e2344b3eedcf80809eb24fed80f98e1f675",
+      "bytes": [
+        1429,
+        1483
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "9371efce149c296dfb5d4e469ef5e3833e48c739cef57e690dc7785b28818501",
+      "bytes": [
+        1507,
+        1607
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "ef9b9ee7bd0d65fd6da79fd300d547fec38c22501700e05a03fb9eff6e76ac76",
+      "bytes": [
+        1608,
+        1720
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "0adce42ee1dd4fd6ac31c9c366a7c8e740ac382c4575c16bc6e6c09e9963091e",
+      "bytes": [
+        2329,
+        2585
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "be5bce4a095326c26472fc95aaa79d83e3a75b36e7d4379d70127d3dd470b564",
+      "bytes": [
+        2948,
+        3105
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "68dd87a28d397722fb4dcc26c19989a9fafe6017d0c638e232e0012a39671db5",
+      "bytes": [
+        3186,
+        3652
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "a4057eb5325ddd86d51a0a39f08b8e1cf298e5a4246a0a28b673e20faddd256c",
+      "bytes": [
+        3653,
+        4383
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "71d23b019d1be4e23ddfb4486bc4d80e75211ec2b9c346b5ea771cd9d48176e8",
+      "bytes": [
+        4384,
+        4965
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "67011b5d18ab434c1328ca8f50b3c61fe1076e2f4cafde8cdc22fb395669a95a",
+      "bytes": [
+        4966,
+        5630
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "05f9b46a2905184c1dbb07148f28a6d063cbb7bf515a1af94e3f7d7bc6bda64d",
+      "bytes": [
+        5631,
+        6264
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "cc04276d74617f3993ed255d10ea4a4a72cc894ef8c0e70cd4f489357c42b7a1",
+      "bytes": [
+        6265,
+        6930
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "8e12ddbbcd091b28d979168dddedb372d5203ab66b61468a650dfabcb654088f",
+      "bytes": [
+        6942,
+        7606
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "15fda04010372fbe080bae84250092f21ff5c962aec66c4eb940ef79874ecb19",
+      "bytes": [
+        7607,
+        8121
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "diary",
+      "sha256": "3caa5288557b96f625132839c0c2f70abc1a85777087d62b2d0e0031aa7714b9",
+      "bytes": [
+        8122,
+        8691
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "c1c7ac733052c52cad8f97d069380110e02181670dc7944ca72bf7061ba3cf1f",
+      "bytes": [
+        8693,
+        8912
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "06b1dafd2ac504baba2c217a9856b604868732d2847aee5de255af9d1de3c167",
+      "bytes": [
+        8914,
+        8955
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "f5bf09039acf8ac7b65af91a2cc8758535b135cdf9ef331e9d2efba631b5ce74",
+      "bytes": [
+        9144,
+        9394
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "ca4ef42f9c9a83a120e817e692e9015a4ec8d217edf2a109dd9a9e9711c3698d",
+      "bytes": [
+        10086,
+        10150
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "0e3fdd32033613f1e9291fef3d001b430d0b09b26d80cee486d3808a4cfd58b8",
+      "bytes": [
+        10332,
+        10408
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "8b61756cc1fe117492a062abc857cb11e93af0cee0e493bdb7a182522c541ab5",
+      "bytes": [
+        12332,
+        12834
+      ]
+    },
+    {
+      "tester": "rosa",
+      "kind": "context",
+      "sha256": "d135bf3d0a5412857b554ff4811b862fa3517eb1474057404edcbf043c687a6c",
+      "bytes": [
+        12836,
+        13196
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "return_opening",
+      "sha256": "5163d0bd31fa13a75fefff0e8357300d07c9c02e48456bdb75b3f5db25b4a91d",
+      "bytes": [
+        0,
+        122
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "ranked_ask",
+      "sha256": "ebd20761c71003d165d43e2a3b626a27ee43893222e4c34d2f145748c00f3c61",
+      "bytes": [
+        138,
+        233
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "ranked_ask",
+      "sha256": "792aae79246e461a401d8e6d231071dbcf895cb3f11f78aa03c94c2423e9c7e3",
+      "bytes": [
+        234,
+        327
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "context",
+      "sha256": "839deae68f203e07db4007e646130f287aef609e1e7f517310638bd34668e929",
+      "bytes": [
+        594,
+        1144
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "6ce0da2aec95aac61cf505fad21c66bb72aaa7f938bd78139873dbba82127b99",
+      "bytes": [
+        1601,
+        1773
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "22c7509fdc57406ec15cef1a60e944bef74896ce979b014023ee52c13e519f70",
+      "bytes": [
+        1774,
+        1947
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "4437a60245b2eb7c58e697cb3f0b8f9b5736cb569e36eb6eb8ac368a9256d95a",
+      "bytes": [
+        1948,
+        2141
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "fa9259244ad5390f104c4575214d2b8bc104695fc10a97d40e8da82858481ddb",
+      "bytes": [
+        2142,
+        2317
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "ed50baa1b90c657b4870f98b5db7b615a62651bd7fc46ffaa3a1057013a41c8e",
+      "bytes": [
+        2318,
+        2433
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "60a5327966b7dab2b5ba51976d1cb7f204580a906e0a37fb5941e1802fa610b9",
+      "bytes": [
+        2434,
+        2615
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "40ebb7322d0f14865078e8762b2ec59fafb071df4e7b80e3bef2471f35da558a",
+      "bytes": [
+        2616,
+        2815
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "9e020dbf148f0ae8ec99d034d18f4d3701e6ca8c133fe673f04a11a3f577eae0",
+      "bytes": [
+        2816,
+        3008
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "5c091968afc2dd53fde92a294fe28b6dd5afaf183e9524f91138b5e822e133c8",
+      "bytes": [
+        3009,
+        3175
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "diary",
+      "sha256": "8326746770668ff59431c818ad1138be364ba92752dc75419e7513ff57b2e3c1",
+      "bytes": [
+        3176,
+        3329
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "context",
+      "sha256": "0c8a234f59e002d39447e4809bd76e6a83ead570164d4c2abb8634c6a545ea45",
+      "bytes": [
+        3331,
+        3590
+      ]
+    },
+    {
+      "tester": "leire",
+      "kind": "context",
+      "sha256": "a0c67e4667a50038f6858f8add46ab139317db2a8e61f1f3b3b03a193e75ecd9",
+      "bytes": [
+        3592,
+        4020
+      ]
+    }
+  ],
+  "scope": "Root full report reads and literal extraction checks, no comprehension/image/acceptance proof."
+}

@@ -1,0 +1,33 @@
+# Smoke final packet fidelity review
+
+CLEAR at exact manifest `69f183bb5d03707394136cbe3aa4e8998bcec275e986e7b111909153a0993ca1`.
+
+Reviewer: `/root/smoke_packet_fidelity_review`. Candidate: `/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate`. No fidelity blocker found. Candidate bytes were not changed.
+
+- **F1 PASS:** Exact manifest identity matches requested SHA. All 44 declared payload hashes and sizes match. No candidate file modified.
+- **F2 PASS:** All 35 exact-copy bindings match source bytes, source/copy hashes and source/copy sizes. All 10 inherited-reference hashes and sizes match. All 27 unique path/hash pairs directly declared by the five history maps match; Iria profile path is readable without an invented declared hash.
+- **F3 PASS:** All five full reports read. Last retained item.completed agent_message text from each actual transcript encodes to exactly the current report bytes, including absence of terminal newline. Those hashes and sizes match root-last-message-check and literal extraction. All 124 current protocol-audit evidence bindings rehashed without mismatch.
+- **F4 PASS:** All four standing diary continuations fully read. Each contains its full report exact bytes once, as an unmodified suffix; coordinator note is outside report. Iria has no standing diary.
+- **F5 PASS:** All 10 literal asks match report byte offsets and asks.md; all five complete return statements match report, asks.md and logical-testers.md. All 10 IDs, classifications, targets and root qualification texts match exact root triage. Five dates are November 3 and five November 10. Dates do not claim completion.
+- **F6 PASS:** All SF1–SF14 qualification bodies occur verbatim once in methodology. All 17 clock rows exactly preserve tester, device, transcript line, wall row, response, wall and 0.001-second difference from root qualification.
+- **F7 PASS:** All 100 literal extraction spans independently checked at byte, Unicode and line coordinates. All 55 requested raw reactions occur literally in reports; 54 successful plus one rejected Iria Invalid reason attempt. No claim of 55 successful diary entries.
+- **F8 PASS:** README, logical testers, report text and SF10 retain exactly three Smoke target returners (Jonas, Aisha, Diego), Rosa FIRST Smoke with franchise experience, and fictional cold Iria with empty two-line history. Leila omitted with original reports retained; no full four-returner comparison claimed.
+- **F9 PASS:** Six actual ending stops and four voluntary nonending stops remain distinct. Aisha desktop FRUSTRATED, Rosa phone CONFUSED, Rosa desktop TASTE and Iria desktop TASTE are nonending. No coordinator cut, BUDGET or TOOL stop is represented.
+- **F10 PASS:** Stored native and physical receipts retain actual 89152 / e852f6 / exit 0, 480 sampled original identities gone, five absent profiles, eleven BIND-free ports and 17 stable frozen payloads before report reads. Initial BIND failure, failed exit 1, unknown port and unexplained transient cause remain explicit in SF13 and audit MD. This is stored evidence, not a fresh runtime probe.
+- **F11 PASS:** Current own-history SHA values, four exact inherited baseline prefixes and all five appended historical report byte ranges match. Prior W/SW/NR/SWF/NC and per-person Smoke qualifications transfer by bound selected history and maps, not a new full archive audit. Jonas/Aisha/Diego truncation uncertainty is preserved; Rosa reading claim is not promoted to proven delivery/comprehension.
+- **F12 PASS:** All claimed image viewing remains UNVERIFIABLE under SF1. Requested model identities are not serving identities. Source/SDK static receipts do not establish backend outcomes or source-wide equivalence. No consent, attribution, owner acceptance, third panel or cap reset is granted. Candidate remains NOT_SEALED_CANDIDATE; canonical import and dated record integration remain pending.
+
+All requested full prose documents were read. The JSON companion lists every inspected file with actual SHA256, byte size and inspection scope. Its ten routing rows retain the exact literal asks, full returns, dates, classifications, targets and root qualification text. It also retains all 17 clock rows and the five report/final-message equality results.
+
+The historical sourceAuditSha256 values in the root reaction and ending checks bind the retained finalizer audit (4f3baf…), not the later protocol-audit JSON. That referenced finalizer binding was independently rehashed through the 124-record evidence inventory. They were not mistaken for the current protocol audit hash.
+
+Limits:
+- Static fidelity review only. No candidate helper import or execution; only standard-library file parsing, comparisons and hashing. No network, browser, runtime probe, test, repository/worktree mutation or subagent. Only this requested review pair written.
+- Full five reports, full four current diary continuations and full README/asks/logical/methodology/protocol audit MD read. Operative JSON, exact bytes and declared bindings checked. No second full semantic reread of all 596 raw commands or prior full archives claimed. Actual current transcript final messages independently compared.
+- The large inherited-qualification projection was tool-truncated; those files are fully readable and hash-bound, but no full semantic inherited archive reread is claimed. Direct selected-map bindings and exact baseline/report composition were checked.
+- Stored receipts and root qualifications carry their own original audit scope. This review grants no rootVerified, operational admission, seal, canonical import, owner acceptance or final project completion.
+- No owned runtime, browser, repository or worktree. git worktree list is not applicable; no repository was touched.
+
+This CLEAR verdict covers fidelity at the stated candidate manifest. The packet remains unsealed. Canonical import, dated record integration and owner acceptance have not occurred.
+
+`git worktree list`: not applicable; no repository touched and no owned worktree.

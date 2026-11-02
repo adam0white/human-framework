@@ -1,0 +1,11 @@
+# Logical testers — CANDIDATE
+
+Five fictional model-produced testers; not human participants. Three Days returners, Rosa first Days but franchise experienced, and fictional cold Leire.
+
+| Tester | Exposure | Stops | Exact opening return statement |
+|---|---|---|---|
+| Emre | Days returner | phone FINISHED; desktop FINISHED | I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight. |
+| Pavel | Days returner | phone FINISHED; desktop FINISHED | I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running. |
+| Tessa | Days returner | phone FINISHED; desktop FINISHED | I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options. |
+| Rosa | FIRST Days; franchise experienced | phone CONFUSED; desktop TASTE | I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running. |
+| Leire | fictional cold FIRST Human Framework | phone FINISHED; desktop BORED | I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass. |

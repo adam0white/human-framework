@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-01T20:03:34.251844+00:00",
+  "status": "FINAL_FIVE_PHYSICAL_RETURN",
+  "controllerExit": 0,
+  "controllerExited": true,
+  "actualToolSession": 36364,
+  "sameIdentityLive": [],
+  "unknownObserved": [],
+  "unknownCurrent": [],
+  "underlyingPhysicalReturn": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-controller/root-return.json",
+    "sha256": "c1d0d80d78b0655fce1add3f84a7d5f20fa059d43dd096402547974b741b2d72"
+  },
+  "limits": "Historical last ordinary physical return only; no current CPU lease/resource census inferred. Original476 observedidentities absent/5profiles absent/11portsclosed retained."
+}

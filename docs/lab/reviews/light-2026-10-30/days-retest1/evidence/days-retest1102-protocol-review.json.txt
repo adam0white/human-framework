@@ -1,0 +1,4992 @@
+{
+  "scope": "Static bounded protocol review; no approval",
+  "inputs": {
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "size": 1234
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-protocol-audit.md": {
+      "sha256": "543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998",
+      "size": 14144
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json": {
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc",
+      "size": 2693869
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/root-return.json": {
+      "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742",
+      "size": 3572
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/plan.json": {
+      "sha256": "1b32b8e9ad9f141e3b7a86a09b6a8b6b03c6cb6be7d5e2b04c6592dc61aaa02c",
+      "size": 3994
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/brief.md": {
+      "sha256": "1105407ce99b62386eec4261ee5ff129caff380522378c28c84e273065885ac8",
+      "size": 7514
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/browser.log": {
+      "sha256": "3e5b6728a03c8ea51bda491dd25829eb4fbf419121956c17f2bcce75ee8423c9",
+      "size": 6123
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/completion.json": {
+      "sha256": "2c7a383ba9d36157c8de086219a4ab2195cd6e1db6d0712e5ee726d399234b2a",
+      "size": 94359
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/a-001.png": {
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "size": 210855
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/driver.out": {
+      "sha256": "cef9fc2dcb896280857d42103d909eb8a8b4e5fe84576aba6ea06660a4aa876d",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/first-minute.png": {
+      "sha256": "055926eed991253bfaf64e31030ccdacf8349699a8b2f181f1ece6dc5b74c4da",
+      "size": 136882
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/wall-clock.jsonl": {
+      "sha256": "2d558f62fd883529f7860d90861058aa6e6830e0d53d83bdced6624d9506d37a",
+      "size": 9454
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/dispatch.json": {
+      "sha256": "a1b4c7f639cc15e70bfe7958f13099b9d7d8b86fbbc875dc92a755a9d3c9d46f",
+      "size": 906
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/dispatched-prompt.txt": {
+      "sha256": "baea1c4eb9aa8a265183a280e282c53165a7152438d38f55b6ffa2d4ae088988",
+      "size": 7795
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/history-source-map.json": {
+      "sha256": "d9753eaeac0216ed1d3ae61fc7a564e516958d6896480c6a41c7fa6ede704628",
+      "size": 3493
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md": {
+      "sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "size": 274209
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-001.png": {
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "size": 58630
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-002.png": {
+      "sha256": "c06df76fe43eda4d744ec92934a0415174ed54c1a710ce79711c5d0a31d6db2f",
+      "size": 68427
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/b-003.png": {
+      "sha256": "54e46c626f19c4f4d63731ce6d2c4b5c4940a17ce14df864f26aab0ff7991a96",
+      "size": 101416
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/driver.out": {
+      "sha256": "5e4d24bc0c068f653200010c71dc6b03bbeec47df3880ee014f373f70d3491e0",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/first-minute.png": {
+      "sha256": "7044d9c7052b4cf4619117adea036af54253bed08a2fc3d3acd4b326aa3c3712",
+      "size": 46911
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/wall-clock.jsonl": {
+      "sha256": "cc58781d58f992fc708689baabddc6a9b0d2427357752cfb469791ca5f6bc2e0",
+      "size": 9357
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md": {
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+      "size": 6776
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/tester.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/transcript.jsonl": {
+      "sha256": "9ecf9b05b97970136513c9b925edb1222282ad5ff3e51fe085381365d1cd5fb9",
+      "size": 879673
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/brief.md": {
+      "sha256": "a5103004bec2966333fd3d24d694527f41ef177aa6291d091d23271a9ed81904",
+      "size": 7616
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/browser.log": {
+      "sha256": "56b35b3211244e16905869be10ac174dd553a6cc458f25ff780ffa7692ce6c93",
+      "size": 6116
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/completion.json": {
+      "sha256": "544704a6c7d05d44780b1d2116baa01144f5b8562d135849022ad8ca89fad3e7",
+      "size": 84951
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/a-001.png": {
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "size": 210855
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/driver.out": {
+      "sha256": "f910697a2a900f07ed74bd8644a0f9681362daf3f17f1070caf71a21f4c18cb1",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/wall-clock.jsonl": {
+      "sha256": "f2a18e43ea4ff22504d464ff536d70dd887b4f88f80d3831fcc9fca96a113555",
+      "size": 4365
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/dispatch.json": {
+      "sha256": "47333088330b1ee730ecab4fe7f60b10b841c2569b6043ea186cbefaf930f34a",
+      "size": 907
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/dispatched-prompt.txt": {
+      "sha256": "a4b8234e84e9e9899e8f94b505284fb40bf7d04460963e166b8c44cf26277ebd",
+      "size": 7897
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/history-source-map.json": {
+      "sha256": "0151467593957708bff5c78c23b836c56dadb8efc51d88dd81acb3fc85666946",
+      "size": 399
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/own-history.md": {
+      "sha256": "b9a1b06e9b47973c20de58580245ad9d4d3c0731602cbc7098cd9842db1f20a2",
+      "size": 119
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/a-001.png": {
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "size": 58630
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/driver.out": {
+      "sha256": "39812e6890b1f09e3dbcc7924407549ff7c8039b27e52f3826a87a30ae655a51",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/first-minute.png": {
+      "sha256": "2d6b925ca48b8e5f2e760069726f2a599ef7f5873187ca211ba34e84697cf29c",
+      "size": 48810
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl": {
+      "sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "size": 9565
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md": {
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+      "size": 4814
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/tester.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/transcript.jsonl": {
+      "sha256": "e9d5482a13ad1f56a578c45c2bd67bfe852268b85e9e0ef9e9dca90f221a5f7e",
+      "size": 187277
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/brief.md": {
+      "sha256": "4edd8a8a618464510a42339c3624d71a8fbf874cb9c45eaec5e0f01820772a62",
+      "size": 7556
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/browser.log": {
+      "sha256": "3108946c39bf16356ad8a79152ac491eacad9e6ea166d3847c8802366214a18d",
+      "size": 5636
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/completion.json": {
+      "sha256": "49204e84e4c1998bcd014df02a957fb95d17448129ca5cf40eff97215d3227b9",
+      "size": 92649
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/a-001.png": {
+      "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+      "size": 212869
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/driver.out": {
+      "sha256": "dc779ca76862406fc215e053c395ab775810be5382f4928d5250e65c3f40346b",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/first-minute.png": {
+      "sha256": "d30078a97615dd381b177e58dbd44ea9c38cd9b6b2792be52df4534e30bff50a",
+      "size": 132268
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/wall-clock.jsonl": {
+      "sha256": "dace49bb7833e38b7729633cfabd1bbf31deb75ebaf216deef3ba2da74b6e714",
+      "size": 8785
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/dispatch.json": {
+      "sha256": "ff2bac25cffb1fe0739a2d177b24e5ba7b8e061328664a01f4dbbb9e81684726",
+      "size": 907
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/dispatched-prompt.txt": {
+      "sha256": "0e075a5ad230e27efac80140dc0a3e8b01d9b82e2be5ab2c76a2d17676b60552",
+      "size": 7837
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/history-source-map.json": {
+      "sha256": "29e202374158da56278bde2ce98732e23b97a612d0eb33d2dab771cb15d07f0b",
+      "size": 3096
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md": {
+      "sha256": "d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff",
+      "size": 228663
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-001.png": {
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "size": 58630
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-002.png": {
+      "sha256": "ff909b3031db262c0658bfd033fc1340a5290156d55a8889d9012577a3c676ae",
+      "size": 64949
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/b-003.png": {
+      "sha256": "f59c01fbf79da3c7a34e1b32f2f7b72a5ddee4707e76b5df0b8fbdc67a5d15b6",
+      "size": 91794
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/driver.out": {
+      "sha256": "42d99a1afd3e390d0bce11668359f8383c73a6a715ca3f1fdb6f013e52b9056c",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/first-minute.png": {
+      "sha256": "50847f3825f676615831d50b50f8a937a93f9042b9a80c8279514e4ea877368e",
+      "size": 48809
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/wall-clock.jsonl": {
+      "sha256": "8dfc6d7697a1d4e5e39b57ea6bef328d522dbc40baee3f573ff709d37f602593",
+      "size": 9439
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md": {
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+      "size": 7505
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/tester.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/transcript.jsonl": {
+      "sha256": "45f1692d1fbfca38a6b4b1a618f6f6071872e5f5d9466d85125fe50a06ce365c",
+      "size": 1041085
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/brief.md": {
+      "sha256": "9b189ce2a48574c9fe45dd23cb34e83263b64e2e94066e5f17939165fc293ad1",
+      "size": 7772
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/browser.log": {
+      "sha256": "62cd9354d4cca58027ffea710c1997e1563ec4acafce5d231c8eff5d87001436",
+      "size": 5636
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/completion.json": {
+      "sha256": "343e3d18f9a068d70123276f5ef45f2277d2d4c6b12bfa17eeb7ad51731f71aa",
+      "size": 83646
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-001.png": {
+      "sha256": "4f5a07851a1de44e9b4e2805ac1b765d6df7c0407d8feab3ebaf8fbca9e4c554",
+      "size": 210855
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/b-002.png": {
+      "sha256": "2b81bd721ac462244c6010943741ce1db31077d57075416668e03f465b39222b",
+      "size": 188585
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/driver.out": {
+      "sha256": "28190fcc90c84a9db42b1f7803a5aa269ce21efc640fe0239302ebbd4cf76a86",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/first-minute.png": {
+      "sha256": "44c3e3f22485a6d23a777e7b074e8b491c12d4304c1b146735a19f691bcdb599",
+      "size": 174899
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/wall-clock.jsonl": {
+      "sha256": "da670e315347060e761cd1367ca5ed8ea35abd17e0dfba783fa0d62c4e85446c",
+      "size": 5298
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/dispatch.json": {
+      "sha256": "b57ed83b809b89d8a8dcd0c5f5f9599a82b6ef9f691788e42afe56a83fea79ce",
+      "size": 907
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/dispatched-prompt.txt": {
+      "sha256": "2c66a266d060f9df8ecb7027dcf39346ba83d33b064f34e224c6e96dd628f6fc",
+      "size": 8053
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/history-source-map.json": {
+      "sha256": "678701a21f73b3d11067a2f79c0531af1850a40713297281a1677722654f1c60",
+      "size": 3233
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/own-history.md": {
+      "sha256": "fea51943b6d7c9c27e8a766062ee32f2938b637444e3ede7cc32e68881f4e505",
+      "size": 499468
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-001.png": {
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "size": 58630
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/a-002.png": {
+      "sha256": "418d988c5403144c1e910f4b3b9d3cf98039f2b669057156e6e28e816e020ec2",
+      "size": 64731
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/driver.out": {
+      "sha256": "e91866317c61796a998935bdcd2fb570a61d9b8794f0a889fac25fc9b16cffe4",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/first-minute.png": {
+      "sha256": "8e4740d48a0d6b6ff0c6ef1ba039beb330bc6ba413acce63ee1648b9072294dc",
+      "size": 71011
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl": {
+      "sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "size": 10018
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md": {
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+      "size": 13601
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/tester.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/transcript.jsonl": {
+      "sha256": "e92ff0e28f705760c1d5f15534b3418e7d20002ea40237e8058992b664211132",
+      "size": 781158
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/brief.md": {
+      "sha256": "e813d9888c77ce57df93ff2c69fe0a35ec6bae473dcff38509f5ca2726c23abd",
+      "size": 7572
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/browser.log": {
+      "sha256": "b4245e7bc3c56e173df64e7edcf74e78a37301376ce7209e8c303a7d31b45f2f",
+      "size": 6123
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/completion.json": {
+      "sha256": "34b26d3fc1d2971b4aa2e8d2af68a3e572bcbfb2cadd8b474a78e1a40298426f",
+      "size": 94091
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/b-001.png": {
+      "sha256": "7e2ff18d4213be45744b2382187d43a03e559c11b823f1dbd1131abebf2f12d4",
+      "size": 212869
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/driver.out": {
+      "sha256": "82bd5b14eb4794d3267b792a6e009778d569794daa8a5089d7b355f3517db9f3",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/first-minute.png": {
+      "sha256": "944d5292fbae1f0ee116e61cdccf287a27508a9f3d363bf42b09ba335f7d8bcd",
+      "size": 133161
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/wall-clock.jsonl": {
+      "sha256": "a9ae22e55bf99b98942f73e3eb627391a40b83b409d7c7e7599ec58bc89c92a7",
+      "size": 9301
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/dispatch.json": {
+      "sha256": "99fc21255a2e57930d17260adb8ffc99789d07528da848f2a9b55710d358f201",
+      "size": 907
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/dispatched-prompt.txt": {
+      "sha256": "6907826f7f17e0fe457f4952cff49f94e099313d5a659bee6c24f2f7773beb94",
+      "size": 7853
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/history-source-map.json": {
+      "sha256": "197f4643a158165a89e8190fab1b5cf1cdcdd86c478256e7925ae53047914981",
+      "size": 4287
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md": {
+      "sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "size": 164671
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-001.png": {
+      "sha256": "3b6e32ab0d3c3cb50d401fc0cddd163acfdc22de8d6d64482cda27cabd2cc035",
+      "size": 58630
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/a-002.png": {
+      "sha256": "25526fa0e4085208f662f276f59603c63a7eab66f1e675644c570569f6a3db07",
+      "size": 88468
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/driver.out": {
+      "sha256": "e486420583a803d3f40d8e8ffc030553f372140154e22d7833d29031d849a207",
+      "size": 85
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/first-minute.png": {
+      "sha256": "56efdb1a6ed469fd8ff3a4d0c60eae1cace6bdefb0a60f1743263b95f13639bb",
+      "size": 45055
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/release-start.json": {
+      "sha256": "3435ef86b9f11f399fb101a24729e3ed30dc1e29e7432c567f605f3644b2dc10",
+      "size": 133
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/wall-clock.jsonl": {
+      "sha256": "f3f994cbf5828077f6aa88395f78d706eff3655e4985268672d4e29a1c73b69b",
+      "size": 9807
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md": {
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+      "size": 6487
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/tester.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/transcript.jsonl": {
+      "sha256": "af0802acfb4e5a2c3d981d5465a98fdc5b7e982f4af193710c5cbaf3549bae39",
+      "size": 790312
+    }
+  },
+  "players": {
+    "emre": {
+      "completion": {
+        "start": "2026-11-02T10:33:51.439906+00:00",
+        "end": "2026-11-02T10:36:43.553448+00:00",
+        "cut": null,
+        "testerExit": 0,
+        "cancelled": false,
+        "pass": true,
+        "controllerInterruption": null,
+        "withinTotalBudget": true,
+        "receiptPhase": "terminal commit; later cancellation post-completion"
+      },
+      "last_message_exact_report": true,
+      "completed_item_types": {
+        "agent_message": 4,
+        "command_execution": 175
+      },
+      "failed_commands": [],
+      "devices": {
+        "phone": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:36:11.215Z",
+              "elapsed_s": 50.141,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:36:23.343Z",
+              "elapsed_s": 62.269,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:36:21.122Z",
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 45,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "b-001.png",
+            "b-002.png",
+            "b-003.png",
+            "first-minute.png"
+          ]
+        },
+        "desktop": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:35:10.111Z",
+              "elapsed_s": 46.521,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.",
+              "game_clock": null,
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:35:18.696Z",
+              "elapsed_s": 55.106,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.",
+              "game_clock": null,
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:35:23.658Z",
+              "elapsed_s": 60.068,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 66,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 5,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png",
+            "first-minute.png"
+          ]
+        }
+      }
+    },
+    "pavel": {
+      "completion": {
+        "start": "2026-11-02T10:36:43.555114+00:00",
+        "end": "2026-11-02T10:39:37.757630+00:00",
+        "cut": null,
+        "testerExit": 0,
+        "cancelled": false,
+        "pass": true,
+        "controllerInterruption": null,
+        "withinTotalBudget": true,
+        "receiptPhase": "terminal commit; later cancellation post-completion"
+      },
+      "last_message_exact_report": true,
+      "completed_item_types": {
+        "agent_message": 4,
+        "command_execution": 181
+      },
+      "failed_commands": [
+        {
+          "transcript_line": 274,
+          "exit_code": 1,
+          "output": "zsh:1: unmatched \"\n"
+        }
+      ],
+      "devices": {
+        "phone": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:39:06.011Z",
+              "elapsed_s": 50.989,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.",
+              "game_clock": "Leave ended",
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:39:15.772Z",
+              "elapsed_s": 60.75,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.",
+              "game_clock": "Leave ended",
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:39:15.065Z",
+              "elapsed_s": 60.043,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 41,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "b-001.png",
+            "b-002.png",
+            "b-003.png",
+            "first-minute.png"
+          ]
+        },
+        "desktop": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:38:02.060Z",
+              "elapsed_s": 44.061,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "The three days are over. The delivery is agreed but not yet made, and the account is clear. I like that distinction. I would stop this game here.",
+              "game_clock": "Leave ended",
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:38:12.618Z",
+              "elapsed_s": 54.619,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop at the end of the three days. I arranged a later delivery instead of the visit, and the ending says it has not yet happened. I chose I am stopping, went Back, typed and sent nothing.",
+              "game_clock": "Leave ended",
+              "engagement": 4,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:38:18.064Z",
+              "elapsed_s": 60.065,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 63,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png",
+            "first-minute.png"
+          ]
+        }
+      }
+    },
+    "tessa": {
+      "completion": {
+        "start": "2026-11-02T10:39:37.759290+00:00",
+        "end": "2026-11-02T10:42:30.621384+00:00",
+        "cut": null,
+        "testerExit": 0,
+        "cancelled": false,
+        "pass": true,
+        "controllerInterruption": null,
+        "withinTotalBudget": true,
+        "receiptPhase": "terminal commit; later cancellation post-completion"
+      },
+      "last_message_exact_report": true,
+      "completed_item_types": {
+        "agent_message": 4,
+        "command_execution": 165
+      },
+      "failed_commands": [
+        {
+          "transcript_line": 242,
+          "exit_code": 1,
+          "output": "zsh:1: unmatched \"\n"
+        }
+      ],
+      "devices": {
+        "phone": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:40:59.869Z",
+              "elapsed_s": 54.967,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:41:09.877Z",
+              "elapsed_s": 64.975,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:41:04.958Z",
+              "elapsed_s": 60.056,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 53,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 7,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png",
+            "a-002.png",
+            "first-minute.png"
+          ]
+        },
+        "desktop": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:41:59.610Z",
+              "elapsed_s": 47.776,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "The story ended and remembered the disclosure and apology. I like that, but I have seen two passes tonight and do not want another one.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:42:11.595Z",
+              "elapsed_s": 59.761,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:42:11.910Z",
+              "elapsed_s": 60.076,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 73,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "b-001.png",
+            "first-minute.png"
+          ]
+        }
+      }
+    },
+    "rosa": {
+      "completion": {
+        "start": "2026-11-02T10:42:30.623038+00:00",
+        "end": "2026-11-02T10:48:04.177747+00:00",
+        "cut": null,
+        "testerExit": 0,
+        "cancelled": false,
+        "pass": true,
+        "controllerInterruption": null,
+        "withinTotalBudget": true,
+        "receiptPhase": "terminal commit; later cancellation post-completion"
+      },
+      "last_message_exact_report": true,
+      "completed_item_types": {
+        "agent_message": 8,
+        "command_execution": 155
+      },
+      "failed_commands": [],
+      "devices": {
+        "phone": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:45:22.884Z",
+              "elapsed_s": 92.072,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.",
+              "game_clock": "Second day; 3 hours free",
+              "engagement": 2,
+              "reason": "CONFUSED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:45:51.787Z",
+              "elapsed_s": 120.975,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.",
+              "game_clock": "Second day; 3 hours free",
+              "engagement": 2,
+              "reason": "CONFUSED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:44:50.865Z",
+              "elapsed_s": 60.053,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 51,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:44:55.010Z",
+              "elapsed_s": 64.198,
+              "kind": "first_minute",
+              "op": "log",
+              "input": null,
+              "reaction": "I understand the choices and their costs: soup helped, checking the receipt used an hour but no money. Selin, Halil and Nuran together remind me confidently of the widower and daughter in my supplied Voice record. Her offer to sit without the whole story is warm. One reread so far. This page adds 9 groups: notebook entries, private marriage, untold separation, last visit instruction, envelope, Selin and her family, company without disclosure, private comparison, help versus exposure and later harm.",
+              "game_clock": "First day; 4 hours free",
+              "engagement": 4,
+              "reason": null,
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png",
+            "a-002.png",
+            "first-minute.png"
+          ]
+        },
+        "desktop": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:46:35.831Z",
+              "elapsed_s": 38.487,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "Selin offering company without asking for the whole story still moves me. The large room and notebooks are easy to understand, although the gold cost lines are small. Hacer has the receipt in this run, unlike Burak on the phone. I have read this beginning twice tonight and would stop here rather than repeat the account work. No sentence needed rereading on this device. Folded account has 14 groups and notebook has 9 as on phone.",
+              "game_clock": "First day; 4 hours free",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:46:54.597Z",
+              "elapsed_s": 57.253,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.",
+              "game_clock": "First day; 4 hours free",
+              "engagement": 4,
+              "reason": "TASTE",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:46:57.416Z",
+              "elapsed_s": 60.072,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 69,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [],
+          "reaction_count": 3,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "b-001.png",
+            "b-002.png",
+            "first-minute.png"
+          ]
+        }
+      }
+    },
+    "leire": {
+      "completion": {
+        "start": "2026-11-02T10:48:04.179197+00:00",
+        "end": "2026-11-02T10:49:54.533402+00:00",
+        "cut": null,
+        "testerExit": 0,
+        "cancelled": false,
+        "pass": true,
+        "controllerInterruption": null,
+        "withinTotalBudget": true,
+        "receiptPhase": "terminal commit; later cancellation post-completion"
+      },
+      "last_message_exact_report": true,
+      "completed_item_types": {
+        "agent_message": 3,
+        "command_execution": 48
+      },
+      "failed_commands": [
+        {
+          "transcript_line": 25,
+          "exit_code": 1,
+          "output": "zsh:1: unmatched \"\n"
+        },
+        {
+          "transcript_line": 37,
+          "exit_code": 1,
+          "output": "zsh:1: unmatched \"\n"
+        }
+      ],
+      "devices": {
+        "phone": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:49:02.754Z",
+              "elapsed_s": 51.759,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.",
+              "game_clock": "The leave has ended",
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:49:10.201Z",
+              "elapsed_s": 59.206,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I finished the three days and am ready to leave.",
+              "game_clock": "The leave has ended",
+              "engagement": 3,
+              "reason": "FINISHED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [
+            {
+              "t": "2026-11-02T10:49:11.043Z",
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 46,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "errors": [
+            {
+              "t": "2026-11-02T10:48:15.786Z",
+              "elapsed_s": 4.791,
+              "kind": "tool",
+              "op": "log",
+              "input": null,
+              "reaction": "The opening is calm and readable, though there is a lot to take in before I start. I want to see what I can actually do.",
+              "game_clock": null,
+              "engagement": 3,
+              "reason": null,
+              "op_ms": 4,
+              "error": "Invalid reason (invalid request, not a driver failure)",
+              "requested_control_present_before": null
+            }
+          ],
+          "reaction_count": 6,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png",
+            "first-minute.png"
+          ]
+        },
+        "desktop": {
+          "stops": [
+            {
+              "t": "2026-11-02T10:49:30.233Z",
+              "elapsed_s": 18.41,
+              "kind": "want_quit",
+              "op": "log",
+              "input": null,
+              "reaction": "I want to stop here. I have seen this story end once and another pass tonight feels repetitive.",
+              "game_clock": "First day, 6 hours free",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            },
+            {
+              "t": "2026-11-02T10:49:39.248Z",
+              "elapsed_s": 27.425,
+              "kind": "stop",
+              "op": "log",
+              "input": null,
+              "reaction": "I am leaving the second run because repeating the story tonight no longer interests me.",
+              "game_clock": "First day, 6 hours free",
+              "engagement": 2,
+              "reason": "BORED",
+              "op_ms": 0,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ],
+          "first_minute_events": [],
+          "errors": [],
+          "reaction_count": 5,
+          "reactions_absent_from_report": [],
+          "screenshots": [
+            "a-001.png"
+          ]
+        }
+      }
+    }
+  },
+  "findings": [
+    "All five captured last agent messages match report bytes. All wall-clock reaction strings occur in reports; this does not verify perception or intent.",
+    "Ten stop rows: seven FINISHED, Rosa phone CONFUSED, Rosa desktop TASTE, Leire desktop BORED. Finished claims require underlying ending text review; timestamps in wall rows differ by 1 ms from some reports.",
+    "No image-tool item in retained completed transcript events; screenshot files and report claims do not establish model visual access.",
+    "Automatic first-minute shots occur after stop for Emre, Pavel, Tessa, Rosa desktop and Leire phone; they are not diary checkpoints or subsequent player actions.",
+    "Pavel has one failed quote command omitted from report; Tessa has one and Leire two, disclosed. Leire has rejected invalid reason diary, disclosed.",
+    "Rosa phone first_minute log 64.198 after action; desktop ended at 57.253. All stops before 180 seconds.",
+    "No completed transcript agent message explicitly refuses the assignment; this is bounded to retained events. Completion records say no controller interruption, cut, or cancellation and tester exit 0.",
+    "Fictional personas and simulated reactions are not human participant evidence; requested model and effort are not verified serving identity.",
+    "Finalizer counts are eligibility, not release or root verification. Root receipt records cleanup and sampled physical return, not this reviewer’s live verification."
+  ],
+  "limitations": [
+    "No image comprehension assessed; image files hashed only.",
+    "No independent runtime, network, process, or source validation.",
+    "Event and absence claims apply only to retained transcripts.",
+    "History stdout does not prove delivery to or comprehension by the model."
+  ],
+  "followup_static_audit": {
+    "histories": {
+      "emre": {
+        "line_count": 2205,
+        "first_driver_transcript_line": 242,
+        "ranges": [
+          {
+            "line": 46,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 47,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 48,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 49,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 50,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 51,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 52,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 53,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 54,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 55,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 56,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 57,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 58,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 59,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 60,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 61,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 62,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 63,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 64,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 65,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 66,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 67,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 68,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 69,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 70,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 71,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 72,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 73,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 74,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 75,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 76,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 77,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 78,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 79,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 80,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 82,
+            "start": 1441,
+            "end": 1480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 83,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 84,
+            "start": 1521,
+            "end": 1560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 86,
+            "start": 1561,
+            "end": 1600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 87,
+            "start": 1481,
+            "end": 1520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 93,
+            "start": 1601,
+            "end": 1640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 94,
+            "start": 1641,
+            "end": 1680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 95,
+            "start": 1761,
+            "end": 1800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 96,
+            "start": 1681,
+            "end": 1720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 98,
+            "start": 1721,
+            "end": 1760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 100,
+            "start": 1801,
+            "end": 1840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 103,
+            "start": 1961,
+            "end": 2000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 105,
+            "start": 1841,
+            "end": 1880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 106,
+            "start": 1881,
+            "end": 1920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 107,
+            "start": 2041,
+            "end": 2080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 108,
+            "start": 1921,
+            "end": 1960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 111,
+            "start": 2001,
+            "end": 2040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 112,
+            "start": 2121,
+            "end": 2160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 113,
+            "start": 2081,
+            "end": 2120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 115,
+            "start": 2161,
+            "end": 2200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 117,
+            "start": 2201,
+            "end": 2205,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 121,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 122,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 123,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 125,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 127,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 130,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 131,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 133,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 135,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 137,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 141,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 142,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 143,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 147,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 148,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 149,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 153,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 154,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 155,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 159,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 160,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 161,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 163,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 165,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 167,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 169,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 172,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 173,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 175,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 178,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 179,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 181,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 183,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 185,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 187,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 189,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 192,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 193,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 197,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 198,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 199,
+            "start": 1481,
+            "end": 1520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 201,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 203,
+            "start": 1441,
+            "end": 1480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 205,
+            "start": 1521,
+            "end": 1560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 208,
+            "start": 1641,
+            "end": 1680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 209,
+            "start": 1601,
+            "end": 1640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 211,
+            "start": 1681,
+            "end": 1720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 214,
+            "start": 1721,
+            "end": 1760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 215,
+            "start": 1561,
+            "end": 1600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 217,
+            "start": 1801,
+            "end": 1840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 220,
+            "start": 1841,
+            "end": 1880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 221,
+            "start": 1761,
+            "end": 1800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 225,
+            "start": 1881,
+            "end": 1920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 226,
+            "start": 1961,
+            "end": 2000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 227,
+            "start": 1921,
+            "end": 1960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 229,
+            "start": 2041,
+            "end": 2080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 231,
+            "start": 2001,
+            "end": 2040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 234,
+            "start": 2121,
+            "end": 2160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 235,
+            "start": 2081,
+            "end": 2120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 237,
+            "start": 2161,
+            "end": 2200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 239,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          }
+        ],
+        "uncovered_before_first_driver_call": [],
+        "end_marker": "End of supplied own history."
+      },
+      "pavel": {
+        "line_count": 1617,
+        "first_driver_transcript_line": 260,
+        "ranges": [
+          {
+            "line": 31,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 32,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 33,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 34,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 35,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 36,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 37,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 38,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 39,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 40,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 41,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 42,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 43,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 44,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 45,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 46,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 47,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 48,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 49,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 50,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 51,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 52,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 53,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 54,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 55,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 63,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 64,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 65,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 66,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 67,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 69,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 70,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 72,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 73,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 75,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 77,
+            "start": 1441,
+            "end": 1480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 79,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 81,
+            "start": 1481,
+            "end": 1520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 84,
+            "start": 1561,
+            "end": 1600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 85,
+            "start": 1521,
+            "end": 1560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 87,
+            "start": 1601,
+            "end": 1617,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 90,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 91,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 94,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 95,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 97,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 99,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 103,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 104,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 105,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 107,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 109,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 111,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 113,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 115,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 117,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 119,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 121,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 123,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 125,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 127,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 129,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 131,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 133,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 135,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 137,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 139,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 141,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 143,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 145,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 147,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 149,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 151,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 153,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 155,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 157,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 159,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 161,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 163,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 165,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 167,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 169,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 171,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 173,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 175,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 177,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 179,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 181,
+            "start": 1441,
+            "end": 1480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 183,
+            "start": 1481,
+            "end": 1520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 185,
+            "start": 1521,
+            "end": 1560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 187,
+            "start": 1561,
+            "end": 1600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 189,
+            "start": 1601,
+            "end": 1617,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 191,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 193,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 195,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 197,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 199,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 201,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 203,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 205,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 207,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 209,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 211,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 213,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 215,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 217,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 219,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 221,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 223,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 225,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 227,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 229,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 231,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 233,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 235,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 237,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 239,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 241,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 243,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 245,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 247,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 249,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 251,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 253,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 255,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 257,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          }
+        ],
+        "uncovered_before_first_driver_call": [],
+        "end_marker": "End of supplied own history."
+      },
+      "tessa": {
+        "line_count": 1395,
+        "first_driver_transcript_line": 218,
+        "ranges": [
+          {
+            "line": 29,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 30,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 31,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 32,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 33,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 34,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 35,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 36,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 37,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 38,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 39,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 40,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 41,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 42,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 43,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 44,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 45,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 46,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 47,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 48,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 49,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 50,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 51,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 56,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 57,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 60,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 61,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 63,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 64,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 65,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 67,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 69,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 71,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 73,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 75,
+            "start": 1361,
+            "end": 1395,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 78,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 79,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 82,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 83,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 86,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 87,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 91,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 92,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 93,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 95,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 115,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 116,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 117,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 118,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 119,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 120,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 121,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 122,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 123,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 124,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 125,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 126,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 127,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 128,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 129,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 130,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 131,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 132,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 133,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 142,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 143,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 144,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 145,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 146,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 148,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 149,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 150,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 151,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 153,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 155,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 158,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 159,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 161,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 163,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 165,
+            "start": 1361,
+            "end": 1395,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 169,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 170,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 172,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 174,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 176,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 179,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 180,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 183,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 184,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 186,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 191,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 192,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 193,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 194,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 196,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 199,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 200,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 204,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 205,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 206,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 211,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 212,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 213,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 214,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 216,
+            "start": 1361,
+            "end": 1395,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          }
+        ],
+        "uncovered_before_first_driver_call": [],
+        "end_marker": "End of supplied own history."
+      },
+      "rosa": {
+        "line_count": 4429,
+        "first_driver_transcript_line": 245,
+        "ranges": [
+          {
+            "line": 7,
+            "start": 1,
+            "end": 40,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 9,
+            "start": 41,
+            "end": 80,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 11,
+            "start": 81,
+            "end": 120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 13,
+            "start": 121,
+            "end": 160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 15,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 17,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 19,
+            "start": 241,
+            "end": 280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 21,
+            "start": 281,
+            "end": 320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 23,
+            "start": 321,
+            "end": 360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 25,
+            "start": 361,
+            "end": 400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 27,
+            "start": 401,
+            "end": 440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 29,
+            "start": 161,
+            "end": 200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 31,
+            "start": 201,
+            "end": 240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 33,
+            "start": 441,
+            "end": 480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 35,
+            "start": 481,
+            "end": 520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 37,
+            "start": 521,
+            "end": 560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 39,
+            "start": 561,
+            "end": 600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 41,
+            "start": 601,
+            "end": 640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 43,
+            "start": 641,
+            "end": 680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 45,
+            "start": 681,
+            "end": 720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 47,
+            "start": 721,
+            "end": 760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 50,
+            "start": 761,
+            "end": 800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 52,
+            "start": 801,
+            "end": 840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 54,
+            "start": 841,
+            "end": 880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 56,
+            "start": 881,
+            "end": 920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 58,
+            "start": 921,
+            "end": 960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 60,
+            "start": 961,
+            "end": 1000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 62,
+            "start": 1001,
+            "end": 1040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 64,
+            "start": 1041,
+            "end": 1080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 66,
+            "start": 1081,
+            "end": 1120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 68,
+            "start": 1121,
+            "end": 1160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 70,
+            "start": 1161,
+            "end": 1200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 72,
+            "start": 1201,
+            "end": 1240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 74,
+            "start": 1241,
+            "end": 1280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 76,
+            "start": 1281,
+            "end": 1320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 78,
+            "start": 1321,
+            "end": 1360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 80,
+            "start": 1361,
+            "end": 1400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 82,
+            "start": 1401,
+            "end": 1440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 84,
+            "start": 1441,
+            "end": 1480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 86,
+            "start": 1481,
+            "end": 1520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 88,
+            "start": 1521,
+            "end": 1560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 90,
+            "start": 1561,
+            "end": 1600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 92,
+            "start": 1601,
+            "end": 1640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 94,
+            "start": 1641,
+            "end": 1680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 96,
+            "start": 1681,
+            "end": 1720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 98,
+            "start": 1721,
+            "end": 1760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 100,
+            "start": 1761,
+            "end": 1800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 102,
+            "start": 1801,
+            "end": 1840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 104,
+            "start": 1841,
+            "end": 1880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 106,
+            "start": 1881,
+            "end": 1920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 108,
+            "start": 1921,
+            "end": 1960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 110,
+            "start": 1961,
+            "end": 2000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 112,
+            "start": 2001,
+            "end": 2040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 114,
+            "start": 2041,
+            "end": 2080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 116,
+            "start": 2081,
+            "end": 2120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 118,
+            "start": 2121,
+            "end": 2160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 120,
+            "start": 2161,
+            "end": 2200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 122,
+            "start": 2201,
+            "end": 2240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 124,
+            "start": 2241,
+            "end": 2280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 126,
+            "start": 2281,
+            "end": 2320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 128,
+            "start": 2321,
+            "end": 2360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 131,
+            "start": 2361,
+            "end": 2400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 133,
+            "start": 2401,
+            "end": 2440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 135,
+            "start": 2441,
+            "end": 2480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 137,
+            "start": 2481,
+            "end": 2520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 139,
+            "start": 2521,
+            "end": 2560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 141,
+            "start": 2561,
+            "end": 2600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 143,
+            "start": 2601,
+            "end": 2640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 145,
+            "start": 2641,
+            "end": 2680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 147,
+            "start": 2681,
+            "end": 2720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 149,
+            "start": 2721,
+            "end": 2760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 151,
+            "start": 2761,
+            "end": 2800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 153,
+            "start": 2801,
+            "end": 2840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 155,
+            "start": 2841,
+            "end": 2880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 157,
+            "start": 2881,
+            "end": 2920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 159,
+            "start": 2921,
+            "end": 2960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 161,
+            "start": 2961,
+            "end": 3000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 163,
+            "start": 2841,
+            "end": 2880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 165,
+            "start": 2881,
+            "end": 2920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 167,
+            "start": 2921,
+            "end": 2960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 169,
+            "start": 2961,
+            "end": 3000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 171,
+            "start": 3001,
+            "end": 3040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 173,
+            "start": 3041,
+            "end": 3080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 175,
+            "start": 3081,
+            "end": 3120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 177,
+            "start": 3121,
+            "end": 3160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 179,
+            "start": 3161,
+            "end": 3200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 181,
+            "start": 3201,
+            "end": 3240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 183,
+            "start": 3241,
+            "end": 3280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 185,
+            "start": 3281,
+            "end": 3320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 187,
+            "start": 3321,
+            "end": 3360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 189,
+            "start": 3361,
+            "end": 3400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 191,
+            "start": 3401,
+            "end": 3440,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 193,
+            "start": 3441,
+            "end": 3480,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 195,
+            "start": 3481,
+            "end": 3520,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 197,
+            "start": 3521,
+            "end": 3560,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 199,
+            "start": 3561,
+            "end": 3600,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 201,
+            "start": 3601,
+            "end": 3640,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 203,
+            "start": 3641,
+            "end": 3680,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 205,
+            "start": 3681,
+            "end": 3720,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 207,
+            "start": 3721,
+            "end": 3760,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 209,
+            "start": 3761,
+            "end": 3800,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 211,
+            "start": 3801,
+            "end": 3840,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 213,
+            "start": 3841,
+            "end": 3880,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 215,
+            "start": 3881,
+            "end": 3920,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 218,
+            "start": 3921,
+            "end": 3960,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 220,
+            "start": 3961,
+            "end": 4000,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 222,
+            "start": 4001,
+            "end": 4040,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 224,
+            "start": 4041,
+            "end": 4080,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 226,
+            "start": 4081,
+            "end": 4120,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 228,
+            "start": 4121,
+            "end": 4160,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 230,
+            "start": 4161,
+            "end": 4200,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 232,
+            "start": 4201,
+            "end": 4240,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 234,
+            "start": 4241,
+            "end": 4280,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 236,
+            "start": 4281,
+            "end": 4320,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 238,
+            "start": 4321,
+            "end": 4360,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 240,
+            "start": 4361,
+            "end": 4400,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          },
+          {
+            "line": 242,
+            "start": 4401,
+            "end": 4429,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          }
+        ],
+        "uncovered_before_first_driver_call": [],
+        "end_marker": "End of supplied own history."
+      },
+      "leire": {
+        "line_count": 2,
+        "first_driver_transcript_line": 9,
+        "ranges": [
+          {
+            "line": 7,
+            "start": 1,
+            "end": 2,
+            "exact_stdout": true,
+            "before_first_driver_call": true
+          }
+        ],
+        "uncovered_before_first_driver_call": [],
+        "end_marker": "End of supplied own history."
+      }
+    },
+    "last_gameplay": {
+      "emre": {
+        "phone": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:36:09.341Z",
+            "elapsed_s": 48.267,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 151,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 343,
+              "response_elapsed_s": 48.268,
+              "visible": "Three Days\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The delivery has an agreed person and date; it has not happened yet. These tasks are settled for departure; grief is not. The private page stayed private.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nRested\nNo door cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:36:23.343Z",
+            "elapsed_s": 62.269,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.",
+            "game_clock": null,
+            "engagement": 3,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": []
+        },
+        "desktop": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:35:08.188Z",
+            "elapsed_s": 44.598,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 163,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 286,
+              "response_elapsed_s": 44.599,
+              "visible": "Three Days A daughter comes home\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The visit was kept. These tasks are settled for departure; grief is not. The private page stayed private. Burak still has the notebook and owes its return, and he still owes Leyla the mistaken first payment.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nRested\nNo door cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:35:18.696Z",
+            "elapsed_s": 55.106,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.",
+            "game_clock": null,
+            "engagement": 4,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": [
+            {
+              "t": "2026-11-02T10:35:23.658Z",
+              "elapsed_s": 60.068,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 66,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      },
+      "pavel": {
+        "phone": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:39:03.845Z",
+            "elapsed_s": 48.823,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 159,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 355,
+              "response_elapsed_s": 48.823,
+              "visible": "Three Days\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The visit was kept. These tasks are settled for departure; grief is not. The private page stayed private. Burak still has the notebook and owes its return.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nRested\nNo door cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:39:15.772Z",
+            "elapsed_s": 60.75,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.",
+            "game_clock": "Leave ended",
+            "engagement": 4,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": []
+        },
+        "desktop": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:37:59.926Z",
+            "elapsed_s": 41.927,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 168,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 298,
+              "response_elapsed_s": 41.927,
+              "visible": "Three Days A daughter comes home\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The delivery has an agreed person and date; it has not happened yet. These tasks are settled for departure; grief is not. The private page stayed private.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nExhausted\nNo door cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:38:12.618Z",
+            "elapsed_s": 54.619,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop at the end of the three days. I arranged a later delivery instead of the visit, and the ending says it has not yet happened. I chose I am stopping, went Back, typed and sent nothing.",
+            "game_clock": "Leave ended",
+            "engagement": 4,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": [
+            {
+              "t": "2026-11-02T10:38:18.064Z",
+              "elapsed_s": 60.065,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 63,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      },
+      "tessa": {
+        "phone": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:40:57.471Z",
+            "elapsed_s": 52.569,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 152,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 266,
+              "response_elapsed_s": 52.569,
+              "visible": "Three Days\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The visit was kept. These tasks are settled for departure; grief is not. The private page stayed private. Burak still has the notebook and owes its return, and he still owes Leyla the mistaken first payment.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nVery tired\nDoor cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:41:09.877Z",
+            "elapsed_s": 64.975,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.",
+            "game_clock": null,
+            "engagement": 3,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": []
+        },
+        "desktop": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:41:57.622Z",
+            "elapsed_s": 45.788,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 171,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 323,
+              "response_elapsed_s": 45.788,
+              "visible": "Three Days A daughter comes home\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The visit was kept. These tasks are settled for departure; grief is not. A private page was read aloud. The agreement to limit its spread does not undo that harm.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n1 hour free before departure\nRested\nNo door cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:42:11.595Z",
+            "elapsed_s": 59.761,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.",
+            "game_clock": null,
+            "engagement": 3,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": [
+            {
+              "t": "2026-11-02T10:42:11.910Z",
+              "elapsed_s": 60.076,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 73,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      },
+      "rosa": {
+        "phone": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:45:14.969Z",
+            "elapsed_s": 84.157,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Eat and rest while Selin covers the door. 1 hour to recover enough to read; fewer visitors can be received."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 180,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 278,
+              "response_elapsed_s": 84.158,
+              "visible": "Three Days\nMenu\n\nSECOND DAY OF LEAVE\n\nA living witness\nIN THE ROOM\n\nLeyla eats and lies down for an hour. Selin covers the door for the agreed shift. She can follow the papers again, but that hour is gone.\n\nBurak brings the original receipt Leyla asked for. It records money returned to Burak for an earlier repair.\n\nIt does not settle the boiler bill owed to Şükrü. The original shows that Kemal joined two separate entries on one line.\n\nBurak says, \"I was wrong to call it one account. We have the original receipt. We need to compare both entries and ask Şükrü what remains.\"\n\nLeyla has 3 free hours before departure. These are hours left after receiving visitors. Leyla can follow the papers without a second reader.\n\nChoose an object. Read its action and cost before choosing.\n\n3 hours free before departure\nRested\nDoor cover agreed\nTHE RECEIPTS\nCompare the receipt with both entries in private.\n1 hour to check the original you already have; no time to recuperate.\nTHE TELEPHONE\nAsk Burak to check the original by phone. Sit down while he calls.\n2 hours for Burak's phone check; rest while he calls.\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:45:51.787Z",
+            "elapsed_s": 120.975,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.",
+            "game_clock": "Second day; 3 hours free",
+            "engagement": 2,
+            "reason": "CONFUSED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": []
+        },
+        "desktop": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:46:22.667Z",
+            "elapsed_s": 25.323,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Ask Burak to check the paper before any payment. 1 hour to get the original; keep your savings."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 193,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 305,
+              "response_elapsed_s": 25.324,
+              "visible": "Three Days A daughter comes home\nMenu\n\nFIRST DAY OF LEAVE\n\nA page folded inwards\nIN THE ROOM\n\nHacer agrees to bring the original receipt. It takes an hour. No money changes hands.\n\nThe notebook contains a neighbour's name, a hospital address, and a page about Leyla's marriage. She never told Kemal it ended. His last note says, \"Visit Şükrü. Take the envelope.\"\n\nSelin comes after office hours. Hacer knows her. Selin's father, Halil, is still grieving her mother, Nuran, who died recently. \"I can sit with you. I don't need the whole story.\"\n\nLeyla has 4 free hours before departure. These are hours left after receiving visitors. Leyla can follow the papers without a second reader.\n\nChoose an object. Read its action and cost before choosing.\n\n4 hours free before departure\nRested\nNo door cover agreed\nTHE CLOSED NOTEBOOK\nKeep the page private. Find the account details without the room's help.\nKeep the private page closed; no early help with the entries.\nTHE OPEN NOTEBOOK\nRead the page aloud. Get help matching the dates, at a cost to privacy.\nGet help that saves 1 hour on a private comparison; expose a private story. Containing the harm later takes 1 hour.\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:46:54.597Z",
+            "elapsed_s": 57.253,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.",
+            "game_clock": "First day; 4 hours free",
+            "engagement": 4,
+            "reason": "TASTE",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": [
+            {
+              "t": "2026-11-02T10:46:57.416Z",
+              "elapsed_s": 60.072,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 69,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        }
+      },
+      "leire": {
+        "phone": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:49:00.339Z",
+            "elapsed_s": 49.344,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Close the door and take the next steps with you. End this leave; carry any unfinished task home."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 151,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 60,
+              "response_elapsed_s": 49.345,
+              "visible": "Three Days\nMenu\n\nTHE LEAVE HAS ENDED\n\nAfter the door closes\nIN THE ROOM\n\nLeyla leaves with a clear account and a named next step. The visit was kept. These tasks are settled for departure; grief is not. The private page stayed private. Burak still has the notebook and owes its return.\n\nThe leave ends. The grief continues. Kemal's silence has not become an explanation. Leyla can carry unanswered questions without pretending they are answered.\n\nThe three days have ended.\n\n0 hours free before departure\nExhausted\nDoor cover agreed\nPlay another three days\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:49:10.201Z",
+            "elapsed_s": 59.206,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I finished the three days and am ready to leave.",
+            "game_clock": "The leave has ended",
+            "engagement": 3,
+            "reason": "FINISHED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": [
+            {
+              "t": "2026-11-02T10:49:11.043Z",
+              "elapsed_s": 60.048,
+              "kind": "first_minute",
+              "op": "shot",
+              "input": {
+                "file": "first-minute.png"
+              },
+              "reaction": null,
+              "game_clock": null,
+              "engagement": null,
+              "reason": null,
+              "op_ms": 46,
+              "error": null,
+              "requested_control_present_before": null
+            }
+          ]
+        },
+        "desktop": {
+          "last_gameplay_wall_row": {
+            "t": "2026-11-02T10:49:25.614Z",
+            "elapsed_s": 13.791,
+            "kind": "input",
+            "op": "tap",
+            "input": {
+              "name": "Pay the first claim from your own savings. Use your savings to quiet the demand now; recovering the original later takes another hour."
+            },
+            "reaction": null,
+            "game_clock": null,
+            "engagement": null,
+            "reason": null,
+            "op_ms": 198,
+            "error": null,
+            "requested_control_present_before": true
+          },
+          "responses": [
+            {
+              "transcript_line": 86,
+              "response_elapsed_s": 13.791,
+              "visible": "Three Days A daughter comes home\nMenu\n\nFIRST DAY OF LEAVE\n\nA page folded inwards\nIN THE ROOM\n\nBurak accepts Leyla's money against the first demand and Şükrü stops asking for an immediate payment. Her savings are smaller. That payment was recorded against Burak's old advance; the boiler bill still needs its own check. Burak must return the mistaken payment.\n\nThe notebook contains a neighbour's name, a hospital address, and a page about Leyla's marriage. She never told Kemal it ended. His last note says, \"Visit Şükrü. Take the envelope.\"\n\nSelin comes after office hours. Hacer knows her. Selin's father, Halil, is still grieving her mother, Nuran, who died recently. \"I can sit with you. I don't need the whole story.\"\n\nLeyla has 6 free hours before departure. These are hours left after receiving visitors. Leyla is very tired: checking needs an extra hour with a second reader.\n\nChoose an object. Read its action and cost before choosing.\n\n6 hours free before departure\nVery tired\nNo door cover agreed\nTHE CLOSED NOTEBOOK\nKeep the page private. Find the account details without the room's help.\nKeep the private page closed; no early help with the entries.\nTHE OPEN NOTEBOOK\nRead the page aloud. Get help matching the dates, at a cost to privacy.\nGet help that saves 1 hour on a private comparison; expose a private story. Containing the harm later takes 1 hour.\nThree days of leave. Grief has no deadline.\nAll games"
+            }
+          ],
+          "stop": {
+            "t": "2026-11-02T10:49:39.248Z",
+            "elapsed_s": 27.425,
+            "kind": "stop",
+            "op": "log",
+            "input": null,
+            "reaction": "I am leaving the second run because repeating the story tonight no longer interests me.",
+            "game_clock": "First day, 6 hours free",
+            "engagement": 2,
+            "reason": "BORED",
+            "op_ms": 0,
+            "error": null,
+            "requested_control_present_before": null
+          },
+          "after_stop_rows": []
+        }
+      }
+    },
+    "notes": [
+      "History stdout exactness is relative to retained completed outputs, not direct model delivery or comprehension.",
+      "Successful automatic screenshot output after stop establishes a retained driver capture; process liveness at a precise instant is not independently measured.",
+      "Stored completion records show both driver exits 0 and supervisor cleanup; root receipt records sampled original identities gone."
+    ]
+  }
+}

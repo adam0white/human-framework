@@ -1,0 +1,40 @@
+# Independent packet fidelity review
+
+**CLEAR** for the exact candidate manifest `2bdb21af6708556d367eeeaad4df520634a5d768ecf511025dc90f552746b2aa`. No fidelity or provenance defect found in this static review. Packet remains **NOT SEALED**; dated record integration remains pending.
+
+Reviewer: Codex independent fidelity reviewer `/root/neighbours_packet_fidelity_review`. Inherited default Codex request; no Claude or subagents. This reviewer did not assemble the packet or author its root qualification. Serving model identity is not independently established.
+
+Reviewed packet: `/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-packet-candidate`.
+
+| Verification | Result |
+| --- | --- |
+| Manifest | Pinned SHA-256; all 43 payload sizes and hashes match; no missing or extra payload |
+| Exact copies | All 34 compared with original file bytes, sizes, and both recorded hashes |
+| Hash-only references | All 25 original source files match their recorded size and SHA-256 |
+| Derived records | All eight recorded hashes match; source-map coverage is exhaustive |
+| Final reports | All five equal the last completed actual agent_message bytes and declared item ID |
+| Literal extraction | All 26 codepoint, UTF-8 byte, and line spans independently match originals |
+| Ranked asks | Exactly ten rows F-3113–F-3122; full seven-column rows equal triage; ask and full conditional return offsets match originals |
+| Logical testers | Exactly five rows; roles, distinct epochs, dispositions, and full return sentences match |
+| Standing diaries | Each of four contains its complete original report exactly once after metadata; no cold diary exists |
+| Qualifications | NC1–NC11 and NF1–NF9 preserved verbatim; inherited qualification records copied exactly |
+| Underlying evidence | Root qualification 10, protocol audit 32, delivery proof 6 inventory entries rehashed against source |
+| Raw reaction/stop cross-check | All 59 reaction strings occur literally in unchanged reports; ten stops, one BUDGET excluded from nine voluntary stops |
+
+The JSON companion contains every check, all five transcript-final identities, ten raw stops, and the full absolute path, SHA-256, and byte size for every reviewed file. Hash-only source inspection does not mean independent re-performance of a historical test or runtime observation.
+
+Limitations retained:
+
+- `README.md:3`: Artifact-only epoch evidence: original 75213 exit 1 with qualified Mei singleton; continuation 72317 exit 0 for four. No full-five native-zero inference.
+- `README.md:5`: Two-iteration cap reached. Dated record integration remains pending; review does not seal the packet or finish the project.
+- `methodology.md:9`: No observed current image-view event. Saved screenshots and report viewing claims do not establish perception.
+- `methodology.md:10`: Selected history stdout coverage does not establish delivery or comprehension. Prior W/SW/NR/SWF limits remain inherited, not independently recertified here.
+- `methodology.md:24`: Mei final history range has 41 lines. Historical deviation is retained, not silently corrected.
+- `methodology.md:15`: Feedback pressed labels and closure do not prove typing, submission, backend receipt, recording or consent state.
+- `methodology.md:17`: Rosa timing is not a human 1-3 second reproduction. Her count limitations remain disclosed.
+- `evidence/preliminary-sdk-source-proof.json:61`: Preliminary SDK record is historical and explicitly pending at that point; later delivery proof is separately copied. Static markers and saved receipts do not provide current admission.
+- `source-map.json:3`: Historical source labels, including private draft history-map statuses, are preserved in exact copies. Their presence does not supersede packet-level provenance or create new authorization.
+
+No runtime, game, helper, browser, network, installation, test, or process probe was performed. Only standard-library data/hash/span verification was executed. This review grants no current admission, source fix, commit, merge, publication, owner acceptance, cap reset, or seal.
+
+Cleanup: no owned worktrees or runtime/game/browser processes. No repositories touched. No `git worktree list` run because the brief forbids probes and no worktree was owned. Only the neighbouring `.md` and `.json` review files were written.

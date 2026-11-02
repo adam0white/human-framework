@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-02T07:50:18.519712+00:00",
+  "status": "ROOT_QUALIFIED_SINGLE_MEI_PARTIAL_EPOCH",
+  "actualToolSession": 75213,
+  "actualControllerExit": 1,
+  "meiTesterExit": 0,
+  "meiDriverExits": [
+    0,
+    0
+  ],
+  "engineeringEligibleWithQualifications": true,
+  "fullReportRootRead": true,
+  "auditMdAndOperativeJsonRead": true,
+  "auditEvidencePathsHashSizeVerified": 18,
+  "allCommandsInventoried": 97,
+  "rootInspectedRawStopsFirstMinuteAutomaticAndFeedbackExcerpts": true,
+  "historyStdoutRangesVerified": 43,
+  "sourceReportSha256": "d90823358c557d156ae7ccc5a7e6c1620958393ac0ddfd460624ae80b07a0e96",
+  "sourceCompletionSha256": "527d34b9756d4ed696f9d660b7f1041bf4dcc338eb5215a911035ab56ce97251",
+  "sourceTranscriptSha256": "a6109bd65721313dc23a09316f5560535ee9619ee2d9b0d1bebeee6a2cd1f478",
+  "auditJsonSha256": "a65071842bed4ec024d474c1e49a1a2c3aeae458a0574d863d147ea4dbc60c9a",
+  "auditMdSha256": "8b4ce074323870f6bec036f7d4eb105c99e4e67d9475b28c176be2f20ed929a2",
+  "actualDispatchedPrompt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-inputs/mei/dispatched-prompt.txt",
+    "sha256": "aa8767a80e59e2e1a054fc59b5c4118e119ef451ae7e1a9376ff4ec9507b57b7",
+    "rootGrantSha256": "35f3f96727a1fb709cadf0813aae4a973a10251367a496b0c7603691af5b51bc",
+    "preparationLabelSupersededOnlyByActualBoundAdmission": true
+  },
+  "feedbackPressedEvidence": [
+    {
+      "transcriptLine": 158,
+      "exit": 0,
+      "labelPressed": "I'm stopping"
+    },
+    {
+      "transcriptLine": 195,
+      "exit": 0,
+      "labelPressed": "I'm stopping"
+    }
+  ],
+  "actualDeviceStops": 2,
+  "voluntaryRetentionStops": 1,
+  "budgetStops": 1,
+  "actualEndingsObserved": 0,
+  "cutsObserved": 0,
+  "newBlockingAskReached": false,
+  "qualification": [
+    {
+      "id": "NF1",
+      "qualification": "Saved screenshots and claimed views are not perception proof. No view-image event observed; opening visual/readability claims unverified."
+    },
+    {
+      "id": "NF2",
+      "qualification": "All1721 history lines match aggregated command stdout, not independent delivery/comprehension. Final1681\u20131721 call spans41 lines, over40-line cap."
+    },
+    {
+      "id": "NF3",
+      "qualification": "One disallowed ls and one failed unmatched-quote first-minute command are retained. Cleanup rule was supplied inline; no extra file-read requirement is inferred from absent separate cat."
+    },
+    {
+      "id": "NF4",
+      "qualification": "Raw desktopstop74.518 vs report74.519; raw phonefirstnote5.489 vs report5.490. Original bytes remain unchanged."
+    },
+    {
+      "id": "NF5",
+      "qualification": "Phone automatic60.104 screenshot is after41.117 stop, not continued play or first-minute diary. Desktop first-minute62.232 follows actual actions; neither session reached180s."
+    },
+    {
+      "id": "NF6",
+      "qualification": "Desktop BUDGET is not counted voluntary retention; phone BORED is one voluntary unfinished stop and same-evening carryover, not cold."
+    },
+    {
+      "id": "NF7",
+      "qualification": "Durable resume is an untested desire, not save-failure evidence. Prior conditional-hour question was not reached and is not a new blocker/reproduction. Ece clarity is bounded player wording, not blanket product acceptance."
+    },
+    {
+      "id": "NF8",
+      "qualification": "Two observed stopping labels were pressed and closed; no observed typed note, Submit/send or setting change. Agent-query consumption, backend receipt and actual recording/consent state remain unproved; staticSDK intent is separate."
+    },
+    {
+      "id": "NF9",
+      "qualification": "Actual original epoch75213 exited1 after Mei completed and Emre administrative no-play report. Mei has no recorded cut or observed ending. No full-five native0, new iteration or owner acceptance follows."
+    }
+  ],
+  "limits": "Fictional AI persona. Requestedmodelnotservingidentity. Qualified singleton keptfor later combination withactualfour-person continuation, never replayed or presented aswholefivezero. Original words/data immutable."
+}

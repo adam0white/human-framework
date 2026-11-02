@@ -1,0 +1,45 @@
+I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not return tonight or leave the game running.
+
+**Ranked ask**
+
+1. Help me reach a personal conversation when someone is busy or moving. This was the **blocking ask I reached**: Nora’s handle question and Sam’s notebook question both asked me to wait, and I did not want to repeat that search for a break.
+
+I’m Nia Okafor, 19, a Lagos design student returning to Neighbours. I played two fresh, independent games at the assigned agent-marked URL, with no imported save or matched seed: a 360×690 touch phone first, then a 1280×800 desktop on my other device the same evening. I used mouse clicks on desktop, with no keyboard key. Recording and consent stayed at their defaults.
+
+I read supplied own-history lines **1–2480** in explicit ranges before play. The last line was **“End of supplied own history.”** Unread ranges: **none**. The history is selected rather than a complete archive.
+
+The flooded-hall opening still gives me a clear reason to enter. I wanted the personal conversations I had missed before. On the phone I followed Nora from the workshop to the hall and reached her handle question. She was working, so the game told me to wait. On desktop Sam was free when I selected him, but had started kitchen work by the time I arrived; his notebook question gave the same kind of answer. I understood why both were unavailable. I just did not want to wait or chase again.
+
+**Diary — exact logged reactions, in order**
+
+Phone:
+
+- **6.064 s — note, engagement 4:** “Mill Bridge and the flooded hall bring back chasing Nora for her handle conversation, fairly sure. I want to reach someone this time.”
+- **28.947 s — note, engagement 2, Day 1 09:00:** “She moved to the hall while I walked to the workshop. The warning was clear, but I am chasing her again. I will try once more.”
+- **42.044 s — want_quit, BORED, engagement 2, Day 1 09:30:** “I reached the handle question again, and again she is too busy. I understand the reason, but I do not want to chase and wait for this conversation another time. I would leave.”
+- **56.041 s — stop, BORED, engagement 2, Day 1 09:30:** “Stopping on phone. I found Nora and the handle question, but she was working and I do not want to chase a break again. I would close it. Feedback marked stopping; nothing typed or submitted.”
+
+Desktop:
+
+- **15.670 s — note, engagement 4:** “Sam is a repair apprentice; that brings back his blocked notebook question from my last Neighbours visit, fairly sure. I want to try him while he is free.”
+- **25.875 s — want_quit, BORED, engagement 2, Day 1 08:45:** “Sam started work while I walked and the notebook question is blocked again. I understand why, but I have had this same wait before and do not want to repeat it tonight. I would leave.”
+- **36.011 s — stop, BORED, engagement 2, Day 1 08:45:** “Stopping on desktop. Sam became busy before I arrived and the notebook question asked me to wait again. I would close it. Feedback marked stopping; nothing typed or submitted.”
+
+Both quit wishes persisted. Neither game ended. Both stops were before 60 seconds, so the first-minute checkpoints were not due; the 180-second pulses and later checkpoints were untested. The hall was still shown as closed in the play I reached.
+
+The game clearly warned that a person might move before I arrived and that a personal question could be refused during work. It showed each person’s current activity and recorded end time, while saying that the end did not promise a break or conversation. I was disappointed, rather than confused, by the outcomes. I did not establish whether a later break would have let me ask either question.
+
+Compared with my supplied earlier Neighbours visits, I reached Nora’s handle question again, but did not get its answer; last time I also found her busy and had chased her. Sam’s notebook question was again blocked while he worked. I did not repeat the earlier Sam task request, so I cannot assess his alternative’s wording or the earlier promise issue from this visit.
+
+Recognition came from visible cues: the flooded hall at **6.064 s** recalled chasing Nora, and Sam’s repair-apprentice description at **15.670 s** recalled his blocked notebook question. I was fairly sure of both. I recorded no other cue-based recognition.
+
+**Screenshots actually viewed**
+
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/phone/a-001.png), **2.103 s:** the title, introduction, Enter button and recording strip fit in the viewport.
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/nia/desktop/b-001.png), **1.960 s:** the opening was readable across a wider page, with a large Enter button.
+
+I viewed no gameplay screenshot, so my gameplay observations come from the driver’s visible text and controls. The actions I tried produced visible results; I encountered no driver error.
+
+At each stop I opened Feedback, selected **“I'm stopping”**, saw it marked pressed, and closed Feedback. I typed no note and pressed no Submit; I claim no feedback receipt. I did not select “I'm confused.”
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup; no `git worktree list` applies.

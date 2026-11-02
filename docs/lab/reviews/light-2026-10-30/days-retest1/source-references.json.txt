@@ -1,0 +1,58 @@
+{
+  "reports/emre/report.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+    "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+  },
+  "reports/pavel/report.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+    "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+  },
+  "reports/tessa/report.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+    "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+  },
+  "reports/rosa/report.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+    "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+  },
+  "reports/leire/report.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+    "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+  },
+  "evidence/days-retest1102-ask-review.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.md",
+    "sha256": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04"
+  },
+  "evidence/days-retest1102-ask-review.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-ask-review.json",
+    "sha256": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70"
+  },
+  "evidence/days-retest1102-protocol-review.md": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.md",
+    "sha256": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103"
+  },
+  "evidence/days-retest1102-protocol-review.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-protocol-review.json",
+    "sha256": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44"
+  },
+  "evidence/days-retest1102-root-literal-check.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-literal-check.json",
+    "sha256": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038"
+  },
+  "evidence/days-retest1102-root-raw-check.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-root-raw-check.json",
+    "sha256": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf"
+  },
+  "evidence/days-retest1102-literal-extraction.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-literal-extraction.json",
+    "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05"
+  },
+  "evidence/root-return.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/root-return.json",
+    "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742"
+  },
+  "evidence/finalizer-audit.json": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json",
+    "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc"
+  }
+}

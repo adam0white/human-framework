@@ -1,0 +1,11 @@
+# Logical testers — candidate frozen for independent review, NOT SEALED
+
+Derived from literal extraction and root triage. Full literal return sentences control. Leonie’s curiosity is tentative, with no firm return commitment.
+
+| Tester | Role | Epoch | Disposition | Full return statement |
+| --- | --- | --- | --- | --- |
+| mei | standing | 75213 exit 1 / singleton | mixed | I would return another evening on the laptop if my town were saved, to see the hall progress; I would not leave it running. |
+| emre | standing | 72317 exit 0 / continuation four | keep | I would return voluntarily another evening on desktop to see the hall open, but I would not leave it running or play again tonight. |
+| nia | standing | 72317 exit 0 / continuation four | mixed | I would come back another evening if I could reach a personal conversation without chasing someone or waiting for their work to finish; I would not return tonight or leave the game running. |
+| rosa | standing | 72317 exit 0 / continuation four | mixed | I would return voluntarily another evening if I could understand the result of my work and meet a neighbour without hurrying; I would close it now, not leave it running. |
+| leonie | cold | 72317 exit 0 / continuation four | mixed | I would not voluntarily return tonight or leave the game running; I might be curious about the hall another evening, but these sessions did not draw me back. |

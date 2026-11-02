@@ -1,0 +1,338 @@
+{
+  "verdict": "CLEAR",
+  "reviewLens": "Evidence limits and protocol only; not source, CI, completion, release or owner acceptance.",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate",
+  "manifestSha256": "7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d",
+  "payloadCount": 20,
+  "payloadHashesAndSizesVerified": true,
+  "findings": [],
+  "sessions": [
+    {
+      "tester": "emre",
+      "device": "phone",
+      "reason": "FINISHED",
+      "stopSeconds": 62.269,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": []
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "reason": "FINISHED",
+      "stopSeconds": 55.106,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": [
+        {
+          "kind": "first_minute",
+          "op": "shot"
+        }
+      ]
+    },
+    {
+      "tester": "pavel",
+      "device": "phone",
+      "reason": "FINISHED",
+      "stopSeconds": 60.75,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": []
+    },
+    {
+      "tester": "pavel",
+      "device": "desktop",
+      "reason": "FINISHED",
+      "stopSeconds": 54.619,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": [
+        {
+          "kind": "first_minute",
+          "op": "shot"
+        }
+      ]
+    },
+    {
+      "tester": "tessa",
+      "device": "phone",
+      "reason": "FINISHED",
+      "stopSeconds": 64.975,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": []
+    },
+    {
+      "tester": "tessa",
+      "device": "desktop",
+      "reason": "FINISHED",
+      "stopSeconds": 59.761,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": [
+        {
+          "kind": "first_minute",
+          "op": "shot"
+        }
+      ]
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "reason": "CONFUSED",
+      "stopSeconds": 120.975,
+      "actualEndingInLastGameplayRaw": false,
+      "postStopRows": []
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "reason": "TASTE",
+      "stopSeconds": 57.253,
+      "actualEndingInLastGameplayRaw": false,
+      "postStopRows": [
+        {
+          "kind": "first_minute",
+          "op": "shot"
+        }
+      ]
+    },
+    {
+      "tester": "leire",
+      "device": "phone",
+      "reason": "FINISHED",
+      "stopSeconds": 59.206,
+      "actualEndingInLastGameplayRaw": true,
+      "postStopRows": [
+        {
+          "kind": "first_minute",
+          "op": "shot"
+        }
+      ]
+    },
+    {
+      "tester": "leire",
+      "device": "desktop",
+      "reason": "BORED",
+      "stopSeconds": 27.425,
+      "actualEndingInLastGameplayRaw": false,
+      "postStopRows": []
+    }
+  ],
+  "checks": [
+    "Raw last-gameplay responses establish seven endings; three voluntary unfinished stops remain separate.",
+    "Five post-stop rows are automatic first-minute shots only; no later gameplay rows. No active-play compliance is inferred.",
+    "Retained completed transcript items contain command executions and agent messages only. Image perception remains UNVERIFIABLE.",
+    "Three Days returners, Rosa first Days/franchise experienced, and fictional cold Leire remain distinct; no human cohort or universal nonexposure claim.",
+    "Selected-history coverage and exact stdout are bounded to retained evidence; delivery and comprehension remain unproven.",
+    "Feedback draft/back evidence does not establish submission, consent attribution, backend behavior or serving-model identity.",
+    "Root qualification supersedes the historical finalizer HOLD only for collection qualification; candidate status and no acceptance remain explicit.",
+    "The first fixed retest raises Rosa’s reached wording question. Second fix and same-standing retest remain required; no causal introduction, cap reset or third panel is inferred.",
+    "Stored cleanup and release-pin receipts remain bounded records; this reviewer made no live process or release check."
+  ],
+  "inputHashes": {
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/manifest.json": {
+      "sha256": "7633e1245555311301c41e12be3563e1ec7f196a3e3f294a3695ab02b67f941d",
+      "bytes": 3150
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.json": {
+      "sha256": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70",
+      "bytes": 118304
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-ask-review.md": {
+      "sha256": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04",
+      "bytes": 29627
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-literal-extraction.json": {
+      "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05",
+      "bytes": 55274
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.json": {
+      "sha256": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44",
+      "bytes": 163523
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-protocol-review.md": {
+      "sha256": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103",
+      "bytes": 6610
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-literal-check.json": {
+      "sha256": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038",
+      "bytes": 20460
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-qualification.json": {
+      "sha256": "1c4cd337d0fe605b06cc86f50dd358278960c1b27a9f3614fb1561221113f296",
+      "bytes": 3636
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/days-retest1102-root-raw-check.json": {
+      "sha256": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf",
+      "bytes": 913649
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/finalizer-audit.json": {
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc",
+      "bytes": 2693869
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/evidence/root-return.json": {
+      "sha256": "3b75b1202b9a07a812ddab96c4f2c9fe91fe76052f609163214def7c348be742",
+      "bytes": 3572
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/integration-notes.md": {
+      "sha256": "b2c936eadfd3d2bf7485311037b6d5d1fe120200cfdbb59f2cd3792808ce46d3",
+      "bytes": 8394
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/ledger.json": {
+      "sha256": "f243fdfd199d655b07357c568f2cb5f27000f043df24f69d3ebd97f4f7e3afe0",
+      "bytes": 12671
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/logical-testers.md": {
+      "sha256": "6987a8f85f84cb7bf3b6f56ccc32d4153bec69c2c17bbd6202f062eda47bc0d1",
+      "bytes": 1331
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/emre/report.md": {
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+      "bytes": 6776
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/leire/report.md": {
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+      "bytes": 4814
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/pavel/report.md": {
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+      "bytes": 7505
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/rosa/report.md": {
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+      "bytes": 13601
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/reports/tessa/report.md": {
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+      "bytes": 6487
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-png-hashes.json": {
+      "sha256": "e78cbf34a86ed05446ae911585078055173e3009d9292831821633b09ee30467",
+      "bytes": 5493
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-packet-candidate/source-references.json": {
+      "sha256": "4aee02b8c9506d566a033e575f7c82fc80169e28bec76dedc54e43e4bb6d0506",
+      "bytes": 3279
+    },
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": {
+      "sha256": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+      "bytes": 1234
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/transcript.jsonl": {
+      "sha256": "9ecf9b05b97970136513c9b925edb1222282ad5ff3e51fe085381365d1cd5fb9",
+      "bytes": 879673
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/completion.json": {
+      "sha256": "2c7a383ba9d36157c8de086219a4ab2195cd6e1db6d0712e5ee726d399234b2a",
+      "bytes": 94359
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md": {
+      "sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "bytes": 274209
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/brief.md": {
+      "sha256": "1105407ce99b62386eec4261ee5ff129caff380522378c28c84e273065885ac8",
+      "bytes": 7514
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/phone/wall-clock.jsonl": {
+      "sha256": "cc58781d58f992fc708689baabddc6a9b0d2427357752cfb469791ca5f6bc2e0",
+      "bytes": 9357
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/desktop/wall-clock.jsonl": {
+      "sha256": "2d558f62fd883529f7860d90861058aa6e6830e0d53d83bdced6624d9506d37a",
+      "bytes": 9454
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/transcript.jsonl": {
+      "sha256": "45f1692d1fbfca38a6b4b1a618f6f6071872e5f5d9466d85125fe50a06ce365c",
+      "bytes": 1041085
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/completion.json": {
+      "sha256": "49204e84e4c1998bcd014df02a957fb95d17448129ca5cf40eff97215d3227b9",
+      "bytes": 92649
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md": {
+      "sha256": "d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff",
+      "bytes": 228663
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/brief.md": {
+      "sha256": "4edd8a8a618464510a42339c3624d71a8fbf874cb9c45eaec5e0f01820772a62",
+      "bytes": 7556
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/phone/wall-clock.jsonl": {
+      "sha256": "8dfc6d7697a1d4e5e39b57ea6bef328d522dbc40baee3f573ff709d37f602593",
+      "bytes": 9439
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/desktop/wall-clock.jsonl": {
+      "sha256": "dace49bb7833e38b7729633cfabd1bbf31deb75ebaf216deef3ba2da74b6e714",
+      "bytes": 8785
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/transcript.jsonl": {
+      "sha256": "af0802acfb4e5a2c3d981d5465a98fdc5b7e982f4af193710c5cbaf3549bae39",
+      "bytes": 790312
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/completion.json": {
+      "sha256": "34b26d3fc1d2971b4aa2e8d2af68a3e572bcbfb2cadd8b474a78e1a40298426f",
+      "bytes": 94091
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md": {
+      "sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "bytes": 164671
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/brief.md": {
+      "sha256": "e813d9888c77ce57df93ff2c69fe0a35ec6bae473dcff38509f5ca2726c23abd",
+      "bytes": 7572
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/phone/wall-clock.jsonl": {
+      "sha256": "f3f994cbf5828077f6aa88395f78d706eff3655e4985268672d4e29a1c73b69b",
+      "bytes": 9807
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/desktop/wall-clock.jsonl": {
+      "sha256": "a9ae22e55bf99b98942f73e3eb627391a40b83b409d7c7e7599ec58bc89c92a7",
+      "bytes": 9301
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/transcript.jsonl": {
+      "sha256": "e92ff0e28f705760c1d5f15534b3418e7d20002ea40237e8058992b664211132",
+      "bytes": 781158
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/completion.json": {
+      "sha256": "343e3d18f9a068d70123276f5ef45f2277d2d4c6b12bfa17eeb7ad51731f71aa",
+      "bytes": 83646
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/own-history.md": {
+      "sha256": "fea51943b6d7c9c27e8a766062ee32f2938b637444e3ede7cc32e68881f4e505",
+      "bytes": 499468
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/brief.md": {
+      "sha256": "9b189ce2a48574c9fe45dd23cb34e83263b64e2e94066e5f17939165fc293ad1",
+      "bytes": 7772
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl": {
+      "sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "bytes": 10018
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/desktop/wall-clock.jsonl": {
+      "sha256": "da670e315347060e761cd1367ca5ed8ea35abd17e0dfba783fa0d62c4e85446c",
+      "bytes": 5298
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/transcript.jsonl": {
+      "sha256": "e9d5482a13ad1f56a578c45c2bd67bfe852268b85e9e0ef9e9dca90f221a5f7e",
+      "bytes": 187277
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/completion.json": {
+      "sha256": "544704a6c7d05d44780b1d2116baa01144f5b8562d135849022ad8ca89fad3e7",
+      "bytes": 84951
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/own-history.md": {
+      "sha256": "b9a1b06e9b47973c20de58580245ad9d4d3c0731602cbc7098cd9842db1f20a2",
+      "bytes": 119
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/brief.md": {
+      "sha256": "a5103004bec2966333fd3d24d694527f41ef177aa6291d091d23271a9ed81904",
+      "bytes": 7616
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl": {
+      "sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "bytes": 9565
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/wall-clock.jsonl": {
+      "sha256": "f2a18e43ea4ff22504d464ff536d70dd887b4f88f80d3831fcc9fca96a113555",
+      "bytes": 4365
+    }
+  },
+  "cleanup": "Only these two requested review artifacts written. No runtime, browser, tests, build, install, git, worktree or workers used. No repository touched; git worktree list is not applicable."
+}

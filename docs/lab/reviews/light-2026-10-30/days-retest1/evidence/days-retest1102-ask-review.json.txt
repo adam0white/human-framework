@@ -1,0 +1,2824 @@
+{
+  "review": "Independent Codex read-only first fixed Days retest ask judgment",
+  "date": "2026-11-02",
+  "verdict": "SECOND_FIX_AND_RETEST_NEEDED",
+  "done_rule": "Done if the first fixed retest raises no NEW blocker OR after two fix cycles. This is only the FIRST fixed retest.",
+  "reason": "One new blocking comprehension ask: Rosa cannot interpret the one-hour private receipt check while Rested with 3 hours free and stops CONFUSED before completion. Three returners finishing does not negate the first-visit stop.",
+  "blocking_ask": "rosa rank 1",
+  "new_definition": "New to the evidence of this fixed retest; no claim that the fix introduced the text or behavior.",
+  "recommended_scope": "Clarify the private-check hour and rest consequence in plain language next to the action, with wording consistent with Rested status. Review the nearby already-rested/recover-enough-to-read wording reported by Rosa and Leire. Then run the authorized second fix/retest cycle. Do not make the two-choice format, duration, savings numbers, or replay redesign prerequisites on this evidence alone.",
+  "observed": [
+    "Five reports and ten device stops are eligible in the finalizer audit; roundStatus remains HOLD; root qualification and release required.",
+    "All three Days returners finished both stories. Leire finished phone and stopped desktop BORED after seeing one ending. Rosa stopped phone CONFUSED and desktop TASTE before either ending.",
+    "Raw driver response at Rosa transcript line 278 simultaneously shows Rested, 3 hours free, and 1 hour to check the original you already have; no time to recuperate.",
+    "Rosa first reread concerned religious figurative wording; she understood the fear and continued. The second action-cost reread triggered her configured stopping rule.",
+    "Feedback quick labels filled drafts in reports. No human/owner acceptance exists in this record."
+  ],
+  "assumed": [
+    "Treat persistent inability to understand a reached actionable cost, followed by a CONFUSED stop, as blocking for this done rule even when controls remain operable. This is the reviewer judgment, not a claim of five-player agreement."
+  ],
+  "unknown": [
+    "Whether rest/check mechanics are wrong, versus the text alone. Source code was not examined.",
+    "Whether the ambiguity was introduced by this fix.",
+    "Whether revised text will resolve Rosa’s confusion or a cold reader’s related question; requires retest.",
+    "General human usability, voluntary future return, and owner acceptance are unproven.",
+    "Rosa’s unreached comparison, visit, account settlement and endings remain untested. These sessions are fresh unseeded contexts, not matched device comparisons."
+  ],
+  "participants": {
+    "emre": {
+      "exposure": "Days returner",
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+        "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+        "bytes": 6776
+      },
+      "ranked_asks": [
+        {
+          "kind": "ranked_ask",
+          "text": "1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+          "utf8_bytes": [
+            153,
+            300
+          ],
+          "codepoints": [
+            153,
+            300
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "classification": "existing_nonblocking_preference",
+          "judgment": "Savings remain unpriced; this repeats the original ask. Both stories ended. He explicitly reports no new blocking ask."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+          "utf8_bytes": [
+            301,
+            416
+          ],
+          "codepoints": [
+            301,
+            416
+          ],
+          "lines": [
+            6,
+            6
+          ],
+          "classification": "existing_nonblocking_layout_preference",
+          "judgment": "Phone cards require scrolling; scrolling exposed them. No control blocked either session."
+        }
+      ],
+      "full_return_intention_contexts": [
+        {
+          "kind": "full_return_intention_context",
+          "text": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+          "utf8_bytes": [
+            0,
+            130
+          ],
+          "codepoints": [
+            0,
+            130
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "- **5.369 s, note, engagement 4:** “The familiar six-hour account and promised visit give me a practical plan. I want to try paying the bill myself and telling Selin, as I intended last time.”\n- **15.370 s, note, engagement 3:** “The mistaken payment is clearly assigned to Burak to return, but my savings are still only described as smaller. I cannot price that choice.”\n- **33.071 s, note, engagement 4:** “The original distinguishes the two bills and Burak acknowledges the return. Two hours remain and the visit costs two; that is a plan I can follow.”\n- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”\n- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+          "utf8_bytes": [
+            2317,
+            3404
+          ],
+          "codepoints": [
+            2305,
+            3372
+          ],
+          "lines": [
+            25,
+            29
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "- **7.291 s, note, engagement 3:** “The phone opening fits. I have just seen the account and visit on desktop; I will try the alternate opening and see what changes.”\n- **18.224 s, note, engagement 3:** “The exhausted state explains an extra checking and travel hour. The phone story fills the screen again and the choices lie below it; I will scroll to choose.”\n- **31.181 s, note, engagement 4:** “Rest makes the private check one hour, and the card says the original is already here. I can see why it differs from the two-hour desktop check.”\n- **41.529 s, note, engagement 4:** “I spent the hour keeping the notebook and another recording the claim. One hour remains, so I cannot make the two-hour visit. The card warns me before choosing and offers delivery; that is an understandable setback.”\n- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”\n- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+          "utf8_bytes": [
+            3414,
+            4711
+          ],
+          "codepoints": [
+            3382,
+            4655
+          ],
+          "lines": [
+            33,
+            38
+          ]
+        }
+      ],
+      "quit_and_stop_contexts": [
+        {
+          "kind": "diary",
+          "text": "- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”",
+          "utf8_bytes": [
+            2886,
+            3115
+          ],
+          "codepoints": [
+            2862,
+            3087
+          ],
+          "lines": [
+            28,
+            28
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+        },
+        {
+          "kind": "diary",
+          "text": "- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”",
+          "utf8_bytes": [
+            3116,
+            3404
+          ],
+          "codepoints": [
+            3088,
+            3372
+          ],
+          "lines": [
+            29,
+            29
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+        },
+        {
+          "kind": "diary",
+          "text": "- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”",
+          "utf8_bytes": [
+            4230,
+            4442
+          ],
+          "codepoints": [
+            4182,
+            4390
+          ],
+          "lines": [
+            37,
+            37
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+        },
+        {
+          "kind": "diary",
+          "text": "- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”",
+          "utf8_bytes": [
+            4443,
+            4711
+          ],
+          "codepoints": [
+            4391,
+            4655
+          ],
+          "lines": [
+            38,
+            38
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+          "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67"
+        }
+      ],
+      "all_literal_extraction_excerpts": [
+        {
+          "kind": "return_opening",
+          "text": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+          "utf8_bytes": [
+            0,
+            130
+          ],
+          "codepoints": [
+            0,
+            130
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.",
+          "utf8_bytes": [
+            153,
+            300
+          ],
+          "codepoints": [
+            153,
+            300
+          ],
+          "lines": [
+            5,
+            5
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.",
+          "utf8_bytes": [
+            301,
+            416
+          ],
+          "codepoints": [
+            301,
+            416
+          ],
+          "lines": [
+            6,
+            6
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "I reached no new blocking ask. Both games ended.",
+          "utf8_bytes": [
+            418,
+            466
+          ],
+          "codepoints": [
+            418,
+            466
+          ],
+          "lines": [
+            8,
+            8
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **Desktop:** 1280×800, keyboard and mouse. The game ended at **44.599 seconds**; I logged my stop at **55.106 seconds**, reason **FINISHED**.",
+          "utf8_bytes": [
+            1057,
+            1201
+          ],
+          "codepoints": [
+            1053,
+            1196
+          ],
+          "lines": [
+            14,
+            14
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **Phone:** 360×690, touch. The game ended at **48.268 seconds**; I logged my stop at **62.269 seconds**, reason **FINISHED**.",
+          "utf8_bytes": [
+            1202,
+            1330
+          ],
+          "codepoints": [
+            1197,
+            1324
+          ],
+          "lines": [
+            15,
+            15
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **5.369 s, note, engagement 4:** “The familiar six-hour account and promised visit give me a practical plan. I want to try paying the bill myself and telling Selin, as I intended last time.”",
+          "utf8_bytes": [
+            2317,
+            2513
+          ],
+          "codepoints": [
+            2305,
+            2497
+          ],
+          "lines": [
+            25,
+            25
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **15.370 s, note, engagement 3:** “The mistaken payment is clearly assigned to Burak to return, but my savings are still only described as smaller. I cannot price that choice.”",
+          "utf8_bytes": [
+            2514,
+            2696
+          ],
+          "codepoints": [
+            2498,
+            2676
+          ],
+          "lines": [
+            26,
+            26
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **33.071 s, note, engagement 4:** “The original distinguishes the two bills and Burak acknowledges the return. Two hours remain and the visit costs two; that is a plan I can follow.”",
+          "utf8_bytes": [
+            2697,
+            2885
+          ],
+          "codepoints": [
+            2677,
+            2861
+          ],
+          "lines": [
+            27,
+            27
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **46.521 s, want_quit, FINISHED, engagement 4:** “I made the visit, paid the verified bill and told Selin. The ending names the notebook and mistaken payment still owed, so I understand what remains. I am done for tonight.”",
+          "utf8_bytes": [
+            2886,
+            3115
+          ],
+          "codepoints": [
+            2862,
+            3087
+          ],
+          "lines": [
+            28,
+            28
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **55.106 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. The visit and account have clear outcomes, and Selin listened. I still cannot tell how much the payments cost from savings. I would return another evening for another path, not leave it running.”",
+          "utf8_bytes": [
+            3116,
+            3404
+          ],
+          "codepoints": [
+            3088,
+            3372
+          ],
+          "lines": [
+            29,
+            29
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **7.291 s, note, engagement 3:** “The phone opening fits. I have just seen the account and visit on desktop; I will try the alternate opening and see what changes.”",
+          "utf8_bytes": [
+            3414,
+            3584
+          ],
+          "codepoints": [
+            3382,
+            3548
+          ],
+          "lines": [
+            33,
+            33
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **18.224 s, note, engagement 3:** “The exhausted state explains an extra checking and travel hour. The phone story fills the screen again and the choices lie below it; I will scroll to choose.”",
+          "utf8_bytes": [
+            3585,
+            3784
+          ],
+          "codepoints": [
+            3549,
+            3744
+          ],
+          "lines": [
+            34,
+            34
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **31.181 s, note, engagement 4:** “Rest makes the private check one hour, and the card says the original is already here. I can see why it differs from the two-hour desktop check.”",
+          "utf8_bytes": [
+            3785,
+            3971
+          ],
+          "codepoints": [
+            3745,
+            3927
+          ],
+          "lines": [
+            35,
+            35
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **41.529 s, note, engagement 4:** “I spent the hour keeping the notebook and another recording the claim. One hour remains, so I cannot make the two-hour visit. The card warns me before choosing and offers delivery; that is an understandable setback.”",
+          "utf8_bytes": [
+            3972,
+            4229
+          ],
+          "codepoints": [
+            3928,
+            4181
+          ],
+          "lines": [
+            36,
+            36
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **50.141 s, want_quit, FINISHED, engagement 3:** “The phone story ended with delivery agreed but not yet made. I understand the lost visit and the account follow-up; I have played enough paths for tonight.”",
+          "utf8_bytes": [
+            4230,
+            4442
+          ],
+          "codepoints": [
+            4182,
+            4390
+          ],
+          "lines": [
+            37,
+            37
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **62.269 s, stop, FINISHED, engagement 3:** “I am stopping on the phone after the three days ended. My time choices ruled out the visit, and the agreed delivery and remaining follow-up were clear. I would return another evening on desktop, not leave it running.”",
+          "utf8_bytes": [
+            4443,
+            4711
+          ],
+          "codepoints": [
+            4391,
+            4655
+          ],
+          "lines": [
+            38,
+            38
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Both quit wishes came after an explicit ending and persisted. I logged no first-minute entry or pulse: desktop stopped before 60 seconds; phone reached 60 seconds during the Feedback wrap after the story had ended. The first-minute and later pulse checkpoints were untested on both devices.",
+          "utf8_bytes": [
+            4713,
+            5003
+          ],
+          "codepoints": [
+            4657,
+            4947
+          ],
+          "lines": [
+            40,
+            40
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "For the savings confusion on desktop, I opened Feedback and chose **“I’m confused.”** The quick label filled the feedback box; I used Back. At each stop I chose **“I’m stopping,”** which filled the box, and used Back. I typed no note, submitted nothing and changed no recording or consent setting.",
+          "utf8_bytes": [
+            5859,
+            6168
+          ],
+          "codepoints": [
+            5801,
+            6098
+          ],
+          "lines": [
+            44,
+            44
+          ]
+        }
+      ]
+    },
+    "pavel": {
+      "exposure": "Days returner",
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+        "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+        "bytes": 7505
+      },
+      "ranked_asks": [
+        {
+          "kind": "ranked_ask",
+          "text": "1. Make the receipt wording clear. Burak had a receipt in his hands, then fetched his original receipt. I could not tell whether those were different papers.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            138,
+            295
+          ],
+          "codepoints": [
+            138,
+            295
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "classification": "new_nonblocking_clarity_ask",
+          "judgment": "Receipt versus original receipt remains unclear, but he explicitly says it did not make him leave early and no new blocking gameplay ask arose."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Make the small cost text on the phone room drawing easier to read.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            296,
+            365
+          ],
+          "codepoints": [
+            296,
+            365
+          ],
+          "lines": [
+            6,
+            6
+          ],
+          "classification": "nonblocking_readability_ask",
+          "judgment": "Small pale phone cost text was harder to read; he distinguished the actions and finished."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "3. Give me a little more time with the days. The choices and their consequences interested me, but both stories passed quickly.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            366,
+            493
+          ],
+          "codepoints": [
+            366,
+            493
+          ],
+          "lines": [
+            7,
+            7
+          ],
+          "classification": "existing_nonblocking_pacing_preference",
+          "judgment": "Short duration repeats the original desire for more to read over time; both stories ended."
+        }
+      ],
+      "full_return_intention_contexts": [
+        {
+          "kind": "full_return_intention_context",
+          "text": "I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            0,
+            115
+          ],
+          "codepoints": [
+            0,
+            115
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "I’m Pavel Novak, 70, a retired tram driver from Brno. This was a return to *Three Days*. I played a fresh 1280×800 desktop game with keyboard and mouse, then a fresh 360×690 touch-phone game the same evening, using the assigned drivers and agent URL. No old save or matched seed was imported.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            495,
+            791
+          ],
+          "codepoints": [
+            495,
+            787
+          ],
+          "lines": [
+            9,
+            9
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "- **7.125 s — note, engagement 4:** “Same opening on the phone as the desktop just now. The notice fits. This time Leyla is tired rather than very tired; I will keep the door and try to save the journey hours.”\n- **29.548 s — note, engagement 4, third day, 2 hours free:** “Two hours left and two for the visit. Resting made the paper check shorter, and lending the closed notebook saved the other hour. I can keep the appointment this time.”\n- **37.410 s — note, engagement 4, third day, 0 hours free:** “The visit happened, and the borrowed table gives Kemal a small unfinished obligation of his own. On the phone I see the story text but not the choices in this view; I will scroll down.”\n- **45.048 s — note, engagement 4, third day, 0 hours free:** “After scrolling I can see both choices on the room drawing. The small pale cost text is harder to read than the story, but the two actions are distinct.”\n- **50.989 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.”\n- **60.750 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+          "utf8_bytes": [
+            4194,
+            5619
+          ],
+          "codepoints": [
+            4147,
+            5536
+          ],
+          "lines": [
+            34,
+            39
+          ]
+        }
+      ],
+      "quit_and_stop_contexts": [
+        {
+          "kind": "diary",
+          "text": "- **44.061 s — want_quit, FINISHED, engagement 4, leave ended:** “The three days are over. The delivery is agreed but not yet made, and the account is clear. I like that distinction. I would stop this game here.”",
+          "utf8_bytes": [
+            3708,
+            3926
+          ],
+          "codepoints": [
+            3673,
+            3885
+          ],
+          "lines": [
+            29,
+            29
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+        },
+        {
+          "kind": "diary",
+          "text": "- **54.619 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days. I arranged a later delivery instead of the visit, and the ending says it has not yet happened. I chose I am stopping, went Back, typed and sent nothing.”",
+          "utf8_bytes": [
+            3927,
+            4184
+          ],
+          "codepoints": [
+            3886,
+            4137
+          ],
+          "lines": [
+            30,
+            30
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+        },
+        {
+          "kind": "diary",
+          "text": "- **50.989 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.”",
+          "utf8_bytes": [
+            5127,
+            5355
+          ],
+          "codepoints": [
+            5056,
+            5278
+          ],
+          "lines": [
+            38,
+            38
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+        },
+        {
+          "kind": "diary",
+          "text": "- **60.750 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.”",
+          "utf8_bytes": [
+            5356,
+            5619
+          ],
+          "codepoints": [
+            5279,
+            5536
+          ],
+          "lines": [
+            39,
+            39
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+          "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1"
+        }
+      ],
+      "all_literal_extraction_excerpts": [
+        {
+          "kind": "return_opening",
+          "text": "I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running.",
+          "utf8_bytes": [
+            0,
+            115
+          ],
+          "codepoints": [
+            0,
+            115
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "1. Make the receipt wording clear. Burak had a receipt in his hands, then fetched his original receipt. I could not tell whether those were different papers.",
+          "utf8_bytes": [
+            138,
+            295
+          ],
+          "codepoints": [
+            138,
+            295
+          ],
+          "lines": [
+            5,
+            5
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Make the small cost text on the phone room drawing easier to read.",
+          "utf8_bytes": [
+            296,
+            365
+          ],
+          "codepoints": [
+            296,
+            365
+          ],
+          "lines": [
+            6,
+            6
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "3. Give me a little more time with the days. The choices and their consequences interested me, but both stories passed quickly.",
+          "utf8_bytes": [
+            366,
+            493
+          ],
+          "codepoints": [
+            366,
+            493
+          ],
+          "lines": [
+            7,
+            7
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "I’m Pavel Novak, 70, a retired tram driver from Brno. This was a return to *Three Days*. I played a fresh 1280×800 desktop game with keyboard and mouse, then a fresh 360×690 touch-phone game the same evening, using the assigned drivers and agent URL. No old save or matched seed was imported.",
+          "utf8_bytes": [
+            495,
+            791
+          ],
+          "codepoints": [
+            495,
+            787
+          ],
+          "lines": [
+            9,
+            9
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "I read the supplied selected history through line **1617**, whose last line was **“End of supplied own history.”** Unread ranges: **none**. I reread portions after output truncation.",
+          "utf8_bytes": [
+            793,
+            979
+          ],
+          "codepoints": [
+            789,
+            971
+          ],
+          "lines": [
+            11,
+            11
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The desktop game ended, and I stopped at **54.619 seconds**. The phone game ended, and I stopped at **60.750 seconds**. Both stops were voluntary and below the 20-minute ceiling. Neither session had a first-minute entry during active play: the desktop stopped before 60 seconds, and the phone game had ended before then. Neither reached a 180-second pulse. I did not wait for a checkpoint.",
+          "utf8_bytes": [
+            981,
+            1370
+          ],
+          "codepoints": [
+            973,
+            1362
+          ],
+          "lines": [
+            13,
+            13
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "At the desktop opening, **0.434 seconds**, I recognised the room and the three-day leave. The first image, taken at **1.977 seconds**, showed the familiar room dimmed behind a readable introductory modal. On the phone, the opening at **0.417 seconds** was recognisably the same story; the image at **3.213 seconds** showed the notice fitting the screen.",
+          "utf8_bytes": [
+            1372,
+            1725
+          ],
+          "codepoints": [
+            1364,
+            1717
+          ],
+          "lines": [
+            15,
+            15
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The account and the distinction between a completed visit and an agreed future delivery were clear. I was still uncertain about the receipt: Burak already had one, yet the next action took an hour to fetch the original. I did not reach a new blocking gameplay ask. I was not confused enough to leave either session early.",
+          "utf8_bytes": [
+            2322,
+            2643
+          ],
+          "codepoints": [
+            2311,
+            2632
+          ],
+          "lines": [
+            19,
+            19
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **6.102 s — note, engagement 4:** “The room and the three days are familiar. I remember the promised visit and the hour I could not use. The opening now tells me there are six free hours and that tiredness makes checking cost more.”",
+          "utf8_bytes": [
+            2695,
+            2935
+          ],
+          "codepoints": [
+            2684,
+            2918
+          ],
+          "lines": [
+            25,
+            25
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **12.476 s — note, engagement 4, first day, 5 hours free:** “Burak has the receipt again, yet the action says an hour to get the original. I still do not know whether those are different papers. I will ask him to check before paying.”",
+          "utf8_bytes": [
+            2936,
+            3178
+          ],
+          "codepoints": [
+            2919,
+            3155
+          ],
+          "lines": [
+            26,
+            26
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **24.440 s — note, engagement 4, second day, 4 hours free:** “Now it tells me early that a visit without cover takes two hours. That is the timetable I needed before. I will save time at the door, though tiredness may add an hour later.”",
+          "utf8_bytes": [
+            3179,
+            3424
+          ],
+          "codepoints": [
+            3156,
+            3395
+          ],
+          "lines": [
+            27,
+            27
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **36.730 s — note, engagement 4, third day, 1 hour free:** “There is the old one-hour problem. This time the visit says before I press it that two hours are needed and only one remains, and offers a paid delivery. I dislike breaking the visit but understand the choice now.”",
+          "utf8_bytes": [
+            3425,
+            3707
+          ],
+          "codepoints": [
+            3396,
+            3672
+          ],
+          "lines": [
+            28,
+            28
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **44.061 s — want_quit, FINISHED, engagement 4, leave ended:** “The three days are over. The delivery is agreed but not yet made, and the account is clear. I like that distinction. I would stop this game here.”",
+          "utf8_bytes": [
+            3708,
+            3926
+          ],
+          "codepoints": [
+            3673,
+            3885
+          ],
+          "lines": [
+            29,
+            29
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **54.619 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days. I arranged a later delivery instead of the visit, and the ending says it has not yet happened. I chose I am stopping, went Back, typed and sent nothing.”",
+          "utf8_bytes": [
+            3927,
+            4184
+          ],
+          "codepoints": [
+            3886,
+            4137
+          ],
+          "lines": [
+            30,
+            30
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **7.125 s — note, engagement 4:** “Same opening on the phone as the desktop just now. The notice fits. This time Leyla is tired rather than very tired; I will keep the door and try to save the journey hours.”",
+          "utf8_bytes": [
+            4194,
+            4410
+          ],
+          "codepoints": [
+            4147,
+            4357
+          ],
+          "lines": [
+            34,
+            34
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **29.548 s — note, engagement 4, third day, 2 hours free:** “Two hours left and two for the visit. Resting made the paper check shorter, and lending the closed notebook saved the other hour. I can keep the appointment this time.”",
+          "utf8_bytes": [
+            4411,
+            4648
+          ],
+          "codepoints": [
+            4358,
+            4589
+          ],
+          "lines": [
+            35,
+            35
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **37.410 s — note, engagement 4, third day, 0 hours free:** “The visit happened, and the borrowed table gives Kemal a small unfinished obligation of his own. On the phone I see the story text but not the choices in this view; I will scroll down.”",
+          "utf8_bytes": [
+            4649,
+            4903
+          ],
+          "codepoints": [
+            4590,
+            4838
+          ],
+          "lines": [
+            36,
+            36
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **45.048 s — note, engagement 4, third day, 0 hours free:** “After scrolling I can see both choices on the room drawing. The small pale cost text is harder to read than the story, but the two actions are distinct.”",
+          "utf8_bytes": [
+            4904,
+            5126
+          ],
+          "codepoints": [
+            4839,
+            5055
+          ],
+          "lines": [
+            37,
+            37
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **50.989 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept and Burak still owes the notebook back. I have seen the two routes tonight and would stop here. The story is gentle but goes by quickly.”",
+          "utf8_bytes": [
+            5127,
+            5355
+          ],
+          "codepoints": [
+            5056,
+            5278
+          ],
+          "lines": [
+            38,
+            38
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **60.750 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days on the phone. The visit was kept, the account has a next step, and the notebook must still come back. I chose I am stopping, went Back, typed and sent nothing.”",
+          "utf8_bytes": [
+            5356,
+            5619
+          ],
+          "codepoints": [
+            5279,
+            5536
+          ],
+          "lines": [
+            39,
+            39
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Both quit wishes followed an actual ending and remained through stopping.",
+          "utf8_bytes": [
+            5621,
+            5694
+          ],
+          "codepoints": [
+            5538,
+            5611
+          ],
+          "lines": [
+            41,
+            41
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Named taps advanced the choices on both devices. On each, I opened Feedback, selected **“I'm stopping”**, saw that phrase fill the feedback box, and pressed Back. I typed and submitted nothing. Recording remained checked; I changed neither recording nor consent.",
+          "utf8_bytes": [
+            6558,
+            6824
+          ],
+          "codepoints": [
+            6475,
+            6737
+          ],
+          "lines": [
+            50,
+            50
+          ]
+        }
+      ]
+    },
+    "tessa": {
+      "exposure": "Days returner",
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+        "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+        "bytes": 6487
+      },
+      "ranked_asks": [
+        {
+          "kind": "ranked_ask",
+          "text": "1. Give me more ways to speak or act with Hacer, Burak and Selin, including something in my own words.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+          "utf8_bytes": [
+            206,
+            308
+          ],
+          "codepoints": [
+            206,
+            308
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "classification": "existing_nonblocking_breadth_preference",
+          "judgment": "More ways to act or speak repeats the original two-button/own-words ask. Both stories ended without gameplay confusion."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Give me more reason to revisit the three days beyond choosing the other option on familiar screens.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+          "utf8_bytes": [
+            309,
+            411
+          ],
+          "codepoints": [
+            309,
+            411
+          ],
+          "lines": [
+            6,
+            6
+          ],
+          "classification": "existing_nonblocking_replay_preference",
+          "judgment": "Replay motivation repeats the original ask. Not returning tonight is a dated preference, not evidence of a new blocker."
+        }
+      ],
+      "full_return_intention_contexts": [
+        {
+          "kind": "full_return_intention_context",
+          "text": "I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+          "utf8_bytes": [
+            0,
+            183
+          ],
+          "codepoints": [
+            0,
+            183
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "- **13.806 s, note, engagement 4:** “The door and soup are familiar. I remember the two choices and want to see the room on the phone this time.”\n- **19.479 s, note, engagement 4:** “Oh, the room is actually here now: soup and door are visible together under the story. I like seeing what I am choosing.”\n- **25.800 s, note, engagement 4:** “Paying is less mysterious now: it says it went against Burak and he must return it, while the boiler still needs checking. Selin and Halil bring back his quiet workshop.”\n- **37.513 s, note, engagement 4:** “I like that the mistaken payment and separate boiler bill are spelled out, and Şükrü wanted the photograph. I want to go see him.”\n- **48.709 s, note, engagement 5:** “I got the visit, and the unreturned folding table makes Kemal feel like an actual messy person. Selin saying she will not ask Leyla to stop missing him is lovely.”\n- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”\n- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+          "utf8_bytes": [
+            1608,
+            2930
+          ],
+          "codepoints": [
+            1595,
+            2883
+          ],
+          "lines": [
+            18,
+            24
+          ]
+        }
+      ],
+      "quit_and_stop_contexts": [
+        {
+          "kind": "diary",
+          "text": "- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”",
+          "utf8_bytes": [
+            2513,
+            2717
+          ],
+          "codepoints": [
+            2477,
+            2677
+          ],
+          "lines": [
+            23,
+            23
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+        },
+        {
+          "kind": "diary",
+          "text": "- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”",
+          "utf8_bytes": [
+            2718,
+            2930
+          ],
+          "codepoints": [
+            2678,
+            2883
+          ],
+          "lines": [
+            24,
+            24
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+        },
+        {
+          "kind": "diary",
+          "text": "- **47.776 s, want_quit, FINISHED, engagement 3:** “The story ended and remembered the disclosure and apology. I like that, but I have seen two passes tonight and do not want another one.”",
+          "utf8_bytes": [
+            3691,
+            3883
+          ],
+          "codepoints": [
+            3625,
+            3813
+          ],
+          "lines": [
+            32,
+            32
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+        },
+        {
+          "kind": "diary",
+          "text": "- **59.762 s, stop, FINISHED, engagement 3:** “Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.”",
+          "utf8_bytes": [
+            3884,
+            4104
+          ],
+          "codepoints": [
+            3814,
+            4030
+          ],
+          "lines": [
+            33,
+            33
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+          "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526"
+        }
+      ],
+      "all_literal_extraction_excerpts": [
+        {
+          "kind": "return_opening",
+          "text": "I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.",
+          "utf8_bytes": [
+            0,
+            183
+          ],
+          "codepoints": [
+            0,
+            183
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "1. Give me more ways to speak or act with Hacer, Burak and Selin, including something in my own words.",
+          "utf8_bytes": [
+            206,
+            308
+          ],
+          "codepoints": [
+            206,
+            308
+          ],
+          "lines": [
+            5,
+            5
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Give me more reason to revisit the three days beyond choosing the other option on familiar screens.",
+          "utf8_bytes": [
+            309,
+            411
+          ],
+          "codepoints": [
+            309,
+            411
+          ],
+          "lines": [
+            6,
+            6
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **13.806 s, note, engagement 4:** “The door and soup are familiar. I remember the two choices and want to see the room on the phone this time.”",
+          "utf8_bytes": [
+            1608,
+            1757
+          ],
+          "codepoints": [
+            1595,
+            1740
+          ],
+          "lines": [
+            18,
+            18
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **19.479 s, note, engagement 4:** “Oh, the room is actually here now: soup and door are visible together under the story. I like seeing what I am choosing.”",
+          "utf8_bytes": [
+            1758,
+            1920
+          ],
+          "codepoints": [
+            1741,
+            1899
+          ],
+          "lines": [
+            19,
+            19
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **25.800 s, note, engagement 4:** “Paying is less mysterious now: it says it went against Burak and he must return it, while the boiler still needs checking. Selin and Halil bring back his quiet workshop.”",
+          "utf8_bytes": [
+            1921,
+            2132
+          ],
+          "codepoints": [
+            1900,
+            2107
+          ],
+          "lines": [
+            20,
+            20
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **37.513 s, note, engagement 4:** “I like that the mistaken payment and separate boiler bill are spelled out, and Şükrü wanted the photograph. I want to go see him.”",
+          "utf8_bytes": [
+            2133,
+            2307
+          ],
+          "codepoints": [
+            2108,
+            2275
+          ],
+          "lines": [
+            21,
+            21
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **48.709 s, note, engagement 5:** “I got the visit, and the unreturned folding table makes Kemal feel like an actual messy person. Selin saying she will not ask Leyla to stop missing him is lovely.”",
+          "utf8_bytes": [
+            2308,
+            2512
+          ],
+          "codepoints": [
+            2276,
+            2476
+          ],
+          "lines": [
+            22,
+            22
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **54.967 s, want_quit, FINISHED, engagement 3:** “The three days ended. I like the folding table and the ending remembering the money and notebook, but I have had enough of the two choices for now.”",
+          "utf8_bytes": [
+            2513,
+            2717
+          ],
+          "codepoints": [
+            2477,
+            2677
+          ],
+          "lines": [
+            23,
+            23
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **64.975 s, stop, FINISHED, engagement 3:** “Stopping the phone. I liked visiting Şükrü and the ending naming what Burak still owes, but the three days are over and I do not want another pass right now.”",
+          "utf8_bytes": [
+            2718,
+            2930
+          ],
+          "codepoints": [
+            2678,
+            2883
+          ],
+          "lines": [
+            24,
+            24
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **14.040 s, note, engagement 4:** “The bigger room is familiar. I want to keep the door and see if I can still get to Şükrü without Selin covering it.”",
+          "utf8_bytes": [
+            2945,
+            3105
+          ],
+          "codepoints": [
+            2898,
+            3051
+          ],
+          "lines": [
+            28,
+            28
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **21.870 s, note, engagement 4:** “Selin pulls her chair back when I read the page aloud. That is a small reaction I can picture, and it makes my nosy choice feel real.”",
+          "utf8_bytes": [
+            3106,
+            3281
+          ],
+          "codepoints": [
+            3052,
+            3223
+          ],
+          "lines": [
+            29,
+            29
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **35.636 s, note, engagement 4:** “I can apologise for the disclosure now, and it says that does not undo it. I like getting to answer for the messy choice rather than just carrying it to the end.”",
+          "utf8_bytes": [
+            3282,
+            3485
+          ],
+          "codepoints": [
+            3224,
+            3423
+          ],
+          "lines": [
+            30,
+            30
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **41.867 s, note, engagement 3:** “I managed the visit without cover after resting; the cost changed from three hours to two. The same folding table appears again, and I am feeling ready to finish.”",
+          "utf8_bytes": [
+            3486,
+            3690
+          ],
+          "codepoints": [
+            3424,
+            3624
+          ],
+          "lines": [
+            31,
+            31
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **47.776 s, want_quit, FINISHED, engagement 3:** “The story ended and remembered the disclosure and apology. I like that, but I have seen two passes tonight and do not want another one.”",
+          "utf8_bytes": [
+            3691,
+            3883
+          ],
+          "codepoints": [
+            3625,
+            3813
+          ],
+          "lines": [
+            32,
+            32
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **59.762 s, stop, FINISHED, engagement 3:** “Stopping the laptop. The apology and the visit were satisfying, and the story remembered the harm, but I am done choosing between the same two kinds of options tonight.”",
+          "utf8_bytes": [
+            3884,
+            4104
+          ],
+          "codepoints": [
+            3814,
+            4030
+          ],
+          "lines": [
+            33,
+            33
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Both stories explicitly ended. I stayed after each quit wish only for Feedback and the stop log. The phone ended before 60 seconds and the desktop stopped before 60 seconds, so neither has a first-minute checkpoint; neither reached the approximately three-minute pulse. I did not wait to force either checkpoint.",
+          "utf8_bytes": [
+            4106,
+            4418
+          ],
+          "codepoints": [
+            4032,
+            4344
+          ],
+          "lines": [
+            35,
+            35
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The hours and costs were clear enough for me to plan. On the phone, Selin’s cover let me make the visit with one hour left. On desktop, resting reduced the stated uncovered visit cost from three hours to two, and I made it with time remaining. I did not encounter gameplay confusion that made me stop.",
+          "utf8_bytes": [
+            4420,
+            4723
+          ],
+          "codepoints": [
+            4346,
+            4647
+          ],
+          "lines": [
+            37,
+            37
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "On each device, **Feedback → “I'm stopping”** filled the feedback field with that phrase, and **Back** returned to the menu. I typed no note and submitted nothing. I reached no new blocking control. One phone command for the private-page choice had a shell quoting error and sent no input; the corrected call worked.",
+          "utf8_bytes": [
+            4725,
+            5047
+          ],
+          "codepoints": [
+            4649,
+            4965
+          ],
+          "lines": [
+            39,
+            39
+          ]
+        }
+      ]
+    },
+    "rosa": {
+      "exposure": "FIRST Days visit; franchise-experienced",
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+        "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+        "bytes": 13601
+      },
+      "ranked_asks": [
+        {
+          "kind": "ranked_ask",
+          "text": "1. Explain “no time to recuperate” beside the choice. I could not tell whether it meant no rest during that hour or no time left afterward.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+          "utf8_bytes": [
+            180,
+            323
+          ],
+          "codepoints": [
+            180,
+            319
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "classification": "new_blocking_comprehension_ask",
+          "judgment": "Phone ambiguity about no time to recuperate prevented her choosing with confidence. Want-quit CONFUSED at 92.072 s persisted to stop at 120.975 s, second day, 3 hours free. She did not finish either session. New to this retest evidence, not proof the wording was introduced by the fix."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Keep the concrete results and personal boundaries: soup helps, checking costs an hour, and Selin can offer company without requiring the private story.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+          "utf8_bytes": [
+            324,
+            478
+          ],
+          "codepoints": [
+            320,
+            474
+          ],
+          "lines": [
+            6,
+            6
+          ],
+          "classification": "preserve_positive_behavior",
+          "judgment": "Preserve concrete consequences and personal boundaries. This is a keep request, not a new change blocker."
+        }
+      ],
+      "full_return_intention_contexts": [
+        {
+          "kind": "full_return_intention_context",
+          "text": "I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+          "utf8_bytes": [
+            0,
+            157
+          ],
+          "codepoints": [
+            0,
+            157
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Days visit**, with franchise experience from my supplied own history. The page called the game **Three Days**. This was the first fixed-build retest assignment, not a return visit for me.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+          "utf8_bytes": [
+            480,
+            798
+          ],
+          "codepoints": [
+            476,
+            794
+          ],
+          "lines": [
+            8,
+            8
+          ]
+        },
+        {
+          "kind": "full_return_intention_context",
+          "text": "- **15.359 s — note, engagement 4, Before the door opens:** “The opening is sober and readable. A parent has died; I can understand wanting to help with ordinary promises. Disputed account is vague so far, but I expect the story to explain. Opening dialog concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.”\n- **33.956 s — note, engagement 4, First day; 5 hours free:** “Hacer bringing soup and Leyla feeling steadier are kind and clear. Hacer and Burak are names from my supplied stories, but I do not know these are the same people. Reread 1: I believe the saying that a believer's soul remains suspended by a debt until it is paid. Suspended by a debt is difficult English for me; I understand he is frightened and wants payment. This screen has 14 groups: soup and steadiness, hour cost, two repair bills, advance returned, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking an open bill, free hours after visitors, second reader, savings payment, later recovery cost. I will check the paper.”\n- **64.198 s — first_minute, engagement 4, First day; 4 hours free:** “I understand the choices and their costs: soup helped, checking the receipt used an hour but no money. Selin, Halil and Nuran together remind me confidently of the widower and daughter in my supplied Voice record. Her offer to sit without the whole story is warm. One reread so far. This page adds 9 groups: notebook entries, private marriage, untold separation, last visit instruction, envelope, Selin and her family, company without disclosure, private comparison, help versus exposure and later harm.”\n- **80.430 s — note, engagement 4, Second day; 4 hours free:** “I like that Selin has her own family and can agree to a limited shift. Nobody needs my answer this minute is reassuring after Smoke. I am already rested, so another meal to recover enough to read seems unnecessary, but skipping makes me tired. I can understand the tradeoff. Envelope added 9 groups: preserved trust, later sorting, photograph and unsent letter, cross-city visit, broken lift, receiving visitors, family cost, bounded help, condolences once. Second morning adds 5: shift agreed, visit hour, no immediate hurry, rest hour, tiredness adding work or travel time. No second reread.”\n- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”\n- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+          "utf8_bytes": [
+            3186,
+            6930
+          ],
+          "codepoints": [
+            3148,
+            6856
+          ],
+          "lines": [
+            35,
+            40
+          ]
+        }
+      ],
+      "quit_and_stop_contexts": [
+        {
+          "kind": "diary",
+          "text": "- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”",
+          "utf8_bytes": [
+            5631,
+            6264
+          ],
+          "codepoints": [
+            5569,
+            6196
+          ],
+          "lines": [
+            39,
+            39
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+        },
+        {
+          "kind": "diary",
+          "text": "- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”",
+          "utf8_bytes": [
+            6265,
+            6930
+          ],
+          "codepoints": [
+            6197,
+            6856
+          ],
+          "lines": [
+            40,
+            40
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+        },
+        {
+          "kind": "diary",
+          "text": "- **38.487 s — want_quit, TASTE, engagement 4, First day; 4 hours free:** “Selin offering company without asking for the whole story still moves me. The large room and notebooks are easy to understand, although the gold cost lines are small. Hacer has the receipt in this run, unlike Burak on the phone. I have read this beginning twice tonight and would stop here rather than repeat the account work. No sentence needed rereading on this device. Folded account has 14 groups and notebook has 9 as on phone.”",
+          "utf8_bytes": [
+            7607,
+            8121
+          ],
+          "codepoints": [
+            7527,
+            8035
+          ],
+          "lines": [
+            45,
+            45
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+        },
+        {
+          "kind": "diary",
+          "text": "- **57.253 s — stop, TASTE, engagement 4, First day; 4 hours free:** “I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.”",
+          "utf8_bytes": [
+            8122,
+            8691
+          ],
+          "codepoints": [
+            8036,
+            8599
+          ],
+          "lines": [
+            46,
+            46
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+          "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a"
+        }
+      ],
+      "all_literal_extraction_excerpts": [
+        {
+          "kind": "return_opening",
+          "text": "I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.",
+          "utf8_bytes": [
+            0,
+            157
+          ],
+          "codepoints": [
+            0,
+            157
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "1. Explain “no time to recuperate” beside the choice. I could not tell whether it meant no rest during that hour or no time left afterward.",
+          "utf8_bytes": [
+            180,
+            323
+          ],
+          "codepoints": [
+            180,
+            319
+          ],
+          "lines": [
+            5,
+            5
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Keep the concrete results and personal boundaries: soup helps, checking costs an hour, and Selin can offer company without requiring the private story.",
+          "utf8_bytes": [
+            324,
+            478
+          ],
+          "codepoints": [
+            320,
+            474
+          ],
+          "lines": [
+            6,
+            6
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "I played as Rosa Alvarez, 62, a retired school administrator from Puebla reading English as a second language. This was my **first Days visit**, with franchise experience from my supplied own history. The page called the game **Three Days**. This was the first fixed-build retest assignment, not a return visit for me.",
+          "utf8_bytes": [
+            480,
+            798
+          ],
+          "codepoints": [
+            476,
+            794
+          ],
+          "lines": [
+            8,
+            8
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "| Session | Device | Stop elapsed_s | Reason | State |",
+          "utf8_bytes": [
+            1429,
+            1483
+          ],
+          "codepoints": [
+            1419,
+            1473
+          ],
+          "lines": [
+            14,
+            14
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "| A | 360×690 touch phone | 120.975 | CONFUSED | Second day, “A living witness”; 3 hours free |",
+          "utf8_bytes": [
+            1507,
+            1607
+          ],
+          "codepoints": [
+            1497,
+            1592
+          ],
+          "lines": [
+            16,
+            16
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "| B | 1280×800 desktop, mouse actions | 57.253 | TASTE | First day, “A page folded inwards”; 4 hours free |",
+          "utf8_bytes": [
+            1608,
+            1720
+          ],
+          "codepoints": [
+            1593,
+            1700
+          ],
+          "lines": [
+            17,
+            17
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The phone lost me at the next comparison choice. Leyla was already “Rested,” with three hours available, but the one-hour choice said there was “no time to recuperate.” I needed to reread that sentence. It was my second reread, so I chose to leave.",
+          "utf8_bytes": [
+            2329,
+            2585
+          ],
+          "codepoints": [
+            2305,
+            2553
+          ],
+          "lines": [
+            25,
+            25
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Desktop felt comfortable, but I had read this beginning twice that evening. I stopped before repeating the account work. I reread no sentence on that device.",
+          "utf8_bytes": [
+            2948,
+            3105
+          ],
+          "codepoints": [
+            2912,
+            3069
+          ],
+          "lines": [
+            29,
+            29
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **15.359 s — note, engagement 4, Before the door opens:** “The opening is sober and readable. A parent has died; I can understand wanting to help with ordinary promises. Disputed account is vague so far, but I expect the story to explain. Opening dialog concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.”",
+          "utf8_bytes": [
+            3186,
+            3652
+          ],
+          "codepoints": [
+            3148,
+            3608
+          ],
+          "lines": [
+            35,
+            35
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **33.956 s — note, engagement 4, First day; 5 hours free:** “Hacer bringing soup and Leyla feeling steadier are kind and clear. Hacer and Burak are names from my supplied stories, but I do not know these are the same people. Reread 1: I believe the saying that a believer's soul remains suspended by a debt until it is paid. Suspended by a debt is difficult English for me; I understand he is frightened and wants payment. This screen has 14 groups: soup and steadiness, hour cost, two repair bills, advance returned, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking an open bill, free hours after visitors, second reader, savings payment, later recovery cost. I will check the paper.”",
+          "utf8_bytes": [
+            3653,
+            4383
+          ],
+          "codepoints": [
+            3609,
+            4333
+          ],
+          "lines": [
+            36,
+            36
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **64.198 s — first_minute, engagement 4, First day; 4 hours free:** “I understand the choices and their costs: soup helped, checking the receipt used an hour but no money. Selin, Halil and Nuran together remind me confidently of the widower and daughter in my supplied Voice record. Her offer to sit without the whole story is warm. One reread so far. This page adds 9 groups: notebook entries, private marriage, untold separation, last visit instruction, envelope, Selin and her family, company without disclosure, private comparison, help versus exposure and later harm.”",
+          "utf8_bytes": [
+            4384,
+            4965
+          ],
+          "codepoints": [
+            4334,
+            4909
+          ],
+          "lines": [
+            37,
+            37
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **80.430 s — note, engagement 4, Second day; 4 hours free:** “I like that Selin has her own family and can agree to a limited shift. Nobody needs my answer this minute is reassuring after Smoke. I am already rested, so another meal to recover enough to read seems unnecessary, but skipping makes me tired. I can understand the tradeoff. Envelope added 9 groups: preserved trust, later sorting, photograph and unsent letter, cross-city visit, broken lift, receiving visitors, family cost, bounded help, condolences once. Second morning adds 5: shift agreed, visit hour, no immediate hurry, rest hour, tiredness adding work or travel time. No second reread.”",
+          "utf8_bytes": [
+            4966,
+            5630
+          ],
+          "codepoints": [
+            4910,
+            5568
+          ],
+          "lines": [
+            38,
+            38
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **92.072 s — want_quit, CONFUSED, engagement 2, Second day; 3 hours free:** “Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.”",
+          "utf8_bytes": [
+            5631,
+            6264
+          ],
+          "codepoints": [
+            5569,
+            6196
+          ],
+          "lines": [
+            39,
+            39
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **120.975 s — stop, CONFUSED, engagement 2, Second day; 3 hours free:** “I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.”",
+          "utf8_bytes": [
+            6265,
+            6930
+          ],
+          "codepoints": [
+            6197,
+            6856
+          ],
+          "lines": [
+            40,
+            40
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **17.017 s — note, engagement 4, First day; 6 hours free:** “The large opening is comfortable. This fresh game has more words than my phone: the coat, Rotterdam, and two views about receiving mourners. I like that they can disagree without a fight, but there are many people and obligations to hold in mind. No reread. Opening dialog has the same 12 groups. Door screen has 17: father and daughter, leave and Rotterdam, house remaining, soup, religious example, Hacer, Burak and accounts, notebook, envelope and Sukru, customs colleague, gathering disagreement, phone speaker, free hours, tiredness, privacy and marriage, two action costs, menu and games.”",
+          "utf8_bytes": [
+            6942,
+            7606
+          ],
+          "codepoints": [
+            6868,
+            7526
+          ],
+          "lines": [
+            44,
+            44
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **38.487 s — want_quit, TASTE, engagement 4, First day; 4 hours free:** “Selin offering company without asking for the whole story still moves me. The large room and notebooks are easy to understand, although the gold cost lines are small. Hacer has the receipt in this run, unlike Burak on the phone. I have read this beginning twice tonight and would stop here rather than repeat the account work. No sentence needed rereading on this device. Folded account has 14 groups and notebook has 9 as on phone.”",
+          "utf8_bytes": [
+            7607,
+            8121
+          ],
+          "codepoints": [
+            7527,
+            8035
+          ],
+          "lines": [
+            45,
+            45
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- **57.253 s — stop, TASTE, engagement 4, First day; 4 hours free:** “I stop on the large screen for tonight. I liked Selin offering company without requiring the whole story, and the room is comfortable to see. I have read this beginning twice tonight and do not want to repeat the account work now. No reread here. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. Menu and Feedback show the same groups as phone. I would close it and consider another evening to see the visit, with the hour and rest cost explained plainly.”",
+          "utf8_bytes": [
+            8122,
+            8691
+          ],
+          "codepoints": [
+            8036,
+            8599
+          ],
+          "lines": [
+            46,
+            46
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "Both quit wishes remained through Feedback. Phone engagement fell from **4 to 2**. Desktop remained at **4**; leaving there was a choice about repetition and the evening, not a failure to understand the reached choices.",
+          "utf8_bytes": [
+            8693,
+            8912
+          ],
+          "codepoints": [
+            8601,
+            8820
+          ],
+          "lines": [
+            48,
+            48
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "My two exact phone reread sentences were:",
+          "utf8_bytes": [
+            8914,
+            8955
+          ],
+          "codepoints": [
+            8822,
+            8863
+          ],
+          "lines": [
+            50,
+            50
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The first was difficult figurative English. I understood Şükrü’s fear and continued. The second concerned the action I needed to choose, and its meaning remained uncertain. That triggered my stopping rule. No desktop sentence required rereading.",
+          "utf8_bytes": [
+            9144,
+            9394
+          ],
+          "codepoints": [
+            9044,
+            9289
+          ],
+          "lines": [
+            55,
+            55
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "| Folded account, both | 14 logged groups | First phone reread |",
+          "utf8_bytes": [
+            10086,
+            10150
+          ],
+          "codepoints": [
+            9979,
+            10043
+          ],
+          "lines": [
+            64,
+            64
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "| Living witness, phone | 7 additional logged groups | Second phone reread |",
+          "utf8_bytes": [
+            10332,
+            10408
+          ],
+          "codepoints": [
+            10225,
+            10301
+          ],
+          "lines": [
+            68,
+            68
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "On phone, I opened Feedback after the first confusion and again when stopping. **“I'm confused”** filled the note field at **46.313 s** and was selected again at **109.577 s**. **Back** returned to the menu at **48.813 s** and **114.395 s**. On desktop, **“I'm stopping”** filled the note at **48.867 s**, and Back returned to the menu at **52.051 s**. The responses showed draft text, not a pressed-state marker. I typed no note, pressed no Submit, and changed no recording or consent setting.",
+          "utf8_bytes": [
+            12332,
+            12834
+          ],
+          "codepoints": [
+            12223,
+            12717
+          ],
+          "lines": [
+            83,
+            83
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The phone first-minute entry was logged at **64.198 s**, after actionable play. Desktop stopped before 60 seconds, so its first-minute checkpoint is untested. Neither session reached 180 seconds, so no pulse was due. I did not complete the private comparison, visit Şükrü, settle the account, reach the third evening or see an ending. Those remain untested.",
+          "utf8_bytes": [
+            12836,
+            13196
+          ],
+          "codepoints": [
+            12719,
+            13076
+          ],
+          "lines": [
+            85,
+            85
+          ]
+        }
+      ]
+    },
+    "leire": {
+      "exposure": "fictional cold first Human Framework visit",
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+        "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+        "bytes": 4814
+      },
+      "ranked_asks": [
+        {
+          "kind": "ranked_ask",
+          "text": "1. Clarify why Leyla needs to recover enough to read when her status already says “Rested.”",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+          "utf8_bytes": [
+            138,
+            233
+          ],
+          "codepoints": [
+            138,
+            229
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "classification": "new_nonblocking_clarity_ask_related_to_blocker",
+          "judgment": "Rested/recovery wording confused her, but she finished phone. Supports reviewing state-aware wording; does not independently establish a blocking stop."
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Give me a reason to revisit a completed story without rereading so much familiar material.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+          "utf8_bytes": [
+            234,
+            327
+          ],
+          "codepoints": [
+            230,
+            323
+          ],
+          "lines": [
+            6,
+            6
+          ],
+          "classification": "new_nonblocking_replay_preference",
+          "judgment": "Desktop BORED stop followed completion on phone the same evening. This is evidence of limited immediate replay interest, not failed first-play completion."
+        }
+      ],
+      "full_return_intention_contexts": [
+        {
+          "kind": "full_return_intention_context",
+          "text": "I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.",
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+          "utf8_bytes": [
+            0,
+            122
+          ],
+          "codepoints": [
+            0,
+            122
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        }
+      ],
+      "quit_and_stop_contexts": [
+        {
+          "kind": "diary",
+          "text": "- Phone, **51.760 s**, want quit, **FINISHED**, engagement **3**: “I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.”",
+          "utf8_bytes": [
+            2142,
+            2317
+          ],
+          "codepoints": [
+            2116,
+            2287
+          ],
+          "lines": [
+            19,
+            19
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **59.207 s**, stop, **FINISHED**, engagement **3**: “I finished the three days and am ready to leave.”",
+          "utf8_bytes": [
+            2318,
+            2433
+          ],
+          "codepoints": [
+            2288,
+            2399
+          ],
+          "lines": [
+            20,
+            20
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **18.410 s**, want quit, **BORED**, engagement **2**: “I want to stop here. I have seen this story end once and another pass tonight feels repetitive.”",
+          "utf8_bytes": [
+            3009,
+            3175
+          ],
+          "codepoints": [
+            2963,
+            3125
+          ],
+          "lines": [
+            24,
+            24
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **27.425 s**, stop, **BORED**, engagement **2**: “I am leaving the second run because repeating the story tonight no longer interests me.”",
+          "utf8_bytes": [
+            3176,
+            3329
+          ],
+          "codepoints": [
+            3126,
+            3275
+          ],
+          "lines": [
+            25,
+            25
+          ],
+          "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+          "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70"
+        }
+      ],
+      "all_literal_extraction_excerpts": [
+        {
+          "kind": "return_opening",
+          "text": "I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.",
+          "utf8_bytes": [
+            0,
+            122
+          ],
+          "codepoints": [
+            0,
+            122
+          ],
+          "lines": [
+            1,
+            1
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "1. Clarify why Leyla needs to recover enough to read when her status already says “Rested.”",
+          "utf8_bytes": [
+            138,
+            233
+          ],
+          "codepoints": [
+            138,
+            229
+          ],
+          "lines": [
+            5,
+            5
+          ]
+        },
+        {
+          "kind": "ranked_ask",
+          "text": "2. Give me a reason to revisit a completed story without rereading so much familiar material.",
+          "utf8_bytes": [
+            234,
+            327
+          ],
+          "codepoints": [
+            230,
+            323
+          ],
+          "lines": [
+            6,
+            6
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "On the **360×690 touch phone**, the opening felt calm and readable, though it introduced several tasks at once. The choices were clear and their consequences appeared immediately: soup used an hour and made Leyla rested; later, keeping the door made her very tired. I liked that Selin’s help cost her an evening at home. The one point that confused me was being offered another hour of recovery while already rested. I kept the notebook private, arranged the visit, and reached an ending that accounted for the visit, the papers, and the notebook.",
+          "utf8_bytes": [
+            594,
+            1144
+          ],
+          "codepoints": [
+            586,
+            1133
+          ],
+          "lines": [
+            10,
+            10
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **6.785 s**, note, engagement **3**: “The opening is calm and readable, though there is a lot to take in before I start. I want to see what I can actually do.”",
+          "utf8_bytes": [
+            1601,
+            1773
+          ],
+          "codepoints": [
+            1587,
+            1755
+          ],
+          "lines": [
+            16,
+            16
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **12.365 s**, note, engagement **4**: “The soup choice changed the time and tiredness immediately. I understand why I would ask to see the paper before paying.”",
+          "utf8_bytes": [
+            1774,
+            1947
+          ],
+          "codepoints": [
+            1756,
+            1925
+          ],
+          "lines": [
+            17,
+            17
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **23.202 s**, note, engagement **3**: “I like that Selin has her own evening at stake. I am already rested though, so another hour to recover enough to read is a little confusing.”",
+          "utf8_bytes": [
+            1948,
+            2141
+          ],
+          "codepoints": [
+            1926,
+            2115
+          ],
+          "lines": [
+            18,
+            18
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **51.760 s**, want quit, **FINISHED**, engagement **3**: “I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.”",
+          "utf8_bytes": [
+            2142,
+            2317
+          ],
+          "codepoints": [
+            2116,
+            2287
+          ],
+          "lines": [
+            19,
+            19
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Phone, **59.207 s**, stop, **FINISHED**, engagement **3**: “I finished the three days and am ready to leave.”",
+          "utf8_bytes": [
+            2318,
+            2433
+          ],
+          "codepoints": [
+            2288,
+            2399
+          ],
+          "lines": [
+            20,
+            20
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **5.993 s**, note, engagement **3**: “The larger room illustration makes this feel more like a place. I recognise the setup from my phone, but this is a fresh start.”",
+          "utf8_bytes": [
+            2434,
+            2615
+          ],
+          "codepoints": [
+            2400,
+            2577
+          ],
+          "lines": [
+            21,
+            21
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **11.800 s**, note, engagement **2**: “Keeping the door immediately made Leyla very tired. I can see the trade, but I already know this account and I am less curious to read it again.”",
+          "utf8_bytes": [
+            2616,
+            2815
+          ],
+          "codepoints": [
+            2578,
+            2773
+          ],
+          "lines": [
+            22,
+            22
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **16.054 s**, note, engagement **2**: “Paying produced a clear mistake, which makes the other choice feel real. Still, I do not want to go through the same rooms again tonight.”",
+          "utf8_bytes": [
+            2816,
+            3008
+          ],
+          "codepoints": [
+            2774,
+            2962
+          ],
+          "lines": [
+            23,
+            23
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **18.410 s**, want quit, **BORED**, engagement **2**: “I want to stop here. I have seen this story end once and another pass tonight feels repetitive.”",
+          "utf8_bytes": [
+            3009,
+            3175
+          ],
+          "codepoints": [
+            2963,
+            3125
+          ],
+          "lines": [
+            24,
+            24
+          ]
+        },
+        {
+          "kind": "diary",
+          "text": "- Desktop, **27.425 s**, stop, **BORED**, engagement **2**: “I am leaving the second run because repeating the story tonight no longer interests me.”",
+          "utf8_bytes": [
+            3176,
+            3329
+          ],
+          "codepoints": [
+            3126,
+            3275
+          ],
+          "lines": [
+            25,
+            25
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "The phone game ended at **49.345 s**; I stopped the session at **59.207 s**. The desktop stopped early at **27.425 s**, on the first day. Neither session reached the 60-second first-minute checkpoint or the 180-second pulse; those checkpoints remain untested.",
+          "utf8_bytes": [
+            3331,
+            3590
+          ],
+          "codepoints": [
+            3277,
+            3536
+          ],
+          "lines": [
+            27,
+            27
+          ]
+        },
+        {
+          "kind": "context",
+          "text": "For the phone confusion, I opened Feedback and chose **“I’m confused.”** The phrase appeared in the feedback field; I went Back without submitting. At each stop I chose **“I’m stopping”** and went Back without submitting. The phone’s earlier phrase was still in the field when I reopened Feedback, and choosing the stopping phrase replaced it. Recording remained checked; I typed no feedback note and sent nothing.",
+          "utf8_bytes": [
+            3592,
+            4020
+          ],
+          "codepoints": [
+            3538,
+            3952
+          ],
+          "lines": [
+            29,
+            29
+          ]
+        }
+      ]
+    }
+  },
+  "original_history_evidence": [
+    {
+      "kind": "original_Days_history_context",
+      "text": "1. Show a number for savings. After I paid from savings the text said only \"Her savings are smaller\" on the phone run. I could not price that tradeoff.\n2. Say why I could not see a choice or its cost in advance when it changed. On the phone run the visit cost 3 hours instead of 2 because Selin refused cover. I worked it out from the card text, but a one-line reason on the changed card would help.\n3. Let me see the choice cards on the phone without scrolling past the story. I did not test the phone's scroll fully, and this ask rests on the screenshot alone.\n\n## 1. Session\n- Persona: Emre Kaya, 37, Ankara electrical technician and parent. He likes visible tradeoffs and dislikes unexplained losses.\n- Exposure: first visit to Days (Three Days). I have played other Human Framework games. I read my supplied own-history.md in full (lines 1–669). It holds no Days history.\n- Round and arm: light-1031-days1, free stop (floor 0, ceiling 20 min).\n- URL: https://days.adamwhite.work/?labRunSource=agent\n- Session A: desktop 1280x800, light mode, driver 22201, about 83 s. I chose \"Begin the three days\" with Recording on.\n",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md",
+      "source_sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "utf8_bytes": [
+        51884,
+        53009
+      ],
+      "codepoints": [
+        51677,
+        52800
+      ],
+      "lines": [
+        511,
+        521
+      ]
+    },
+    {
+      "kind": "original_Days_history_context",
+      "text": "- Would I return voluntarily? Yes, another evening on desktop for a third path, on the condition that the choices are different enough to be worth a second look. Because it is short, I would not leave it running; it does not seem to need me to.\n\n## 8. Changes I would want\n1. Show savings as a number, so I can price the payment choice.\n2. Put a one-line reason on any card whose cost has changed from a first visit.\n3. On the phone, keep the choice cards on screen with the story text.\n\n## 9. Compared with my last visit\nFirst visit to this game.\n",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md",
+      "source_sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "utf8_bytes": [
+        60501,
+        61049
+      ],
+      "codepoints": [
+        60286,
+        60834
+      ],
+      "lines": [
+        601,
+        610
+      ]
+    },
+    {
+      "kind": "original_Days_history_context",
+      "text": "**Would you return voluntarily?** Not tonight. I might come back another evening on the desktop, to see whether the visit to Şükrü can be kept when I spend my hours differently, but I would not leave it running. Each run took about a minute and a half, and I want a reason to play it a third time.\n\n**Ranked asks**\n1. Grey out or explain a choice I cannot afford before I press it. On desktop I pressed \"Make the journey yourself, if there is time\". It took one tap, said \"2 hours; 1 remains\", and moved the story on. I could not retry, and the game ended with my promised visit unkept and an hour unused.\n2. Tell me the hour budget early. The visit needs 2 hours, but nothing warned me on day 1 or 2 that I must keep them. On the phone I kept the visit only because I happened to have 2 hours.\n3. Give me something to read over time. Each run was about 75 seconds of choices with no clock, so it felt short and I could not compare one day with the next.\n",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md",
+      "source_sha256": "d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff",
+      "utf8_bytes": [
+        214720,
+        215678
+      ],
+      "codepoints": [
+        213988,
+        214943
+      ],
+      "lines": [
+        1463,
+        1469
+      ]
+    },
+    {
+      "kind": "original_Days_history_context",
+      "text": "**Would you return voluntarily?** Not tonight. I might come back another evening on my laptop only if the three days had more than two choices per screen, or a way to say something of my own, and I would not leave it running.\n\n**Ranked asks:**\n1. Give me more than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin. I only ever picked between two set lines.\n2. Make the run longer or add a reason to play it again. Both of my runs finished in about 75 seconds.\n3. Show the phone room picture and its objects properly. On the phone I read only the text and never saw the picture's objects.\n",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md",
+      "source_sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "utf8_bytes": [
+        53841,
+        54463
+      ],
+      "codepoints": [
+        53526,
+        54148
+      ],
+      "lines": [
+        443,
+        449
+      ]
+    },
+    {
+      "kind": "original_Days_history_context",
+      "text": "**Would I return voluntarily?** No, not tonight. I would come back another evening on my laptop only if there were more than two choices per screen, or a way to say something of my own. I did like seeing my choices named in the ending, and I might try a third run for a different ending. I would not leave it running, because it has no clock and just waits for a tap. I would not come back for the same three days I have now seen twice.\n\n## 8. Changes I would want\n\n1. More than two buttons per moment, or let me say something of my own to Hacer, Burak or Selin.\n2. Make a run longer, or give me a reason to replay beyond swapping which of two buttons I press.\n3. Show the room picture and its objects properly on the phone, as the laptop does.\n\n## 9. Compared with my last visit\n",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md",
+      "source_sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "utf8_bytes": [
+        62860,
+        63640
+      ],
+      "codepoints": [
+        62542,
+        63322
+      ],
+      "lines": [
+        565,
+        574
+      ]
+    }
+  ],
+  "raw_action_evidence": [
+    {
+      "kind": "raw_action_note",
+      "text": "{\"t\":\"2026-11-02T10:45:22.884Z\",\"elapsed_s\":92.072,\"kind\":\"want_quit\",\"op\":\"log\",\"input\":null,\"reaction\":\"Reread 2: 1 hour to check the original you already have; no time to recuperate. I have three hours and am rested. Does no time mean I cannot rest during this choice, or that I will have no time afterward? Recuperate is another word I must work at. Burak correcting his mistake is clear and I like it, but that is my second reread and I would leave here. This screen adds 7 groups: restored reading ability, receipt repayment to Burak, separate boiler debt, merged entries, correction, private comparison without rest, longer phone check with rest.\",\"game_clock\":\"Second day; 3 hours free\",\"engagement\":2,\"reason\":\"CONFUSED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl",
+      "source_sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "utf8_bytes": [
+        7211,
+        8004
+      ],
+      "codepoints": [
+        7211,
+        8004
+      ],
+      "lines": [
+        20,
+        20
+      ]
+    },
+    {
+      "kind": "raw_action_note",
+      "text": "{\"t\":\"2026-11-02T10:45:51.787Z\",\"elapsed_s\":120.975,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I stop on the phone after two rereads. I liked the soup, Selin having a family to return to, and Burak correcting his account. But no time to recuperate leaves me unsure what the next hour costs when I am already rested. I chose confused and Back; the note filled itself, and I typed and submitted nothing. I would close it. Menu concepts 10: waiting, resume, feedback, full screen, games, recording, new game, people across games, export, privacy and debug. Feedback concepts 8: phrase choices, stopping, confused, note, recording-dependent linking, submit, back, privacy and debug.\",\"game_clock\":\"Second day; 3 hours free\",\"engagement\":2,\"reason\":\"CONFUSED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl",
+      "source_sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "utf8_bytes": [
+        9192,
+        10017
+      ],
+      "codepoints": [
+        9192,
+        10017
+      ],
+      "lines": [
+        26,
+        26
+      ]
+    },
+    {
+      "kind": "raw_action_note",
+      "text": "{\"t\":\"2026-11-02T10:48:34.196Z\",\"elapsed_s\":23.201,\"kind\":\"note\",\"op\":\"log\",\"input\":null,\"reaction\":\"I like that Selin has her own evening at stake. I am already rested though, so another hour to recover enough to read is a little confusing.\",\"game_clock\":\"Second day, 4 hours free\",\"engagement\":3,\"reason\":null,\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl",
+      "source_sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "utf8_bytes": [
+        3425,
+        3800
+      ],
+      "codepoints": [
+        3425,
+        3800
+      ],
+      "lines": [
+        12,
+        12
+      ]
+    },
+    {
+      "kind": "raw_action_note",
+      "text": "{\"t\":\"2026-11-02T10:49:02.754Z\",\"elapsed_s\":51.759,\"kind\":\"want_quit\",\"op\":\"log\",\"input\":null,\"reaction\":\"I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.\",\"game_clock\":\"The leave has ended\",\"engagement\":3,\"reason\":\"FINISHED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl",
+      "source_sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "utf8_bytes": [
+        7739,
+        8083
+      ],
+      "codepoints": [
+        7733,
+        8077
+      ],
+      "lines": [
+        26,
+        26
+      ]
+    },
+    {
+      "kind": "raw_action_note",
+      "text": "{\"t\":\"2026-11-02T10:49:10.201Z\",\"elapsed_s\":59.206,\"kind\":\"stop\",\"op\":\"log\",\"input\":null,\"reaction\":\"I finished the three days and am ready to leave.\",\"game_clock\":\"The leave has ended\",\"engagement\":3,\"reason\":\"FINISHED\",\"op_ms\":0,\"error\":null,\"requested_control_present_before\":null}",
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl",
+      "source_sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "utf8_bytes": [
+        9028,
+        9312
+      ],
+      "codepoints": [
+        9022,
+        9306
+      ],
+      "lines": [
+        31,
+        31
+      ]
+    }
+  ],
+  "rosa_driver_visible_evidence": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json",
+    "tester_transcript_line": 278,
+    "driver_response_literal": "{\"elapsed_s\":84.158,\"op_ms\":181,\"visible\":\"Three Days\\nMenu\\n\\nSECOND DAY OF LEAVE\\n\\nA living witness\\nIN THE ROOM\\n\\nLeyla eats and lies down for an hour. Selin covers the door for the agreed shift. She can follow the papers again, but that hour is gone.\\n\\nBurak brings the original receipt Leyla asked for. It records money returned to Burak for an earlier repair.\\n\\nIt does not settle the boiler bill owed to Şükrü. The original shows that Kemal joined two separate entries on one line.\\n\\nBurak says, \\\"I was wrong to call it one account. We have the original receipt. We need to compare both entries and ask Şükrü what remains.\\\"\\n\\nLeyla has 3 free hours before departure. These are hours left after receiving visitors. Leyla can follow the papers without a second reader.\\n\\nChoose an object. Read its action and cost before choosing.\\n\\n3 hours free before departure\\nRested\\nDoor cover agreed\\nTHE RECEIPTS\\nCompare the receipt with both entries in private.\\n1 hour to check the original you already have; no time to recuperate.\\nTHE TELEPHONE\\nAsk Burak to check the original by phone. Sit down while he calls.\\n2 hours for Burak's phone check; rest while he calls.\\nThree days of leave. Grief has no deadline.\\nAll games\",\"controls\":\"- banner:\\n  - text: Three Days\\n  - button \\\"Menu\\\"\\n- main:\\n  - paragraph: Second day of leave\\n  - heading \\\"A living witness\\\" [level=1]\\n  - region \\\"What happens in the room\\\":\\n    - text: In the room\\n    - paragraph: Leyla eats and lies down for an hour. Selin covers the door for the agreed shift. She can follow the papers again, but that hour is gone.\\n    - paragraph: Burak brings the original receipt Leyla asked for. It records money returned to Burak for an earlier repair.\\n    - paragraph: It does not settle the boiler bill owed to Şükrü. The original shows that Kemal joined two separate entries on one line.\\n    - paragraph: Burak says, \\\"I was wrong to call it one account. We have the original receipt. We need to compare both entries and ask Şükrü what remains.\\\"\\n    - paragraph: Leyla has 3 free hours before departure. These are hours left after receiving visitors. Leyla can follow the papers without a second reader.\\n  - region \\\"Choose an action in the room\\\":\\n    - paragraph: Choose an object. Read its action and cost before choosing.\\n    - text: 3 hours free before departure ·Rested ·Door cover agreed\\n    - button \\\"Compare the receipt with both entries in private. 1 hour to check the original you already have; no time to recuperate.\\\"\\n    - button \\\"Ask Burak to check the original by phone. Sit down while he calls. 2 hours for Burak's phone check; rest while he calls.\\\"\\n- contentinfo:\\n  - text: Three days of leave. Grief has no deadline.\\n  - link \\\"All games\\\":\\n    - /url: https://human.adamwhite.work/games/\",\"snapshot_ms\":1,\"requested_control_present_before\":true}"
+  },
+  "audit_summary": {
+    "successfulReportsEligibleForRoot": 5,
+    "eligibleDeviceStops": 10,
+    "roundStatus": "HOLD; root qualification and release required",
+    "boundaryOutcome": "UNVERIFIED absent explicit tool evidence; no inferred feedback submission or consent change",
+    "history_limit": "Aggregated stdout coverage is not independent proof of delivery or comprehension."
+  },
+  "literal_verification": [
+    {
+      "tester": "emre",
+      "report_hash_matches_extraction": true,
+      "all_extraction_offsets_match_report": true
+    },
+    {
+      "tester": "pavel",
+      "report_hash_matches_extraction": true,
+      "all_extraction_offsets_match_report": true
+    },
+    {
+      "tester": "tessa",
+      "report_hash_matches_extraction": true,
+      "all_extraction_offsets_match_report": true
+    },
+    {
+      "tester": "rosa",
+      "report_hash_matches_extraction": true,
+      "all_extraction_offsets_match_report": true
+    },
+    {
+      "tester": "leire",
+      "report_hash_matches_extraction": true,
+      "all_extraction_offsets_match_report": true
+    }
+  ],
+  "source_hashes": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+      "sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+      "bytes": 6776
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+      "sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+      "bytes": 7505
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+      "sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+      "bytes": 6487
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+      "sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+      "bytes": 13601
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+      "sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+      "bytes": 4814
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/own-history.md",
+      "sha256": "0fa7c75c55177d54989792862f6e85ee0585e191dc5ad432eaedc0045fed2306",
+      "bytes": 274209
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/own-history.md",
+      "sha256": "d2335f0c40332f51facc6ce745bffc22abe907c223b87966b101314ade5fcdff",
+      "bytes": 228663
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/own-history.md",
+      "sha256": "a2d3a34220a51e2d9de2c906fe296b603de0af8fb4cb8fa1cf2443b961f3f415",
+      "bytes": 164671
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/phone/wall-clock.jsonl",
+      "sha256": "d84c18cbc13bd4d8d5a11ea40b58959fec4d63a14d347c82b402d38d2d06af04",
+      "bytes": 10018
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/wall-clock.jsonl",
+      "sha256": "e457c9ce4375a25bac502a911c975753d338621053225a17753cb4d08a415d49",
+      "bytes": 9565
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-literal-extraction.json",
+      "sha256": "7cff30f2b91f1ab2b7bac672b5164c59c1b66ed7d01453b03be2aa5555b57e05",
+      "bytes": 55274
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-controller/finalizer-audit.json",
+      "sha256": "7b12397ed2b0415a94b2e486787a0ca4e969ee96605899311dfbc5ea2222fffc",
+      "bytes": 2693869
+    }
+  ],
+  "offset_convention": "UTF-8 bytes and Unicode codepoints are zero-based half-open; lines are one-based inclusive. Text is copied verbatim.",
+  "cleanup": "No repository, worktree, branch, browser, server, or worker created or changed. Only the two requested review artifacts written. git worktree list: not applicable; no repository touched."
+}

@@ -1,0 +1,110 @@
+{
+  "at": "2026-11-02T08:38:05.568236+00:00",
+  "status": "ROOT_QUALIFIED_FINAL_NEIGHBOURS_REPORTS_DATED_RECORD_PENDING",
+  "rootFullFiveReportsRead": true,
+  "rootFullAuditMdAndOperativeFieldsRead": true,
+  "auditEvidenceFilesRehashed": 32,
+  "literalExtractionSpansVerified": 26,
+  "allLoggedReactionStringsVerified": 59,
+  "rawCauseExcerptsRead": true,
+  "originalEpoch": {
+    "session": 75213,
+    "exit": 1,
+    "retainedSingleton": "mei",
+    "qualifications": "NF1–NF9 carried exactly"
+  },
+  "continuationEpoch": {
+    "session": 72317,
+    "exit": 0,
+    "players": [
+      "emre",
+      "nia",
+      "rosa",
+      "leonie"
+    ],
+    "observedIdentitiesAbsent": 365,
+    "profilesAbsent": 4,
+    "portsBindFree": 9,
+    "frozenPayloadsStable": 15
+  },
+  "totals": {
+    "reports": 5,
+    "deviceStops": 10,
+    "voluntaryUnfinishedStops": 9,
+    "budgetStopsExcluded": 1,
+    "observedEndings": 0,
+    "cuts": 0,
+    "rankedAsks": 10,
+    "reachedBlockerAsks": 3,
+    "priorUnreachedOrUnresolvedLeads": 2,
+    "preferences": 5
+  },
+  "currentQualifications": [
+    "NC1: No observed image-view event in any current completed transcript despite report viewing claims. Saved images and DOM/text do not prove visual perception.",
+    "NC2: All selected own-history lines match command stdout in <=40-line ranges:2130/2480/4205/2. This does not independently prove delivery or comprehension. Prior selected histories/exclusions/W/SW/NR/SWF remain.",
+    "NC3: Current audit retains12 report timestamp mention differences of1ms:Emre1,Nia2,Rosa8,Leonie1. PriorMei retains2 additional differences. Preserve original values; response and wall clocks can differ.",
+    "NC4: Nia phone automatic60.037s image follows56.041s stop; no further gameplay. It is not continued play or a first-minute diary. BothNia sessions stoppedbefore60.",
+    "NC5: Leonie phone59.155s first-minute note was premature;61.439s correctednote retained separately. Automatic images do not establish viewing. Rosa desktop68.325 first-minute note occurred during stopping checks, not more repair play. No180s pulse due.",
+    "NC6: Leonie transcript27 failed quoted command produced no feedback request; corrected call succeeded. Emre one disabled-control response and one absent-name response; Rosa3stalecontrols; Leoniecoveredcontrol and ended-skip errors retained. Do not erase errors or infer broken UI.",
+    "NC7: Feedback quick-label responses visibly include pressed states; closes recorded. Rosa desktop chose confused rather than stopping. No typing,Submit,recordingtoggle observed; defaults are tester claims, no backendreceipt/recordingstate established.",
+    "NC8: Emre toolavailability afterlending changed across12:15→13:00; consumer/cause unknown. Nia busy-question refusal is explained; lateravailability untested. Rosa did notinspectdesktopjournal: zero-afterwork is uncertainty, not proof workfailed/noresult. Preserve independentchoices/difficulty.",
+    "NC9: Rosa dynamic-control timing not reproduced at human1–3second pace. Route stable-selection preference only, no timingbug claim. Her conceptcounts are grouped/incomplete/internallyinconsistent as disclosed; no rereads reported, two-reread rule untriggered.",
+    "NC10: Leonie directed-to-ask-again is her interpretation; raw acceptance records waiting for laterdecision/noguarantee. Her3asks explicitly nonblocking. Mei save desire untested; priorofferedhour situation unreached.",
+    "NC11: Original75213exit1/qualifiedMei singleton and new72317exit0/four reports staydistinct; originalEmre missingpath report administrative/no gameplay. No fullfive native0, thirdpanel, capreset, owneracceptance, humanenjoymentprediction or servingmodelidentity claim."
+  ],
+  "datedAsks": "F3113–F3122;5Nov3/5Nov10; exact quotes in root triage. Three reached blocker asks do not establish three newly introduced defects.",
+  "finishRule": "Final ordinary fixed retest reaches two-iteration cap; finished only after dated record integration. No third ordinary panel.",
+  "workerFailure": "Initial defaultSol auditor capacity exit with no artifact. Interim messages provisional; recovered Terra bounded audit plus root raw verification adopted.",
+  "evidence": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/root-return.json",
+      "sha256": "d18925d5c5b66215713d4839e4ef07ec22d398296d0babe79d38092040636f07",
+      "bytes": 3457
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/actual-native-exit-receipt.json",
+      "sha256": "ae472d2a23cc5809f2a4d0c6cd074922ae1c9d6a7a751d545105e710dd772182",
+      "bytes": 373
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-controller/finalizer-audit.json",
+      "sha256": "f6c0639414ac3ad85cd5d2220aa1fec17d7551cfd090b63acd1b12f75bc6b666",
+      "bytes": 2722980
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.json",
+      "sha256": "63a453bff8f1e7eec08a60a720aee61e72c2bad0aef295040dd40924a3acf046",
+      "bytes": 225165
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-protocol-audit.md",
+      "sha256": "43b31d35c5eb3db120937aadf9a1d465807c87ec2077a0e9776269d762b2e3e7",
+      "bytes": 14952
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-literal-reaction-check.json",
+      "sha256": "6f8a7974c48a60fb2325fa0fde23a461743313eef36ba48a9ef08e877b21d06c",
+      "bytes": 3073
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-literal-extraction.json",
+      "sha256": "a8b1b0d2ce0252da9ede85baea6354cf8ba72a0b86fec34b6ff21fe8ccf1b78a",
+      "bytes": 36392
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-ask-triage.json",
+      "sha256": "803f4af48a4ad6236c34dd5e9af53962244df66c30a23a56c8f5901d0e6d1aef",
+      "bytes": 17130
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-mei-root-qualification.json",
+      "sha256": "39ab0a695628cf0de55b81849db2c246b582880eb360c97dc8d35bf78c4f6f42",
+      "bytes": 4090
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-final-live.json",
+      "sha256": "9306f968be33d32e488968fc8e37075d052020923d37f6252c95ac1dfbf078aa",
+      "bytes": 382
+    }
+  ]
+}

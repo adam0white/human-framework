@@ -1,0 +1,74 @@
+{
+  "status": "PREPARATION_DRAFT_ONLY_NOT_FROZEN_NOT_ADMITTED",
+  "tester": "rosa",
+  "rangeConvention": "Byte and Unicode code point ranges are zero-based half-open; line ranges are one-based inclusive.",
+  "baseline": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/own-history.md",
+    "sha256": "384b18572a3cd4135e65985ae3da05db0198d13ae1eb425f7f6ff6a51b42a08d",
+    "bytes": 465002,
+    "unicodeCodePoints": 462416,
+    "lines": 4205,
+    "preservedPrefixByteRange": [
+      0,
+      465002
+    ],
+    "exactPrefixVerified": true,
+    "priorFinalMarkerPreserved": true
+  },
+  "priorSourceMap": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/history-source-map.json",
+    "sha256": "f2e9b989b8b112bf905484d76cd24c30762f5f2bde6f2121dee042e0f7575877",
+    "bytes": 125752,
+    "lines": 5030,
+    "preservation": "Referenced exact bytes by path and hash; all inherited qualifications and limits apply."
+  },
+  "report": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-continuation4-inputs/rosa/report.md",
+    "sha256": "4978f658f115175b8a4e33f07c2307104ee78f52b7912e76425f425cab609da2",
+    "bytes": 12592,
+    "unicodeCodePoints": 12490,
+    "lines": 89,
+    "sourceByteRange": [
+      0,
+      12592
+    ],
+    "sourceUnicodeRange": [
+      0,
+      12490
+    ],
+    "sourceLineRange": [
+      1,
+      89
+    ],
+    "outputByteRange": [
+      465081,
+      477673
+    ],
+    "outputUnicodeRange": [
+      462495,
+      474985
+    ],
+    "outputLineRange": [
+      4209,
+      4297
+    ],
+    "occurrencesBefore": 0,
+    "occurrencesAfter": 1,
+    "literalBytesVerified": true
+  },
+  "coordinatorQualification": {
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/neighbours-final-root-qualification.json",
+    "sourceSha256": "316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e",
+    "text": "Coordinator qualification, not participant belief: This is selected own history, not a full archive. Preserve all inherited source-map qualifications and exclusions. No image-view event was observed in the completed transcript; saved images and DOM/text do not establish visual perception. Selected own-history lines match command stdout, which does not independently prove delivery or comprehension. The report preserves its original times; one-millisecond differences from the audit are not reconciled because response and wall clocks can differ. The current continuation session 72317 exited 0; the earlier session 75213 exited 1. No iteration cap reset is implied.\nCoordinator qualification: The desktop 68.325s first-minute note occurred during stopping checks, not more repair play. Concept counts are grouped, incomplete, and internally inconsistent as disclosed; no rereads were reported, so the two-reread rule was not triggered. Dynamic-control timing was not reproduced at a human 1–3 second pace; the evidence supports a stable-selection preference, not a timing-bug claim. The desktop journal was not inspected: zero after work is uncertainty, not proof that work failed or had no result.\n",
+    "outsideVerbatimReport": true
+  },
+  "output": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-neighbours-own-history-drafts/rosa/own-history.md",
+    "sha256": "41c7aa2ee038ce58cac3e60172f7a65886bbcfd2289747b185b1a7e3c7831379",
+    "bytes": 478949,
+    "unicodeCodePoints": 476259,
+    "lines": 4304,
+    "lastLine": "End of supplied own history."
+  },
+  "limits": "Preparation only. SmokeDays roster question unanswered: Rosa plus three originals or original four exception. No roster chosen, operational freeze, brief dispatch, helper admission, new panel, or cap reset."
+}

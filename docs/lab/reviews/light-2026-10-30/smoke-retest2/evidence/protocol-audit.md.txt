@@ -1,0 +1,77 @@
+# Smoke final protocol audit
+
+Independent static audit with qualifications. All five full reports are retained and reviewable. This is not root verification, admission, protocol enforcement or owner acceptance. Root manual full-report and raw-evidence review remains required. Final Smoke ordinary iteration remains at cap; no third panel or reset follows.
+
+Actual stored root return is native session **89152**, completion **e852f6**, exit **0**. Root receipts record 480 sampled original identities gone, five profiles absent, eleven BIND-free ports and 17 stable payloads before report reads. The initial EADDRINUSE failure had an unknown port and unknown transient cause; a later clean snapshot does not explain it. This reviewer performed no process or port probe.
+
+## What was read
+
+All five full report files; all 596 completed command/output rows; all current transcript event types and wall-clock rows; all actual briefs, plans, manifest and own-history maps; the four root return/physical/failure receipts first; finalizer audit; independent qualification review MD/JSON; stored source delivery and SDK proof. Every current input and evidence path is bound by SHA256 and size in the JSON companion. Current actual histories were compared line-for-line with exact sed stdout. Prior selected baselines and appended reports were compared by exact bytes; earlier full archives were not newly semantically reviewed.
+
+The JSON retains each completed command, literal input, output hash/size, complete visible text and controls, errors, diary strings, wall rows, Feedback state, histories and per-row clock differences. It records no transcript JSON parse failure. Event schemas contain command_execution and agent_message only, plus thread/turn events. There are no observed current image-tool events. The five captured final messages match the report file bytes exactly, with no terminal newline added or removed.
+
+## Stops and histories
+
+| Tester | Phone response / wall seconds; reason | Desktop response / wall seconds; reason | History unique / returned lines |
+|---|---|---|---|
+| Jonas | 114.154 / 114.154; FINISHED | 83.017 / 83.017; FINISHED | 2445 / 2845 |
+| Aisha | 83.543 / 83.542; FINISHED | 131.370 / 131.369; FRUSTRATED | 1436 / 2676 |
+| Diego | 113.341 / 113.340; FINISHED | 131.770 / 131.769; FINISHED | 1843 / 1843 |
+| Rosa | 121.495 / 121.494; CONFUSED | 95.331 / 95.331; TASTE | 4304 / 4524 |
+| Iria | 118.709 / 118.709; FINISHED | 166.281 / 166.281; TASTE | 2 / 2 |
+
+All actual own-history sed ranges were explicit and at most40 lines. Every requested history output matches its selected history bytes. All unique lines are covered before first gameplay; the last line is literally `End of supplied own history.` No cat own-history or oversized range occurred. History read commands were72/67/47/114/1 respectively. This proves stored stdout, not direct model delivery or comprehension. Jonas, Aisha and Diego explicitly report truncated receipt and uncertain unread ranges; their statements remain. Rosa claims full reading, which does not independently prove comprehension. Exact baseline prefixes and all declared appended report ranges match. This transfers selected-history review, not a full archive audit.
+
+Six FINISHED stops have actual `Everyone is out.` ending text. The other four are nonending stops. Each has a want_quit and actual stop; no later tester gameplay, coordinator cut, automatic ceiling, BUDGET or TOOL stop appears. Finalizer5 reports and10eligible stops are audit counts only.
+
+All55 requested diary reactions (54 successful entries plus Iria’s failed initial attempt) occur verbatim in their reports. Keep raw words and clock differences. The JSON lists every response/wall difference rather than reconciling it. Iria's initial Invalid reason attempt is not a successful diary.
+
+## Required qualifications
+
+- **visual-access**: All five reports claim successful image views (Jonas2,Aisha2,Diego4,Rosa4,Iria2); no actual view_image call or image-tool return is retained in any current stream. UNVERIFIABLE visual access, not evidence that images were unseen. Saved PNGs and this audit cannot establish tester perception.
+
+- **history-delivery**: Stored stdout is complete and exact for all selected histories. Jonas/Aisha/Diego explicitly report truncated direct delivery and uncertain unread ranges; retain their statements. Rosa claims all read, but literal stdout does not prove model delivery or comprehension. Prior selected-history composition review transfers by exact prefix/hash, not full archive completeness.
+
+- **shell-failures**: Diego line160 and Iria line66 each issued malformed literal apostrophe curl; exit1, stdout zsh:1: unmatched quote. Retry succeeds with Unicode escape. Reports omit these failed shell commands. Preserve failures and retries; no gameplay action from failed shell inferred.
+
+- **checkpoint-timing**: Jonas desktop58.754 and Diego desktop59.997 first_minute are premature. Corrected61.561/62.384 do not erase them. All sessions reached actionable play before valid after60 note. Rosa phone75.598 note occurs while paused in Feedback; snapshot_ms13342. All sessions stop before180; no pulse owed. All ten automatic first-minute shots occur before stop and do not establish image viewing or diary compliance. No late autoscreenshot or automatic ceiling in retained wall rows.
+
+- **raw-diary**: All55 requested diary reaction strings (54 successful entries plus Iria’s failed initial attempt) occur verbatim in full reports; no word corrections authorized. Response/report and wall timestamps differ by1ms in listed rows; retain both clocks. Failed Iria opening Invalid reason is not a successful diary. All five final captured agent messages exactly match report file bytes, with no terminal newline added or removed.
+
+- **stops**: Ten actual stop logs, one per device, with no later tester gameplay. Six FINISHED stops have Everyone is out ending text. Aisha desktop FRUSTRATED,Rosa phone CONFUSED,Rosa desktop TASTE,Iria desktop TASTE are nonending. No BUDGET/TOOL stops or coordinator cuts. This supports participant stopping, not game-wide completion or predicted enjoyment.
+
+- **feedback**: Feedback dialogs visibly open and Not now closes them on all10 devices. Jonas/both, Aisha/both, Diego/both, Iria/both show selected pressed label after retries. Rosa menu shortcuts auto-fill draft but no explicit Feedback quick-label press observed; offered label is not proof selection. Diego misses Feedback during phone confusion. No type/select/Submit/toggle/owner-settings/link-opening command observed. Backend absence of send, attribution, actual consent defaults remain unverified.
+
+- **rosa-reread**: Rosa actual phone quit98.367 reports rereading The bundle is tied. and Wait while the bundle is tied.; stop121.495 CONFUSED persists after later clearer hint. No desktop reread; desktop95.331 TASTE. Rule is conditional, not a quota. Counts include settings/retention/privacy/recording/Feedback/Debug and lab subjects, but are grouped selfreports with18->22->23 opening and13->14 menu corrections. Do not call counts exhaustive measured concepts or invent rereads.
+
+- **rosa-cause**: Phone wait52.228 snapshot_ms1 and shot86.317 snapshot_ms1 contain new tied log with old selected Hold these steady answer, tying status, Wait while bundle is tied hint. first_minute75.598 snapshot_ms13342 and quit98.367 snapshot_ms12051 repeat prior snapshot. Pause102.203 snapshot_ms0 updates needs-to-see-stair and Torch hint. Cause unknown; do not infer a persistent books-action bug, driver-only cause, or human1-3s reproduction.
+
+- **cohort-comparison**: Jonas/Aisha/Diego only target returners. Rosa FIRST Smoke/franchise experienced. Iria assigned fictional cold/empty2line history. Requested Terra low / Rosa Sol medium is not serving identity. Jonas revisits Street/followers; Aisha movement and death acknowledgment; Diego movement/danger and cannot revisit Sevim (away both). Current different nights do not prove causal improvement.
+
+- **new-asks**: Rosa consistency and Iria individual-air-danger clarity are two participant-reached new blocking questions, not established defects. Aisha death acknowledgment is an earlier ask revisited before ending; later ending context untested. Jonas and Diego say no new blocking ask. Preserve observations versus preference versus unknown cause.
+
+- **boundaries**: All596 completed commands:302sed,4cat cleanup,288 parsed assigned local gameplay,2 failed quoting calls. No source/peer/hidden-state reads observed outside supplied own history, no helper/script/network-other commands. Unknown omitted tool events remain unverified. Dynamic named-control failures/disabled controls/ambiguities remain raw; no bug causality inferred. Diego4 selection errors and point recovery preserve uneven tool evidence; not silently converted into game failure or forced TOOL stop.
+
+- **physical-source-bounds**: Stored root receipts say89152/e852f6 exit0;480 sampled original identities gone,5 profiles absent,11 BINDfree ports,17 stable payloads before report reads. Initial EADDRINUSE at unknown port remains unexplained. Source delivery and SDK released/archive/served markers are bounded static evidence, not backend/player/source-wide equivalence proof. This audit did no runtime probe.
+
+- **authority**: Finalizer5reports/10eligible stops are audit counts, not protocol enforcement. Root manual full report/raw evidence audit remains mandatory. This independent audit does not grant rootVerified, admission, owner acceptance, third panel or iteration cap reset. Final Smoke ordinary cap remains.
+
+## Concrete raw excerpts and limits
+
+Rosa phone transcript line255 (`item_128`, wait response52.228, snapshot_ms1) contains `Sevim: The bundle is tied. Show me the stair, then walk with me.` in the log while the selected answer remains `Sevim: Hold these steady. I can tie them in one bundle.`, status is `Stopped · tying the books`, and hint is `Wait while the bundle is tied.` Line268 (`item_135`, shot86.317, snapshot_ms1) retains the same disagreement. Line262 first_minute75.598 is paused in Feedback and uses snapshot_ms13342. Line270 want_quit98.367 uses snapshot_ms12051 and says, verbatim: “I reread two sentences: The bundle is tied. Wait while the bundle is tied.” That sentence is an excerpt from the longer unchanged raw diary string, not a replacement. Line272 pause102.203 refreshes status and hint to needs-to-see-stair and `Turn on Torch, then Show the stair.` A real reported confusion and reached question follow; a permanent bug or its cause does not.
+
+Iria desktop controls show Hacer first following, then `Hacer died from smoke inside before firefighters arrived.` The note144.221 and want_quit155.776 express uncertainty and sadness. The latter repeats an underlying snapshot with9seconds until closure; pause157.449 shows2seconds and stop166.281 remains paused. There is no observed ending. The individual-air-danger ask is participant interpretation, not proof that stair closure caused death.
+
+Diego phone transcript line160 and Iria phone line66 each have a literal apostrophe inside single-quoted JSON, shell exit1 and `zsh:1: unmatched "`. Each retry uses `\u0027` and succeeds. Both full reports omit that shell failure. Preserve it as a method qualification; no game input occurred from that failed shell command.
+
+Aisha desktop line154/160 attempted disabled Show the stair; line174/192 stale status names then current-name recovery; line212 ambiguous stopping label then `I’d stop here` pressed. Diego phone lines125/129/131/133 show changing-name failures, then line137 point selection succeeds. He did not open Feedback during that confusion; his report explicitly discloses it. Iria line13 Invalid reason is corrected; desktop line112 stale status is corrected and line155 ambiguous confused label is resolved by a point tap at line157. These outcomes do not establish an unresponsive game or controlled human-timing reproduction.
+
+Feedback: every Not now response removes the Feedback dialog. Jonas both, Aisha both, Diego both and Iria both have a pressed label afterward. Rosa's menu shortcuts populate the optional note and open the dialog, but no Feedback quick-label pressed state is observed on either device. This is a concrete unverified instruction, not a send. No type/Submit/recording-toggle/owner-settings command is observed. A queued-history sentence and static SDK call chain do not prove backend delivery, consent state, or attribution.
+
+Jonas and Diego preserve premature first_minute58.754/59.997 then corrected61.561/62.384. Rosa phone's75.598 is after actionable play but inside paused Feedback; label it accordingly. All10 automatic first-minute PNGs occur before stop. They are saved checkpoints, not actual image views or substitute diary logs. All sessions stop before180; no pulse was due. Wait calls accompany travel/book activity; no command says to wait out a checkpoint, and intent beyond retained actions is not proved.
+
+Only the three returners compare prior Smoke experience. Jonas revisits Street/followers, Aisha movement and death acknowledgment, Diego movement/breath warnings. Diego did not reach Sevim: she was away in both games. Rosa's Sevim familiarity comes from franchise history and remains uncertain identity; she has no earlier Smoke ask. Iria is cold under the fictional assignment, not universally proven unexposed. No peer/source read is observed outside supplied selected own history. Unknown omitted tool events remain unverified.
+
+No helper import/execution, browser, network, tests, package installs, runtime probe, subagents, repository or worktree changes were used. Only this audit MD/JSON pair was written. Initial overly broad tool output was truncated and reports were subsequently read in full; a static projection hit malformed shell quoting and was rerun preserving exceptions; first output construction encountered nested baseline schema and wrote nothing before correction. None of these is a gameplay rerun.
+
+No owned runtime or worktree exists. `git worktree list`: not applicable; no repository was touched.

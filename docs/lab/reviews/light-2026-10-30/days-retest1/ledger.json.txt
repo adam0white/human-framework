@@ -1,0 +1,385 @@
+{
+  "status": "CANDIDATE",
+  "reservation": "F-3133 through F-3143; root reports collision search in coordination and board. No tracker entries created.",
+  "ask_rows": [
+    {
+      "reserved_id": "F-3133",
+      "tester": "emre",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Show the amount paid and the savings remaining. I could follow who owed the mistaken payment, but I could not price either payment from savings.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+        "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+        "utf8_bytes": [
+          153,
+          300
+        ],
+        "codepoints": [
+          153,
+          300
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "existing_nonblocking_preference",
+        "judgment": "Savings remain unpriced; this repeats the original ask. Both stories ended. He explicitly reports no new blocking ask."
+      }
+    },
+    {
+      "reserved_id": "F-3134",
+      "tester": "emre",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Keep the phone choice cards visible sooner. The story filled the screen, and I had to scroll to see the choices.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/emre/report.md",
+        "source_sha256": "762462e6d47850ed4f53b76c74d16e9b6dc7f832f08735bcffff5733945b9c67",
+        "utf8_bytes": [
+          301,
+          416
+        ],
+        "codepoints": [
+          301,
+          416
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "existing_nonblocking_layout_preference",
+        "judgment": "Phone cards require scrolling; scrolling exposed them. No control blocked either session."
+      }
+    },
+    {
+      "reserved_id": "F-3135",
+      "tester": "pavel",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Make the receipt wording clear. Burak had a receipt in his hands, then fetched his original receipt. I could not tell whether those were different papers.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+        "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+        "utf8_bytes": [
+          138,
+          295
+        ],
+        "codepoints": [
+          138,
+          295
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "new_nonblocking_clarity_ask",
+        "judgment": "Receipt versus original receipt remains unclear, but he explicitly says it did not make him leave early and no new blocking gameplay ask arose."
+      }
+    },
+    {
+      "reserved_id": "F-3136",
+      "tester": "pavel",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Make the small cost text on the phone room drawing easier to read.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+        "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+        "utf8_bytes": [
+          296,
+          365
+        ],
+        "codepoints": [
+          296,
+          365
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "nonblocking_readability_ask",
+        "judgment": "Small pale phone cost text was harder to read; he distinguished the actions and finished."
+      }
+    },
+    {
+      "reserved_id": "F-3137",
+      "tester": "pavel",
+      "rank": 3,
+      "route_date": "2026-11-10",
+      "route": "taste or preservation",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "3. Give me a little more time with the days. The choices and their consequences interested me, but both stories passed quickly.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/pavel/report.md",
+        "source_sha256": "103787c52b56b6f8163f6c04dccec7edadddf5b02976baa682a086b3d432b4f1",
+        "utf8_bytes": [
+          366,
+          493
+        ],
+        "codepoints": [
+          366,
+          493
+        ],
+        "lines": [
+          7,
+          7
+        ],
+        "classification": "existing_nonblocking_pacing_preference",
+        "judgment": "Short duration repeats the original desire for more to read over time; both stories ended."
+      }
+    },
+    {
+      "reserved_id": "F-3138",
+      "tester": "tessa",
+      "rank": 1,
+      "route_date": "2026-11-10",
+      "route": "taste or preservation",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Give me more ways to speak or act with Hacer, Burak and Selin, including something in my own words.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+        "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+        "utf8_bytes": [
+          206,
+          308
+        ],
+        "codepoints": [
+          206,
+          308
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "existing_nonblocking_breadth_preference",
+        "judgment": "More ways to act or speak repeats the original two-button/own-words ask. Both stories ended without gameplay confusion."
+      }
+    },
+    {
+      "reserved_id": "F-3139",
+      "tester": "tessa",
+      "rank": 2,
+      "route_date": "2026-11-10",
+      "route": "taste or preservation",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Give me more reason to revisit the three days beyond choosing the other option on familiar screens.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/tessa/report.md",
+        "source_sha256": "7146830fb621cab89278ffc63e4e992bd1773434693f7188f4895563a16e2526",
+        "utf8_bytes": [
+          309,
+          411
+        ],
+        "codepoints": [
+          309,
+          411
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "existing_nonblocking_replay_preference",
+        "judgment": "Replay motivation repeats the original ask. Not returning tonight is a dated preference, not evidence of a new blocker."
+      }
+    },
+    {
+      "reserved_id": "F-3140",
+      "tester": "rosa",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Explain “no time to recuperate” beside the choice. I could not tell whether it meant no rest during that hour or no time left afterward.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+        "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+        "utf8_bytes": [
+          180,
+          323
+        ],
+        "codepoints": [
+          180,
+          319
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "new_blocking_comprehension_ask",
+        "judgment": "Phone ambiguity about no time to recuperate prevented her choosing with confidence. Want-quit CONFUSED at 92.072 s persisted to stop at 120.975 s, second day, 3 hours free. She did not finish either session. New to this retest evidence, not proof the wording was introduced by the fix."
+      }
+    },
+    {
+      "reserved_id": "F-3141",
+      "tester": "rosa",
+      "rank": 2,
+      "route_date": "2026-11-10",
+      "route": "taste or preservation",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Keep the concrete results and personal boundaries: soup helps, checking costs an hour, and Selin can offer company without requiring the private story.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/rosa/report.md",
+        "source_sha256": "248414f5123130ebd569361e4fe4bf544ee4d0750116c001e5d0e07d34e88e5a",
+        "utf8_bytes": [
+          324,
+          478
+        ],
+        "codepoints": [
+          320,
+          474
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "preserve_positive_behavior",
+        "judgment": "Preserve concrete consequences and personal boundaries. This is a keep request, not a new change blocker."
+      }
+    },
+    {
+      "reserved_id": "F-3142",
+      "tester": "leire",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Clarify why Leyla needs to recover enough to read when her status already says “Rested.”",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+        "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+        "utf8_bytes": [
+          138,
+          233
+        ],
+        "codepoints": [
+          138,
+          229
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "new_nonblocking_clarity_ask_related_to_blocker",
+        "judgment": "Rested/recovery wording confused her, but she finished phone. Supports reviewing state-aware wording; does not independently establish a blocking stop."
+      }
+    },
+    {
+      "reserved_id": "F-3143",
+      "tester": "leire",
+      "rank": 2,
+      "route_date": "2026-11-10",
+      "route": "taste or preservation",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Give me a reason to revisit a completed story without rereading so much familiar material.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/report.md",
+        "source_sha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
+        "utf8_bytes": [
+          234,
+          327
+        ],
+        "codepoints": [
+          230,
+          323
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "new_nonblocking_replay_preference",
+        "judgment": "Desktop BORED stop followed completion on phone the same evening. This is evidence of limited immediate replay interest, not failed first-play completion."
+      }
+    }
+  ],
+  "exact_opening_return_per_tester": {
+    "emre": {
+      "kind": "return_opening",
+      "text": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+      "utf8_bytes": [
+        0,
+        130
+      ],
+      "codepoints": [
+        0,
+        130
+      ],
+      "lines": [
+        1,
+        1
+      ]
+    },
+    "pavel": {
+      "kind": "return_opening",
+      "text": "I would return voluntarily another evening to try a different route, but not tonight; I would not leave it running.",
+      "utf8_bytes": [
+        0,
+        115
+      ],
+      "codepoints": [
+        0,
+        115
+      ],
+      "lines": [
+        1,
+        1
+      ]
+    },
+    "tessa": {
+      "kind": "return_opening",
+      "text": "I would not return voluntarily tonight or leave Days running; I liked the specific consequences and the chance to apologise, but I have had enough of choosing between two set options.",
+      "utf8_bytes": [
+        0,
+        183
+      ],
+      "codepoints": [
+        0,
+        183
+      ],
+      "lines": [
+        1,
+        1
+      ]
+    },
+    "rosa": {
+      "kind": "return_opening",
+      "text": "I would return voluntarily another evening on the large screen if the hour and rest costs were explained plainly; I would close it now, not leave it running.",
+      "utf8_bytes": [
+        0,
+        157
+      ],
+      "codepoints": [
+        0,
+        157
+      ],
+      "lines": [
+        1,
+        1
+      ]
+    },
+    "leire": {
+      "kind": "return_opening",
+      "text": "I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.",
+      "utf8_bytes": [
+        0,
+        122
+      ],
+      "codepoints": [
+        0,
+        122
+      ],
+      "lines": [
+        1,
+        1
+      ]
+    }
+  }
+}

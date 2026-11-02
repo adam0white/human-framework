@@ -1,0 +1,6 @@
+{
+  "status": "DRAFT_NOT_ADMITTED",
+  "tester": "iria",
+  "provenance": "Fictional cold profile; no prior diary assigned.",
+  "profile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-iria-provisional-profile1102.json"
+}

@@ -1,0 +1,75 @@
+{
+  "status": "PRIVATE_PERSON_HISTORY_DRAFT_NOT_ADMITTED",
+  "tester": "aisha",
+  "baseline": {
+    "history": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/own-history.md",
+      "sha256": "518f7af1ba65b1a1fe4c8a16bfd174f72efe89dd48c3967e3da5bcbe995a056b"
+    },
+    "map": {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-inputs/aisha/history-source-map.json",
+      "sha256": "4dea18a6bc3642c7a77f25f1f1c23fb2bb0bbbf8787568094c9dcbe70218fb44"
+    },
+    "outputByteRange": [
+      0,
+      185362
+    ],
+    "byteExactPrefix": true,
+    "lines": 1372
+  },
+  "segments": [
+    {
+      "packet": "murmur-retest2",
+      "order": 1,
+      "actualCompletionEnd": "2026-11-01T10:26:52.267297+00:00",
+      "source": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/aisha/diary-continuation.md",
+        "sha256": "1bac935a3ae3ea2a438ea821aa10f4abc290aa027467a9cdf1f02ff716d24adc"
+      },
+      "report": {
+        "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/aisha/report.md",
+        "sha256": "2fd654f7105734ca55db8bbe433c5916e2fdb11f7a9990c1e945ab93941186e1"
+      },
+      "composition": "exact_existing_own_continuation",
+      "reportByteRange": [
+        185667,
+        192111
+      ],
+      "reportLineRange": [
+        1385,
+        1431
+      ],
+      "continuationByteRange": [
+        185406,
+        192116
+      ],
+      "qualificationByteRange": [
+        192116,
+        192825
+      ],
+      "qualificationSources": [
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-root-qualification.json",
+          "sha256": "498259d298e73b6793d05e289303c81c0e5170dddfddb388e8d6b55a2027a6b9"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/murmur-retest2/method-qualification.json",
+          "sha256": "eb409266dea19e207159668cbf4d0ccd66cc17a4a8f72628fdfb9d52e63d0c77"
+        },
+        {
+          "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/murmur-retest2-packet-root-seal.json",
+          "sha256": "6f3ab7b67b2081d1cb824511542aacf3fd7f76727d32e2114c6517e44cef0e1e"
+        }
+      ],
+      "reportOccurrences": 1
+    }
+  ],
+  "historySha256": "41b68c9296ec00357c6f0042568d1a510557a2d8700579922caf3f99d2f1c8a6",
+  "historyBytes": 192855,
+  "historyLines": 1436,
+  "warning": "Earlier embedded end markers do not end the current file. Read through the stated final marker. Selected history is not a full archive; preserve inherited limits.",
+  "qualificationSource": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-gap-qualification.json",
+    "sha256": "53ce48c0c6dc925121c407522cc5f3a0a110a8b3b8566ab59bdcc7ab1fe3e534"
+  }
+}

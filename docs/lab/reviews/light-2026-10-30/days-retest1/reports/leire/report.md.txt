@@ -1,0 +1,33 @@
+I would not voluntarily return tonight or leave the game running; I finished one story and lost interest in a second pass.
+
+Ranked asks:
+
+1. Clarify why Leyla needs to recover enough to read when her status already says “Rested.”
+2. Give me a reason to revisit a completed story without rereading so much familiar material.
+
+I played this first Human Framework visit as Leire: phone first, then a fresh desktop game on the same evening. There was no previous visit to compare. I read both supplied history lines; the last was **“End of supplied own history.”** Unread range: **none**.
+
+On the **360×690 touch phone**, the opening felt calm and readable, though it introduced several tasks at once. The choices were clear and their consequences appeared immediately: soup used an hour and made Leyla rested; later, keeping the door made her very tired. I liked that Selin’s help cost her an evening at home. The one point that confused me was being offered another hour of recovery while already rested. I kept the notebook private, arranged the visit, and reached an ending that accounted for the visit, the papers, and the notebook.
+
+On the **1280×800 desktop**, the larger room illustration made the setting feel more like a place. I chose the door and paid the first claim to see a different outcome. The mistaken payment had a clear consequence, but the familiar rooms and account made me unwilling to replay the story that evening. I used the named controls through the driver; I did not test keyboard navigation.
+
+**Diary, in order** — engagement scores are the numbers I logged:
+
+- Phone, **6.785 s**, note, engagement **3**: “The opening is calm and readable, though there is a lot to take in before I start. I want to see what I can actually do.”
+- Phone, **12.365 s**, note, engagement **4**: “The soup choice changed the time and tiredness immediately. I understand why I would ask to see the paper before paying.”
+- Phone, **23.202 s**, note, engagement **3**: “I like that Selin has her own evening at stake. I am already rested though, so another hour to recover enough to read is a little confusing.”
+- Phone, **51.760 s**, want quit, **FINISHED**, engagement **3**: “I am done; the visit happened and the ending tells me what remains. I do not feel a need to replay now.”
+- Phone, **59.207 s**, stop, **FINISHED**, engagement **3**: “I finished the three days and am ready to leave.”
+- Desktop, **5.993 s**, note, engagement **3**: “The larger room illustration makes this feel more like a place. I recognise the setup from my phone, but this is a fresh start.”
+- Desktop, **11.800 s**, note, engagement **2**: “Keeping the door immediately made Leyla very tired. I can see the trade, but I already know this account and I am less curious to read it again.”
+- Desktop, **16.054 s**, note, engagement **2**: “Paying produced a clear mistake, which makes the other choice feel real. Still, I do not want to go through the same rooms again tonight.”
+- Desktop, **18.410 s**, want quit, **BORED**, engagement **2**: “I want to stop here. I have seen this story end once and another pass tonight feels repetitive.”
+- Desktop, **27.425 s**, stop, **BORED**, engagement **2**: “I am leaving the second run because repeating the story tonight no longer interests me.”
+
+The phone game ended at **49.345 s**; I stopped the session at **59.207 s**. The desktop stopped early at **27.425 s**, on the first day. Neither session reached the 60-second first-minute checkpoint or the 180-second pulse; those checkpoints remain untested.
+
+For the phone confusion, I opened Feedback and chose **“I’m confused.”** The phrase appeared in the feedback field; I went Back without submitting. At each stop I chose **“I’m stopping”** and went Back without submitting. The phone’s earlier phrase was still in the field when I reopened Feedback, and choosing the stopping phrase replaced it. Recording remained checked; I typed no feedback note and sent nothing.
+
+I viewed the opening screenshot on each device: [phone](</Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/phone/a-001.png>) and [desktop](</Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-inputs/leire/desktop/a-001.png>). The phone showed a tall, readable opening dialog; the desktop showed the same dialog over a room illustration. One initial diary log was rejected for an invalid reason and then logged successfully. Two shell calls containing apostrophes failed before reaching the driver; corrected calls succeeded. No enabled game control remained inoperable after retry.
+
+No worktree, server, browser, or process was created or owned for this play. The assignment prohibited additional shell calls, so I did not run `git worktree list`.

@@ -1,0 +1,54 @@
+# Smoke final packet qualification review
+
+**CLEAR at manifest `69f183bb5d03707394136cbe3aa4e8998bcec275e986e7b111909153a0993ca1`.** No blocking qualification finding. This clears the frozen candidate for root sealing review. It does not seal it, integrate dated records, approve another panel, establish a bug-free game, or grant owner acceptance.
+
+Reviewer: `/root/smoke_packet_qualification_review`, inherited default Codex. Static review only. Candidate: `/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-final1102-packet-candidate`.
+
+## Checked bindings and scope
+
+The manifest hash matches the assigned hash. All **44 payloads** match their listed SHA256 and size. All **35 exact copies** match the source bytes, source hash and source size. All **10 explicit inherited qualification references** match their listed hash and size. All **26 unique direct path/SHA256 references** extracted from the five current own-history maps match. Rosa's separately named Neighbours qualification source matches `316916a19e933c0bda758649c15eee63247cc215e1ca5ac8b7c19058eb9f003e`.
+
+I read all five full reports and all four complete current diary continuations. Each continuation ends with its exact full current report bytes; no report words were replaced by coordinator interpretation. I read README, asks, logical testers, methodology, all ten root triage entries F-3123–F-3132 and all five complete return statements, root SF1–SF14 and all 17 response/wall-clock differences, full protocol audit Markdown, and operative protocol JSON. I checked every triage ask against its exact report byte interval. I read current own-history maps and the ten explicit inherited qualification references. I also inspected the relevant baseline-map policies, selected-history qualification sections, gap qualifications for the three returners, and Rosa's inherited W/SW/NR/SWF/NC limits.
+
+The operative JSON review covered summary counts, qualifications, manifest checks, finalizer counts, every player's history aggregate and exact-prefix/appended-report checks, event/image inventories, final-message byte comparison, and all ten stop/checkpoint/error/Feedback/diary-literal/timing projections. I read the critical Rosa consistency and Iria death/closure visible-text excerpts. This is not a new full semantic audit of all 596 raw commands or all inherited archives. Earlier broad projections truncated; the full requested reports/diaries were read separately and the operative per-player projections were reread in compact form.
+
+## Claim challenge results
+
+| Claim area | Finding at this manifest | Controlling evidence |
+|---|---|---|
+| Completion and authority | Correctly remains a candidate with dated record/canonical import pending and owner acceptance false. Two-iteration cap remains; no third ordinary panel, bug-free conclusion, or completion inferred from five reports. Source clean pin and source/SDK evidence remain bounded static receipts. | README; methodology SF13–SF14; root qualification `finished:false`, cap and ownerAcceptance; source delivery/final pin |
+| Cohort | Three target returners only: Jonas, Aisha, Diego. Rosa is first Smoke with franchise experience. Iria is fictional cold under the supplied empty-history assignment. Leila is omitted and no four-returner comparison is claimed. Requested models are not established serving identity. | README; logical testers; SF10; own-history maps |
+| Stops and diaries | Six actual Everyone-is-out endings and four voluntary unfinished stops; no coordinator cuts. There are 54 successful diary entries and one rejected Iria attempt, 55 requested reaction strings. The rejected request is not promoted to a successful diary. | SF5–SF6; protocol summary/player projections; root ending check |
+| Images and history | Fourteen claimed image views remain UNVERIFIABLE because zero current image-view events are retained. This is not proof images were unseen. Complete aggregated stdout is not proof of model delivery or comprehension; the three explicit truncated-delivery reports and Rosa's self-claim remain separate. | SF1–SF2; report texts; event/image inventories and history aggregates |
+| Failed commands and Feedback | Two malformed apostrophe shell calls remain qualified despite omission from reports. Failed shell text is not a gameplay action. Rosa shortcut autofill is not an explicit Feedback quick-label press. Diego discloses missing the confusion label. No observed typing/Submit/settings action is not backend proof of absence. | SF3/SF7/SF12; operative failed commands; all ten Feedback projections |
+| Timing | Jonas 58.754 and Diego 59.997 premature logs remain alongside their corrected logs. Rosa phone 75.598 first-minute note is paused in Feedback with snapshot delay. All stops precede 180; no pulse is owed. Automatic screenshots establish neither viewing nor diary compliance. All 17 one-millisecond differences remain literal. | SF4–SF5; methodology clock table; operative checkpoints/timing |
+| Rosa interpretation | Two quoted phone rereads are a conditional stopping rule, not a required quota. Desktop reports none. Concept counts are grouped, incomplete self-reports with disclosed corrections. Tied log/tying status/wait hint are retained; later Torch hint corrects. Unknown cause and snapshot delay prevent a permanent books bug, driver-only explanation, or human-speed reproduction claim. | SF8–SF9; full Rosa report/diary; Rosa lines 255/262/268/270/272 |
+| New questions and death | Rosa consistency and Iria air urgency are two reached blocking questions, not two proved new defects. Iria's death occurs before closure, which does not establish closure causation. Aisha revisits a prior death-account ask and stops before ending; ending-context absence is untested. | SF9/SF11; F-3124/F-3129/F-3132; full reports; Iria visible-text excerpts |
+| Routing and preservation | All ten literal ranked asks and complete returns survive. Dates route work and do not close asks. Taste, danger, difficulty, follower autonomy, qualitative health cues, neighbour motives, books and positive keep-asks survive. No numerical timer, guaranteed survival, guaranteed compliance, or new-defect interpretation is imposed. | asks; root triage; F-3123–F-3132 qualifications |
+
+These are retained qualifications, not newly discovered blockers. Raw producer image-view, full-reading and no-submission statements remain verbatim observations or claims under the attached qualifications. They cannot be lifted out of the packet as independently verified facts.
+
+## Bound evidence
+
+The JSON companion contains the complete 44-payload binding list, all 35 exact-copy bindings, all ten explicit inherited references, and all 26 direct current-map references. Principal controlling payloads are:
+
+| Relative path | SHA256 |
+|---|---|
+| `README.md` | `a0116b00433cd737349bc87f2f48b991b384452b857071987a09f13465819be7` |
+| `asks.md` | `2a8c4dc92b7279b45e863fba1a52a3dc52c60e08b1e545d15c79d8bbbf4b4b79` |
+| `logical-testers.md` | `b10aecac13b3c511c2049a4d65ec0d3d922d98d17ef6377591a6d018e20a9914` |
+| `methodology.md` | `e268c8fcfd1062fc3166f50eb7d8d0e1382117f0b2dfcd9e986f156149d54378` |
+| `source-map.json` | `f200e4a92757ad4dc797a924fab09f74a0f43a134cbb3e7bd1d54cefaac87868` |
+| `evidence/root-qualification.json` | `a703ff8970db2bc2c793ab91134087a6540bee1879a61a11ff1a19cfb1470af9` |
+| `evidence/root-ask-triage.json` | `5c8b4b66abc805ccd29075735a3ea0bb25069c1c028c8f08cc63493150bb079c` |
+| `evidence/protocol-audit.md` | `543a356d4e05ac5445c27d910a62fbf21f1b34e6014531155dbdf9e322943998` |
+| `evidence/protocol-audit.json` | `7c405469472fb8660a96336524d99c408706be0b9fb6c2b4f1042c9c4cbc6371` |
+| `evidence/root-ending-check.json` | `c3f9643a4ccc4b6be4c923e02a04ca01d6a31616d7448f6e18799ca64fbdecb8` |
+| `evidence/root-source-delivery.json` | `03eb17be90be8d6a732c07a7fe442644acd0aac094aab5c24ad4ae664246e65d` |
+| `evidence/final-live-pin.json` | `d6386c3e3d8c914063f4c14bdaaaf7a8425524716b5eacd9afe513a3fade9ae5` |
+
+## Limits and cleanup
+
+I did not launch a runtime, import or execute a game/helper, use network/browser/tests, spawn agents, or mutate a repository/worktree/candidate. Static shell reads, jq projections, hashing and byte comparisons supplied the checks above. Only this review MD/JSON pair was written. No live physical cleanup, source-wide equivalence, backend state, actual serving model, human enjoyment, delivery/comprehension or image perception is independently established by this review. Root's existing raw-audit scope remains explicit and is not enlarged by this CLEAR.
+
+No owned runtime or worktree exists. `git worktree list`: not applicable; no repository was touched.

@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-02T11:04:34.857290+00:00",
+  "status": "ROOT_FIRST_FIXED_RETEST_QUALIFIED_SECOND_FIX_REQUIRED",
+  "round": "first fixed retest",
+  "allFiveReportsRootFullRead": true,
+  "endings": 7,
+  "voluntaryUnfinished": 3,
+  "coordinatorCuts": 0,
+  "scope": "Fictional lab personas in automated project-test contexts; three Days returners, Rosa firstDays/franchise experienced, fictional cold Leire. No human/owner acceptance.",
+  "newBlockingQuestion": {
+    "tester": "rosa",
+    "device": "phone",
+    "stopWallSeconds": 120.975,
+    "reason": "CONFUSED",
+    "literalCost": "1 hour to check the original you already have; no time to recuperate.",
+    "rawLine": 278,
+    "rawElapsedSeconds": 84.158,
+    "state": "Rested, 3 hours free",
+    "classification": "ambiguous choice-cost wording; not proven state bug"
+  },
+  "corroboration": "Leire reports related already-Rested recovery question, finishes phone; not another blocking stop.",
+  "requiredNext": "Second fix cycle, then retest same standing testers with their own updated histories; no iteration cap reset.",
+  "qualifications": [
+    "D1: image viewing UNVERIFIABLE: no retained image-tool event despite all five reports claiming views; PNGs do not prove perception.",
+    "D2: selected histories exact stdout and full coverage before gameplay; not full archive/delivery/comprehension proof; repeated truncation reads retained.",
+    "D3: four failed shell quotes: Pavel omitted one; Tessa one and Leire two disclosed; no input from failed shells. Leire invalid reason rejected then corrected.",
+    "D4: seven literal ending responses and three unfinished stops; no interruptions/cuts. Stopping is not universal game completion.",
+    "D5: five automatic first-minute shots occur after stops. Capture only; no later gameplay rows; not first-minute compliance. Only Rosa phone active-play first-minute64.198; no180s pulses due.",
+    "D6: raw/response/report clock differences preserved; grouped concept counts corrected in Rosa report, not measured census.",
+    "D7: named automated inputs and individual paths; no physical touch, causal before/after or human-speed reproduction claim.",
+    "D8: Feedback label draft+Back observed; no Submit/type/toggle in retained inputs. Backend, consent attribution and serving identity unverified.",
+    "D9: three returners only; Rosa firstDays; Leire fictional cold with bounded scan/no universal nonexposure. Nia originals intact.",
+    "D10: actual32680EXIT0 and prior435 sampled identity closure/fiveprofiles/elevenports/17stableinputs before reports remain bounded receipts, not unseen process proof.",
+    "D11: root raw249responses/56literalreactionstrings/102extractionspans checked; rejected Leire log is not successful diary. Finalizer eligibility is audit, not enforcement.",
+    "D12: first fixed retest has one new reached blocking question; secondfix/retest required, no finish/cap/thirdpanel/owneracceptance claim."
+  ],
+  "boundSources": {
+    "days-retest1102-root-literal-check.json": "e12341e9707390aa5b6417bd69848ba1a689a539c08a4d40d6892dabfc78a038",
+    "days-retest1102-root-raw-check.json": "8b5217a4a17edb2852319efaceb16b46a96ee343a9b23c780211fad9c56af0cf",
+    "days-retest1102-protocol-review.md": "ba066ad9cf0fc53448873ccccef1e0e79a478968d1959200867c8a01d13c4103",
+    "days-retest1102-protocol-review.json": "5ae33676a6780dd9d09a77dc25476cd413935e90e4f37bf29346242be215da44",
+    "days-retest1102-ask-review.md": "0a6f01d2a2c7fded74176175ead736c28f6770a8721fdd8f050f73821541bd04",
+    "days-retest1102-ask-review.json": "d602fcc21790861f8191fb1a5ca6b323cd56b916e5be372a1f0c1aa85116af70"
+  }
+}
