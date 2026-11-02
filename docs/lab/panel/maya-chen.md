@@ -3268,3 +3268,71 @@ The coordinator owns the drivers and browsers. I touched no repository and creat
 ---
 
 COORDINATOR METHOD QUALIFICATION (separate from unchanged own report): Complete history stdout does not prove delivery or comprehension. Saved screenshots do not prove perception; inherited qualifications remain. Dispatch2 session 9285 outer exit 1; this report and completion are separately qualified. Desktop want_quit 52.401, automatic shot 60.056 and stop 61.865 (report 61.866); no first-minute diary. Actionable checkpoint obligation remains unverified. Phone first-minute 61.144. Raw versus report time differences remain unnormalized. No full network guard, feedback or backend receipt is established. See SWF1–SWF14 and the exact epoch qualifications.
+
+
+## 2026-11-01 — Small Works final fixed retest
+
+Verbatim source continuation, including its separately labelled coordinator note:
+
+```text
+I would not return voluntarily tonight; I might come back another evening if I could hear what Rafi tells his customer or try a fresh repair puzzle, but I would not leave the workshop running.
+
+My ranked asks:
+
+1. Let me follow up with Rafi about what he will tell his customer. His story still interests me, but my reply got a receipt and no words from him in the conversation I reached.
+2. Tell me which object Nora’s handle sketch concerns. I heard the story beside her reading light this time and beside the music box on my first visit; I still could not connect it confidently to either object.
+3. Make the music box card easier to reach on the desktop workboard. It was below the fixed bottom area until I scrolled.
+
+I reached no new blocking ask. I chose to leave because I had heard the personal stories before and did not want to start another diagnosis tonight.
+
+I’m Maya Chen, 24, a Vancouver library assistant. This was a return to *Small Works* using the assigned agent-marked URL. I started two independent fresh games on the same evening, with no imported save or matched seed. Recording and consent stayed at their defaults.
+
+I read all **2,610 lines** of the supplied own history before play. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is a selection, not my complete archive.
+
+- **Phone:** 360×690 touch, driver 26500. Opened at **0.587 s**; stopped at **62.141 s**, Day 1 10:35.
+- **Desktop:** 1280×800 keyboard and mouse, driver 26501. Opened at **0.471 s**; stopped at **62.023 s**, Day 1 10:25.
+
+Both stops were voluntary and well below the 20-minute ceiling. Neither game ended. I decided to stop each session before 60 seconds; the stop logs came after 60 while I completed Feedback. I recorded no first-minute diary line on either device. Neither reached 180 seconds, so pulses and later checkpoints were untested.
+
+The lantern title was familiar, clean and readable on both screens. I replaced its switch from memory on both devices, then checked that it stayed lit while carried. The garden-table return line remained a satisfying small detail. On the phone, Rafi’s fan barely moved air under load, a clear test result. His deposit story drew me back, but I got the same receipt for my reply that I remembered from last time. On desktop I tried Nora’s reading light and heard her handle-sketch story again. I could answer it now, but her response was also a receipt.
+
+**Diary — phone**
+
+These are my logged words in order, unchanged. Times are driver `elapsed_s`.
+
+- **7.756 s, note, engagement 4/5:** “The lantern brings back the switch and Sam watching, high confidence. Last time Nora answered about her gear; I want to follow Rafi this evening.”
+- **49.582 s, note, engagement 3/5, Day 1 10:35:** “Rafi describes the same deposit and customer from my last desktop visit, high confidence. I still want to know what he tells that customer, so I will answer him again.”
+- **54.090 s, want_quit, TASTE, engagement 2/5:** “The same receipt again, and I do not see his answer. I want to stop on the phone and try another approach on desktop rather than repeat this conversation tonight.”
+- **62.141 s, stop, TASTE, engagement 2/5:** “I am stopping on the phone. The lantern works and the fan test is clear, but Rafi gave the familiar story and only a receipt for my reply. I selected stopping and went back without sending.”
+
+**Diary — desktop**
+
+- **6.325 s, note, engagement 3/5:** “Same evening, fresh workshop. The lantern reminds me of the switch again, high confidence. I want a different object this time.”
+- **46.677 s, note, engagement 3/5, Day 1 10:25:** “The handle sketch and brother are the story I heard over the music box on my first visit, high confidence. It is beside the reading light now; I still do not know which object the sketch belongs to, but I can answer this time.”
+- **51.859 s, want_quit, TASTE, engagement 2/5:** “Nora also only receives my reply. The reading light gives me another diagnosis, but I do not want to start it tonight after these familiar conversations. I would stop here.”
+- **62.023 s, stop, TASTE, engagement 2/5:** “I am stopping on desktop. Nora let me answer the familiar handle story, but I saw only a receipt and still do not know which object the sketch belongs to. I selected stopping and went back without sending.”
+
+Both quit wishes persisted. I did not diagnose or repair the fan or reading light, revisit Nora’s gear agreement, reach later conversations, or see a game ending. The receipt states that the person received my reply and that further work needs its own agreement. It does not establish whether a later response exists.
+
+The ordinary lantern cue prompted high-confidence recognition at **7.756 s on phone** and **6.325 s on desktop**: I remembered my switch test, and on phone Sam watching. Rafi’s deposit story prompted the high-confidence recognition at **49.582 s**; Nora’s sketch and brother prompted it at **46.677 s**. I recognised no other separate earlier encounter during these sessions.
+
+Compared with my last Small Works visit, Rafi’s immediate reply still stopped at a receipt in the conversation I reached. The desktop music box card still required scrolling. I did not retest the exact wait for Nora’s gear question, which had worked for me last time. On my first visit I could not answer Nora’s handle-sketch story; here I could answer, though I remained unsure what the sketch referred to.
+
+**Screenshots actually viewed:**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/phone/a-001.png), **4.431 s**: dark single-column title, lantern illustration and readable Start repairing button.
+- Phone [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/phone/a-002.png), **30.336 s**: workboard with Rafi’s fan and its Accept promise button visible; the fixed status and day controls occupied the bottom.
+- Phone [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/phone/a-003.png), **36.984 s**: after scrolling, the accepted fan and its Open on bench button.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/b-001.png), **1.980 s**: the title centred on a wide dark page.
+- Desktop [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/b-002.png), **25.085 s**: the workboard columns, with the music box card below the fixed bottom area.
+- Desktop [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/b-003.png), **32.633 s**: after scrolling, the music box and accepted reading-light cards were visible.
+
+I used named and screenshot-point taps and scrolling. I used no desktop keyboard keys, so keyboard operation remains untested. I did not view an in-play repair-panel screenshot on either device.
+
+On both devices I opened Feedback when I decided to stop, selected **“I’m stopping”** and saw it marked pressed, then used **Back to the menu**. I typed no note, pressed no Submit and changed no recording or consent setting.
+
+The coordinator owns the drivers and browsers. I touched no repository and created no worktree, so `git worktree list` is not applicable.
+
+---
+COORDINATOR METHOD QUALIFICATION (separate from the unchanged own report): Retained history stdout does not prove delivery or comprehension; inherited W/SW/NR/SWF and image-view limits remain. Screenshot files do not independently establish perception. Both actual stops were voluntary and unfinished; no ending was observed. Checkpoint obligation during a stopping wrap is unverified; automatic post-stop screenshots do not establish continued play. Requested model does not prove serving identity or causation. Current own stop projections: [{"tester":"maya","device":"phone","wallRow":34,"elapsed":62.141,"reason":"TASTE","engagement":2,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."},{"tester":"maya","device":"desktop","wallRow":31,"elapsed":62.022,"reason":"TASTE","engagement":2,"unfinished":"Report says unfinished; no observed ending flag","qualification":"Voluntary actor stop; not automatic ceiling or controller interruption."}]; current own reported time differences: [{"tester":"maya","device":"desktop","wallRow":3,"transcriptLine":206,"wallElapsedLiteral":"1.979","driverResponseElapsedLiteral":"1.98","manuscriptTimeLiterals":["1.980"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."},{"tester":"maya","device":"desktop","wallRow":14,"transcriptLine":228,"wallElapsedLiteral":"25.084","driverResponseElapsedLiteral":"25.085","manuscriptTimeLiterals":["25.085"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."},{"tester":"maya","device":"desktop","wallRow":31,"transcriptLine":260,"wallElapsedLiteral":"62.022","driverResponseElapsedLiteral":"62.023","manuscriptTimeLiterals":["62.023"],"qualification":"Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."}]. No backend or owner acceptance is established.
+```

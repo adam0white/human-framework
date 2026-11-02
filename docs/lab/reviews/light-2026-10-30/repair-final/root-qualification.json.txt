@@ -1,0 +1,397 @@
+{
+  "at": "2026-11-01T20:17:54.488066+00:00",
+  "status": "ROOT_QUALIFIED_SECOND_FIXED_RETEST_ITERATION_CAP_REACHED_DATED_RECORD_PENDING",
+  "source": "bc52f86f9828f619795c843f513880ee4918ebe9",
+  "hf": "4.11.0",
+  "actualToolSession": 36364,
+  "actualExit": 0,
+  "rootReturnSha256": "c1d0d80d78b0655fce1add3f84a7d5f20fa059d43dd096402547974b741b2d72",
+  "rootPhysicalCpuEvidenceSha256": "81a09b2b1b40dc69da3ba9bd8471e3ac83b665ae91c8ee41e95e8f4339d262fb",
+  "protocolReviewSha256": "c6fd9cb60dcd8d7292ce4507187eee719c9d76a0fde18d8592c3469171e95b9d",
+  "protocolReviewMdSha256": "27be7bdf96cff83b1fe8683f1a6ad0e4be37bf8ba55a773ddf829894477ae46d",
+  "all155ProtocolEvidenceHashesReverified": true,
+  "rootFullReadAll5Reports": true,
+  "rootNiaDisplayRecovery": "Initial combined display truncated Nia middle; lines28–70 subsequently read completely. Other4report bodies complete.",
+  "counts": {
+    "players": 5,
+    "currentEngineeringPasses": 5,
+    "actualNativeSession": 36364,
+    "actualNativeExit": 0,
+    "eligibleReports": 5,
+    "eligibleStops": 10,
+    "voluntaryUnfinishedStops": 10,
+    "reasons": {
+      "TASTE": 5,
+      "BORED": 2,
+      "CONFUSED": 3
+    },
+    "budgetStops": 0,
+    "toolStops": 0,
+    "finishedFlags": 0,
+    "observedEndings": 0,
+    "controllerCuts": 0,
+    "completedCommands": 602,
+    "readCommands": 284,
+    "historyReadCommands": 283,
+    "literalHistoryLines": 11194,
+    "localDriverCommands": 318,
+    "literalDiaryEntries": 51,
+    "rawWallRows": 337,
+    "manualPngs": 26,
+    "automaticPngs": 9,
+    "allPngs": 35,
+    "validFirstMinuteDiaryEntries": 4,
+    "prematureFirstMinuteDiaryEntries": 1,
+    "wrapCrossed60WithoutDiary": 3,
+    "automaticPoststopShots": 2,
+    "pulseEntries": 0,
+    "feedbackLabelSelections": 14,
+    "feedbackBackReturns": 14,
+    "providerErrorEvents": 1,
+    "malformedOrFailedCommands": 0,
+    "rawWallDriverResponseOneMsDifferences": 75,
+    "uniqueExplicitManuscriptOneMsEventDifferences": 13
+  },
+  "all14MethodQualifications": {
+    "current_engineering_scope": "One actual final-five controller36364 EXIT0/PID27234, all5positive current completions; no 3+2 historical substitution or old Nia exception. Five engineering-eligible reports do not establish protocol perfection, bugfree behavior, target ask closure or player/owner acceptance.",
+    "physical_closure": "Three distinct native-exit/CPU-receipt/underlying evidence files hash-match; typed session36364/EXIT0/PIDidentity6e7d20; root actual census915dbe evidence reports476 sampled identities gone/5profiles absent/11bind-free ports/inputs+helpers stable/no unknowncwd. Independently reconstructed476 identity union from completion events and17observerrows. No universal unseen/transient CPU/process proof.",
+    "stop_scope": "Ten voluntary unfinished stops:5TASTE,2BORED,3CONFUSED;0BUDGET/TOOL/FINISHED/automatic ceiling/controller cut/observed ending. Reports of no ending do not prove no possible ending. No administrative attempt/cap reset or extra ordinary iteration inferred.",
+    "history_receipt": "All11194 selected-history lines across2610/2061/2409/4112/2 have exact retained stdout coverage in283bounded own-history calls before any driver action; reports selfclaim fullread. Raw tool output is not independent model delivery/comprehension. No output truncation indicator or literal mismatch in retained history outputs, but the client-visible delivery layer is unverified. Inherited W/SW/NR/SWF and selected FREE/CONT/old exposure/Well passfalse limits remain; latest complete read never rewrites earlier uncertainty.",
+    "wrap_checkpoints": "MayaP want54.090/auto60.047/stop62.141; MayaD want51.859/auto60.051/rawwallstop62.022,response+report62.023; RosaP want49.095/auto60.041/stop66.788. No first-minute diary in any; Feedback-only wrapping crossed60. Actionable checkpoint obligation stays UNVERIFIED, not waived/declaredcompliant or forcedwait. No retroactive diary.",
+    "checkpoint_entries": "Four valid first-minute diaries:EmreD raw61.512/response+report61.513,NiaP60.812,InesD61.659,InesP61.039. NiaP58.965 is an accepted but premature duplicate first_minute entry, correctly disclosed; later valid entry does not erase it. All sessions<180 so no pulse reached; later checkpoints untested.",
+    "poststop_images": "NiaD stop52.627→automatic60.062 and RosaD42.194→automatic60.080; no intervening/later tester actions. These are automatic poststop images, not continued play/diary/view. EmreP stop33.657 has no automatic shot. Total9auto+26manual=35savedPNGs; allhashes match, manual≤5+auto≤1/device.",
+    "image_perception": "All5completed transcript item types expose no identifiable returned image-view events. Saved PNGs/shot responses and actually-viewed report claims do not independently prove perception or rendered-layout/font/viewport behavior. No PNG rendered/viewed by this reviewer. Startup driver_check remains fork-unverified; source hash and prior independent instrument control are separately bound, not selfcertified by that label.",
+    "errors": "602completed shell commands all0/recognized shapes;318localdriver requests map one-to-one to manual wall operations and parsed responses/no drivererror;284reads include283history+1cleanup. Ines transcriptline158 reports Reconnecting2/5, connection reset by peer54 between completed phone log44.693 and next command. Same tester exits0; no coordinator retry/cut/TOOLstop inferred and cause unestablished. Browser logs retain display/GPU/network-service/rendezvous diagnostics; no game/product cause inferred.",
+    "feedback_boundary": "14label/Back interactions:5confused+9stopping, each selected label response pressed and eachBackresponse showsResume. No classified command types a note, presses Submit or toggles recording/consent. Submit merely appears as an offered control. No backend feedback/save/linking receipt or universal unchanged-default recording proof; reports say defaults/no submission.",
+    "diary_ratings_and_confidence": "All51reaction strings/order/engagement values and explicit diary times match corresponding request/driverresponse. Six diary events and seven other explicit report-time events differ rawwall by1ms; all13 reporttimes matchresponse. Emre high-confidence descriptors and Ines high-confidence descriptors occur in later report prose, not in those contemporaneous log strings; do not retrofit confidence. Nia invitation8.990 has no separately stated confidence. Rosa concept/reread counts are subjective/selfreported and incomplete battery-guide concepts are disclosed.",
+    "timing": "All75rawwall-versus-driverresponse differences listed exactly below, each response1ms later;13unique explicitly referenced manuscript event differences also listed with original numeric literals/source pointers. Other62 are unquoted operation differences. No normalization, isolated end-user latency/network/game-performance or causal inference.",
+    "source_prompt_models": "Sourcebc52/HF4.11/app4.3 clean observed before/after eachperson and release-start metadata; admission bound13body/officialSDK evidence uses normalagent-query consumption/history replacement. Assigned URL/actualdriverargs contain agent marker. No independent rebuild/fullgraph/network/backend proof. Saved effective prompt exactly brief+explicit admission suffix; prompt/grant/input hashes and requested CLI model/effort match. RosaSolMEDIUM/othersTerraLOW requested, serving identity unverified.",
+    "report_outcome_limits": "Maya/Emre explicitly no blocking ask; Nia/Rosa/Ines report reached blocking questions. Preserve conditional return answers and legitimate voluntary choice/difficulty. Nia confirms invite found/observed bulb record content, not proof missing independent-repair route or record cause. Rosa reported own-plans clarity and retained-record/rules rereads, not cognitive measurement or fix acceptance. Ines5.91V interpretation difficulty is her reached uncertainty, not proven electrical/game defect. Root owns final qualification/triage/release; no target verdict by this protocol audit."
+  },
+  "explicitReportTimeDifferences": [
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/wall-clock.jsonl",
+      "wallRow": 3,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/transcript.jsonl",
+      "transcriptLine": 206,
+      "op": "shot",
+      "kind": null,
+      "operationSummary": {
+        "op": "shot",
+        "file": "b-001.png"
+      },
+      "wallElapsedLiteral": "1.979",
+      "driverResponseElapsedLiteral": "1.98",
+      "wallElapsed": 1.979,
+      "driverResponseElapsed": 1.98,
+      "manuscriptTimeLiterals": [
+        "1.980"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/wall-clock.jsonl",
+      "wallRow": 14,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/transcript.jsonl",
+      "transcriptLine": 228,
+      "op": "shot",
+      "kind": null,
+      "operationSummary": {
+        "op": "shot",
+        "file": "b-002.png"
+      },
+      "wallElapsedLiteral": "25.084",
+      "driverResponseElapsedLiteral": "25.085",
+      "wallElapsed": 25.084,
+      "driverResponseElapsed": 25.085,
+      "manuscriptTimeLiterals": [
+        "25.085"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/desktop/wall-clock.jsonl",
+      "wallRow": 31,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/transcript.jsonl",
+      "transcriptLine": 260,
+      "op": "log",
+      "kind": "stop",
+      "operationSummary": {
+        "op": "log",
+        "kind": "stop",
+        "reason": "TASTE"
+      },
+      "wallElapsedLiteral": "62.022",
+      "driverResponseElapsedLiteral": "62.023",
+      "wallElapsed": 62.022,
+      "driverResponseElapsed": 62.023,
+      "manuscriptTimeLiterals": [
+        "62.023"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/desktop/wall-clock.jsonl",
+      "wallRow": 33,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/transcript.jsonl",
+      "transcriptLine": 170,
+      "op": "log",
+      "kind": "first_minute",
+      "operationSummary": {
+        "op": "log",
+        "kind": "first_minute"
+      },
+      "wallElapsedLiteral": "61.512",
+      "driverResponseElapsedLiteral": "61.513",
+      "wallElapsed": 61.512,
+      "driverResponseElapsed": 61.513,
+      "manuscriptTimeLiterals": [
+        "61.513"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/phone/wall-clock.jsonl",
+      "wallRow": 27,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/transcript.jsonl",
+      "transcriptLine": 178,
+      "op": "shot",
+      "kind": null,
+      "operationSummary": {
+        "op": "shot",
+        "file": "a-002.png"
+      },
+      "wallElapsedLiteral": "41.557",
+      "driverResponseElapsedLiteral": "41.558",
+      "wallElapsed": 41.557,
+      "driverResponseElapsed": 41.558,
+      "manuscriptTimeLiterals": [
+        "41.558"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/phone/wall-clock.jsonl",
+      "wallRow": 30,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/transcript.jsonl",
+      "transcriptLine": 184,
+      "op": "shot",
+      "kind": null,
+      "operationSummary": {
+        "op": "shot",
+        "file": "a-003.png"
+      },
+      "wallElapsedLiteral": "47.659",
+      "driverResponseElapsedLiteral": "47.66",
+      "wallElapsed": 47.659,
+      "driverResponseElapsed": 47.66,
+      "manuscriptTimeLiterals": [
+        "47.660"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/phone/wall-clock.jsonl",
+      "wallRow": 11,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/transcript.jsonl",
+      "transcriptLine": 234,
+      "op": "log",
+      "kind": "note",
+      "operationSummary": {
+        "op": "log",
+        "kind": "note"
+      },
+      "wallElapsedLiteral": "34.679",
+      "driverResponseElapsedLiteral": "34.68",
+      "wallElapsed": 34.679,
+      "driverResponseElapsed": 34.68,
+      "manuscriptTimeLiterals": [
+        "34.680"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/phone/wall-clock.jsonl",
+      "wallRow": 17,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/transcript.jsonl",
+      "transcriptLine": 246,
+      "op": "tap",
+      "kind": null,
+      "operationSummary": {
+        "op": "tap",
+        "name": "I'm confused"
+      },
+      "wallElapsedLiteral": "57.71",
+      "driverResponseElapsedLiteral": "57.711",
+      "wallElapsed": 57.71,
+      "driverResponseElapsed": 57.711,
+      "manuscriptTimeLiterals": [
+        "57.711"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/desktop/wall-clock.jsonl",
+      "wallRow": 8,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/transcript.jsonl",
+      "transcriptLine": 265,
+      "op": "shot",
+      "kind": null,
+      "operationSummary": {
+        "op": "shot",
+        "file": "b-002.png"
+      },
+      "wallElapsedLiteral": "20.038",
+      "driverResponseElapsedLiteral": "20.039",
+      "wallElapsed": 20.038,
+      "driverResponseElapsed": 20.039,
+      "manuscriptTimeLiterals": [
+        "20.039"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/desktop/wall-clock.jsonl",
+      "wallRow": 13,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/transcript.jsonl",
+      "transcriptLine": 275,
+      "op": "tap",
+      "kind": null,
+      "operationSummary": {
+        "op": "tap",
+        "name": "Back to the menu"
+      },
+      "wallElapsedLiteral": "39.05",
+      "driverResponseElapsedLiteral": "39.051",
+      "wallElapsed": 39.05,
+      "driverResponseElapsed": 39.051,
+      "manuscriptTimeLiterals": [
+        "39.051"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "ines",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/desktop/wall-clock.jsonl",
+      "wallRow": 4,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/transcript.jsonl",
+      "transcriptLine": 11,
+      "op": "log",
+      "kind": "note",
+      "operationSummary": {
+        "op": "log",
+        "kind": "note"
+      },
+      "wallElapsedLiteral": "4.576",
+      "driverResponseElapsedLiteral": "4.577",
+      "wallElapsed": 4.576,
+      "driverResponseElapsed": 4.577,
+      "manuscriptTimeLiterals": [
+        "4.577"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "ines",
+      "device": "desktop",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/desktop/wall-clock.jsonl",
+      "wallRow": 47,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/transcript.jsonl",
+      "transcriptLine": 96,
+      "op": "log",
+      "kind": "note",
+      "operationSummary": {
+        "op": "log",
+        "kind": "note"
+      },
+      "wallElapsedLiteral": "86.256",
+      "driverResponseElapsedLiteral": "86.257",
+      "wallElapsed": 86.256,
+      "driverResponseElapsed": 86.257,
+      "manuscriptTimeLiterals": [
+        "86.257"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    },
+    {
+      "tester": "ines",
+      "device": "phone",
+      "wallFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/phone/wall-clock.jsonl",
+      "wallRow": 22,
+      "transcriptFile": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/transcript.jsonl",
+      "transcriptLine": 157,
+      "op": "log",
+      "kind": "note",
+      "operationSummary": {
+        "op": "log",
+        "kind": "note"
+      },
+      "wallElapsedLiteral": "44.692",
+      "driverResponseElapsedLiteral": "44.693",
+      "wallElapsed": 44.692,
+      "driverResponseElapsed": 44.693,
+      "manuscriptTimeLiterals": [
+        "44.693"
+      ],
+      "qualification": "Explicit manuscript elapsed reference matches response; raw wall stays distinct. No normalization or cause inferred."
+    }
+  ],
+  "all75RawResponseDifferencesPreservedAt": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-actual-protocol-review.json",
+    "sha256": "c6fd9cb60dcd8d7292ce4507187eee719c9d76a0fde18d8592c3469171e95b9d"
+  },
+  "providerStreamErrorPreserved": [
+    {
+      "tester": "ines",
+      "transcriptLine": 158,
+      "type": "error",
+      "message": "Reconnecting... 2/5 (stream disconnected before completion: IO error: Connection reset by peer (os error 54))"
+    }
+  ],
+  "rootDirectChecks": "All10rawstops/reasons, checkpoint and poststop projections,13explicit timing references and all75raw timing pairs;12literal ask byte spans and5complete return paragraphs. Reviewer read all602commands/318responses/51diary strings; root did not semantically reread full raw traces. No image viewed.",
+  "asks": {
+    "ids": "F3101–F3112",
+    "literalItems": 12,
+    "blocking": 3,
+    "preferences": 7,
+    "immediateKeepsWithDatedTracking": 2,
+    "blockerTarget": "2026-11-03",
+    "otherTarget": "2026-11-10",
+    "draftExtractionSha256": "d6c653c212e5accf5a4884fee89264ae2795aa14abe09de02142656a2eb78d13"
+  },
+  "oldBlockingQuestions": "Nia found opening invitation in reached path; Rosa understood ownplans and did not see prerepairforgiveness sentence. These are qualified reached-path answers, no blanket originalF1475/F3019 closure.",
+  "remaining": "Seal source packet and hand all12 dated followups to games-deferred; exact review/CI/signed integration of game dated record. Canonical final evidence publication remains. No third ordinary panel, bugfree or owneracceptance claim.",
+  "cap": "Two fixed retest iterations collected; do not restart ordinary panel for new asks.",
+  "deploymentHoldReleased": true,
+  "cpuReturnedToGD": true,
+  "freshFinalRelease": {
+    "commit": "bc52f86f9828f619795c843f513880ee4918ebe9",
+    "dirty": false,
+    "app": "4.3.0",
+    "game": "4.3.0",
+    "framework": "4.11.0",
+    "engine": "small-works@5"
+  },
+  "gameFinished": false
+}

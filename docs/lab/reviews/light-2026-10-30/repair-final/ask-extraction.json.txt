@@ -1,0 +1,298 @@
+{
+  "at": "2026-11-01T20:09:55.730181+00:00",
+  "status": "DRAFT_LITERAL_EXTRACTION_NOT_SEALED_PROTOCOL_REVIEW_PENDING",
+  "actualToolSession": 36364,
+  "source": "bc52f86f9828f619795c843f513880ee4918ebe9",
+  "rows": [
+    {
+      "id": "F-3101",
+      "tester": "maya",
+      "rank": 1,
+      "literal": "Let me follow up with Rafi about what he will tell his customer. His story still interests me, but my reply got a receipt and no words from him in the conversation I reached.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/report.md",
+      "sourceSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "sourceByteRange": [
+        214,
+        388
+      ],
+      "sourceLine": 5,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3102",
+      "tester": "maya",
+      "rank": 2,
+      "literal": "Tell me which object Nora’s handle sketch concerns. I heard the story beside her reading light this time and beside the music box on my first visit; I still could not connect it confidently to either object.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/report.md",
+      "sourceSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "sourceByteRange": [
+        392,
+        601
+      ],
+      "sourceLine": 6,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3103",
+      "tester": "maya",
+      "rank": 3,
+      "literal": "Make the music box card easier to reach on the desktop workboard. It was below the fixed bottom area until I scrolled.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/report.md",
+      "sourceSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "sourceByteRange": [
+        605,
+        723
+      ],
+      "sourceLine": 7,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3104",
+      "tester": "emre",
+      "rank": 1,
+      "literal": "Draw attention to the meter condition when it differs from the object’s required test. Nora’s light needed “work harder,” but the meter opened on “on table.”",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/report.md",
+      "sourceSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+      "sourceByteRange": [
+        137,
+        306
+      ],
+      "sourceLine": 5,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3105",
+      "tester": "emre",
+      "rank": 2,
+      "literal": "Keep offering faults that require different diagnosis. The contact measurement still made sense, but I had solved both lights before and wanted a new problem.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/report.md",
+      "sourceSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+      "sourceByteRange": [
+        310,
+        468
+      ],
+      "sourceLine": 6,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3106",
+      "tester": "nia",
+      "rank": 1,
+      "literal": "Show me how to ask Sam to take on a repair himself, or tell me what must happen first. I found another lesson request, but no way to give him Rafi’s fan in the places I looked. This was the blocking question I reached.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/report.md",
+      "sourceSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "sourceByteRange": [
+        156,
+        376
+      ],
+      "sourceLine": 5,
+      "roleDraft": "blocker",
+      "target": "repair",
+      "targetDateDraft": "2026-11-03",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3107",
+      "tester": "nia",
+      "rank": 2,
+      "literal": "Make Sam’s observed-method record easier to connect to what actually happened. It included checking a bulb and a weak-object observation that I did not remember making.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/report.md",
+      "sourceSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "sourceByteRange": [
+        380,
+        550
+      ],
+      "sourceLine": 6,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3108",
+      "tester": "nia",
+      "rank": 3,
+      "literal": "Give Sam a more natural voice during the lesson. Watching and learning felt meaningful, but his replies still sounded like a repair record.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/report.md",
+      "sourceSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "sourceByteRange": [
+        554,
+        693
+      ],
+      "sourceLine": 7,
+      "roleDraft": "preference",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3109",
+      "tester": "rosa",
+      "rank": 1,
+      "literal": "Explain “retained work and test records” and “existing rules,” or omit those sentences from the repair conversation. These were the blocking questions I reached.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/report.md",
+      "sourceSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "sourceByteRange": [
+        197,
+        366
+      ],
+      "sourceLine": 5,
+      "roleDraft": "blocker",
+      "target": "repair",
+      "targetDateDraft": "2026-11-03",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    },
+    {
+      "id": "F-3110",
+      "tester": "rosa",
+      "rank": 2,
+      "literal": "Keep the clearer sentence explaining that Sam’s mother may follow her own plans instead of discussing the work.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/report.md",
+      "sourceSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "sourceByteRange": [
+        370,
+        483
+      ],
+      "sourceLine": 6,
+      "roleDraft": "keep",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Keep is immediate preservation with dated tracking, not an unimplemented bug."
+    },
+    {
+      "id": "F-3111",
+      "tester": "rosa",
+      "rank": 3,
+      "literal": "Keep the repair guide’s short instructions.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/report.md",
+      "sourceSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "sourceByteRange": [
+        487,
+        532
+      ],
+      "sourceLine": 7,
+      "roleDraft": "keep",
+      "target": "repair",
+      "targetDateDraft": "2026-11-10",
+      "instruction": "Keep is immediate preservation with dated tracking, not an unimplemented bug."
+    },
+    {
+      "id": "F-3112",
+      "tester": "ines",
+      "rank": 1,
+      "literal": "Help me interpret a reading and choose a next test after the first guided repair.",
+      "sourcePath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/report.md",
+      "sourceSha256": "62e5dd5666a5264fd712bd76cb5ad7bca67c82079221c65ec8f239ae76c88fa4",
+      "sourceByteRange": [
+        114,
+        195
+      ],
+      "sourceLine": 3,
+      "roleDraft": "blocker",
+      "target": "repair",
+      "targetDateDraft": "2026-11-03",
+      "instruction": "Dated followup after final ordinary iteration; no third ordinary panel."
+    }
+  ],
+  "testers": [
+    {
+      "tester": "maya",
+      "returnLiteral": "I would not return voluntarily tonight; I might come back another evening if I could hear what Rafi tells his customer or try a fresh repair puzzle, but I would not leave the workshop running.",
+      "returnSourceByteRange": [
+        0,
+        192
+      ],
+      "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/maya/report.md",
+      "reportSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "askIds": [
+        "F-3101",
+        "F-3102",
+        "F-3103"
+      ],
+      "verdict": "NOT_INVENTED"
+    },
+    {
+      "tester": "emre",
+      "returnLiteral": "I would return voluntarily another evening on desktop for a different repair, and I would not leave it running.",
+      "returnSourceByteRange": [
+        0,
+        111
+      ],
+      "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/emre/report.md",
+      "reportSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+      "askIds": [
+        "F-3104",
+        "F-3105"
+      ],
+      "verdict": "NOT_INVENTED"
+    },
+    {
+      "tester": "nia",
+      "returnLiteral": "I would come back another evening to see Sam use what he learned on his own, but I would not return tonight or leave the game running.",
+      "returnSourceByteRange": [
+        0,
+        134
+      ],
+      "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/report.md",
+      "reportSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "askIds": [
+        "F-3106",
+        "F-3107",
+        "F-3108"
+      ],
+      "verdict": "NOT_INVENTED"
+    },
+    {
+      "tester": "rosa",
+      "returnLiteral": "I would return voluntarily another evening if the repair conversation were shorter and explained its records and rules plainly; I would close it now, not leave it running.",
+      "returnSourceByteRange": [
+        0,
+        171
+      ],
+      "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/rosa/report.md",
+      "reportSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "askIds": [
+        "F-3109",
+        "F-3110",
+        "F-3111"
+      ],
+      "verdict": "NOT_INVENTED"
+    },
+    {
+      "tester": "ines",
+      "returnLiteral": "I would not voluntarily return tonight; I would leave the game saved rather than running.",
+      "returnSourceByteRange": [
+        0,
+        89
+      ],
+      "reportPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/ines/report.md",
+      "reportSha256": "62e5dd5666a5264fd712bd76cb5ad7bca67c82079221c65ec8f239ae76c88fa4",
+      "askIds": [
+        "F-3112"
+      ],
+      "verdict": "NOT_INVENTED"
+    }
+  ],
+  "counts": {
+    "literalItems": 12,
+    "blockingDraft": 3,
+    "preferencesDraft": 7,
+    "keepsDraft": 2
+  },
+  "limits": "Source words are literal. Roles/dates are root proposals until actual protocol qualification. No overall verdict inferred, no original asks bulk closed; no player/owner acceptance."
+}

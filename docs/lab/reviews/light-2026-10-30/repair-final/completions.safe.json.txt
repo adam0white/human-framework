@@ -1,0 +1,164 @@
+{
+  "players": [
+    {
+      "tester": "maya",
+      "reportSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "completionSha256": "f31c277fbce9f1c9a2120f33625c777592b23143bd3417369a52ef8575561843",
+      "engineeringPass": true,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "withinTotalBudget": true,
+      "cut": null,
+      "controllerInterruption": null,
+      "start": "2026-11-01T19:39:39.896518+00:00",
+      "end": "2026-11-01T19:43:58.973508+00:00",
+      "history": {
+        "lineCount": 2610,
+        "literalLinesCovered": 2610,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone.",
+        "historyReadCommands": 66,
+        "allHistoryRangesAtMost40": true,
+        "firstDriverCommandTranscriptLine": 139,
+        "lastHistoryReadTranscriptLine": 136,
+        "literalCoverageIndependentlyRechecked": true,
+        "deliveryAndComprehension": "UNVERIFIED; exact retained stdout and selfreport are distinct from model receipt/understanding"
+      },
+      "requestedModel": "gpt-6.1-terra",
+      "requestedEffort": "low",
+      "servingIdentity": "independently UNVERIFIED"
+    },
+    {
+      "tester": "emre",
+      "reportSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+      "completionSha256": "bd7ce867f508e0cb7bddeb036b135a611454f51c7db030c06aba175a859860d3",
+      "engineeringPass": true,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "withinTotalBudget": true,
+      "cut": null,
+      "controllerInterruption": null,
+      "start": "2026-11-01T19:43:58.975368+00:00",
+      "end": "2026-11-01T19:47:50.632767+00:00",
+      "history": {
+        "lineCount": 2061,
+        "literalLinesCovered": 2061,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone.",
+        "historyReadCommands": 52,
+        "allHistoryRangesAtMost40": true,
+        "firstDriverCommandTranscriptLine": 110,
+        "lastHistoryReadTranscriptLine": 108,
+        "literalCoverageIndependentlyRechecked": true,
+        "deliveryAndComprehension": "UNVERIFIED; exact retained stdout and selfreport are distinct from model receipt/understanding"
+      },
+      "requestedModel": "gpt-6.1-terra",
+      "requestedEffort": "low",
+      "servingIdentity": "independently UNVERIFIED"
+    },
+    {
+      "tester": "nia",
+      "reportSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "completionSha256": "ee7ce3b6654a9694a2be28edce491230f8540c01bfe1d2645e798c525310a4a1",
+      "engineeringPass": true,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "withinTotalBudget": true,
+      "cut": null,
+      "controllerInterruption": null,
+      "start": "2026-11-01T19:47:50.634551+00:00",
+      "end": "2026-11-01T19:51:41.783345+00:00",
+      "history": {
+        "lineCount": 2409,
+        "literalLinesCovered": 2409,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone.",
+        "historyReadCommands": 61,
+        "allHistoryRangesAtMost40": true,
+        "firstDriverCommandTranscriptLine": 128,
+        "lastHistoryReadTranscriptLine": 125,
+        "literalCoverageIndependentlyRechecked": true,
+        "deliveryAndComprehension": "UNVERIFIED; exact retained stdout and selfreport are distinct from model receipt/understanding"
+      },
+      "requestedModel": "gpt-6.1-terra",
+      "requestedEffort": "low",
+      "servingIdentity": "independently UNVERIFIED"
+    },
+    {
+      "tester": "rosa",
+      "reportSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "completionSha256": "df43cf33b84245bc4f853e66c154a30beb40814b4d6a32c0a504d5da8de8ef3f",
+      "engineeringPass": true,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "withinTotalBudget": true,
+      "cut": null,
+      "controllerInterruption": null,
+      "start": "2026-11-01T19:51:41.785184+00:00",
+      "end": "2026-11-01T19:58:16.967364+00:00",
+      "history": {
+        "lineCount": 4112,
+        "literalLinesCovered": 4112,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone.",
+        "historyReadCommands": 103,
+        "allHistoryRangesAtMost40": true,
+        "firstDriverCommandTranscriptLine": 216,
+        "lastHistoryReadTranscriptLine": 213,
+        "literalCoverageIndependentlyRechecked": true,
+        "deliveryAndComprehension": "UNVERIFIED; exact retained stdout and selfreport are distinct from model receipt/understanding"
+      },
+      "requestedModel": "gpt-6.1-sol",
+      "requestedEffort": "medium",
+      "servingIdentity": "independently UNVERIFIED"
+    },
+    {
+      "tester": "ines",
+      "reportSha256": "62e5dd5666a5264fd712bd76cb5ad7bca67c82079221c65ec8f239ae76c88fa4",
+      "completionSha256": "d5657b759eafa00979d01f06732f772e0ca9c1571b0064000940b495335a3f3d",
+      "engineeringPass": true,
+      "testerExit": 0,
+      "driverExits": [
+        0,
+        0
+      ],
+      "withinTotalBudget": true,
+      "cut": null,
+      "controllerInterruption": null,
+      "start": "2026-11-01T19:58:16.968713+00:00",
+      "end": "2026-11-01T20:01:45.972049+00:00",
+      "history": {
+        "lineCount": 2,
+        "literalLinesCovered": 2,
+        "unverifiedOutputRanges": [],
+        "allLinesCoveredByObservedStdout": true,
+        "evidenceScope": "Complete aggregated command stdout only; direct delivery of every line to model and comprehension independently unverified. No unread interval proven by missing output alone.",
+        "historyReadCommands": 1,
+        "allHistoryRangesAtMost40": true,
+        "firstDriverCommandTranscriptLine": 7,
+        "lastHistoryReadTranscriptLine": 5,
+        "literalCoverageIndependentlyRechecked": true,
+        "deliveryAndComprehension": "UNVERIFIED; exact retained stdout and selfreport are distinct from model receipt/understanding"
+      },
+      "requestedModel": "gpt-6.1-terra",
+      "requestedEffort": "low",
+      "servingIdentity": "independently UNVERIFIED"
+    }
+  ]
+}

@@ -2,8 +2,16 @@
  * Public authored work and public world receipts supply the headless control. */
 import { expect, test } from 'vitest';
 import * as HF from '../src/index.ts';
-import type { DeepReadonly, InspectQuery, Run, RunState } from '../src/run-schema.ts';
+import type {
+  ActionRequest,
+  DeepReadonly,
+  InspectQuery,
+  Run,
+  RunState,
+  StepResult,
+} from '../src/run-schema.ts';
 import { emptyRunSpec } from './run-fixture.ts';
+import { numericalPerson, numericalSpec, sleepOffer } from './run-numerical-fixture.ts';
 import {
   actionRequest,
   authoredPerson,
@@ -12,6 +20,7 @@ import {
   MINUTE,
   need,
   openingInputs,
+  resolutionInput,
   restoredHost,
   START,
   serve,
@@ -77,6 +86,41 @@ test('host current is exact, detached, omitted when unselected and coherent with
     ok: false,
     error: { code: 'duplicate-id' },
   });
+  const controlQuery = (
+    people: string[],
+    select: InspectQuery['select'],
+    perspective: InspectQuery['perspective'] = { kind: 'host' },
+  ): InspectQuery => ({ perspective, people, select });
+  for (const people of [[], ['ada']]) {
+    expect(
+      HF.inspect(run, controlQuery(people, ['control'], { kind: 'person', observer: 'ada' })),
+    ).toMatchObject({ ok: false, error: { code: 'invalid-admission', path: '$.select' } });
+  }
+  expect(HF.inspect(run, controlQuery(['missing'], ['control']))).toMatchObject({
+    ok: false,
+    error: { code: 'unknown-id' },
+  });
+  expect(HF.inspect(run, controlQuery(['ada', 'ada'], ['control']))).toMatchObject({
+    ok: false,
+    error: { code: 'duplicate-id' },
+  });
+  expect(HF.inspect(run, controlQuery(['ada'], ['control', 'control']))).toMatchObject({
+    ok: false,
+    error: { code: 'duplicate-id' },
+  });
+  expect(
+    HF.inspect(
+      run,
+      controlQuery(['ada'], ['control', 'not-a-selector'] as unknown as InspectQuery['select']),
+    ),
+  ).toMatchObject({ ok: false });
+  const empty = need(HF.inspect(run, controlQuery(['ada'], ['control'])));
+  expect(empty.people[0]).toStrictEqual({
+    kind: 'host',
+    id: 'ada',
+    parts: [{ select: 'control', value: { offers: null, activity: null } }],
+  });
+  expect(HF.exportRun(run)).toStrictEqual(before);
 });
 
 test('headless current reads preserve native history, journals, RNG, cold replay and next continuation across 64/65 receipts', () => {
@@ -203,4 +247,242 @@ test('headless current reads preserve native history, journals, RNG, cold replay
   expect(retained).toStrictEqual(before.current);
   expect(pending).toStrictEqual(pendingCopy);
   expect(composed).toStrictEqual(composedCopy);
+});
+
+test('host control matches current through partial settlement, restore and finish', () => {
+  const spec = numericalSpec(2);
+  // support's receipt helper uses the minimal example's host; retain this fixture's host.
+  const receipt = (...args: Parameters<typeof resolutionInput>) => ({
+    ...resolutionInput(...args),
+    source: { type: 'host' as const, id: spec.host.id },
+  });
+  spec.definitions = {
+    ...spec.definitions,
+    sources: [...spec.definitions.sources, { type: 'person', id: 'a' }, { type: 'person', id: 'b' }],
+  };
+  const run = need(HF.createRun(spec));
+  const inputs = [];
+  for (const id of ['a', 'b']) {
+    const person = numericalPerson(2);
+    person.id = id;
+    person.state.retention = { ...person.state.retention, trace: 32 };
+    need(HF.createPerson(run, person));
+    const offer = { ...sleepOffer(), id: `sleep-${id}`, person: id, durationMs: 1 };
+    inputs.push({
+      id: `offer-${id}`,
+      at: 0,
+      source: { type: 'host' as const, id: spec.host.id },
+      kind: 'offers.received' as const,
+      payload: { person: id, revision: 1, offers: [offer] },
+    });
+    inputs.push({
+      id: `decide-${id}`,
+      at: 0,
+      source: { type: 'person' as const, id },
+      kind: 'decision.requested' as const,
+      payload: { person: id, reason: 'sleep', treatment: 'ordinary' as const, offerRevision: 1 },
+    });
+  }
+  const opening = need(HF.step(run, { until: 1, inputs }));
+  if (opening.boundary.type !== 'world-required') throw new Error('Missing actual start boundary');
+  const first = actionRequest(opening, 'start', 'a');
+  const second = actionRequest(opening, 'start', 'b');
+  expect(opening.boundary.requests).toHaveLength(2);
+  expect(first.worldRevision).toBe(0);
+  const control = (target: Run, people: string[]) =>
+    need(HF.inspect(target, { perspective: { kind: 'host' }, people, select: ['control'] }));
+  const projected = (reading: ReturnType<typeof control>, id: string) => {
+    const view = reading.people.find((person) => person.id === id);
+    const part = view?.parts[0];
+    if (view?.kind !== 'host' || part?.select !== 'control') throw new Error('Missing host control part');
+    return part.value;
+  };
+  const revision = (reading: ReturnType<typeof control>) => {
+    if (typeof reading.worldRevision !== 'number') throw new Error('Missing current world revision');
+    return reading.worldRevision;
+  };
+  const compare = (target: Run, people: string[]) => {
+    const before = HF.exportRun(target);
+    const full = current(target);
+    const reading = control(target, people);
+    expect(reading.at).toBe(full.at);
+    expect(revision(reading)).toBe(full.world.revision);
+    expect(reading.people.map((view) => view.id)).toStrictEqual(people);
+    for (const view of reading.people) {
+      expect(view.kind).toBe('host');
+      expect(view.parts.map((part) => part.select)).toStrictEqual(['control']);
+      expect(projected(reading, view.id)).toStrictEqual({
+        offers: full.offers[view.id] ?? null,
+        activity: full.people[view.id]?.activity ?? null,
+      });
+    }
+    expectDeepFrozen(reading);
+    expect(HF.exportRun(target)).toStrictEqual(before);
+    return reading;
+  };
+  // Each builder reads its own branch and looks up the issued offer independently.
+  const startFromCurrent = (target: Run, request: DeepReadonly<ActionRequest>, changeWorld = false) => {
+    if (request.stage !== 'start') throw new Error('Expected actual start request');
+    const full = current(target);
+    const held = full.offers[request.person]?.offers.find((offer) => offer.id === request.offerId);
+    return receipt(request, full.world.revision, {
+      disposition: held ? 'accepted' : 'rejected',
+      observations: [],
+      ...(changeWorld
+        ? {
+            worldChange: {
+              expectedRevision: full.world.revision,
+              revision: full.world.revision + 1,
+              put: [],
+              remove: [],
+              hostState: { settled: 1 },
+            },
+          }
+        : {}),
+    });
+  };
+  const startFromControl = (target: Run, request: DeepReadonly<ActionRequest>, changeWorld = false) => {
+    if (request.stage !== 'start') throw new Error('Expected actual start request');
+    const reading = compare(target, [request.person]);
+    const held = projected(reading, request.person).offers?.offers.find(
+      (offer) => offer.id === request.offerId,
+    );
+    return receipt(request, revision(reading), {
+      disposition: held ? 'accepted' : 'rejected',
+      observations: [],
+      ...(changeWorld
+        ? {
+            worldChange: {
+              expectedRevision: revision(reading),
+              revision: revision(reading) + 1,
+              put: [],
+              remove: [],
+              hostState: { settled: 1 },
+            },
+          }
+        : {}),
+    });
+  };
+  const held = compare(run, ['b', 'a']);
+  const heldCopy = structuredClone(held);
+  const initial = HF.exportRun(run);
+  const other = need(HF.restoreRun(initial));
+  const firstReceipt = startFromCurrent(run, first, true);
+  const firstProjectedReceipt = startFromControl(other, first, true);
+  expect(firstProjectedReceipt).toStrictEqual(firstReceipt);
+  need(HF.step(run, { until: 0, inputs: [firstReceipt] }));
+  need(HF.step(other, { until: 0, inputs: [firstProjectedReceipt] }));
+  const partial = HF.exportRun(run);
+  expect(HF.exportRun(other)).toStrictEqual(partial);
+  expect(partial.current.world.revision).toBe(1);
+  expect(partial.current.pending).toContainEqual(second);
+  expect(second.worldRevision).toBe(0);
+  // Empty-people API proof at an action boundary; Child communication adoption is separate.
+  expect(revision(compare(run, []))).toBe(1);
+  expect(revision(compare(other, []))).toBe(1);
+  const fromFull = startFromCurrent(run, second);
+  const fromControl = startFromControl(other, second);
+  expect(fromControl).toStrictEqual(fromFull);
+  expect(fromFull.payload.worldRevision).toBe(1);
+  const stale = { ...fromFull, payload: { ...fromFull.payload, worldRevision: second.worldRevision } };
+  expect(HF.step(run, { until: 0, inputs: [stale] }).ok).toBe(false);
+  expect(HF.exportRun(run)).toStrictEqual(partial);
+  const restored = need(HF.restoreRun(partial));
+  const replayed = need(HF.replay(partial));
+  expect(replayed.fullHash).toBe(partial.hashes.full);
+  expect(HF.exportRun(replayed.run)).toStrictEqual(partial);
+  expect(HF.exportRun(restored)).toStrictEqual(partial);
+  const fromRestored = startFromControl(restored, second);
+  expect(fromRestored).toStrictEqual(fromFull);
+  need(HF.step(run, { until: 0, inputs: [fromFull] }));
+  need(HF.step(other, { until: 0, inputs: [fromControl] }));
+  need(HF.step(restored, { until: 0, inputs: [fromRestored] }));
+  expect(HF.exportRun(other)).toStrictEqual(HF.exportRun(run));
+  expect(HF.exportRun(restored)).toStrictEqual(HF.exportRun(run));
+  const finish = need(HF.step(run, { until: 1, inputs: [] }));
+  const finishOther = need(HF.step(other, { until: 1, inputs: [] }));
+  const finishRestored = need(HF.step(restored, { until: 1, inputs: [] }));
+  expect(finishOther).toStrictEqual(finish);
+  expect(finishRestored).toStrictEqual(finish);
+  if (finish.boundary.type !== 'world-required') throw new Error('Missing actual finish boundary');
+  expect(finish.boundary.requests).toHaveLength(2);
+  actionRequest(finish, 'finish', 'a');
+  actionRequest(finish, 'finish', 'b');
+  const finishFromCurrent = (target: Run, batch: DeepReadonly<StepResult>) => {
+    if (batch.boundary.type !== 'world-required') throw new Error('Missing actual finish boundary');
+    const finishFull = current(target);
+    return batch.boundary.requests.map((request) => {
+      if (request.kind !== 'action' || request.stage !== 'finish')
+        throw new Error('Expected actual finish action');
+      const activity = finishFull.people[request.person]?.activity;
+      if (!activity) throw new Error('Missing actual activity');
+      return receipt(request, finishFull.world.revision, {
+        disposition: 'completed',
+        observations: [],
+        outcome: {
+          activityId: request.activityId,
+          offerId: request.offerId,
+          actionId: activity.offer.actionId,
+          start: activity.startedAt,
+          end: request.boundaryAt,
+          status: 'completed',
+          evidenceId: `finish:${request.id}`,
+          actual: { exposures: [], observedProgress: [] },
+          fulfills: [],
+          advances: [],
+        },
+      });
+    });
+  };
+  const finishFromControl = (target: Run, batch: DeepReadonly<StepResult>) => {
+    if (batch.boundary.type !== 'world-required') throw new Error('Missing actual finish boundary');
+    const finishRead = compare(target, ['a', 'b']);
+    return batch.boundary.requests.map((request) => {
+      if (request.kind !== 'action' || request.stage !== 'finish')
+        throw new Error('Expected actual finish action');
+      const activity = projected(finishRead, request.person).activity;
+      if (!activity) throw new Error('Missing control activity');
+      return receipt(request, revision(finishRead), {
+        disposition: 'completed',
+        observations: [],
+        outcome: {
+          activityId: request.activityId,
+          offerId: request.offerId,
+          actionId: activity.offer.actionId,
+          start: activity.startedAt,
+          end: request.boundaryAt,
+          status: 'completed',
+          evidenceId: `finish:${request.id}`,
+          actual: { exposures: [], observedProgress: [] },
+          fulfills: [],
+          advances: [],
+        },
+      });
+    });
+  };
+  const activeHeld = compare(other, ['a', 'b']);
+  const activeHeldCopy = structuredClone(activeHeld);
+  const receipts = finishFromCurrent(run, finish);
+  const projectedReceipts = finishFromControl(other, finishOther);
+  const restoredReceipts = finishFromControl(restored, finishRestored);
+  expect(projectedReceipts).toStrictEqual(receipts);
+  expect(restoredReceipts).toStrictEqual(receipts);
+  need(HF.step(run, { until: 1, inputs: receipts }));
+  need(HF.step(other, { until: 1, inputs: projectedReceipts }));
+  need(HF.step(restored, { until: 1, inputs: restoredReceipts }));
+  expect(HF.exportRun(other)).toStrictEqual(HF.exportRun(run));
+  expect(HF.exportRun(restored)).toStrictEqual(HF.exportRun(run));
+  expect(HF.readRunHistory(HF.exportRun(other))).toStrictEqual(HF.readRunHistory(HF.exportRun(run)));
+  expect(HF.readRunHistory(HF.exportRun(restored))).toStrictEqual(HF.readRunHistory(HF.exportRun(run)));
+  const next = need(HF.step(run, { until: 2, inputs: [] }));
+  expect(need(HF.step(other, { until: 2, inputs: [] }))).toStrictEqual(next);
+  expect(need(HF.step(restored, { until: 2, inputs: [] }))).toStrictEqual(next);
+  expect(HF.exportRun(other)).toStrictEqual(HF.exportRun(run));
+  expect(HF.exportRun(restored)).toStrictEqual(HF.exportRun(run));
+  expect(HF.readRunHistory(HF.exportRun(other))).toStrictEqual(HF.readRunHistory(HF.exportRun(run)));
+  expect(HF.readRunHistory(HF.exportRun(restored))).toStrictEqual(HF.readRunHistory(HF.exportRun(run)));
+  expect(activeHeld).toStrictEqual(activeHeldCopy);
+  expectDeepFrozen(activeHeld);
+  expect(held).toStrictEqual(heldCopy);
+  expectDeepFrozen(held);
 });

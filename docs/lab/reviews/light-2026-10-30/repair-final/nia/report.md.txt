@@ -1,0 +1,63 @@
+I would come back another evening to see Sam use what he learned on his own, but I would not return tonight or leave the game running.
+
+**Ranked asks**
+
+1. Show me how to ask Sam to take on a repair himself, or tell me what must happen first. I found another lesson request, but no way to give him Rafi’s fan in the places I looked. This was the blocking question I reached.
+2. Make Sam’s observed-method record easier to connect to what actually happened. It included checking a bulb and a weak-object observation that I did not remember making.
+3. Give Sam a more natural voice during the lesson. Watching and learning felt meaningful, but his replies still sounded like a repair record.
+
+I’m Nia Okafor, 19, a Lagos design student returning to **Small Works**. I played two fresh, independent games at the assigned agent-marked URL, with no imported save or matched seed: phone first, then desktop on my other device the same evening. I used touch on the 360×690 phone and mouse clicks on the 1280×800 desktop; I used no keyboard key. Recording and consent stayed at their defaults.
+
+I read supplied own-history lines **1–2409** in explicit ranges before playing. The last line read was **“End of supplied own history.”** Unread ranges: **none**. The history is selected, not my complete archive; the older independent Small Works continuation remains outside my sequential memory.
+
+The short opening and lantern immediately brought back the switch repair. At **7.320 s** on the phone, I found **“Invite Sam to watch this repair”** on the opening bench. Last visit I had wanted him to watch the lantern but found the lesson only after returning it. This time he watched the failed carry test, the replacement and the matching successful test. The game said he learned a method. That was satisfying.
+
+His record then confused me. It included a line about checking the bulb after observing weak work, although I remembered selecting and inspecting the switch. I cannot tell from that record why the line appeared. I wanted to see him work independently, but the controls I reached offered another lesson rather than a fan assignment. I did not establish that an independent-work route does not exist.
+
+**Diary — exact logged reactions, in order**
+
+Phone:
+
+- **4.397 s — note, engagement 4:** “The lantern brings back the switch and wanting Sam to watch. Fairly sure. I want to find him before returning it this time.”
+- **8.990 s — note, engagement 5, Day 1 09:00:** “There is the invitation right on the lantern. I could not find that last visit. I want him here for the fault this time.”
+- **24.414 s — note, engagement 5, Day 1 10:10:** “Yes! Sam saw the failed carry, the switch and the successful carry. He learned a method on the lantern itself. That answers what I came back for, though he still sounds like a record.”
+- **29.894 s — note, engagement 3, Day 1 10:20:** “His record says zero repairs alone. I want to see him use the method, but the wording about checking the bulb and weak work does not match what I remember doing. I am unsure what he learned from me.”
+- **55.632 s — note, engagement 3, Day 1 10:35:** “The fan recalls the weak cell from my earlier repair, fairly sure. Sam left when the test crossed his agreed time; that makes sense. I wanted to see him try alone, but I do not see that choice here.”
+- **58.965 s — premature first_minute, engagement 3, Day 1 10:35:** “Sam watched the lantern fail and pass after the switch, and learned a method. Finding the invite before returning it was satisfying. His record includes a bulb and weak observation I do not remember making, and I cannot see a way for him to try the fan alone yet.”
+- **60.812 s — first_minute, engagement 3, Day 1 10:35:** “Sam watched the lantern fail and pass after the switch, and learned a method. Finding the invite before returning it was satisfying. His record includes a bulb and weak observation I do not remember making, and I cannot see a way for him to try the fan alone yet.”
+- **62.887 s — want_quit, TASTE, engagement 2, Day 1 10:35:** “I got Sam watching the lantern, which I wanted. I do not feel like repeating the fan repair myself, and I cannot see him take it on here. I would leave.”
+- **72.599 s — stop, TASTE, engagement 2, Day 1 10:35:** “Stopping on phone. Sam watched and learned on the lantern, which I liked. I am unsure about part of his record and do not want to repeat the fan myself. I would close it.”
+
+The first checkpoint at 58.965 seconds was premature. The 60.812-second entry is the valid first-minute note.
+
+Desktop:
+
+- **4.855 s — note, engagement 4:** “Same evening, bigger screen. I want to see if Sam can do something on his own after the lesson.”
+- **38.580 s — note, engagement 2, Day 1 10:20:** “Same record again, including the bulb line I did not do. I can request another lesson, but I do not see an offer for Sam to take the fan himself. Maybe I am looking in the wrong place.”
+- **45.678 s — want_quit, BORED, engagement 2, Day 1 10:20:** “I repeated the lesson and found no way here to ask Sam to repair the fan alone. I do not want to repeat the fan myself tonight. I would stop.”
+- **52.627 s — stop, BORED, engagement 2, Day 1 10:20:** “Stopping on desktop. I found the lantern invitation and Sam learned, but I could not find how to let him work on the fan alone. I would close it.”
+
+Both quit wishes persisted. Neither game ended. Desktop stopped before 60 seconds, so its first-minute checkpoint was not due. Both sessions stopped before 180 seconds; pulses and later checkpoints were untested. I did not see Sam complete an independent repair, finish Rafi’s fan, revisit Nora’s repair conversation or reach a later day.
+
+**Clarity and recognition**
+
+The invitation, request, start time and lesson duration were clear once I opened the invitation. The game distinguished a witnessed failed test from a diagnosis, then asked for a check under the same condition after replacement. It reported that Sam learned after the successful check. His session ending when the fan test crossed the agreed time made sense to me.
+
+The visible lantern at **4.397 s** prompted my fairly sure memory of the switch repair and wanting Sam present. The invitation at **8.990 s** recalled my last visit’s difficulty finding him before returning the lantern. The fan at **55.632 s** recalled its weak cell from my earlier repair, also fairly sure. On desktop, my opening intention came from the phone session just played; I recorded no additional cue-based recognition. I recorded no other recognition.
+
+Compared with my last Small Works visit, I reached the invitation during the opening repair and saw Sam learn from the lantern itself. My earlier question about finding that invitation was answered in the path I reached. I did not see him apply the method alone, and the fresh, unmatched games do not establish what caused any difference.
+
+**Screenshots actually viewed and device behavior**
+
+- Phone [a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/phone/a-001.png), **1.779 s:** the lantern illustration, short prompt, large Start button and recording strip fit in the viewport.
+- Phone [a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/phone/a-002.png), **41.558 s:** three requested-work cards were visible with repeated Accept and Decline buttons. I selected Rafi’s card by position.
+- Phone [a-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/phone/a-003.png), **47.660 s:** after scrolling, the accepted fan and its Open on bench button were visible. I selected it by position.
+- Desktop [b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/desktop/b-001.png), **1.968 s:** the opening was centred on the wide screen.
+- Desktop [b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/desktop/b-002.png): the board showed requested work and workshop projects in columns; the lower requested card continued below the visible area.
+- Desktop [b-003.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-inputs/nia/desktop/b-003.png): after scrolling, the accepted fan and its Open on bench button were visible.
+
+I viewed no gameplay screenshot of the repair bench itself. My observations there come from the driver’s visible text and controls.
+
+At the confusion on each device, I opened Feedback, selected **“I'm confused”**, saw it marked pressed and went Back. At each stop I reopened Feedback, selected **“I'm stopping”**, saw it marked pressed and went Back to the menu. I typed no note, pressed no Submit and claim no feedback receipt.
+
+I created no browser, server, process, branch or worktree and touched no repository. The coordinator owns driver and browser cleanup; no `git worktree list` applies.

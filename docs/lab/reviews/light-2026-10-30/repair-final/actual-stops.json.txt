@@ -1,0 +1,105 @@
+{
+  "scope": "One final five-person epoch; ten observed voluntary unfinished stops",
+  "stops": [
+    {
+      "tester": "maya",
+      "device": "phone",
+      "wallRow": 34,
+      "elapsed": 62.141,
+      "reason": "TASTE",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "maya",
+      "device": "desktop",
+      "wallRow": 31,
+      "elapsed": 62.022,
+      "reason": "TASTE",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "emre",
+      "device": "desktop",
+      "wallRow": 47,
+      "elapsed": 89.011,
+      "reason": "TASTE",
+      "engagement": 3,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "emre",
+      "device": "phone",
+      "wallRow": 18,
+      "elapsed": 33.657,
+      "reason": "BORED",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "nia",
+      "device": "phone",
+      "wallRow": 43,
+      "elapsed": 72.599,
+      "reason": "TASTE",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "nia",
+      "device": "desktop",
+      "wallRow": 32,
+      "elapsed": 52.627,
+      "reason": "BORED",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "rosa",
+      "device": "phone",
+      "wallRow": 20,
+      "elapsed": 66.788,
+      "reason": "CONFUSED",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "rosa",
+      "device": "desktop",
+      "wallRow": 14,
+      "elapsed": 42.194,
+      "reason": "TASTE",
+      "engagement": 3,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "ines",
+      "device": "desktop",
+      "wallRow": 56,
+      "elapsed": 101.26,
+      "reason": "CONFUSED",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    },
+    {
+      "tester": "ines",
+      "device": "phone",
+      "wallRow": 40,
+      "elapsed": 84.43,
+      "reason": "CONFUSED",
+      "engagement": 2,
+      "unfinished": "Report says unfinished; no observed ending flag",
+      "qualification": "Voluntary actor stop; not automatic ceiling or controller interruption."
+    }
+  ]
+}

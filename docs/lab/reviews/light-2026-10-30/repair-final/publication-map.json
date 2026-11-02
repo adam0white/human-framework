@@ -1,0 +1,112 @@
+{
+  "schema": "bounded-source-epoch-publication-map/v1",
+  "packet": "repair-final",
+  "sourceManifestSha256": "b3486750ce960f945f6920c09d85a470aeaaf53f2567cd0a7b6fddfb61581c9e",
+  "laterRootSealSha256": "6becbc11f09ebd8852878d50f44c714bd7c19af22d2d1d512702fa30b5c84e25",
+  "files": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/README.md",
+      "sourceSha256": "05d1eccc6b8a53b015156701cf30b85f89ba7cb649a4aac07f6dc906dad84ef5",
+      "bytes": 1597,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/README.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/actual-stops.json",
+      "sourceSha256": "2f9450575b7c5333eca2d4e5dcbfea92d5e6d862854f93d79aaa27f02e330ba6",
+      "bytes": 3359,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/actual-stops.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/ask-extraction.json",
+      "sourceSha256": "d6c653c212e5accf5a4884fee89264ae2795aa14abe09de02142656a2eb78d13",
+      "bytes": 12019,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/ask-extraction.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/ask-extraction.md",
+      "sourceSha256": "f8c9a2bcf2a42ba8bcac960070a8c7b3a79a3400211b45e4ca84afd853e8137e",
+      "bytes": 2064,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/ask-extraction.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/completions.safe.json",
+      "sourceSha256": "40ba47fc7d332177887022ddee0f79bcad299a98ac4ea39f71f5cbccc01480cc",
+      "bytes": 6937,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/completions.safe.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/logical-tester-ledger.json",
+      "sourceSha256": "d506b250d4130b85b453c782798e131d97d931a7344ce179f271cab272ad9505",
+      "bytes": 2689,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/logical-tester-ledger.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/method-qualifications.md",
+      "sourceSha256": "5fbec01f429f4b31547499a2cefae3ae65d40ca5c9bceb2010f0f4279f41657e",
+      "bytes": 6157,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/method-qualifications.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/protocol.safe.json",
+      "sourceSha256": "faccb8cad7a5c770e0a713273c273454561489a52d88c7154c340201ed7ad83d",
+      "bytes": 28138,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/protocol.safe.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/root-ask-triage.json",
+      "sourceSha256": "500c5a0396f99da2aed2f0acb5396e26d469aff14e194f9b6b648223c3c0b7dc",
+      "bytes": 17350,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/root-ask-triage.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/root-qualification.json",
+      "sourceSha256": "ebbc136e89f5e1921585aa14e5992eaf83f0f0d6e15ea26b2faee4d7e7e5413a",
+      "bytes": 20986,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/root-qualification.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/manifest.json",
+      "sourceSha256": "b3486750ce960f945f6920c09d85a470aeaaf53f2567cd0a7b6fddfb61581c9e",
+      "bytes": 4935,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/manifest.json.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/maya/report.md",
+      "sourceSha256": "802062039a3f827ee2a7ba4e401c49140e8f71d8467f30b84d882384a1536b5f",
+      "bytes": 7358,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/maya/report.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/emre/report.md",
+      "sourceSha256": "101c3f4a7aaa851b048c9bd3fe6f5bba369a19c83b3e8519f5a1d1068ba38030",
+      "bytes": 7477,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/emre/report.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/nia/report.md",
+      "sourceSha256": "de970bc8e4ba9a31ba45fc9b4b10e1db8f0cc721b7efeca9aaecf8c1ba9a2b9d",
+      "bytes": 8956,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/nia/report.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/rosa/report.md",
+      "sourceSha256": "069e60eac6ae27581fe9f9edf68cde6923e5480e732ed94e64a243166ba7e811",
+      "bytes": 10873,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/rosa/report.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final/ines/report.md",
+      "sourceSha256": "62e5dd5666a5264fd712bd76cb5ad7bca67c82079221c65ec8f239ae76c88fa4",
+      "bytes": 6434,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/ines/report.md.txt"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/repair-final-packet-root-seal.json",
+      "sourceSha256": "6becbc11f09ebd8852878d50f44c714bd7c19af22d2d1d512702fa30b5c84e25",
+      "bytes": 1862,
+      "publishedPath": "docs/lab/reviews/light-2026-10-30/repair-final/root-seal.json.txt"
+    }
+  ],
+  "excluded": "Full histories, five history-source maps, full source-map, diary-continuation duplicate bodies, raw audits/protocol JSON/transcripts/prompts/PNGs and runtime receipts outside selected list. Existing exact own diary continuations supply canonical appendices separately.",
+  "status": "CANDIDATE_WRAPPER_REQUIRES_APPLICATION_REVIEW"
+}

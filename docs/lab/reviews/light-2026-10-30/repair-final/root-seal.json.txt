@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-01T20:30:12.571472+00:00",
+  "status": "ROOT_SEALED_QUALIFIED_FINAL_FIXED_RETEST",
+  "packet": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/repair-final",
+  "packetManifestSha256": "b3486750ce960f945f6920c09d85a470aeaaf53f2567cd0a7b6fddfb61581c9e",
+  "sourceMapSha256": "24fcc975f9ce4873c778bc1b5e5d594c2dab6e03178cee897e4c3c1b1740c2cb",
+  "payloadCount": 31,
+  "totalFiles": 32,
+  "twoIndependentClearReviews": {
+    "mechanical": {
+      "json": "52eac8cd809dfd2e2a92a26509c0fd4fca22d1cb3740b4d243bf1270f77f188f",
+      "md": "155680f0d7dd2fc14a3f2dda39d373ad6aa201fbeea842467ac5f5609360215d"
+    },
+    "qualification": {
+      "json": "cdbad5f330dfcdbdf345b5eab6e08ced065c2e32a31e673763678d7e41be2b31",
+      "md": "2a225ccfec0c9aed7104f8adbc90186873040bfedb8478ae5bf4f8bbda3ae61a"
+    }
+  },
+  "rootReadBothReviewMdAndOperativeJson": true,
+  "rootRehashed": {
+    "payloads": 31,
+    "sourceCopies": 19,
+    "excludedPrivateSources": 58,
+    "reviewedPrivateEvidence": 155
+  },
+  "copyByteExact": true,
+  "sourceEpochDraftLabelsPreserved": "External later root seal governs unchanged draft labels; no retroactive admission.",
+  "rootQualificationSha256": "ebbc136e89f5e1921585aa14e5992eaf83f0f0d6e15ea26b2faee4d7e7e5413a",
+  "actualSession": 36364,
+  "actualNativeExit": 0,
+  "items": "F3101-F3112: 3 blockers due 2026-11-03; 7 preferences due 2026-11-10; 2 immediate preservation Keeps tracked 2026-11-10. Five logical tester rows and conditional return paragraphs.",
+  "scope": "Private source packet, not public safety approval. Two fixed ordinary retests collected. Dated GD game record pending; no third panel, cap reset, blanket old-ask closure, product/owner acceptance. All14 current qualifications and inherited W/SW/NR/SWF limits retained. Full raw audits/histories/transcripts/prompts/35PNGs excluded."
+}
