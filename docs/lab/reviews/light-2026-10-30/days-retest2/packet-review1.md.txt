@@ -1,0 +1,41 @@
+# Days final packet fidelity review
+
+Verdict: **CLEAR**
+
+Reviewer: `days-final-packet-fidelity-independent-20261102`
+
+Manifest SHA-256: `60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89`
+
+Independent source-only fidelity review of exact final Days packet. No runtime, project imports, tests, browser, network, git, worktree or new worker. Standard-library parsing and hashing only. Method-limits audit is separate.
+
+## F1 — CLEAR
+
+Exact manifest SHA-256 matches the assigned 60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89. All 20 payload hashes and byte sizes match. All 25 source-reference hashes and byte sizes match. Exactly five report copies equal their actual source bytes.
+
+## F2 — CLEAR
+
+All 11 ranked asks are present, in source order, without omission: F-3144 through F-3154. All 16 ask/full-return spans match source UTF-8 bytes, codepoints and line ranges. Every full return and every literal no-new-blocking statement occurs in the source and logical-testers copy. Rosa positive retain request is F-3152, classified retain_wording_request and routed no-change / retain current wording.
+
+## F3 — CLEAR
+
+Independent parsing reproduces 265 response objects (54/53/56/49/53) and 59 successful reaction strings (11/12/12/14/10), in Emre/Pavel/Tessa/Rosa/Lucia order. All reaction strings occur verbatim in reports, in recorded order. All five final captured messages equal report bytes. All 11 listed 0.001-second response/wall-clock differences reproduce at their cited source rows and remain separately retained.
+
+## F4 — CLEAR
+
+Independent response parsing finds nine device endings. Ten wall-clock stop records preserve nine FINISHED and Rosa desktop voluntary unfinished TASTE at 31.569 seconds; Rosa desktop has no ending. The retained finalizer has cut=null for each of five testers and ten eligible device stops. Zero coordinator cuts is supported within retained collection evidence, not a claim about unseen events.
+
+## F5 — CLEAR
+
+Packet preserves four standing Days RETURN testers and Lucia as a new fictional cold tester. Ten device sessions are not ten people. All five literal no-new-blocking statements remain attached to full returns. Dated nonblocking routing is 2026-11-03, with Rosa retain wording unchanged. Final ordinary iteration cap and no third ordinary panel are explicit.
+
+## F6 — CLEAR
+
+Raw tester words remain unchanged, including image-view claims and Tessa history-reading uncertainty. Integration notes preserve protocol Q1-Q9 and root RQ1-RQ12 qualifications: unverified image perception; stdout versus comprehension; early/post-stop first-minute captures; two valid active-play phone reactions; no 180-second pulse; shell failures; draft Feedback versus submission/backend/consent identity; grouped concept estimates; fresh runs without matched seed; sampled cleanup scope. This fidelity review does not independently establish every method claim or verify PNG content.
+
+## F7 — CLEAR
+
+Root-qualified collection remains distinct from final dated integration and canonical publication, both false/pending in the packet. CANDIDATE/HOLD are freeze provenance pending exact-packet review and future external root seal. The packet does not turn synthetic reports into human/owner acceptance or cohort-wide causal improvement. No further reviewer loop is needed if these exact bytes receive CLEAR from the separate limits review and root seal.
+
+No blockers. Input hashes for every file read are in the adjacent JSON (57 files).
+
+No runtime, tree, process, browser, server, branch or worker created. No repository touched. git worktree list not applicable under source-only/no-git scope.

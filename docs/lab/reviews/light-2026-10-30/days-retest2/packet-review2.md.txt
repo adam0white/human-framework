@@ -1,0 +1,47 @@
+# Independent Days final packet limits review
+
+Verdict: **CLEAR**
+
+Reviewer: days-final-packet-limits-independent-20261102
+
+Manifest SHA-256: `60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89`
+
+Source-only review of exact20-payload candidate packet and explicitly named outside-packet bound receipts. No project runtime, imports, tests, browser, network, git, worktrees or new workers. CLEAR concerns claim limits; it is not external root seal, publication or owner acceptance.
+
+The packet preserves the required qualifications. No blocking claim-limit defect was found. All20 payload hashes and sizes match this manifest. All11 ask slices,5 return slices and59 reaction strings match the packet reports; this narrow comparison does not replace the separate byte reviewer.
+
+## F1 — Synthetic scope
+
+Five fictional testers: four Days RETURN and Lucia fictional cold under bounded history scan. Ten same-evening device sessions are not ten people or independent human samples. Requested model/effort does not establish serving identity.
+
+## F2 — Outcome and timing
+
+Root raw check records nine actual endings and Rosa desktop voluntary unfinished TASTE stop at 31.569 seconds, first day/four hours free; finalizer cuts are null for all five. Only Emre phone and Rosa phone have valid active-play first-minute reactions. Emre premature57.587 is retained and corrected61.997 response/61.996 wall qualifies. Rosa73.834 response/73.833 wall qualifies. Eleven one-ms response/wall differences remain distinct. Three automatic shots occur after stop (Pavel desktop, Rosa desktop, Lucia phone); other post-ending captures do not establish active play. No device reaches180 seconds.
+
+## F3 — History and perception
+
+Complete supplied history lines appear in aggregate retained stdout for2263/1682/1457/4532/2 lines; this does not prove delivery, reading or comprehension. Tessa explicitly cannot establish complete reading or unread ranges. Zero retained image-tool events support perception, despite reports claiming image viewing. PNG paths/hashes and self-report remain distinct.
+
+## F4 — Harness and Feedback
+
+Four failed shell quoting commands: Pavel1 omitted from report, Tessa1 and Lucia2 disclosed. Corrected inputs continued; failed shell commands are not game control failures. Feedback phrase drafts plus Back are recorded. No recorded Submit/type/recording toggle establishes submission, recording execution, backend receipt, identity or consent; defaults/checked control snapshots are bounded control evidence.
+
+## F5 — Rosa counts and correction
+
+Rosa defines concept groups herself, including familiar concepts and lab controls; phone door/third-evening counts are retrospective. These do not establish unique/new concepts, comprehension or a threshold pass. Notebook text contains nine comma-separated groups, matching her label. RQ11 preserves that the root initially considered a mismatch, corrected it before seal and needed no raw rewrite. First recognition recalls supplied Days memory before Selin is visible; later family cue is separate.
+
+## F6 — SDK and delivery limits
+
+Packet SDK proof is static archive/source transfer plus served markers; it does not establish runtime execution, backend identity, attribution, recording, consent, Submit or image perception. Separate outside-packet root-source-delivery receipt retains initial HTTP404/curl56 cause unknown and later200, and319.805 seconds over300; no redeploy/cause/within300 inference is warranted. The SDK JSON itself does not contain those delivery qualifications.
+
+## F7 — Asks, returns and acceptance
+
+All11 ranked asks and5 full returns are preserved, including Rosa retain-wording request. All five report no new blocking ask. Residual preferences route2026-11-03; no third ordinary panel or feature change follows from preferences alone. No cohort causal improvement, human acceptance or owner acceptance follows. RQ1–12 are distinct from independent protocol Q1–9.
+
+## F8 — Status and physical return
+
+Adopted root return receipt reports session11503 EXIT0,453 sampled original identities gone,5 profiles absent,11 ports closed and17 frozen inputs stable before report reads; this review did not resample processes. Finalizer HOLD and packet CANDIDATE are provenance. External root seal, final dated record integration and canonical publication remain pending.
+
+The companion JSON records SHA-256 for all25 read files, including the cleanup rule and three outside-packet receipts. Root-return/protocol/finalizer assertions are adopted receipt evidence, not fresh observations of the original collection. No raw tester words or packet payloads were edited.
+
+No tree, browser, server, persistent process, branch or worker created. No repository touched. git worktree list not applicable.

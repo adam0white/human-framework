@@ -1,0 +1,420 @@
+{
+  "status": "CANDIDATE",
+  "reservation": "F-3144 through F-3154; no collision in current canonical/GDwriter ledger, board,coord; no trackerentries created.",
+  "ask_rows": [
+    {
+      "reserved_id": "F-3144",
+      "tester": "emre",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Show the amount paid and the savings remaining. On the phone, I understood that Burak owed the mistaken payment back, but I could not tell how much Leyla had paid.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md",
+        "source_sha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+        "utf8_bytes": [
+          151,
+          317
+        ],
+        "codepoints": [
+          151,
+          317
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking ask."
+      }
+    },
+    {
+      "reserved_id": "F-3145",
+      "tester": "pavel",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Clarify the receipt wording. On both devices someone already had a receipt, yet getting the original took an hour. I could not tell whether those were different papers.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+        "source_sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+        "utf8_bytes": [
+          149,
+          320
+        ],
+        "codepoints": [
+          149,
+          320
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking gameplay ask."
+      }
+    },
+    {
+      "reserved_id": "F-3146",
+      "tester": "pavel",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Make the small, pale cost text on the phone room drawing easier to read.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+        "source_sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+        "utf8_bytes": [
+          321,
+          396
+        ],
+        "codepoints": [
+          321,
+          396
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking gameplay ask."
+      }
+    },
+    {
+      "reserved_id": "F-3147",
+      "tester": "pavel",
+      "rank": 3,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "3. Give me a little more time with the days. I liked the choices and their consequences, but both stories passed quickly.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+        "source_sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+        "utf8_bytes": [
+          397,
+          518
+        ],
+        "codepoints": [
+          397,
+          518
+        ],
+        "lines": [
+          7,
+          7
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking gameplay ask."
+      }
+    },
+    {
+      "reserved_id": "F-3148",
+      "tester": "tessa",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "new capability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Give me more ways to speak or act with Selin, Hacer and Burak, including something in my own words.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md",
+        "source_sha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+        "utf8_bytes": [
+          218,
+          320
+        ],
+        "codepoints": [
+          218,
+          320
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking control or blocking ask."
+      }
+    },
+    {
+      "reserved_id": "F-3149",
+      "tester": "tessa",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "new capability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Give me more reason to revisit the three days beyond choosing another option on familiar screens.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md",
+        "source_sha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+        "utf8_bytes": [
+          321,
+          421
+        ],
+        "codepoints": [
+          321,
+          421
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "I reached no new blocking control or blocking ask."
+      }
+    },
+    {
+      "reserved_id": "F-3150",
+      "tester": "rosa",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Show the amount before I pay from Leyla’s savings.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+        "source_sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+        "utf8_bytes": [
+          156,
+          211
+        ],
+        "codepoints": [
+          156,
+          209
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "The payment amount and “named visit” are preferences from choices I actually reached. Neither prevented me continuing on phone."
+      }
+    },
+    {
+      "reserved_id": "F-3151",
+      "tester": "rosa",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Replace “named visit” with plain words about agreeing when to visit.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+        "source_sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+        "utf8_bytes": [
+          212,
+          287
+        ],
+        "codepoints": [
+          210,
+          281
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "The payment amount and “named visit” are preferences from choices I actually reached. Neither prevented me continuing on phone."
+      }
+    },
+    {
+      "reserved_id": "F-3152",
+      "tester": "rosa",
+      "rank": 3,
+      "route_date": "2026-11-03",
+      "route": "no-change / retain current wording",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "3. Keep the new hour explanation: “work through the hour without resting” and “2 hours left afterward.”",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+        "source_sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+        "utf8_bytes": [
+          288,
+          399
+        ],
+        "codepoints": [
+          282,
+          385
+        ],
+        "lines": [
+          7,
+          7
+        ],
+        "classification": "retain_wording_request",
+        "judgment": "No new blocking ask arose."
+      }
+    },
+    {
+      "reserved_id": "F-3153",
+      "tester": "lucia",
+      "rank": 1,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "1. Explain the insufficient-time visit choice more plainly. I understood that one hour remained and the visit needed two, but not what completing the attempt would do.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md",
+        "source_sha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+        "utf8_bytes": [
+          140,
+          307
+        ],
+        "codepoints": [
+          140,
+          307
+        ],
+        "lines": [
+          5,
+          5
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "No blocking ask arose. I could choose delivery and continue."
+      }
+    },
+    {
+      "reserved_id": "F-3154",
+      "tester": "lucia",
+      "rank": 2,
+      "route_date": "2026-11-03",
+      "route": "clarity or readability",
+      "source_ask": {
+        "kind": "ranked_ask",
+        "text": "2. Give me a little more help keeping the people straight early on. Several names arrived close together.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md",
+        "source_sha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+        "utf8_bytes": [
+          308,
+          413
+        ],
+        "codepoints": [
+          308,
+          413
+        ],
+        "lines": [
+          6,
+          6
+        ],
+        "classification": "nonblocking_preference",
+        "judgment": "No blocking ask arose. I could choose delivery and continue."
+      }
+    }
+  ],
+  "logical_testers": [
+    {
+      "tester": "emre",
+      "name": "Emre Kaya",
+      "source_return": {
+        "kind": "return_statement",
+        "text": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md",
+        "source_sha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+        "utf8_bytes": [
+          0,
+          130
+        ],
+        "codepoints": [
+          0,
+          130
+        ],
+        "lines": [
+          1,
+          1
+        ]
+      },
+      "no_new_blocking": "I reached no new blocking ask."
+    },
+    {
+      "tester": "pavel",
+      "name": "Pavel Novak",
+      "source_return": {
+        "kind": "return_statement",
+        "text": "I would return voluntarily another evening on the desktop to try a different route, but not tonight; I would not leave it running.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+        "source_sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+        "utf8_bytes": [
+          0,
+          130
+        ],
+        "codepoints": [
+          0,
+          130
+        ],
+        "lines": [
+          1,
+          1
+        ]
+      },
+      "no_new_blocking": "I reached no new blocking gameplay ask."
+    },
+    {
+      "tester": "tessa",
+      "name": "Tessa Williams",
+      "source_return": {
+        "kind": "return_statement",
+        "text": "I would not return voluntarily tonight or leave Days running; I liked how it remembered the unfinished obligations and the harm of the disclosure, but I have had enough of these familiar choices.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md",
+        "source_sha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+        "utf8_bytes": [
+          0,
+          195
+        ],
+        "codepoints": [
+          0,
+          195
+        ],
+        "lines": [
+          1,
+          1
+        ]
+      },
+      "no_new_blocking": "I reached no new blocking control or blocking ask."
+    },
+    {
+      "tester": "rosa",
+      "name": "Rosa Alvarez",
+      "source_return": {
+        "kind": "return_statement",
+        "text": "I would return voluntarily another evening on the large screen to try a different choice; I would close it now, not leave it running.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+        "source_sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+        "utf8_bytes": [
+          0,
+          133
+        ],
+        "codepoints": [
+          0,
+          133
+        ],
+        "lines": [
+          1,
+          1
+        ]
+      },
+      "no_new_blocking": "No new blocking ask arose."
+    },
+    {
+      "tester": "lucia",
+      "name": "Lucia Ferraro",
+      "source_return": {
+        "kind": "return_statement",
+        "text": "I would not voluntarily return for another run now; I would leave the game after the ending rather than leave it running.",
+        "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md",
+        "source_sha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+        "utf8_bytes": [
+          0,
+          121
+        ],
+        "codepoints": [
+          0,
+          121
+        ],
+        "lines": [
+          1,
+          1
+        ]
+      },
+      "no_new_blocking": "No blocking ask arose. I could choose delivery and continue."
+    }
+  ]
+}

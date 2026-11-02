@@ -1,0 +1,116 @@
+{
+  "verdict": "CLEAR",
+  "reviewerId": "days-final-packet-limits-independent-20261102",
+  "manifestSha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+  "scope": "Source-only review of exact20-payload candidate packet and explicitly named outside-packet bound receipts. No project runtime, imports, tests, browser, network, git, worktrees or new workers. CLEAR concerns claim limits; it is not external root seal, publication or owner acceptance.",
+  "inputHashes": {
+    "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md": "f1e1880e8153a9a2e06b7369c3ddefb636d1ecc9e14f65d7fd31c4a77815bc03",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-sdk-source-proof.json": "44c1397dd5c9130f47bda30c82472724ab1ff6502a6cdc03e77e2b22e2b07a30",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-source-delivery.json": "69af6ff8d8a2606ae4e36b43cfe73525ea9b995eca07059870663bff74ae789a",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102-result.json": "90399a267000bf6b3ae8a035abe22b72dc1cf2a7a45a4b16e4c3e5a02f10d0bd",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-extraction.json": "639d9bcd5384bb506f1e477446b735e81c601aff442ca2b02280bccb1f3becb2",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-review.md": "39449736707287ef4078e941369fbc0c92ea542597e185383a34482eef21a022",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.json": "cfc32e6cc4cdefc070bd1b8d47050f13e23cf8729ce394a083ad0b4a648ceb34",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.md": "232b3b239996b3ebaf65acf5f2591aa6e71149e86828452c7e43dd1a1c948522",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-literal-check.json": "616e20139560aa4735732513d8a3d886043c0b09e11e28b737400ca2bd37cf22",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-qualification.json": "e4363942bffcf57afc629b0121e5e1ad93979dad943d4b62e721db4a5b29889a",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-raw-check.json": "b388241d017bb87af9ed53a4db18df4e5afc7d724e701ac4ebe34d7ae18339e0",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-sdk-source-proof.json": "0d051468593cc420812266dfb955859f3bf6c9021a1e0dabb9c53f0513726de6",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/finalizer-audit.json": "2df89d011bfd08ff2085b57db3935c9abc7e2c7f33a398c06274c6260d00ac60",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/root-return.json": "8a26ca0b731fc5b83b2b472a3624badc90f4efd0021d52aec834099dbf598272",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/integration-notes.md": "a2634b19b1f95b1c205fafe7cbacc413bf6d7f8c6ac5197faf773cefc48dd806",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/ledger.json": "6e7e2a79e920066e5f3514d2cab10762bf4afb0b62ef15e57c7db4b1736f648b",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/logical-testers.md": "ddd642d1c00d57bb9d533c04ef6f02536f86a85abba3161fc0ed7343d2e21a39",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/manifest.json": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/emre/report.md": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/lucia/report.md": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/pavel/report.md": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/rosa/report.md": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/tessa/report.md": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-png-hashes.json": "1f6bc2987e25ab204143053b92c83ddf941ff34cd7f31f418c4f641208f13aa7",
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-references.json": "403cdad1475e40eb46671d7f955ec75597c29657ee0911cef9a7095f31e9ded0"
+  },
+  "materialFindings": [
+    {
+      "id": "F1",
+      "title": "Synthetic scope",
+      "finding": "Five fictional testers: four Days RETURN and Lucia fictional cold under bounded history scan. Ten same-evening device sessions are not ten people or independent human samples. Requested model/effort does not establish serving identity.",
+      "blocking": false
+    },
+    {
+      "id": "F2",
+      "title": "Outcome and timing",
+      "finding": "Root raw check records nine actual endings and Rosa desktop voluntary unfinished TASTE stop at 31.569 seconds, first day/four hours free; finalizer cuts are null for all five. Only Emre phone and Rosa phone have valid active-play first-minute reactions. Emre premature57.587 is retained and corrected61.997 response/61.996 wall qualifies. Rosa73.834 response/73.833 wall qualifies. Eleven one-ms response/wall differences remain distinct. Three automatic shots occur after stop (Pavel desktop, Rosa desktop, Lucia phone); other post-ending captures do not establish active play. No device reaches180 seconds.",
+      "blocking": false
+    },
+    {
+      "id": "F3",
+      "title": "History and perception",
+      "finding": "Complete supplied history lines appear in aggregate retained stdout for2263/1682/1457/4532/2 lines; this does not prove delivery, reading or comprehension. Tessa explicitly cannot establish complete reading or unread ranges. Zero retained image-tool events support perception, despite reports claiming image viewing. PNG paths/hashes and self-report remain distinct.",
+      "blocking": false
+    },
+    {
+      "id": "F4",
+      "title": "Harness and Feedback",
+      "finding": "Four failed shell quoting commands: Pavel1 omitted from report, Tessa1 and Lucia2 disclosed. Corrected inputs continued; failed shell commands are not game control failures. Feedback phrase drafts plus Back are recorded. No recorded Submit/type/recording toggle establishes submission, recording execution, backend receipt, identity or consent; defaults/checked control snapshots are bounded control evidence.",
+      "blocking": false
+    },
+    {
+      "id": "F5",
+      "title": "Rosa counts and correction",
+      "finding": "Rosa defines concept groups herself, including familiar concepts and lab controls; phone door/third-evening counts are retrospective. These do not establish unique/new concepts, comprehension or a threshold pass. Notebook text contains nine comma-separated groups, matching her label. RQ11 preserves that the root initially considered a mismatch, corrected it before seal and needed no raw rewrite. First recognition recalls supplied Days memory before Selin is visible; later family cue is separate.",
+      "blocking": false
+    },
+    {
+      "id": "F6",
+      "title": "SDK and delivery limits",
+      "finding": "Packet SDK proof is static archive/source transfer plus served markers; it does not establish runtime execution, backend identity, attribution, recording, consent, Submit or image perception. Separate outside-packet root-source-delivery receipt retains initial HTTP404/curl56 cause unknown and later200, and319.805 seconds over300; no redeploy/cause/within300 inference is warranted. The SDK JSON itself does not contain those delivery qualifications.",
+      "blocking": false
+    },
+    {
+      "id": "F7",
+      "title": "Asks, returns and acceptance",
+      "finding": "All11 ranked asks and5 full returns are preserved, including Rosa retain-wording request. All five report no new blocking ask. Residual preferences route2026-11-03; no third ordinary panel or feature change follows from preferences alone. No cohort causal improvement, human acceptance or owner acceptance follows. RQ1–12 are distinct from independent protocol Q1–9.",
+      "blocking": false
+    },
+    {
+      "id": "F8",
+      "title": "Status and physical return",
+      "finding": "Adopted root return receipt reports session11503 EXIT0,453 sampled original identities gone,5 profiles absent,11 ports closed and17 frozen inputs stable before report reads; this review did not resample processes. Finalizer HOLD and packet CANDIDATE are provenance. External root seal, final dated record integration and canonical publication remain pending.",
+      "blocking": false
+    }
+  ],
+  "verification": {
+    "payloads": 20,
+    "manifestMatchesRequested": true,
+    "allPayloadHashesAndSizesMatchManifest": true,
+    "literalAskAndReturnSlices": 16,
+    "reactionStringsInReports": 59,
+    "rootQualificationIds": [
+      "RQ1",
+      "RQ2",
+      "RQ3",
+      "RQ4",
+      "RQ5",
+      "RQ6",
+      "RQ7",
+      "RQ8",
+      "RQ9",
+      "RQ10",
+      "RQ11",
+      "RQ12"
+    ],
+    "protocolQualificationIds": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6",
+      "Q7",
+      "Q8",
+      "Q9"
+    ]
+  },
+  "cleanup": "No tree, browser, server, persistent process, branch or worker created. No repository touched. git worktree list not applicable."
+}

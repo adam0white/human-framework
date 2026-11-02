@@ -1,0 +1,285 @@
+{
+  "at": "2026-11-02T12:10:10.072389+00:00",
+  "status": "ROOT_ADOPTED_EXACT_SDK_SOURCE_TRANSFER_AND_CURRENT_SERVED_MAIN_MARKERS",
+  "rootVerified": true,
+  "game": "days",
+  "commit": "b312bcdb7fc264d98eb9118d5737dde8d57d9691",
+  "sdkVersion": "0.5.7",
+  "officialVendorArchiveByteEqual": true,
+  "lockIntegrityVerified": true,
+  "archiveSha256": "18f6b871a3106475652a1040286ed3d1201509c00ff599c5e458528f7d872e41",
+  "sourceCallChainRootRead": true,
+  "query": "labRunSource=agent",
+  "capturedSourceField": {
+    "runSource": "agent"
+  },
+  "urlRemovalExpected": true,
+  "freshServedMarkerReceipt": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/live-markers.json",
+  "sourceEvidenceFiles": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/adam0white-lab-client-0.5.7.tgz",
+      "sha256": "18f6b871a3106475652a1040286ed3d1201509c00ff599c5e458528f7d872e41",
+      "bytes": 63982
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_cast.js.txt",
+      "sha256": "4e990da57c736ce8d11614e86ce2399432b510c47532655205cab632bd034492",
+      "bytes": 58556
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_dialog.js.txt",
+      "sha256": "9cf98e76573647e2fdbec16672e341e36c69cd02c9a8d6774530dd853417dc85",
+      "bytes": 15888
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_feedback.js.txt",
+      "sha256": "59bbd1b9d29acda9c9923870ae21dacbcaaf34700c703243e44e00d463d8d011",
+      "bytes": 406
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_identity.js.txt",
+      "sha256": "ec3193f7405560d34e75bf94911e3bc6ed6bad3ef90cb6193b42a331d1ded8a7",
+      "bytes": 5085
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_index.js.txt",
+      "sha256": "6a3d2edec2c8e06bcf17c7d6daef9f24c34d9b1dbc7b64cecd0214f2d28a51eb",
+      "bytes": 34154
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_life.js.txt",
+      "sha256": "a49fbb35cc44812fedc67d9a4277dc8ceca59989f19aa8aa89d68a3aab337517",
+      "bytes": 12447
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_limits.js.txt",
+      "sha256": "1e6bfd42220e0fc347b66a98ad78dbbfba8324d6315a3c545d09bd6c969b62d4",
+      "bytes": 2242
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_linked.js.txt",
+      "sha256": "bcf0c142435a515c554f5aad92a190ed4ccb94d1b42529c7578be5fe6969ff9a",
+      "bytes": 17728
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_navigation.js.txt",
+      "sha256": "a0c47707fbf693c23a670c4763712aa0dd4a75f99f061f2609aef6340bd1b212",
+      "bytes": 3639
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_notice.js.txt",
+      "sha256": "0dea99d16bf06bd58d1f3bf69c9298d1fa95487c767173a3440b6ef8001bfe10",
+      "bytes": 2037
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_persona-portable.js.txt",
+      "sha256": "d367e2c1f0363ff18986e18b041c9b539bb78a0d0ba051dab7bd40a0798a01a4",
+      "bytes": 10806
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_persona.js.txt",
+      "sha256": "d72f430a825c50b4fcc81c3015f8368858f939a53c1364aaf87136385d7d73c6",
+      "bytes": 16058
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_portable-readers.js.txt",
+      "sha256": "dfe7003610da7b60556832ed48b9f300ad58b519f06b3bf0ea0863a69b66747d",
+      "bytes": 272
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_run-source.js.txt",
+      "sha256": "6e0ab2a0d494a2a427b56070001cb04e6d1d51614c7bb5bdc4b45bb867aac210",
+      "bytes": 647
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/archive-package_dist_util.js.txt",
+      "sha256": "38d769557cd0cfb1ee2ed56e926b2a04a1cdab7f1c5f073f4ae769212d92818e",
+      "bytes": 1587
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/main.ts",
+      "sha256": "998604b716809be370bf9632b71b1fca07f154250c6bcdbf1dc2522e428e8ac6",
+      "bytes": 16329
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/package.json",
+      "sha256": "fb28505b32b74ed2049df03711423430bc4fb71ecb2a02291981c5a1c68b56f1",
+      "bytes": 1161
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/pnpm-lock.yaml",
+      "sha256": "4c145189fcab846c23380d6eed5edbc5756cf35900b2461c93cc3b38c642bc92",
+      "bytes": 69959
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/release-metadata.json",
+      "sha256": "fd841295d75b72da582c38dec28daeebaca63843e7c75a3c075bb50f530b6f47",
+      "bytes": 780
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102/days/release.tgz",
+      "sha256": "18f6b871a3106475652a1040286ed3d1201509c00ff599c5e458528f7d872e41",
+      "bytes": 63982
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/live-release.json",
+      "sha256": "d7e3b755a91d703a322d4a33dbc26a29c7a3d1589468dd8acc39f7f38ca55a2c",
+      "bytes": 112
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/live-index.html",
+      "sha256": "6cf09fe3108eb712c7af741b1513fee8ca0ea3af42a64d697fdacc0807a7a679",
+      "bytes": 3862
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/live-main.js",
+      "sha256": "d9ab4357329dfc3d30a183f02dfa86aeb9be320ba30167b407aca96183fd0a1d",
+      "bytes": 1076225
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/live-markers.json",
+      "sha256": "63c7271988eca96ef2443b5a3d3ce4c2f6ebc9a8560bbcc22a6276c3964b2248",
+      "bytes": 2169
+    }
+  ],
+  "combinedAudit": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/smoke-days-sdk-proof1102-result.json",
+    "sha256": "90399a267000bf6b3ae8a035abe22b72dc1cf2a7a45a4b16e4c3e5a02f10d0bd",
+    "scope": "HistoricalinitialSDKrelease/sourceaudit, transferredbyexactbytes; currentfreshmarkersboundseparately."
+  },
+  "limits": "Static exact unchangedSDKarchive+main/manifest/lock source transfer and freshservedrelease/mainJS markers/currentdistbyteequality. Otherassetdeliveryproofseparate. Markerpresence is not execution/backendwho or attribution/recording/consent/Submit/imageperception. URL removal is expected from exact SDK source, not verifiedruntimehere. Priorbodyreceiptsremainhistorical; currentmainreceiptisfresh.",
+  "freshServedMarkerReceiptSha256": "63c7271988eca96ef2443b5a3d3ce4c2f6ebc9a8560bbcc22a6276c3964b2248",
+  "sourceCallChainTransfer": {
+    "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-sdk-transfer-draft.json",
+    "sha256": "d3594b55c121a6539cbb65d3c8d97c8b91fb6e7c157583c129cdf677e5a789bc",
+    "priorProofPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest1102-sdk-source-proof.json",
+    "priorProofSha256": "44c1397dd5c9130f47bda30c82472724ab1ff6502a6cdc03e77e2b22e2b07a30",
+    "currentMainManifestLockAndVendorExact": true
+  },
+  "currentSourceSnapshot": [
+    {
+      "sourcePath": "src/main.ts",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/src/main.ts",
+      "sha256": "998604b716809be370bf9632b71b1fca07f154250c6bcdbf1dc2522e428e8ac6",
+      "bytes": 16329
+    },
+    {
+      "sourcePath": "src/engine.ts",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/src/engine.ts",
+      "sha256": "9588b37ece592109388b8d92e27e0ac438b7f3af2fc90808a8dc6a35942a7e43",
+      "bytes": 46836
+    },
+    {
+      "sourcePath": "test/engine.test.ts",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/test/engine.test.ts",
+      "sha256": "5740ae9113a1891e8b687f09ab907e2901b7aa85210c115b2ac40aecb7857070",
+      "bytes": 12175
+    },
+    {
+      "sourcePath": "docs/design.md",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/docs/design.md",
+      "sha256": "3560587de9a0b1d15469a63fddd9f39dcb806ca998ded8bc9a616e1ebcfc17d6",
+      "bytes": 30697
+    },
+    {
+      "sourcePath": "package.json",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/package.json",
+      "sha256": "fb28505b32b74ed2049df03711423430bc4fb71ecb2a02291981c5a1c68b56f1",
+      "bytes": 1161
+    },
+    {
+      "sourcePath": "pnpm-lock.yaml",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/pnpm-lock.yaml",
+      "sha256": "4c145189fcab846c23380d6eed5edbc5756cf35900b2461c93cc3b38c642bc92",
+      "bytes": 69959
+    },
+    {
+      "sourcePath": "vendor/adam0white-lab-client-0.5.7.tgz",
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/source-snapshot/vendor/adam0white-lab-client-0.5.7.tgz",
+      "sha256": "18f6b871a3106475652a1040286ed3d1201509c00ff599c5e458528f7d872e41",
+      "bytes": 63982
+    }
+  ],
+  "currentBodySnapshot": [
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/CanvasRenderer-BmCk9pkZ.js",
+      "sha256": "4322f1a43092affdc8f34fc406c4ff10c0a2852c69aec5050c09d6225a246cf9",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/Geometry-DQ5pMyIE.js",
+      "sha256": "66036181238989efb51556f0b6a99b140489cf3fee401770a4fc23af9f33e165",
+      "bytes": 112862
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/RenderTargetSystem-DpWXSPCF.js",
+      "sha256": "35f64b6c1e7db9ef6dbea51448317ebdcc71b30a9fbe80a599e9e00030ea4d44",
+      "bytes": 78083
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/WebGLRenderer-Cj6sMsHB.js",
+      "sha256": "02162678fe84ac42f145db60df46e18de2e411e2499a3f32f38ec73896bc215d",
+      "bytes": 51
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/WebGPURenderer-CYGJQl2Q.js",
+      "sha256": "50f2949ff8003d806668d96d0f89f32eaedfa5b89fff81e9457489ac2b72a5a6",
+      "bytes": 52
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/browserAll-DvTQ-Qq7.js",
+      "sha256": "2cd88db4a4bb8aa2018aceb17ff7fe5ed0339dc7fd93d3003398060265415f17",
+      "bytes": 43477
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/canvasUtils-BMpBF_yX.js",
+      "sha256": "c44aa0fa93a10effe9e400f7b3b2b9437bde5348f0f6868cbbeb0f11483a8d69",
+      "bytes": 6011
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/getTexelRangeRects-BTqbBZ4r.js",
+      "sha256": "5b8d4bff0590714ede33a01a7015573650237f7d239a9f3dce30646da3a41534",
+      "bytes": 11317
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/getTextureBatchBindGroup-DdLqdhwT.js",
+      "sha256": "993d265e4204861062cad134370b187176bd85b5dab00963746b88a379ef0dbc",
+      "bytes": 342
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/index-BS1pWeVU.js",
+      "sha256": "d9ab4357329dfc3d30a183f02dfa86aeb9be320ba30167b407aca96183fd0a1d",
+      "bytes": 1076225
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/index-Bmo5dvOI.css",
+      "sha256": "9745c6ebd736d60332ec3353643e3ffffbc6dd28f50e51d6d6090c3aa1dd065a",
+      "bytes": 9246
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/init-0m6E9weW.js",
+      "sha256": "f010e46078b90fe27054ef620b0b43381f7ae24dee8e79ebb5a86664dcb6fcae",
+      "bytes": 15178
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/room-Cg62iv8w.js",
+      "sha256": "209ed001d17ea67d424cd6a694af80a46003890c015dd60d02c2a0f02eb844f5",
+      "bytes": 262573
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/assets/webworkerAll-D0Jgcigl.js",
+      "sha256": "89541c8ea3ea0ca94f620625758b2e1efd3ce41c2277928838e0e4e6f20354ff",
+      "bytes": 54
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/release.json",
+      "sha256": "d7e3b755a91d703a322d4a33dbc26a29c7a3d1589468dd8acc39f7f38ca55a2c",
+      "bytes": 112
+    },
+    {
+      "path": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-live-sdk-proof/served/index.html",
+      "sha256": "6cf09fe3108eb712c7af741b1513fee8ca0ea3af42a64d697fdacc0807a7a679",
+      "bytes": 3862
+    }
+  ]
+}

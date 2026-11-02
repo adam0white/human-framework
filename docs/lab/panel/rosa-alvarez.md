@@ -4188,3 +4188,112 @@ I created no worktree, branch, server, browser or helper process. The coordinato
 
 `git worktree list`: not applicable; no repository was touched and no worktree was created by me.
 ```
+
+
+## Days second fixed retest — 2026-11-02
+
+Qualified final ordinary iteration; source: `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md`; SHA-256: `5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646`. See packet integration notes for protocol and evidence qualifications.
+
+```text
+I would return voluntarily another evening on the large screen to try a different choice; I would close it now, not leave it running.
+
+My ranked asks are:
+
+1. Show the amount before I pay from Leyla’s savings.
+2. Replace “named visit” with plain words about agreeing when to visit.
+3. Keep the new hour explanation: “work through the hour without resting” and “2 hours left afterward.”
+
+I played as Rosa Alvarez, 62, a retired school administrator from Puebla who reads English as a second language. This was my return after one supplied Days visit, in the second fixed-build retest. The page called the game **Three Days**.
+
+I read all **4532 supplied history lines** before opening either session. I used explicit ranges of at most 40 lines and smaller follow-up reads after truncated output. The final range was **4521–4532**. The actual last line read was **“End of supplied own history.” Exact unread ranges: none.** This was selected history, not my complete archive. Earlier reading, image and continuity qualifications remain attached to those earlier records.
+
+Both sessions began through **Begin the three days** on the driver-opened agent-marked page. Each used a fresh automated project-test context. No save or matched seed was imported. Recording and consent stayed at their defaults.
+
+| Session | Device | Stop elapsed_s | Reason | State |
+|---|---|---:|---|---|
+| A | 360×690 touch phone | 109.762 | FINISHED | “The three days have ended” |
+| B | 1280×800 desktop, mouse actions | 31.569 | TASTE | First day, “A page folded inwards”; 4 hours free |
+
+Neither reached the 20-minute ceiling.
+
+The phone opening appeared at **0.432 seconds**. The warning was sober and readable. I remembered the soup, Selin’s company and my earlier uncertainty about resting. This time the comparison choice answered that question directly. I continued because I understood the cost and wanted Şükrü to receive the photograph.
+
+Keeping the marriage private mattered to me. So did Selin having her own family to return to. I paid the verified boiler bill to preserve the remaining hour for the visit, although I wanted to know the payment amount. Şükrü received the photograph and letter. The unreturned folding table kept Kemal from becoming an idealised father. Selin listening without making a lesson of Leyla’s words was the strongest moment.
+
+Desktop opened at **0.460 seconds**. Its larger room and text were comfortable, but I had already reached an ending that evening. I stopped before repeating the notebook choice. That was a wish to leave after enough story for one evening, not confusion or completion on that device.
+
+These are all successful diary strings, unchanged and in order. Times are driver `elapsed_s`.
+
+**Phone**
+
+- **11.054 s — note, engagement 4:** “I remember the soup and Selin offering company from my prior Days visit. I am confident from this opening and the names together. The warning is sober and readable. Opening concepts 12: death, estrangement, grief, three days leave, disputed account, promise, disclosure, recording, menu recording control, private Feedback, recording explanation, two begin choices. No reread.”
+- **18.696 s — note, engagement 4, First day; 5 hours free:** “Soup helps and costs one hour, as I remember. I understand the disputed bills now: one returned advance, but whose money? I recognise the difficult saying about the soul from last time and understand his fear without reading it again. Folded account concepts 14: soup and steadiness, hour cost, two bills, returned advance, two payers, crossed-out uncertainty, receipt, religious fear, urgent demand, checking open bill, hours after visitors, second reader, savings payment, later recovery cost. No reread today.”
+- **25.148 s — note, engagement 4, First day; 4 hours free:** “Selin saying she does not need the whole story still moves me. Selin, Halil and Nuran together recall the Voice family confidently, and I remember this Days offer. I keep the marriage private. Notebook adds 9 groups: entries, private marriage, untold separation, last visit instruction, envelope, Selin family, company without disclosure, comparison, help versus exposure and later harm. No reread.”
+- **35.078 s — note, engagement 4, Second day; 4 hours free:** “Selin agrees to a short shift, and her own evening matters. Nobody needs an answer this minute is reassuring. I am already rested but skipping the meal would tire me, so I eat again. Envelope adds 9 groups: trust preserved, later sorting, photograph and unsent letter, cross-city visit, broken lift, visitors, family cost, bounded help, condolences once. Morning adds 5: agreed shift, visit hour, no hurry, rest hour, tiredness adds work or travel time. No reread.”
+- **41.295 s — note, engagement 5, Second day; 3 hours free:** “This answers my old question: work through the hour without resting, then two hours left afterward. I understand on first reading. Burak admitting his mistake is clear and kind. I will compare privately. Living witness adds 7 groups: eating restores reading, repayment to Burak, separate boiler debt, merged entries, correction, private work without rest, phone check with rest. No reread.”
+- **52.855 s — note, engagement 4, Second day; 2 hours free:** “The check used exactly one hour and left two. I feel more willing to continue than last time. Reread 1: Ask for a named visit and get Şükrü's agreement. Named visit is unusual English; I take it to mean agree on when I come. I want him to have the photograph. Across the city adds 5 groups: confirmed separate accounts, photograph wanted, unanswered years, visit agreement before travel, later delivery instead. The phone picture shows readable story but the choices are lower down.”
+- **73.834 s — first_minute, engagement 4, Second day; 2 hours free:** “The old hour and rest question is answered, and I reached new choices without exposing the marriage. One reread so far, named visit. I can keep another person's hospital story private too. This screen adds 6 groups: agreed visit, hospital question, consent, copying bill myself, lending original, closed page staying private. Menu has 11 groups and Feedback 9 including recording, linking, privacy and Debug. I chose confused for named visit, the note filled itself, and Back worked; I typed nothing.”
+- **81.660 s — note, engagement 4, Third day; 1 hour free:** “Only one hour remains, and I promised a visit. Writing the claim would take that hour, so I choose the verified payment to save the visit. I wish I could see the amount before spending my savings. Third morning adds 6 groups: bill copy delivered, notebook kept, leave ends but grief continues, corrected claim sent onward, writing hour, verified payment saves time. No new reread.”
+- **94.494 s — note, engagement 5, Third evening; 0 hours free:** “He received the photograph. I am glad I kept the hour for him. The unreturned table is an ordinary unfinished duty, not a perfect ending for her father. Selin not asking grief to stop feels kind. I want Leyla to say the thing she could not tell him. Departure adds 4 groups: payment confirmed, separate entries followed, visit versus paid delivery, journey hour. Chair adds 6: visit completed, borrowed table, recording contact, last goodbye, mourning without stopping missing, speaking tires versus quiet recovery. No second reread.”
+- **109.034 s — want_quit, FINISHED, engagement 5:** “The three days have ended. I kept the visit and the page private. That feels enough for tonight; I do not want another run now.”
+- **109.762 s — stop, FINISHED, engagement 5:** “I stop after the three days ended. I kept the visit and the private page, and Selin listened without turning it into a lesson. The hour explanation answered my old question. Named visit needed one reread and I wanted the payment amount, but I felt able to choose. I chose stopping and Back; the note filled itself, and I typed and submitted nothing. I would close it for tonight. Ending adds 4 groups: leave ended, tasks settled, grief continues, another run.”
+
+**Desktop**
+
+- **10.373 s — note, engagement 4, First day; 6 hours free:** “The wide opening is comfortable. I recognise the coat, Rotterdam and different views of mourners from my earlier desktop Days visit, confidently. This fresh start says very tired, while the phone said tired. I still want her fed. Opening dialog has the same 12 groups. Door has 17: father and daughter, leave and Rotterdam, house remaining, soup, religious example, Hacer, Burak and accounts, notebook, envelope and Şükrü, customs colleague, gathering disagreement, speaker phone, free hours, tiredness, privacy and marriage, action costs, menu and games. No reread.”
+- **30.802 s — want_quit, TASTE, engagement 4, First day; 4 hours free:** “Selin's offer is still warm and the large room is comfortable. Hacer holds the receipt here, unlike Burak on the phone. I have already lived through the ending tonight and do not want to repeat the choices. I would stop now. Folded account has the same 14 groups and notebook adds the same 9. The gold cost text is small. No sentence needed rereading on this device.”
+- **31.569 s — stop, TASTE, engagement 4, First day; 4 hours free:** “I stop on the large screen. The room and story are comfortable and Selin's offer still matters, but I have seen the beginning and an ending tonight. I do not want another run now. No reread here. Menu has 11 groups and Feedback 9, as on phone. I chose stopping, the note filled itself, and Back returned to the menu. I typed and submitted nothing. I would close it and might return another evening for a different choice.”
+
+My only reread was **“Ask for a named visit and get Şükrü's agreement.”** I guessed that it meant agreeing when to come. The following screen confirmed that Şükrü agreed to a visit before departure. I never reached a second reread, so my two-sentence quitting rule did not trigger. Desktop required no reread.
+
+The concept counts were my grouped estimates, not measured totals. They include familiar ideas, settings and lab controls. This is the accounting for reached screens:
+
+| Screen | Concept groups | Reread |
+|---|---:|---|
+| Opening dialog, both | 12 | None |
+| Phone door | Retrospective 15: family death, visitors, accounts, colleague, arrival history, account goal, promised visit, privacy, marriage, objects, hours, tiredness, door cover, Menu, All games | None |
+| Desktop door | 17 logged | None |
+| Folded account, both | 14 logged | None |
+| Private notebook, both | 9 logged | None |
+| Envelope, phone | 9 logged | None |
+| Second morning, phone | 5 logged | None |
+| Living witness, phone | 7 logged | None |
+| Across the city, phone | 5 logged | “Named visit” |
+| What the room may hear, phone | 6 logged | None |
+| Third morning, phone | 6 logged | None |
+| Answer before departure, phone | 4 logged | None |
+| Chair beside yours, phone | 6 logged | None |
+| Third evening, phone | Retrospective 3: listening, shared energy cost, goodbye and contact number | None |
+| Ending, phone | 4 logged | None |
+| Menu, both | 11: waiting, Resume, Feedback, full screen, games, Recording, New game, people across games, export, privacy, Debug | None |
+| Feedback, both | 9: phrase instruction, stopping, confused, note, recording-dependent linking, Submit, Back, privacy, Debug | None |
+
+I actually viewed four screenshots through successful `view_image` calls:
+
+- [Phone a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/a-001.png), **0.609 s**: tall cream opening dialog; readable instructions and both begin choices. The warning was smaller than the main text.
+- [Phone a-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/phone/a-002.png), **41.687 s**: “Across the city” story filled most of the screen. The illustrated room began below it; the action choices were farther down. This image does not visually verify the earlier comparison-cost sentence.
+- [Desktop b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/b-001.png), **0.651 s**: spacious opening dialog over the story and room.
+- [Desktop b-002.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/desktop/b-002.png), **16.298 s**: story on the left, illustrated room and two notebook choices on the right. Main text was comfortable; gold cost text was small.
+
+I took two manual screenshots per device. I requested and viewed no automatic checkpoint image. I used named controls and no keyboard keys. There were no driver errors or retries. Actions produced visible story and hour changes. Log responses sometimes repeated an earlier snapshot with a nonzero `snapshot_ms`; subsequent inputs showed the new state.
+
+On phone, I opened Feedback for the “named visit” confusion. **“I'm confused”** filled the note at **64.073 s**. **Back** returned to the menu at **64.241 s**, and Resume returned to play. When stopping, **“I'm stopping”** filled the note at **109.554 s**; Back returned at **109.704 s**.
+
+On desktop, **“I'm stopping”** filled the note at **31.353 s**, and Back returned at **31.536 s**. Both labels were offered on both devices. The visible evidence was draft text, not a pressed-state marker. I typed no note, pressed no Submit and changed no recording or consent setting.
+
+The phone ending appeared at **98.547 s**, before my FINISHED quit wish and stop. Desktop’s TASTE wish remained through Feedback. Phone engagement ranged from **4 to 5**; desktop remained **4**.
+
+After playing, my earlier Days question has a clear answer in the phone path I reached. Last time, **“no time to recuperate”** left me unsure whether I could rest during the action or afterward. This time, **“work through the hour without resting. 2 hours left afterward.”** let me choose without rereading. The action then used one hour and left two. I did not reach that choice on desktop.
+
+My first recognition note recalled supplied Days memories; Selin was not yet visible in that opening. Her later appearance with Halil and Nuran at **25.148 s** supplied the direct cue for the family recognition. On desktop, the coat, Rotterdam and disagreement about mourners recalled my own earlier desktop Days visit. Hacer having the receipt on desktop and Burak having it on phone were differences between fresh runs; I cannot explain their cause.
+
+**No new blocking ask arose.** The payment amount and “named visit” are preferences from choices I actually reached. Neither prevented me continuing on phone.
+
+The phone first-minute note was logged at **73.834 s**, after actionable play. Desktop stopped before 60 seconds, so its first-minute checkpoint is untested. Neither session reached 180 seconds, so no pulse was due. Desktop’s later days and ending remain untested. I did not explore the disclosure, later-delivery or unpaid-claim alternatives on phone.
+
+I would consider another evening because I could now follow the practical costs and reach a meaningful visit. I would prefer the large screen, but I do not want another run tonight. I would close both games.
+
+I created no worktree, branch, server, browser or helper process. The coordinator owns both drivers and browser cleanup.
+
+`git worktree list`: not applicable; no repository was touched and no worktree was created by me.
+```

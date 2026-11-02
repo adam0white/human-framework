@@ -2415,3 +2415,60 @@ My earlier Days question about **savings as a number** came up again: the paymen
 
 The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository, so no `git worktree list` applies.
 ```
+
+
+## Days second fixed retest — 2026-11-02
+
+Qualified final ordinary iteration; source: `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md`; SHA-256: `73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8`. See packet integration notes for protocol and evidence qualifications.
+
+```text
+I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.
+
+My ranked ask is:
+
+1. Show the amount paid and the savings remaining. On the phone, I understood that Burak owed the mistaken payment back, but I could not tell how much Leyla had paid.
+
+I reached no new blocking ask.
+
+I am Emre Kaya, 37, an electrical technician and parent from Ankara. This was my second fixed-build retest of Days. I read the supplied selected history through line **2263** before play, including rereading truncated portions. The last line was **“End of supplied own history.”** Unread ranges: **none**. The supplied history is not my complete archive.
+
+Both sessions used the driver-opened agent-marked page in separate fresh contexts, with no imported save or matched seed. They were on the same evening, desktop first and phone second. Recording and consent stayed at their defaults; I changed no owner settings.
+
+- **Desktop:** 1280×800, keyboard and mouse. The game ended at **51.280 seconds**. I stopped at **66.918 seconds**, **FINISHED**.
+- **Phone:** 360×690, touch. The game ended at **75.265 seconds**. I stopped at **91.493 seconds**, **FINISHED**.
+
+The six-hour budget gave me a practical plan again. On desktop, I checked the account before paying, kept the notebook private, and asked Selin for cover. I liked that the game stated the cost to her evening. I recorded the claim, made the visit with my last hour, and told Selin what Leyla had wished to tell her father. The ending said the visit was kept and named a next step for the account.
+
+On the phone I paid the first claim and read the page aloud. I could understand both setbacks: Burak owed the mistaken payment back, and apologising and asking people not to repeat the disclosure could limit the harm without undoing it. I still made the visit. The ending remembered the disclosure and the money owed.
+
+The hour costs and account follow-up were clear in the paths I played. The payment amount was not: “Her savings are smaller” left me unable to price the choice. That confused me, but it did not stop me playing.
+
+**Diary — my logged words, in order**
+
+Desktop:
+
+- **6.197 s, note, engagement 4:** “The six-hour account and promised visit are familiar. I want to see a different path, while keeping enough time for the visit.”
+- **23.121 s, note, engagement 4:** “Selin agreed to a short shift, and the cost to her evening is stated. Four hours remain and the visit now needs one; that gives me a plan.”
+- **42.146 s, note, engagement 4:** “The original separates the bills, and recording the claim leaves exactly one hour for the covered visit. I can follow where my hours went.”
+- **53.477 s, want_quit, FINISHED, engagement 4:** “The visit happened, the notebook stayed private, and the account has a named next step. I am satisfied with this path and done with it tonight.”
+- **66.918 s, stop, FINISHED, engagement 4:** “I am stopping after the three days ended. I kept the visit and privacy and left a clear account follow-up. I would try another path another evening, not leave it running.”
+
+Phone:
+
+- **10.370 s, note, engagement 3:** “The phone opening fits. I have just kept the visit on desktop; I will choose differently here and see where the time goes.”
+- **20.170 s, note, engagement 3:** “The mistaken payment belongs back from Burak, which is clear. Again I only see that savings are smaller, so I cannot tell the size of the loss.”
+- **57.587 s, first_minute attempt, engagement 4:** “The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.” This was premature and does not count as the first-minute checkpoint.
+- **61.997 s, first_minute, engagement 4, third day, 3 hours free:** “The phone path makes the privacy cost concrete: I apologised and the listeners agreed not to repeat it, but cannot undo the disclosure. The account and hours are clear; the amount paid is still unknown.”
+- **78.638 s, want_quit, FINISHED, engagement 4:** “The visit happened and the ending remembers both the disclosure and the money Burak owes. I have seen enough of these choices tonight.”
+- **91.493 s, stop, FINISHED, engagement 4:** “I am stopping on the phone after the three days ended. The privacy repair and mistaken payment remain in the ending, and the visit was kept. I would return another evening, not leave it running.”
+
+Both quit wishes came after an explicit ending and persisted. The desktop story ended before 60 seconds; its first-minute checkpoint was untested, although the Feedback wrap continued past 60 seconds. The phone reached a valid first-minute entry. Both sessions ended before 180 seconds, so pulses and later timed checkpoints were untested.
+
+I viewed [desktop a-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/desktop/a-001.png) immediately after opening. The notice and start buttons were readable over the two-column room. I viewed [phone b-001.png](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/phone/b-001.png) immediately after opening. The notice and buttons fit the narrow screen. These were the only manual screenshots I viewed; later gameplay and Feedback observations come from the driver’s visible text. I did not inspect a phone gameplay screenshot, so I cannot assess the choice-card layout this time. No control blocked either session.
+
+For the savings confusion on phone, I opened Feedback and chose **“I’m confused.”** It filled the feedback box, and I used Back. At each stop I chose **“I’m stopping,”** which filled the box, and used Back. The phone’s earlier “I’m confused” draft was still present when I reopened Feedback and was replaced by “I’m stopping.” I typed no note, submitted nothing and did not toggle recording.
+
+My earlier Days question about **savings as a number** came up again: the phone payment was still described without an amount. I did not revisit my earlier phone choice-card visibility question with a gameplay image, so I cannot compare it from this visit.
+
+The coordinator owns the drivers and browser cleanup. I created no worktree, branch, server, browser or worker and touched no repository, so no `git worktree list` applies.
+```

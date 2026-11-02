@@ -298,5 +298,65 @@
     "reportSha256": "9be0f76806cebbd1ee4b1773940981fd5ac929791542a7ad77b6b48aa083aa70",
     "asks": ["F3142", "F3143"],
     "scope": "one logical fictional tester; full conditional return retained. First fixed retest, second fix/retest required; protocol D1-D11 and root D1-D12 remain distinct. No owner acceptance."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "emre",
+    "name": "Emre Kaya",
+    "returnSentence": "I would return voluntarily another evening on desktop to try another path, but I would not leave it running or play again tonight.",
+    "reportSha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "asks": ["F3144"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md",
+    "noNewBlocking": "I reached no new blocking ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "pavel",
+    "name": "Pavel Novak",
+    "returnSentence": "I would return voluntarily another evening on the desktop to try a different route, but not tonight; I would not leave it running.",
+    "reportSha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "asks": ["F3145", "F3146", "F3147"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md",
+    "noNewBlocking": "I reached no new blocking gameplay ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "tessa",
+    "name": "Tessa Williams",
+    "returnSentence": "I would not return voluntarily tonight or leave Days running; I liked how it remembered the unfinished obligations and the harm of the disclosure, but I have had enough of these familiar choices.",
+    "reportSha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "asks": ["F3148", "F3149"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md",
+    "noNewBlocking": "I reached no new blocking control or blocking ask.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "rosa",
+    "name": "Rosa Alvarez",
+    "returnSentence": "I would return voluntarily another evening on the large screen to try a different choice; I would close it now, not leave it running.",
+    "reportSha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "asks": ["F3150", "F3151", "F3152"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md",
+    "noNewBlocking": "No new blocking ask arose.",
+    "scope": "one standing fictional tester across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
+  },
+  {
+    "packet": "days-retest2",
+    "game": "days",
+    "tester": "lucia",
+    "name": "Lucia Ferraro",
+    "returnSentence": "I would not voluntarily return for another run now; I would leave the game after the ending rather than leave it running.",
+    "reportSha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "asks": ["F3153", "F3154"],
+    "source": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md",
+    "noNewBlocking": "No blocking ask arose. I could choose delivery and continue.",
+    "scope": "one fictional cold tester, not a standing panel member across two devices; qualified final ordinary iteration; no third panel, engineering freeze, player acceptance or owner acceptance. See packet integration notes for Q1–9 and RQ1–12 qualifications."
   }
 ]

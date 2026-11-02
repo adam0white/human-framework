@@ -995,3 +995,65 @@ I revisited my earlier question about the unaffordable visit. On my earlier desk
 
 I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers; there is no repository worktree list to report.
 ```
+
+
+## Days second fixed retest — 2026-11-02
+
+Qualified final ordinary iteration; source: `/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md`; SHA-256: `96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3`. See packet integration notes for protocol and evidence qualifications.
+
+```text
+I would return voluntarily another evening on the desktop to try a different route, but not tonight; I would not leave it running.
+
+My ranked asks:
+
+1. Clarify the receipt wording. On both devices someone already had a receipt, yet getting the original took an hour. I could not tell whether those were different papers.
+2. Make the small, pale cost text on the phone room drawing easier to read.
+3. Give me a little more time with the days. I liked the choices and their consequences, but both stories passed quickly.
+
+I’m Pavel Novak, 70, a retired tram driver from Brno. This was my second fixed-build return to *Three Days*. I played a fresh 1280×800 desktop game with keyboard and mouse, then a fresh 360×690 touch-phone game the same evening. I used the assigned drivers and agent URL. No old save or matched seed was imported.
+
+I requested the supplied selected history in explicit ranges through line **1682**, whose final line was **“End of supplied own history.”** Large combined outputs were truncated; I reread the affected material in smaller ranges. The selected history is not my complete archive.
+
+The desktop stop was at **55.572 seconds** and the phone stop at **71.436 seconds**. Both games had ended before I wanted to quit. Neither session had an active-play first-minute entry: the desktop ended before 60 seconds, and the phone ended at **58.369 seconds**. Neither reached the 180-second pulse. I did not wait for a checkpoint.
+
+At desktop open, **0.464 seconds**, the room, three-day leave and promise to Şükrü were familiar. The opening image at **2.089 seconds** showed a readable notice over the dimmed room. On the phone, the opening at **0.409 seconds** was the same situation, although Leyla started very tired; the image at **2.662 seconds** showed the notice fitting the screen.
+
+The hour budget gave me something concrete to plan. On desktop, I kept the notebook, recorded the claim and had one hour left for a two-hour visit. I arranged delivery instead. The ending said it had been agreed but had not happened yet. On the phone, Selin agreed to cover the door, at the cost of an evening at home. That left a one-hour visit, which Leyla made. I liked that the ending also remembered Burak still owed the notebook back.
+
+The account and the costs of the choices were mostly clear. The receipt remained a question rather than a reason to quit. I reached no new blocking gameplay ask. I was not confused enough to leave either session before the ending.
+
+**Diary lines, unedited and in order**
+
+Desktop:
+
+- **5.553 s — note, engagement 4:** “The room and the three days are familiar. I remember the receipt and the visit that needed two hours. I want to see the account carefully again.”
+- **13.245 s — note, engagement 4, first day, 5 hours free:** “Selin has the receipt, yet checking costs an hour to get the original. I still cannot tell whether these are two papers. I will check before paying.”
+- **27.338 s — note, engagement 4, second day, 4 hours free:** “Selin now brings the original, and the comparison says I already have it. The later step is clear; I still wonder why getting it took an hour when she had a receipt before.”
+- **37.893 s — note, engagement 4, third day, 1 hour free:** “The visit needs two hours and only one remains, as before. The warning now says an attempt can move the story on without a visit, or the choice may stay. I understand the risk, so I will arrange delivery.”
+- **45.124 s — want_quit, FINISHED, engagement 4, leave ended:** “The leave has ended. The account has a next step and the delivery is agreed but not yet done. I like that distinction, and I would stop this game here.”
+- **55.572 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the three days. The delivery is arranged but not yet made, and Selin listened. I chose I am stopping, went Back, typed and sent nothing.”
+
+Phone:
+
+- **8.865 s — note, engagement 4:** “The same opening on the phone, though Leyla is very tired this time. The notice fits. I will try to preserve time for the visit.”
+- **19.812 s — note, engagement 4, first day, 4 hours free:** “Here Burak unfolded a receipt, then fetched his original. The same question follows me from the desktop. I will keep the page private.”
+- **38.409 s — note, engagement 4, third day, 1 hour free:** “Selin agreed to cover, so the visit now costs one hour and one remains. Her evening has a cost too. I want to keep the visit this time.”
+- **54.481 s — note, engagement 4, third day, 0 hours free:** “The visit happened and the folding table is another small obligation. On the phone the story fills the screen; after scrolling I can see the two choices, though the pale cost text is small.”
+- **61.947 s — want_quit, FINISHED, engagement 4, leave ended:** “The visit was kept, and Burak still owes the notebook back. I have seen enough for tonight. I would stop here at the end.”
+- **71.436 s — stop, FINISHED, engagement 4, leave ended:** “I stop at the end of the phone game. The visit was kept, the account has a next step, and the notebook must come back. I chose I am stopping, went Back, typed and sent nothing.”
+
+Both quit wishes followed actual endings and remained through stopping.
+
+I viewed four screenshots:
+
+- [Desktop opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/desktop/a-001.png), **2.089 s**: the readable introductory notice covered part of the room and story.
+- [Phone opening](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/b-001.png), **2.662 s**: the notice and buttons fit the width.
+- [Phone story](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/b-002.png), **42.777 s**: readable story text filled the screen; the choices were below the visible area.
+- [Phone after scrolling](/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/phone/b-003.png), **50.798 s**: both choices appeared on the room drawing. The pale cost text was small.
+
+Named driver taps advanced the choices on both devices. They do not establish physical mouse or touch operation. On each device I opened Feedback, selected **“I'm stopping”**, saw the phrase fill the feedback box, and pressed Back. I typed no note and submitted nothing. Recording was checked in both menus and remained untouched; I did not change consent or settings.
+
+I revisited my earlier question about the unaffordable visit. On my original desktop visit I attempted a two-hour journey with one hour left, and the story advanced without the visit. This time the desktop choice warned of that possible outcome before I acted and offered delivery. I chose delivery, so I did not test the attempted journey at the shortfall. On the phone, the visit cost one hour with one available and succeeded. I also revisited the receipt question: the later comparison now explicitly said the original was already in hand, but the earlier receipt-versus-original wording still puzzled me.
+
+I created no worktree, server, browser or helper process and touched no repository. The coordinator owns the drivers; there is no repository worktree list to report.
+```

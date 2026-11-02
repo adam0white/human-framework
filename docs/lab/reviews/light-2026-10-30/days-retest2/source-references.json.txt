@@ -1,0 +1,102 @@
+{
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/report.md": {
+    "sha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+    "bytes": 6445
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/transcript.jsonl": {
+    "sha256": "8c6dd6af3dbbade98a85f775aa1e4afeb1e038963a754612db20822727586a78",
+    "bytes": 1163420
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/completion.json": {
+    "sha256": "e721176f407391577544c5f25055fdc6d39850ec4bf54de4357731bbada8c841",
+    "bytes": 92075
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/own-history.md": {
+    "sha256": "77d33e5b39c3404ab0f5c9d8228a366ab9a24d8d6eb453b26fc3724f27c19657",
+    "bytes": 282094
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/emre/history-source-map.json": {
+    "sha256": "cf72a5da113383eac67bb8263b51ab569eb2faf6c765030b062d9f4cfb904e25",
+    "bytes": 1126
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/report.md": {
+    "sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+    "bytes": 7265
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/transcript.jsonl": {
+    "sha256": "fae234a6c39d2d43c4eac130696341b901fd7c8ef623469b96cba278f11bd16d",
+    "bytes": 1222453
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/completion.json": {
+    "sha256": "e82dddb22907162e351849bfa1c3969ec2747738a5e60568a7459320128acf94",
+    "bytes": 93600
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/own-history.md": {
+    "sha256": "f4791adff20bc0507a6f734cd0431970123f20eaa64b57cac939f894c92bdc7b",
+    "bytes": 237405
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/pavel/history-source-map.json": {
+    "sha256": "0ed34477c72ba96f309899770910e74f957c64accbfcc8d5647a4573e4052c31",
+    "bytes": 1129
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/report.md": {
+    "sha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+    "bytes": 6076
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/transcript.jsonl": {
+    "sha256": "944bd98b13164af4e832157453fcf0c0a341e96fee982dc9f0a24ca708512a5a",
+    "bytes": 666607
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/completion.json": {
+    "sha256": "11b98f8ed1ee8fe8ddab552ab3f95a95a52f7164f2247524560e05606ccdbfc9",
+    "bytes": 97576
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/own-history.md": {
+    "sha256": "037c9c5ec6a9368afb20229110518291e546462ebbfb57c5a63369e9f94e1beb",
+    "bytes": 172429
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/tessa/history-source-map.json": {
+    "sha256": "f0f78227c7523278ed108da0453454ccb08e339dede36a4e6b372a9fa6c610e2",
+    "bytes": 1129
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/report.md": {
+    "sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+    "bytes": 15517
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/transcript.jsonl": {
+    "sha256": "5c080667f1bff84c60b724a997e84f358e5d9cf9050caa2e81fea19c586574c9",
+    "bytes": 860978
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/completion.json": {
+    "sha256": "b64ac7dab7f51c0302272e5f51184324aa0d6a326583dee57a1f6315792b15d7",
+    "bytes": 92121
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/own-history.md": {
+    "sha256": "bf095a91df61d2129efc21695dd85acfaeca9813dad7acdd637396b27679bb90",
+    "bytes": 514507
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/rosa/history-source-map.json": {
+    "sha256": "bee11aa537cbb00dc4236b7e43d650233914e5723ebe866a4a1fca6c686db9ea",
+    "bytes": 1127
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/report.md": {
+    "sha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+    "bytes": 4931
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/transcript.jsonl": {
+    "sha256": "0ad38f1b7f5335331faff2384e15b1c1a465b14e32ff42732844589e7a2eb26e",
+    "bytes": 214032
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/completion.json": {
+    "sha256": "98c4b27b265035bddb06e88951b0eab704876cf4bee33abcf95b5928ed798d8c",
+    "bytes": 91139
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/own-history.md": {
+    "sha256": "f9aa4005f35d32158993c1614696c317879ed9147a8b74e3b3e43d3d9d6cc084",
+    "bytes": 83
+  },
+  "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-inputs/lucia/history-source-map.json": {
+    "sha256": "aa352b7864c19104285412016698b0bdca27640d0ecc276f053ce0f24fcfcbe7",
+    "bytes": 195
+  }
+}

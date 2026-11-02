@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-02",
+ "generated": "2026-11-03",
  "ledger": [
   {
    "id": "F-001",
@@ -23398,6 +23398,149 @@
     "fix:days new_nonblocking_replay_preference, Desktop BORED stop followed completion on phone the same evening. This is evidence of limited immediate replay interest, not failed first-play completion. Engineering remains open, target 2026-11-10 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/days-retest1/reports/leire/report.md.txt"
+  },
+  {
+   "id": "F-3144",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Emre Kaya",
+   "words": "1. Show the amount paid and the savings remaining. On the phone, I understood that Burak owed the mistaken payment back, but I could not tell how much Leyla had paid.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/emre/report.md.txt"
+  },
+  {
+   "id": "F-3145",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Pavel Novak",
+   "words": "1. Clarify the receipt wording. On both devices someone already had a receipt, yet getting the original took an hour. I could not tell whether those were different papers.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/pavel/report.md.txt"
+  },
+  {
+   "id": "F-3146",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Pavel Novak",
+   "words": "2. Make the small, pale cost text on the phone room drawing easier to read.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/pavel/report.md.txt"
+  },
+  {
+   "id": "F-3147",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Pavel Novak",
+   "words": "3. Give me a little more time with the days. I liked the choices and their consequences, but both stories passed quickly.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/pavel/report.md.txt"
+  },
+  {
+   "id": "F-3148",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Tessa Williams",
+   "words": "1. Give me more ways to speak or act with Selin, Hacer and Burak, including something in my own words.",
+   "verdict": "-",
+   "routes": [
+    "fix:days new capability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/tessa/report.md.txt"
+  },
+  {
+   "id": "F-3149",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Tessa Williams",
+   "words": "2. Give me more reason to revisit the three days beyond choosing another option on familiar screens.",
+   "verdict": "-",
+   "routes": [
+    "fix:days new capability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/tessa/report.md.txt"
+  },
+  {
+   "id": "F-3150",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Rosa Alvarez",
+   "words": "1. Show the amount before I pay from Leyla’s savings.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3151",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Rosa Alvarez",
+   "words": "2. Replace “named visit” with plain words about agreeing when to visit.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3152",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Rosa Alvarez",
+   "words": "3. Keep the new hour explanation: “work through the hour without resting” and “2 hours left afterward.”",
+   "verdict": "-",
+   "routes": [
+    "fix:days keep delivered hour explanation wording as a no-change constraint"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/rosa/report.md.txt"
+  },
+  {
+   "id": "F-3153",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Lucia Ferraro",
+   "words": "1. Explain the insufficient-time visit choice more plainly. I understood that one hour remained and the visit needed two, but not what completing the attempt would do.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/lucia/report.md.txt"
+  },
+  {
+   "id": "F-3154",
+   "date": "2026-11-03",
+   "game": "days",
+   "kind": "playtester",
+   "who": "Lucia Ferraro",
+   "words": "2. Give me a little more help keeping the people straight early on. Several names arrived close together.",
+   "verdict": "-",
+   "routes": [
+    "fix:days clarity or readability preference (open)"
+   ],
+   "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/lucia/report.md.txt"
   }
  ],
  "lessons": [
@@ -24022,7 +24165,7 @@
   }
  ],
  "routes": {
-  "fix": 2123,
+  "fix": 2134,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,

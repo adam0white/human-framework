@@ -1,0 +1,163 @@
+{
+  "schema": "sealed-source-publication-map/v1",
+  "packet": "days-retest2",
+  "scope": "Exact sealed source payloads and external seal and reviews under inert .txt names. CANDIDATE/HOLD labels retain freeze provenance. Qualified final ordinary iteration; no third panel, engineering freeze, player or owner acceptance. Screenshot hashes only.",
+  "files": {
+    "evidence/days-retest2-1102-ask-extraction.json": {
+      "publishedPath": "evidence/days-retest2-1102-ask-extraction.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-extraction.json",
+      "sha256": "639d9bcd5384bb506f1e477446b735e81c601aff442ca2b02280bccb1f3becb2",
+      "bytes": 5000
+    },
+    "evidence/days-retest2-1102-ask-review.md": {
+      "publishedPath": "evidence/days-retest2-1102-ask-review.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-ask-review.md",
+      "sha256": "39449736707287ef4078e941369fbc0c92ea542597e185383a34482eef21a022",
+      "bytes": 913
+    },
+    "evidence/days-retest2-1102-protocol-review.json": {
+      "publishedPath": "evidence/days-retest2-1102-protocol-review.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.json",
+      "sha256": "cfc32e6cc4cdefc070bd1b8d47050f13e23cf8729ce394a083ad0b4a648ceb34",
+      "bytes": 39710
+    },
+    "evidence/days-retest2-1102-protocol-review.md": {
+      "publishedPath": "evidence/days-retest2-1102-protocol-review.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-protocol-review.md",
+      "sha256": "232b3b239996b3ebaf65acf5f2591aa6e71149e86828452c7e43dd1a1c948522",
+      "bytes": 7271
+    },
+    "evidence/days-retest2-1102-root-literal-check.json": {
+      "publishedPath": "evidence/days-retest2-1102-root-literal-check.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-literal-check.json",
+      "sha256": "616e20139560aa4735732513d8a3d886043c0b09e11e28b737400ca2bd37cf22",
+      "bytes": 23671
+    },
+    "evidence/days-retest2-1102-root-qualification.json": {
+      "publishedPath": "evidence/days-retest2-1102-root-qualification.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-qualification.json",
+      "sha256": "e4363942bffcf57afc629b0121e5e1ad93979dad943d4b62e721db4a5b29889a",
+      "bytes": 5413
+    },
+    "evidence/days-retest2-1102-root-raw-check.json": {
+      "publishedPath": "evidence/days-retest2-1102-root-raw-check.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-root-raw-check.json",
+      "sha256": "b388241d017bb87af9ed53a4db18df4e5afc7d724e701ac4ebe34d7ae18339e0",
+      "bytes": 31772
+    },
+    "evidence/days-retest2-1102-sdk-source-proof.json": {
+      "publishedPath": "evidence/days-retest2-1102-sdk-source-proof.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/days-retest2-1102-sdk-source-proof.json",
+      "sha256": "0d051468593cc420812266dfb955859f3bf6c9021a1e0dabb9c53f0513726de6",
+      "bytes": 14371
+    },
+    "evidence/finalizer-audit.json": {
+      "publishedPath": "evidence/finalizer-audit.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/finalizer-audit.json",
+      "sha256": "2df89d011bfd08ff2085b57db3935c9abc7e2c7f33a398c06274c6260d00ac60",
+      "bytes": 2824077
+    },
+    "evidence/root-return.json": {
+      "publishedPath": "evidence/root-return.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/evidence/root-return.json",
+      "sha256": "8a26ca0b731fc5b83b2b472a3624badc90f4efd0021d52aec834099dbf598272",
+      "bytes": 3596
+    },
+    "integration-notes.md": {
+      "publishedPath": "integration-notes.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/integration-notes.md",
+      "sha256": "a2634b19b1f95b1c205fafe7cbacc413bf6d7f8c6ac5197faf773cefc48dd806",
+      "bytes": 11276
+    },
+    "ledger.json": {
+      "publishedPath": "ledger.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/ledger.json",
+      "sha256": "6e7e2a79e920066e5f3514d2cab10762bf4afb0b62ef15e57c7db4b1736f648b",
+      "bytes": 13614
+    },
+    "logical-testers.md": {
+      "publishedPath": "logical-testers.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/logical-testers.md",
+      "sha256": "ddd642d1c00d57bb9d533c04ef6f02536f86a85abba3161fc0ed7343d2e21a39",
+      "bytes": 1161
+    },
+    "reports/emre/report.md": {
+      "publishedPath": "reports/emre/report.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/emre/report.md",
+      "sha256": "73811617d7f4c3301ed1d4088ca49ebd9bf67548ec364729c738aed70f10dde8",
+      "bytes": 6445
+    },
+    "reports/lucia/report.md": {
+      "publishedPath": "reports/lucia/report.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/lucia/report.md",
+      "sha256": "a84065cadda7f571375aa032724720596a83a024bf881122d15ded1c8b8346f5",
+      "bytes": 4931
+    },
+    "reports/pavel/report.md": {
+      "publishedPath": "reports/pavel/report.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/pavel/report.md",
+      "sha256": "96c405c53e00a91cc02a9d531d09e7e4a6aedbbd8ad4eb70dab5cf31f4482ab3",
+      "bytes": 7265
+    },
+    "reports/rosa/report.md": {
+      "publishedPath": "reports/rosa/report.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/rosa/report.md",
+      "sha256": "5be49b11b2a4265a77e1bab909735fabb547394ae0f1e3b3cf796bb1e4ab9646",
+      "bytes": 15517
+    },
+    "reports/tessa/report.md": {
+      "publishedPath": "reports/tessa/report.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/reports/tessa/report.md",
+      "sha256": "beaf559932c44fb76e3a52ed7fae24c1e7abdfdf288e1d218d76b64f4676d463",
+      "bytes": 6076
+    },
+    "source-png-hashes.json": {
+      "publishedPath": "source-png-hashes.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-png-hashes.json",
+      "sha256": "1f6bc2987e25ab204143053b92c83ddf941ff34cd7f31f418c4f641208f13aa7",
+      "bytes": 5170
+    },
+    "source-references.json": {
+      "publishedPath": "source-references.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/source-references.json",
+      "sha256": "403cdad1475e40eb46671d7f955ec75597c29657ee0911cef9a7095f31e9ded0",
+      "bytes": 5276
+    },
+    "manifest.json": {
+      "publishedPath": "manifest.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/days-retest2/manifest.json",
+      "sha256": "60d98859221476cf1f337474195acc1bf677ec19a37a5e40b58bf512e0d71b89",
+      "bytes": 3163
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-seal.json": {
+      "publishedPath": "root-seal.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-root-seal.json",
+      "sha256": "0ce9de3ba2e8f81773de670a1d46886649f628adfa4a3fae6e50dd40e670311f",
+      "bytes": 2086
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.json": {
+      "publishedPath": "packet-review1.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.json",
+      "sha256": "33161b30a49c312c7dec4fb2f3c4e98eb9a539a165b27f6e89e845f6b285f5d3",
+      "bytes": 14241
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.md": {
+      "publishedPath": "packet-review1.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-fidelity-review.md",
+      "sha256": "eff04826408e1c2250b28df7dfcabac5349a2c0decb484ceeffee55e302854d5",
+      "bytes": 3672
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.json": {
+      "publishedPath": "packet-review2.json.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.json",
+      "sha256": "15032dd85bbbc3797989b657d6b26e340a54ef4265318d9d22e23fd62d541aae",
+      "bytes": 9982
+    },
+    "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.md": {
+      "publishedPath": "packet-review2.md.txt",
+      "originalPath": "/Users/abdul/code/.lab-scratch/playtest/light-1030/days-retest2-1102-packet-limits-review.md",
+      "sha256": "f421053663cc7e8377eabcc3772632e52014cc9633f44215d191aaed28736e22",
+      "bytes": 4801
+    }
+  }
+}
