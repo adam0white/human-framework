@@ -736,6 +736,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
           <button
             type="button"
             key={utteranceKey(sb)}
+            className="speech-dismiss"
             aria-label={`Dismiss ${shortName(sb.bubble.personId)} speech from minute ${sb.bubble.minute}`}
             onClick={() => {
               dismissed.current.add(utteranceKey(sb));

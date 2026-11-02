@@ -248,6 +248,11 @@ body,
   top: auto;
   z-index: 8;
 }
+.well-layout .speech-dismiss {
+  position: relative;
+  z-index: 8;
+  flex: none;
+}
 .well-layout .map-follow {
   min-height: 44px;
 }
