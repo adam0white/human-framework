@@ -19761,7 +19761,7 @@
    "words": "Ranked ask 3 [maya/report.md:6 chars 462–569]: Show each line in the Garden record once. The Osman crates line appears in both the top block and the list.",
    "verdict": "mixed",
    "routes": [
-    "fix:hearsay Inspect the two displayed Osman crates lines in the Day 1 desktop Garden record and distinguish duplicate presentation from separate current and historical receipts before changing it. The source does not establish a cause, no Day 4 record was viewed. target2026-11-03 (open)"
+    "fix:hearsay The Garden record now groups entries by their actual day and category and displays each retained line once. Distinct current and historical receipts remain. No log was deleted. (fixed 6d09154c6f71a3ab74e0751fee1e36b5a3ea0ed2, 2026-11-02)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/maya/report.md"
   },
@@ -19880,7 +19880,7 @@
    "words": "Ranked ask 3 [rosa/report.md:7 chars 360–398]: Shorten the repeated Pace explanation.",
    "verdict": "mixed",
    "routes": [
-    "fix:hearsay Review the repeated Pace explanation for a shorter accurate wording while preserving the situation-dependent information. This is a wording request, not a request for clock retuning or C14. target2026-11-03 (open)"
+    "fix:hearsay The Pace display now selects its specific current explanation or its general sentence once. Clock speed and reading slowdown/pause policy are unchanged. (fixed 6d09154c6f71a3ab74e0751fee1e36b5a3ea0ed2, 2026-11-02)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/hearsay-retest2/rosa/report.md"
   },
