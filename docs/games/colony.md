@@ -376,7 +376,7 @@ Reading scope: the five complete authoritative reports, all twenty routes and th
 
 D exposes only the existing matched alternative/condition label, beside unchanged speech. It does not reconstruct Maya or Nia’s original cause, satisfy their personal-reply request, invent a motive, or auto-reveal a story. Yusuf’s timber-token/Zehra follow-up stays outside this source candidate; the actual disclosure gate and player knowledge remain unchanged.
 
-F-2739 remains investigation only. It needs a future actual browser RED, the occluder/native-touch evidence and then a bounded response. No geometric or z-index change is made here.
+That investigation-only checkpoint is superseded by the2026-11-02 F-2739 source fix below. Native touch now reaches the existing dismiss control in the two authored layout controls. Deployment and live verification remain pending.
 
 #### F-2731 — Maya Chen — return
 
@@ -519,10 +519,10 @@ Target: 2026-11-03 (inspection, not a delivery or acceptance date).
 > Make the speech-dismiss control usable on the phone. The driver reported it covered or off screen twice, including after I closed Yusuf’s panel.
 
 Source: [emre/report.md:5](/Users/abdul/code/.lab-scratch/playtest/light-1030/source-packets/well-retest1/emre/report.md) (exact quote at line 5).
-Route: **fix:well**; status: **open**; group: **F**; scope: investigation only; actual browser/native-touch evidence required.
+Route: **fix:well**; status: **source fixed (fixed 5ad017c03272dcea8adc77a183cbb88cd5cab9d8, 2026-11-02)**; group: **F**; scope: bounded map-overlay control correction. Exact review/CI, delivery and live verification remain.
 Owner of words: Emre Kaya. Execution owner: root’s sole central host-app writer for adopted source work; root coordinates the remaining evidence and review gates.
-Reason: Actual two-attempt driver obstruction; exact occluder unknown. Investigate the two phone dismiss failures, including the attempt after closing the person panel. This is a bounded driver obstruction, not proof all phone controls fail or a known hitbox cause.
-Target: 2026-11-03 (inspection, not a delivery or acceptance date).
+Reason: The old failure records contain no target bounds or covering element. A separate actual native-touch UI component reproduced the obstruction at360x690 and1280x800 after panel closure. The absolute map viewport painted over the static dismiss button. The named control now uses the existing map-control stack and cannot shrink. Both sizes pass native touch without keyboard fallback. The fixture authors one speech line and an already-dismissed notice state. It is not a reconstruction of the historical native run or proof that every phone control works.
+Target: 2026-11-03 (delivery/live check, not player acceptance).
 
 #### F-2740 — Emre Kaya — ranked ask
 

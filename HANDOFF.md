@@ -1,3 +1,13 @@
+# Well dismiss and Pass source records — 2026-11-02
+
+Remaining: exact signed-head review and CI for this documentation follow-up, integration, and normal central deployment/live verification. The normal central deployment remains held because its archive step creates/removes temporary worktrees and RESUME forbids that until clarified. Adam accepts readiness. Player rounds, friends and Show HN remain paused.
+
+Well source5ad017c03272dcea8adc77a183cbb88cd5cab9d8 fixes the reported dismiss obstruction without changing its text, utterance identity or handler. Actual native-touch UI controls first reproduced the canvas covering the target after panel closure at360x690 and1280x800. The two-file fix gives the existing control a named paint order and fixed flex size. Both sizes then dismiss with native touch, without keyboard fallback or page errors. The normal lane passes lint, types and53 related Pane controls. The fixture authors one speech line and an already-dismissed notice state. It does not reconstruct the historical native run or qualify every phone control.
+
+Pass sourceb61b555737f71f40acee43d6e55f564c20a17427 is merged at the exact signed commit after two independent Codex CLEAR reviews and green sourceCI41524577038. Its five storage controls cover failed-read/invalid/aborted replacement, failed Resume followed by reload, and actual valid native-prefix replacement with authored notebook routing. Earlier guest/wording and full-night recovery controls retain their stated scope. The learner panel describes a firm request without inventing compliance. MainCI, deployment/live verification and player readiness remain distinct. F-2500, F-2502 and F-2505 record these source fixes. F-2500/F-2502 retain the coordinator's2026-11-03 target correction documented in Pass, rather than the older2026-11-10 ledger targets.
+
+HF4.16.0 is published. The npm registry was checked on2026-11-02. Earlier unpublished publisher checkpoints below are historical. This change adds no framework behavior or package release. The complete Child, Valley and Neighbours original workloads remain unqualified and are not replaced by UI or narrow producer controls.
+
 # Publisher validation — 2026-11-02T08:47:19.671528+00:00
 
 Remaining: exact signed-commit review, green source/target CI and integration, then serialized normal publication/provenance and central adoption/deployment. HF4.16 remains unpublished.

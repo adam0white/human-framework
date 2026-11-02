@@ -18479,7 +18479,7 @@
    "words": "Let me carry on from where I stopped, so I don't replay Monday. This is a repeat ask. I did not see whether that exists, because I never opened Resume.\" Later wording (section 8): \"Resume from where I stopped. I did not check whether Resume exists.\" Later wording (section 9): \"not seen. I never opened Resume.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Emre wants to carry on from where he stopped, repeat ask, no saved-run Resume test was made and the in-game menu Resume is an unpause so it is no evidence of a saved-run absence, check what exists before any change, target2026-11-10 (open)"
+    "fix:pass Saved-run Resume and failed-save custody (fixed b61b555737f71f40acee43d6e55f564c20a17427, 2026-11-02). Five storage browser controls cover read failure, invalid journal, transaction abort, failed Resume followed by reload and valid native-prefix replacement. Unknown equal-opening collision still fails closed. Live verification remains. target2026-11-03"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/emre/report.md"
   },
@@ -18505,7 +18505,7 @@
    "words": "Let me recover when I insist and it goes badly. On desktop, one click on \"Insist: Dilek, go home\" sent her home until 22:00. I got ₺0 and no tables served, and I could not fix it.\" Later wording (section 8): \"Let me recover when I insist and it goes badly. A \"go home\" click should not remove a cook for the whole night with nothing to do about it.\" Later wording (section 9): \"On desktop the effect was big enough to wreck my night.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Nia wants to recover after an Insist go home click, she insisted on purpose despite the visible trust warning and agreed it was for fun, this is not an automatic undo and not mandatory compliance, the 215 minute claim was not observed for 215 game minutes and its source is unverified, keep difficulty and refusal and agency, target2026-11-10 (open)"
+    "fix:pass Show remaining-crew recovery controls after sending a cook home (fixed b61b555737f71f40acee43d6e55f564c20a17427, 2026-11-02). Real refusal, pressure costs and elapsed work remain. One full Monday native-replay comparison served6 orders for240 versus5 for200. This is one technical scenario and no automatic undo or general success guarantee. Live verification remains. target2026-11-03"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/nia/report.md"
   },
@@ -18545,7 +18545,7 @@
    "words": "Rewrite the cook sentences I could not follow. This covers \"I will explain the wait. I am leaving the other tables for three minutes…\", the \"Insist / Hold it to insist\" help line, and the status \"in the bathroom\" beside that sentence.\" Later wording (section 8): \"Rewrite the sentences that confused me. \"I will explain the wait. I am leaving the other tables for three minutes.\" should say who he talks to. Make the status (\"in the bathroom\") match the quote. Replace \"Insist\" and \"Hold it to insist\" with plain words.\" Later wording (section 9): \"the \"Insist / Hold it to insist\" help line and Selim's \"I will explain the wait\" quote. Each cost me a reread, and together they ended both sessions.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Rosa could not follow the I will explain the wait sentence, the Insist and Hold it to insist help line and the in the bathroom status beside it, she reread twice per her own table, meaning status and duplicate wording, source cause unverified, no rule that an actor must always obey, target2026-11-03 (open)"
+    "fix:pass Name the actual guest conversation, bind displayed quote and status to the same activity, and use Ask more firmly wording (fixed b61b555737f71f40acee43d6e55f564c20a17427, 2026-11-02). Actual guest/wording controls pass. Refusal and the three-minute cost remain. Live verification and player acceptance remain. target2026-11-03"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/rosa/report.md"
   },
@@ -20544,7 +20544,7 @@
    "words": "Ranked ask 1 [emre/report.md.txt:5 chars 215–359]: Make the speech-dismiss control usable on the phone. The driver reported it covered or off screen twice, including after I closed Yusuf’s panel. Section 8 version [emre/report.md.txt:103 chars 12113–12158]: Make the phone speech-dismiss control usable.",
    "verdict": "mixed",
    "routes": [
-    "fix:well Investigate the two phone dismiss failures, including the attempt after closing the person panel. This is a bounded driver obstruction, not proof all phone controls fail or a known hitbox cause. target2026-11-03 (open)"
+    "fix:well Keep the existing speech-dismiss control above the map (fixed 5ad017c03272dcea8adc77a183cbb88cd5cab9d8, 2026-11-02). Actual authored UI native-touch controls pass at360x690 and1280x800 after closing the person panel. Historical native-run reproduction and live verification remain separate. target2026-11-03"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/well-retest1/emre/report.md.txt"
   },
