@@ -31,6 +31,8 @@ const dryRun = process.argv.includes('--dry-run');
 
 run('gh', ['auth', 'status'], true);
 
+let admittedCommit = '';
+let admittedRef = '';
 if (!dryRun) {
   const branch = git('rev-parse', '--abbrev-ref', 'HEAD');
   // A detached checkout of origin/main also works (a clean worktree beside a shared, busy checkout of main).
@@ -38,7 +40,9 @@ if (!dryRun) {
     fail(`release from main or a detached origin/main, not ${branch}`);
   if (git('status', '--porcelain')) fail('working tree is dirty; commit first');
   git('fetch', 'origin', 'main');
-  if (git('rev-parse', 'origin/main') !== git('rev-parse', 'HEAD')) fail('HEAD is not pushed to origin/main');
+  admittedCommit = git('rev-parse', 'HEAD');
+  admittedRef = git('rev-parse', '--symbolic-full-name', 'HEAD');
+  if (git('rev-parse', 'origin/main') !== admittedCommit) fail('HEAD is not pushed to origin/main');
 }
 
 const version = (JSON.parse(read('packages/human/package.json')) as { version: string }).version;
@@ -89,6 +93,15 @@ if (dryRun) {
     `\n--- ${tag} notes ---\n${notes}--- end ---\ntarball ${tarball}\nDry run: no tag or release created.`,
   );
 } else {
+  // Check and prepack can write source. Admit publication only from the same clean commit and ref.
+  if (git('status', '--porcelain', '--untracked-files=all'))
+    fail('working tree changed during check or pack; publication refused');
+  if (
+    git('rev-parse', 'HEAD') !== admittedCommit ||
+    git('rev-parse', '--symbolic-full-name', 'HEAD') !== admittedRef ||
+    git('rev-parse', 'origin/main') !== admittedCommit
+  )
+    fail('HEAD or ref changed during check or pack; publication refused');
   git('tag', '-a', tag, '-m', `HF ${version} (engine ${engine})`);
   git('push', 'origin', tag);
   run('gh', [
