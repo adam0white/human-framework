@@ -1,6 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { actorRuntime } from './actor.ts';
+import { physicalLedger } from './actor-world.ts';
+import { nightActs } from './night-actions.ts';
 import { endState, replay, WatchRun } from './run.ts';
 import { buildFrame } from './view.ts';
 
@@ -76,6 +78,86 @@ it('retains a night Rest account through its actual sleep end, observed return a
   run.step();
   restored.step();
   expect(restored.snapshotText()).toBe(run.snapshotText());
+}, 300_000);
+
+/** One natural seed proves this handover and its replay; it does not guarantee outgoing sleep or all handovers. */
+it('retains a natural relief start and interruption through native replay and cold continuation', () => {
+  const run = new WatchRun(7);
+  expect(run.input({ k: 'start' })).toBe(true);
+  expect(run.input({ k: 'post', watcher: 'tamar', post: 'gate-1' })).toBe(true);
+  expect(run.input({ k: 'post', watcher: 'kian', post: 'gate-2' })).toBe(true);
+  expect(run.input({ k: 'lantern', section: 'gate' })).toBe(true);
+  expect(run.input({ k: 'begin' })).toBe(true);
+  let act: ReturnType<typeof nightActs>[number] | undefined;
+  let openingSteps = 0;
+  while (run.state.phase === 'night') {
+    act = nightActs(run.state, 'tamar').find(
+      (a) => a.input.k === 'relieve' && a.input.by === 'kian' && a.available,
+    );
+    if (act || openingSteps === 300) break;
+    run.step();
+    openingSteps++;
+  }
+  expect(openingSteps).toBe(167);
+  expect(run.state.minute).toBe(1247);
+  if (!act) throw new Error('No eligible Tamar/Kian relief within 300 opening steps');
+  const sentAt = run.state.minute;
+  const oldPost = run.state.place.tamar;
+  expect(oldPost).toBe('gate-1');
+  const receipts = new Map<string, ReturnType<typeof physicalLedger>['actions'][number]>();
+  expect(run.input(act.input)).toBe(true);
+  const id = run.state.nightRecords?.findLast((r) => r.kind === 'relieve' && r.sentAt === sentAt)?.id;
+  expect(id).toBeDefined();
+  let started = false;
+  for (let n = 0; n < 61 && run.state.phase === 'night'; n++) {
+    run.step();
+    for (const action of physicalLedger(run.state).actions) {
+      if (action.at >= sentAt * 60_000 && action.person === 'kian') {
+        receipts.set(action.id, structuredClone(action));
+      }
+    }
+    const record = run.state.nightRecords?.find((r) => r.id === id);
+    if (record?.answer === 'begun' && !started) {
+      const receipt = [...receipts.values()].find(
+        (a) =>
+          a.stage === 'start' &&
+          a.status === 'accepted' &&
+          a.offer.id === record.affordance &&
+          a.at === record.answeredAt! * 60_000,
+      );
+      expect(receipt).toMatchObject({ person: 'kian', at: 74_820_001, stage: 'start', status: 'accepted' });
+      expect(receipt?.id).toBeTypeOf('string');
+      expect(run.state.place.kian).toBe(oldPost);
+      expect(run.state.posts.kian).toBe(oldPost);
+      expect(run.state.posts.tamar).toBeNull();
+      expect(run.state.letGo.tamar).toBe(oldPost);
+      started = true;
+    }
+  }
+  expect(started).toBe(true);
+  const record = run.state.nightRecords?.find((r) => r.id === id);
+  expect(record).toMatchObject({ answer: 'begun', ended: { at: 1260, status: 'interrupted' } });
+  const outgoing = run.state.nightRecords?.find(
+    (r) => r.kind === 'down' && r.who === 'tamar' && r.sentAt >= sentAt,
+  );
+  expect(outgoing).toMatchObject({ sentAt: 1248, answer: 'not-started' });
+  const actualEnd = [...receipts.values()].find((a) => a.id === record?.ended?.receipt);
+  expect(actualEnd).toMatchObject({
+    person: 'kian',
+    stage: 'interrupt',
+    status: 'interrupted',
+    at: 75_600_000,
+  });
+  expect(actualEnd?.offer.id).toBe(record?.affordance);
+  const text = run.snapshotText();
+  expect(JSON.parse(text).state.nightRecords).toEqual(run.state.nightRecords);
+  const file = JSON.parse(JSON.stringify(run.export()));
+  expect(endState(replay(file)).fullHash).toBe(file.end.fullHash);
+  const cold = WatchRun.resume(JSON.parse(text));
+  run.step();
+  cold.step();
+  expect(cold.snapshotText()).toBe(run.snapshotText());
+  actorRuntime(run.state).verify();
 }, 300_000);
 
 it('keeps a witnessed wake as Keeper context separate from the paid dawn response', async () => {

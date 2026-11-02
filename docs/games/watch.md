@@ -1009,3 +1009,8 @@ Scope: F-309, F-1599 and F-2113–F-2129 from the [panel](watch-playtest-2026-10
 New villages enable the existing night-off requests and spoken cautions directly. The title checkboxes are gone. Replay options remain export provenance, not public feature controls. Scenarios are now 20/21/22. Pre-fix saves and exports are refused with a start-new-game message because the immediate dusk decision changes rule state. Current scenarios replay exactly. No `packages/human` code changes belong to this cycle.
 
 HF follow-up: [W1 and W2](../hf4-game-needs.md#watch-fix-follow-up-2026-10-27) reuse the shared G4/G1 contracts. The game must not infer a true future departure, fabricate a reply, or treat an agreement as a completed handover.
+
+
+### Targeted native handover coverage — 2026-11-02
+
+The in-repo regression covers one natural handover; its normal lane and independent review are the source delivery gates. A prior private diagnostic passed against exact base `f118303e023ba79de06e65a8a9465e0bd634c9db`: seed 7 selected the first available Tamar/Kian relief after 167 opening steps, recorded Kian's accepted post start and later interruption, and passed full native replay, cold restore and same-next continuation. Tamar's separate sleep request was `not-started`; this does not establish a sleep guarantee. The earlier failed fixed-1280 setup remains preserved. This targeted evidence does not close whole-Watch projection or reply coverage, or human acceptance.
