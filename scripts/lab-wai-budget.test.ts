@@ -74,6 +74,43 @@ describe('Workers AI admission and response accounting', () => {
     expect(n).toBeGreaterThan((128_000 * 4410) / 1e6);
     expect(n).toBeLessThan(DAILY_HARD_NEURONS);
   });
+  it('reserves Whisper from PCM bytes and rejects unverifiable audio', () => {
+    const wav = Buffer.alloc(44 + 32000);
+    wav.write('RIFF', 0);
+    wav.writeUInt32LE(wav.length - 8, 4);
+    wav.write('WAVEfmt ', 8);
+    wav.writeUInt32LE(16, 16);
+    wav.writeUInt16LE(1, 20);
+    wav.writeUInt16LE(1, 22);
+    wav.writeUInt32LE(16000, 24);
+    wav.writeUInt32LE(32000, 28);
+    wav.writeUInt16LE(2, 32);
+    wav.writeUInt16LE(16, 34);
+    wav.write('data', 36);
+    wav.writeUInt32LE(32000, 40);
+    const body = { audio: wav.toString('base64'), task: 'transcribe' };
+    expect(reservation('@cf/openai/whisper-large-v3-turbo', body)).toBe(1);
+    const longWav = Buffer.alloc(44 + 120 * 32000);
+    wav.copy(longWav, 0, 0, 44);
+    longWav.writeUInt32LE(longWav.length - 8, 4);
+    longWav.writeUInt32LE(120 * 32000, 40);
+    expect(
+      reservation('@cf/openai/whisper-large-v3-turbo', { ...body, audio: longWav.toString('base64') }),
+    ).toBe(94);
+    expect(() =>
+      reservation('@cf/openai/whisper-large-v3-turbo', {
+        audio: 'https://example.com/audio.wav',
+        duration: 1,
+      }),
+    ).toThrow();
+    wav.writeUInt32LE(64000, 40);
+    expect(() =>
+      reservation('@cf/openai/whisper-large-v3-turbo', { ...body, audio: wav.toString('base64') }),
+    ).toThrow();
+    expect(() =>
+      reservation('@cf/openai/whisper-large-v3-turbo', { ...body, audio: `${body.audio}!` }),
+    ).toThrow();
+  });
   it('uses UTC days across Chicago local dates and DST', () => {
     expect(utcDate(new Date('2026-11-02T18:40:00-06:00'))).toBe('2026-11-03');
     expect(utcDate(new Date('2026-10-23T19:40:00-05:00'))).toBe('2026-10-24');
