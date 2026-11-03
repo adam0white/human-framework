@@ -1,5 +1,7 @@
 # Pass production proof and performance findings — 2026-11-03
 
+- Remaining: HF 4.16.3 is an UNPUBLISHED empty-phase removal candidate. Focused checks, lane checks, exact review, CI, normal release and game adoption remain pending. The existing tree is retained under explicit resume hold.
+
 Remaining: Child, Valley and Neighbours retain their original unqualified gates. Watch W1/W2, Glance engineering, held central/Small Works deployments and paused player acceptance remain. Child’s retained candidate is being prepared for published 4.16.2; no new installed-runtime or qualification result is claimed.
 
 [Pass’s evidence record](https://github.com/adam0white/pass/blob/7b903c9534725361079970ab245919e25fe9e4bf/docs/lab/week-two-control-2026-11-03.md) is integrated after two exact CLEAR reviews and green source CI 41644486858. On unchanged ec912438/pass@20/HF 4.12.0, one ordinary Selim oven ask led to assent, selected work and one real week-two portion. Complete host replay and 7,177-transaction native verification passed. F-2510 now records that bounded proof; its historical cause, whole-week success and player acceptance remain open for a 2026-11-10 recheck. The 61 inputs and bounded receipt are archived. No gameplay edit or deployment follows.

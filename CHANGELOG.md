@@ -11,6 +11,15 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.16.3] — 2026-11-03
+
+Engine: 4.16.3.
+
+- Avoid copying the retained queue when discovery found no events for the current phase. Discovery and the nonempty removal filter stay unchanged.
+- In one instrumented seed-21 aborted 31-day prefix using fresh Node 26.12 Worker isolates, the private prototype was faster in all seven fixed pairs: paired median reduction 1.271188 s; median per-pair relative reduction 9.424452%. Complete native/raw-host values and counts matched in all 17 runs. See the [experiment](https://github.com/adam0white/human-framework/blob/main/docs/lab/experiments/empty-phase-removal-2026-11-03.md) for the method and limits.
+- This is a finite prototype result, not browser, full-game, save or two-second qualification. The fixture did not exercise nonempty discovery. Before the version bump, published 4.16.2 and the identity-preserving private prototype both replayed the 777-transaction native checkpoint; that is not a 4.16.3 save.
+- Migration: older 4.x saves require a fresh start under the existing exact-engine policy. No legacy continuation, archive repair or retagging is added.
+
 ## SDK companion candidates — client 0.5.16 / kit 0.5.33
 
 - Client defers the initial shelf consent exchange until synchronous bundle initialization completes. This fixes the fresh central bridge failure without changing consent, origin or MessagePort checks.

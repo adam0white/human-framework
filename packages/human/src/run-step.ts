@@ -142,9 +142,11 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
           if (phase === 3) frame.flushContacts();
           if (phase === 2 && !unresolvedIngress()) drainReachedHazards();
           const emitted = stage.current.queue.filter((event) => event.at === at && event.phase === phase);
-          stage.current.queue = stage.current.queue.filter(
-            (event) => !(event.at === at && event.phase === phase),
-          );
+          if (emitted.length !== 0) {
+            stage.current.queue = stage.current.queue.filter(
+              (event) => !(event.at === at && event.phase === phase),
+            );
+          }
           const phaseEntries = [
             ...entries.filter((event) => event.data.kind !== 'input' && event.phase === phase),
             ...emitted,
