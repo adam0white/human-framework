@@ -1,3 +1,11 @@
+# Pass production proof and performance findings — 2026-11-03
+
+Remaining: Child, Valley and Neighbours retain their original unqualified gates. Watch W1/W2, Glance engineering, held central/Small Works deployments and paused player acceptance remain. Child’s retained candidate is being prepared for published 4.16.2; no new installed-runtime or qualification result is claimed.
+
+[Pass’s evidence record](https://github.com/adam0white/pass/blob/7b903c9534725361079970ab245919e25fe9e4bf/docs/lab/week-two-control-2026-11-03.md) is integrated after two exact CLEAR reviews and green source CI 41644486858. On unchanged ec912438/pass@20/HF 4.12.0, one ordinary Selim oven ask led to assent, selected work and one real week-two portion. Complete host replay and 7,177-transaction native verification passed. F-2510 now records that bounded proof; its historical cause, whole-week success and player acceptance remain open for a 2026-11-10 recheck. The 61 inputs and bounded receipt are archived. No gameplay edit or deployment follows.
+
+[The second private performance experiment](docs/lab/experiments/calendar-index-2026-11-03.md#reference-iterator-experiment--2026-11-03) halved a large synthetic validation batch but left median public 48-hour step time unchanged: 268.065 versus 268.377 ms. It is rejected for release on this evidence. Both the iterator and earlier queue prototypes remain preserved privately and removed from source. HF 4.16.2 remains the published engine. Older checkpoints below are historical.
+
 # Performance findings — 2026-11-03
 
 Remaining: Child, Valley and Neighbours retain their original failed or unqualified gates. Central and Small Works deployment holds, Watch W1's contract choice, W2's physical reply and paused player acceptance remain unchanged.
