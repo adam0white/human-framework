@@ -20,6 +20,10 @@ All seven pairs favored B. Paired median B−A was −1271.188125 ms; median per
 
 The positive branch was not exercised in this fixture. This experiment does not replace normal focused/full checks, exact review or CI. This experiment does not qualify browser performance, a full game, a two-second target, saves or general performance.
 
+## Local integration check
+
+The required npm run check:lane selected the gated lane and returned zero after 521.289 seconds. Lockfile validation, lint and typecheck passed; 388 test files and 1,797 tests passed, with two files and five tests skipped. All six candidate source/document files stayed unchanged during the run. This includes the existing suite, not an instrumented proof of nonempty-branch coverage. Exact-commit review, CI and publication remain separate gates.
+
 Private evidence under `/Users/abdul/code/.lab-scratch/games-deferred/`:
 
 | File                                                                   | SHA-256                                                            |
