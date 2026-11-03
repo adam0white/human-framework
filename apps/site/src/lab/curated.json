@@ -18558,7 +18558,7 @@
    "words": "Show early whether ₺5,200 is reachable (still not seen).\" Later wording (section 8): \"Show early whether ₺5,200 is reachable. A line such as \"You have ₺360. You need ₺5,200 by Saturday.\" would do.\" Later wording (section 9): \"I saw only \"₺160 … ₺5,200 due Saturday\" and a bar. I saw no forecast.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Rosa wants to know early whether 5200 is reachable and saw no forecast, early bank target explanation is clarity and not a financial guarantee, Monday totals do not prove the target impossible, no bank deadline was reached, target2026-11-03 (open)"
+    "fix:pass Rosa wants to know early whether 5200 is reachable and saw no forecast, early bank target explanation is clarity and not a financial guarantee, Monday totals do not prove the target impossible, no bank deadline was reached, early current-crew bill, cash gap and per-night arithmetic (fixed ff82356ffca5b7befb366e9b4c72de4c239b0c78, 2026-11-02), this is an estimate and not a success forecast, player acceptance stays open, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/rosa/report.md"
   },
@@ -18571,7 +18571,7 @@
    "words": "Warn about Dilek's meal break in the rush as well as Selim's. After that, make the \"Nobody will work at the grill while Selim eats\" line match the break I chose.\" Later wording (section 8): \"Warn about Dilek's meal break in the rush as well as Selim's. Also make the plan dialog line \"Nobody will work at the grill while Selim eats\" match the break I chose.\" Later wording (section 9): \"Also, Selim ate at 19:48 when I had moved his break to 21:00, and I could not tell why.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Rosa wants a warning about the Dilek meal break in the rush and the plan dialog line Nobody will work at the grill while Selim eats to match the chosen break, an earlier Selim meal versus the planned 21:00 could be a different meal and is not proven to ignore the schedule, failure-warning and status wording, target2026-11-03 (open)"
+    "fix:pass Rosa wants a warning about the Dilek meal break in the rush and the plan dialog line Nobody will work at the grill while Selim eats to match the chosen break, an earlier Selim meal versus the planned 21:00 could be a different meal and is not proven to ignore the schedule, failure-warning and status wording, selected interval/rush wording (fixed a201f421a1a23495b54906a84af053d1bb202ad9, 2026-11-02), real accepted-relief coverage and the historical early-meal cause remain unproved, player acceptance stays open, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/rosa/report.md"
   },
@@ -18584,7 +18584,7 @@
    "words": "When a cook agrees, the cook should do it. If they will do something else, tell me before it happens. Examples: Selim said \"I will do that now\", then went to eat. Dilek's 18:35 break plan was followed by her eating at 20:24.\" Later wording (section 5): \"\"I will do that now\" under a job button does not mean he will. The page does say these are \"the chef’s guess\", but then why show it?",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Sonia saw cooks agree to a plan and then be shown eating at another time, preview versus action wording, source cause unverified, an earlier Selim meal versus the planned time could be a different meal and is not proven to ignore the schedule, no rule that an actor must always obey, keep refusal and agency, target2026-11-03 (open)"
+    "fix:pass Sonia saw cooks agree to a plan and then be shown eating at another time, preview versus action wording, source cause unverified, an earlier Selim meal versus the planned time could be a different meal and is not proven to ignore the schedule, no rule that an actor must always obey, keep refusal and agency, local Possible reply label under each job prediction (fixed ff82356ffca5b7befb366e9b4c72de4c239b0c78, 2026-11-02), actual speech and agency unchanged, historical meal/status cause and player acceptance stay open, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/sonia/report.md"
   },
@@ -18610,7 +18610,7 @@
    "words": "Show me early how the week's money could work. ₺40 a table against ₺5,200 by Saturday. And say what flatbreads are, if there are always 0.\" Later wording (section 5): \"Flatbreads are always 0 and never explained.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Sonia wants early help to see how the week money could work and what flatbreads are when they are always 0, early bank target explanation is clarity and not a financial guarantee, Monday totals of 520 and 560 do not prove the target impossible, no bank deadline was reached, target2026-11-03 (open)"
+    "fix:pass Sonia wants early help to see how the week money could work and what flatbreads are when they are always 0, early bank target explanation is clarity and not a financial guarantee, Monday totals of 520 and 560 do not prove the target impossible, no bank deadline was reached, early current-crew bill, cash gap and per-night arithmetic (fixed ff82356ffca5b7befb366e9b4c72de4c239b0c78, 2026-11-02), money explanation subpart delivered, current flatbread definition and remaining-portions label (fixed 32c8f79c8ba307550d01c29d30dadc199f1a5573, 2026-11-02), played week-two oven production and player acceptance remain unproved, target2026-11-03 (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/sonia/report.md"
   },
