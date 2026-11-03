@@ -204,4 +204,4 @@ test('public daily episodes fold into restorable five-field yearly episodes', ()
   const coldContinued = step(restored.value, next);
   if (!coldContinued.ok) throw new Error(JSON.stringify(coldContinued.error));
   expect(exportRun(restored.value)).toEqual(exportRun(run));
-}, 15_000);
+});
