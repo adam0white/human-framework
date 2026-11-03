@@ -1,3 +1,9 @@
+# Performance findings — 2026-11-03
+
+Remaining: Child, Valley and Neighbours retain their original failed or unqualified gates. Central and Small Works deployment holds, Watch W1's contract choice, W2's physical reply and paused player acceptance remain unchanged.
+
+[The time/phase queue experiment](docs/lab/experiments/calendar-index-2026-11-03.md) passed seven focused Node 26 tests but showed no consistent material speed gain in three paired measurements. The prototype was preserved privately and removed from source. No engine release follows. Child's original failed qualification already used daily fidelity; the roadmap now records that correction and the missing per-person offscreen contract. HF 4.16.2 publication remains the delivery recorded below.
+
 # HF 4.16.2 publication checkpoint — 2026-11-03
 
 Remaining: Child’s original 36- and 180-month, two-second, restore, replay and milestone gates remain open. Its 36-month run took 1,045,165.849 ms against 2,000 ms, including the prior query, then failed yearly action restore. Child’s candidate still pins 4.16.1; Valley and Neighbours remain unqualified. The corrected yearly producer passed a functional regression, but does not repair old archives or qualify long-life performance or adoption.
