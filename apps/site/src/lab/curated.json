@@ -18598,7 +18598,8 @@
    "verdict": "mixed",
    "routes": [
     "fix:pass Sonia observed a bathroom label while Dilek asked to phone her mother and Selim labelled in the bathroom but drawn at the back door, mismatched status and preview wording, source cause unverified, no rule that an actor must always obey, target2026-11-03 (open)",
-    "fix:pass Past-speech caption wording only (fixed 096ede55ffc3365c544b7245551ce63556a40860, 2026-11-03). Current actor captions say Said at before the retained time, native activity and actual speech stay unchanged. One current full-state import/replay at both sizes is not the historical Sonia seed. Phone-label cause, shared drawing and player acceptance remain open, target2026-11-03."
+    "fix:pass Past-speech caption wording only (fixed 096ede55ffc3365c544b7245551ce63556a40860, 2026-11-03). Current actor captions say Said at before the retained time, native activity and actual speech stay unchanged. One current full-state import/replay at both sizes is not the historical Sonia seed. Phone-label cause, shared drawing and player acceptance remain open, target2026-11-03.",
+    "fix:pass Bathroom drawing only (fixed ec91243815b1750240ecd09d131bd27437b34134, 2026-11-03), separate bathroom figure and label at x250, back door at x318, full game and native equality and native replay at both sizes, bubble placement source only, general readability and historical Sonia phone cause and player acceptance remain open"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/pass-retest2/sonia/report.md"
   },
@@ -24166,7 +24167,7 @@
   }
  ],
  "routes": {
-  "fix": 2135,
+  "fix": 2136,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,

@@ -461,3 +461,10 @@ The existing G4 row owns `inspect` selections `affect` and `expectations`. Watch
 ### CENTRAL-GAPS lifecycle context — 2026-10-29 candidate
 
 The existing G1 bridge and G10 lifecycle controls also cover Watch's inherited newborns. Their authored child-side parent ties and parental voices were discarded because `NewbornContext` did not admit either field. The 4.11 candidate preserves optional initial relationships and voices through the existing birth input and normal person admission. Omission still produces empty social context. Biological parentage does not imply known caregivers or authority. The framework still derives traits and aptitudes. Watch must prove household, care, retelling and proposal behavior after adopting the published contract; source controls are not a delivered game port.
+
+
+## Native archive and long-life checkpoint — 2026-11-03
+
+The original Child seed21/six-person36-month case reached day1096 under published4.16.1. Whole arrange plus the entire prior conditional query measured1,045,165.849ms; native plus query measured1,043,278.553ms. The original2,000ms criteria remain. The milestone then rejected its own exported yearly episode.action during native restore; later coverage and180months remain unqualified. This is a failed engineering gate, not an owner/player deferral or a speedup.
+
+A public minimal reproduction respects31-day retention, closes33 native days and reproduces the same restore rejection. The4.16.2 candidate projects yearly episodes to their existing five fields, retaining daily optional metadata, yearly action tallies, bounds and strict schema. It passes28 focused chronicle/archive tests including full JSON restore and same-next equality. Full normal checks, exact reviews/CI and publication remain. No older archive repair or engine-tag rewrite is permitted. G1 archive fidelity and the original game performance gates remain open until their separate evidence is complete.

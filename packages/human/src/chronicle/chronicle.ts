@@ -273,7 +273,8 @@ function foldDay(
   y.actions.sort((a, b) => b.days - a.days || compare(a.action, b.action));
   y.actions = y.actions.slice(0, 4 * K.yearActions);
   for (const e of d.episodes)
-    if (!y.episodes.some((x) => x.id === e.id)) y.episodes.push({ ...cloneData(e), day: d.day });
+    if (!y.episodes.some((x) => x.id === e.id))
+      y.episodes.push({ id: e.id, day: d.day, summary: e.summary, valence: e.valence, salience: e.salience });
   y.episodes.sort(
     (a, b) => Math.abs(b.valence) * b.salience - Math.abs(a.valence) * a.salience || a.day - b.day,
   );

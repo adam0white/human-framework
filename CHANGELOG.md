@@ -29,9 +29,20 @@ absolute links in sections, since they are copied into the release page.
 - Migration: none; hosts bump the pin, and kit's peer range accepts 0.5.15.
 - Kit 0.5.32 adds client 0.5.15 to its optional peer list. Both candidates retain HF 4.15.0. The site continues to use published client 0.5.14 and kit 0.5.31 until the companion artifacts are released and adopted. These versions are candidates, not published releases.
 
+## [4.16.2] — 2026-11-03
+
+Engine: 4.16.2.
+
+- Correct yearly chronicle episode production to the existing five-field contract: id, day, summary, valence and salience. Daily action/target details and yearly action tallies remain. The producer no longer spreads daily-only fields into a yearly record that the closed archive schema rejects.
+- A public control authors ordinary biography, respects the31-day retention minimum, closes33 actual days, exports through JSON, restores the complete run and checks the same next step. It preserves daily optional metadata and all existing chronicle/archive controls. This is a functional representation check, not long-life or latency qualification.
+- Migration: package4.16.2/build `3e09080cb2721c73ee5989dd119c2908cee0d63412e5171cb09228527d4466dc`; schema stays `6b51a28671ab680f170f8320d507c86cd36d71baf7c0e0d957ad8b267990e35d`. Existing exact-engine checks remain. Older4.x saves require a fresh start; no archive repair, rewritten engine tag or legacy continuation is added.
+- Candidate until normal full lane, two exact independent reviews, green CI and serialized publication finish. No game speedup follows: Child's original36-month arrange plus prior query measured1,045,165.849ms against2,000ms, then failed milestone restore. Full game adoption and remaining performance/coverage gates stay open.
+
 ## [4.16.1] — 2026-11-03
 
 Engine: 4.16.1.
+
+- Qualification follow-up (2026-11-03): Child reached day1096, then its own exported native yearly episode was rejected by restoreRun for an unknown action field. The published API reproduced the refusal. Release notes disclose this limitation;4.16.2 is the corrective producer candidate.
 
 ### Changed
 

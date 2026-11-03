@@ -1,3 +1,15 @@
+# Yearly chronicle corrective candidate — 2026-11-03
+
+Remaining: full normal gate, two exact independent Codex reviews, signed/rebased source with green CI, normal serialized4.16.2 release and npm/provenance verification. Games-deferred owns the release lock. No candidate publication, game adoption or speed pass is claimed.
+
+The actual public daily→yearly regression first reached the yearly producer and failed restore on its leaked action field. Three earlier fixture failures are preserved separately: illegal retention, undeclared action and an inclusive-window boundary. The legal control now uses31-day retention and33 real closures. Its new15-second bound covers functional cold replay; existing tests and Child's original2-second criteria are unchanged. After explicit five-field yearly projection, the public JSON restore/full export/same-next control and27 existing tests passed across5 files. Root verified9052 source hashes and all22 observed identities gone. Schema and retention are unchanged; daily action/target and yearly action tallies remain.
+
+The original Child seed21/six-person36-month run reached day1096 in1,045,165.849ms including the entire prior query, then milestone native restore failed on yearly episode.action. Complete native/host archives and all seven artifacts are retained.4.16.1 publication and provenance are verified, but its release notes now disclose this long-life failure. A standalone public restore reproduced it without mutating the caller archive. The36/180-month, restore/replay/milestone and performance gates remain open.
+
+This branch also integrates the private same-directory atomic parent-PID marker publication in the Linux Bench fixture. No production supervisor, assertion, scheduling or timeout changes. Mac controls and exact Linux CI remain to be checked. The Pass ledger adds only the already-delivered ec912438 bathroom drawing route, preserving the original words and caption route; generation and strict1751-row checks remain.
+
+Well source PR112 f05b60a is merged after exact CLEAR and CI41579468023 SUCCESS, with53 existing tests. Its normal central deployment is held by the explicit no-worktree-operation rule. Wider cause and player acceptance remain open. W1's conditional-scenario versus actual-departure contract choice remains pending; W2 has no qualified physical reply. Players/friends/ShowHN remain paused. Older headings below are historical checkpoints.
+
 # Well construction explanation candidate — 2026-11-03
 
 Remaining: exact independent game-design review and CI for the qualitative roof-work explanation. The normal selected fast lane passed lint, typecheck and53 existing tests across8 files in5.244s; no new tests or timeout changes. Normal central deployment remains held because it creates/removes temporary worktrees; no bypass. The candidate changes rendering only and leaves the historical cause, wider causal ask and player acceptance open.
