@@ -1,3 +1,15 @@
+# HF 4.16.3 publication checkpoint — 2026-11-03
+
+Remaining: Child's original 36- and 180-month, 2,000 ms, full host save and whole-game qualification gates; Valley's day 12, 881-day and fingerprint gates; and Neighbours' 206/96-round, 30-day and 50 MiB gates and producer prerequisites. Central and Small Works deployments remain held. Watch W1 needs the owner's choice and W2 needs a physical reply. Player rounds remain paused; Adam’s readiness acceptance remains open. The broader open work across the 15 games is not closed by this library patch.
+
+Child and Valley candidates now pin 4.16.3. Their focused contract cases passed: 16 and two respectively. Neither candidate is a merged or deployed game adoption. Child's required full lane was interrupted after lint and types passed during the broad multi-seed 180-month matrix; there is no full-test pass. The historical 777-transaction native checkpoint below is not a 4.16.3 public host save.
+
+[HF 4.16.3](https://github.com/adam0white/human-framework/releases/tag/v4.16.3) was published from signed [180d58c](https://github.com/adam0white/human-framework/commit/180d58caeb5e2f7b5b764a52c3dd38fdfe2d0561) through [PR #118](https://github.com/adam0white/human-framework/pull/118). Exact Codex source review was CLEAR; [source CI 41732194464](https://github.com/adam0white/human-framework/actions/runs/41732194464), CodeQL and Bench were green. The normal release took 530.830 seconds and repeated 388 passing files and 1,797 passing tests, with two files and five tests skipped. [Publisher 41736771219](https://github.com/adam0white/human-framework/actions/runs/41736771219) succeeded. Initial registry 404 checks are historical; the package subsequently became available.
+
+npm integrity and registry-linked SLSA payload, source and publisher consistency checks passed. All 197 package contents and selected header fields matched the GitHub artifact. The Sigstore certificate and signature chain were not independently audited. The release lock, temporary directory and task refs were cleaned; seven trees remain under the explicit no-tree-operation hold. The new engine build is `11f45a5747eb8c8b6f683fe3018600e7252f624f3a685163c9e27a2f72ab091c`; the schema remains `6b51a28671ab680f170f8320d507c86cd36d71baf7c0e0d957ad8b267990e35d`.
+
+The checkpoints below are historical. Their pending publication and adoption statements describe their time. The finite experiment does not establish general speed, save compatibility or game qualification.
+
 # Pass production proof and performance findings — 2026-11-03
 
 - Remaining: HF 4.16.3 is an UNPUBLISHED empty-phase removal candidate. The required local gated lane passed: 388 files and 1,797 tests, with two files and five tests skipped; candidate files stayed unchanged. Exact-commit review, CI, normal release and game adoption remain pending. The existing tree stays under the explicit resume hold.

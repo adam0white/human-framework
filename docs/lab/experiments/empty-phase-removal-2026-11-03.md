@@ -24,7 +24,7 @@ The positive branch was not exercised in this fixture. This experiment does not 
 
 The required npm run check:lane selected the gated lane and returned zero after 521.289 seconds. Lockfile validation, lint and typecheck passed; 388 test files and 1,797 tests passed, with two files and five tests skipped. All six candidate source/document files stayed unchanged during the run. This includes the existing suite, not an instrumented proof of nonempty-branch coverage. Exact-commit review, CI and publication remain separate gates.
 
-Private evidence under `/Users/abdul/code/.lab-scratch/games-deferred/`:
+Private evidence references recorded at the time:
 
 | File                                                                   | SHA-256                                                            |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -33,3 +33,9 @@ Private evidence under `/Users/abdul/code/.lab-scratch/games-deferred/`:
 | `hf-empty-phase-macro-run1103/runtime/summary.json`                    | `149cfb921e65cceca1cb38caf1b5dbfb783bfd69bbd172167557417aa2ecec76` |
 | `hf-empty-phase-macro-run1103/runtime/observer/phase-observation.json` | `20bc0b38347b42a3767588bcc76da784bbb0824141ea603670a2b517d2e892a8` |
 | `hf-empty-phase-removal-candidate1103/candidate.diff`                  | `e8af2817e4144453af333f5cf985fe4f5a50e2744b22b13a3b9daa951cc3330d` |
+
+## Verified publication
+
+[HF 4.16.3](https://github.com/adam0white/human-framework/releases/tag/v4.16.3) shipped through [PR #118](https://github.com/adam0white/human-framework/pull/118) from signed [180d58c](https://github.com/adam0white/human-framework/commit/180d58caeb5e2f7b5b764a52c3dd38fdfe2d0561). Exact source review was CLEAR, [source CI](https://github.com/adam0white/human-framework/actions/runs/41732194464) passed, and the [npm publisher](https://github.com/adam0white/human-framework/actions/runs/41736771219) succeeded. The release's full suite passed separately; it does not establish instrumented branch coverage. Registry integrity and provenance payload/source/publisher consistency passed; the Sigstore certificate and signature chain were not independently audited.
+
+The single empty-discovery guard had a 9.424% median per-pair reduction in this finite instrumented prefix. The macro did not exercise nonempty discovery. It establishes no general speed, save or game qualification. The candidate and pending-gate language above records the earlier experiment.
