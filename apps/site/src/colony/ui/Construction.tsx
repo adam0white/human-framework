@@ -96,6 +96,18 @@ export function ConstructionReadout({
           {(facts.selectedPersonId === undefined || selected ? (facts.constraints ?? []) : []).map((text) => (
             <p key={text}>{text}</p>
           ))}
+          {side === 'Human' &&
+            selected &&
+            facts.normalSession &&
+            open &&
+            project.kind === 'house' &&
+            facts.nextWork === 'ordinary' &&
+            stageKind(project.stage + 1) === 'roof' && (
+              <p>
+                A task can finish before the stage is complete. Work done on site is credited when the task
+                ends or stops, if the stage's materials are paid for.
+              </p>
+            )}
           {selected && facts.selectedOffer && (
             <p>
               {facts.selectedOffer.beam

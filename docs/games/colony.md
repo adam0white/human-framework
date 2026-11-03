@@ -876,3 +876,10 @@ Regression: the focused layout test distinguishes a sent appeal from the next dr
 ### Source delivery pending — 2026-10-26
 
 Source now implements an unticked Show building details preference, opaque inspector entry and reproduced injury/trust scope corrections. Existing simulation state and arithmetic stay unchanged. The storm/wait control found no early suggestion loss; that broader report is not marked fixed. Normal related checks and raw legacy/export controls passed at author handback. Independent source review and exact CI remain required before integration. Public deployment is held with the Voice round; follow-up target 2026-10-27 after the hold clears. Browser verification, same-tester observations and Adam’s 2026-11-03 acceptance remain separate.
+
+
+## Ordinary roof work contribution — source candidate, 2026-11-03
+
+F-474: supported selected-person ordinary Human roof details now explain that a task can finish before a stage is complete. Work done on site is credited when the task ends or stops, if that stage’s materials are paid for. Existing approximate progress, physical restrictions and choice wording remain. There are no new numbers or completion estimates. The statement is absent from summaries, Classic, beam work, completed construction, store-rooms, mismatched person details and missing normal-session facts.
+
+This is a rendering-only source candidate, not a reconstruction of Leena’s delay or a claimed winning intervention. The normal selected fast lane passed53 existing tests across8 files, plus lint/typecheck. Exact review and CI remain. Normal central deployment is held by the explicit no-worktree-operation rule; player/owner acceptance remains separate and paused. Wider causal explanation remains open, games-deferred checkpoint2026-11-03.

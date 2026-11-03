@@ -1,3 +1,9 @@
+# Well construction explanation candidate — 2026-11-03
+
+Remaining: exact independent game-design review and CI for the qualitative roof-work explanation. The normal selected fast lane passed lint, typecheck and53 existing tests across8 files in5.244s; no new tests or timeout changes. Normal central deployment remains held because it creates/removes temporary worktrees; no bypass. The candidate changes rendering only and leaves the historical cause, wider causal ask and player acceptance open.
+
+HF4.16.1 is published from signed9b06ddd with two exact CLEAR reviews, source CI41574464886 SUCCESS, full normal release387files/1796tests PASS, publisher41577520481 SUCCESS, npm integrity and registry-linked provenance source/publisher consistency checked. All197 published package files match the GitHub tarball. Main CI41576630668 remains pending. The own release lock is released; no game speedup follows. The earlier headings below are historical checkpoints.
+
 # Voice Skip synchronization checkpoint — 2026-11-03
 
 Remaining: run the normal selected lane for this test-only correction, sign/review its exact commit, verify CI, then run the full normal serialized release again. No package/tag/publication completed. Core4.16.1 source1f2068c is merged with two exact CLEAR reviews, green source CI and an earlier complete full lane. Its repeated release check then failed the Voice initial-disabled assertion. The diagnostic observed retained words before Skip became disabled; historical failed timeout order and real worker click acceptance remain unproven. This patch waits for the actual disabled state and preserves all subsequent assertions and time limits. Product source, version and engine identity are unchanged.
