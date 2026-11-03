@@ -29,6 +29,18 @@ absolute links in sections, since they are copied into the release page.
 - Migration: none; hosts bump the pin, and kit's peer range accepts 0.5.15.
 - Kit 0.5.32 adds client 0.5.15 to its optional peer list. Both candidates retain HF 4.15.0. The site continues to use published client 0.5.14 and kit 0.5.31 until the companion artifacts are released and adopted. These versions are candidates, not published releases.
 
+## [4.16.1] — 2026-11-03
+
+Engine: 4.16.1.
+
+### Changed
+
+- Remove the first private clone and deep freeze of an accepted transaction before commit. Commit still clones and freezes the transaction for history; the public result retains its own copy. Performance has not been measured, and this change does not establish a game performance result.
+
+### Migration
+
+- No host API changes are required. Archives and journals require the exact package, build and schema identity; start a fresh run when an older build is refused. Existing games and SDK artifacts retain their current pins until separately adopted.
+
 ## [4.16.0] — 2026-11-01
 
 Engine: 4.16.0.

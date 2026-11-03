@@ -429,17 +429,15 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     const ordinal = state.counters.nextTransaction++;
     if (!Number.isSafeInteger(state.counters.nextTransaction))
       throw new RunLimitError('Transaction counter exhausted');
-    const transaction = freezeData(
-      cloneData({
-        ordinal,
-        until: batch.until,
-        inputs: batch.inputs,
-        fidelity,
-        reachedAt: state.at,
-        cursor: state.cursor,
-        boundary,
-      }),
-    );
+    const transaction: T.DeepReadonly<T.AcceptedTransaction> = {
+      ordinal,
+      until: batch.until,
+      inputs: batch.inputs,
+      fidelity,
+      reachedAt: state.at,
+      cursor: state.cursor,
+      boundary,
+    };
     commitTransaction(run, stage, true, transaction);
     return { ok: true, value: result };
   } catch (error) {
