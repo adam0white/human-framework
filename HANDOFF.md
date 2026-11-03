@@ -1,3 +1,15 @@
+# HF 4.16.2 publication checkpoint — 2026-11-03
+
+Remaining: Child’s original 36- and 180-month, two-second, restore, replay and milestone gates remain open. Its 36-month run took 1,045,165.849 ms against 2,000 ms, including the prior query, then failed yearly action restore. Child’s candidate still pins 4.16.1; Valley and Neighbours remain unqualified. The corrected yearly producer passed a functional regression, but does not repair old archives or qualify long-life performance or adoption.
+
+Central and Small Works deployments remain held under the no-worktree-operation instruction. All seven owned trees remain held. W1’s owner contract choice is pending; W2 has no physical reply. Player rounds, friends and Show HN remain paused.
+
+[HF 4.16.2](https://github.com/adam0white/human-framework/releases/tag/v4.16.2) was published from signed commit `328a262ebea5261e38ff33edcb270ade6816ee20`. Two exact reviews were CLEAR; source CI 41591156870 and Bench 41591156941 passed. Linux controls passed 15 with one expected non-Linux skip. The serialized release took 536.141 seconds and repeated 388 files and 1,797 passing tests, with two files and five tests skipped. Root checked all 540 recorded process identities, found none still live, and verified 9,052 source hashes.
+
+[Publisher run 41594948298](https://github.com/adam0white/human-framework/actions/runs/41594948298) passed. npm integrity and registry-linked SLSA payload, source and publisher binding checks passed; all 197 package file contents and selected headers matched the GitHub artifact. The Sigstore certificate and signature chain were not independently audited. The temporary release directory was removed and the games-deferred release lock was released. Merged task refs were deleted. The worktree was retained.
+
+The earlier checkpoints below are historical context; their pending checks describe their time.
+
 # Yearly chronicle correction — current checkpoint, 2026-11-03
 
 Remaining: two independent reviews and green CI on the final signed head, then the normal serialized 4.16.2 release, publisher and npm/provenance verification. Games-deferred holds its own release lock. The candidate engine build is `3e09080cb2721c73ee5989dd119c2908cee0d63412e5171cb09228527d4466dc`; the schema is unchanged. No publication, game adoption or latency improvement is claimed.
