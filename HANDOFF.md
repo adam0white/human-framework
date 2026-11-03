@@ -1,3 +1,13 @@
+# Yearly chronicle correction — current checkpoint, 2026-11-03
+
+Remaining: two independent reviews and green CI on the final signed head, then the normal serialized 4.16.2 release, publisher and npm/provenance verification. Games-deferred holds its own release lock. The candidate engine build is `3e09080cb2721c73ee5989dd119c2908cee0d63412e5171cb09228527d4466dc`; the schema is unchanged. No publication, game adoption or latency improvement is claimed.
+
+The first candidate, eb60841, passed the local full check and two exact reviews. Source CI then timed out the new yearly replay regression at its custom 15-second limit. That failure is preserved. The test now inherits the human project's existing 120-second functional setting. No global setting, existing test, assertion, fixture, product code or original game performance requirement changed. The focused control passed, then the normal full lane passed 388 files and 1,797 tests, with two files and five tests skipped. Root verified all 535 observed process identities exited, 9,052 source hashes stayed fixed and the normal suite lock was released. Test-only signed commit 6385915 records that correction; the final combined head still needs fresh reviews and CI.
+
+Child's measured 36-month failure and its original two-second, 36/180-month, restore/replay and milestone requirements remain open. Actual Linux supervisor controls passed on the first candidate; that evidence does not qualify a later commit. Central and Small Works deployments remain held under the no-worktree-operation rule. Watch W1's contract choice remains pending; W2 has no qualified physical reply. Player rounds, friends and Show HN remain paused.
+
+Everything below records earlier checkpoints. Their pending checks and the original 15-second regression limit describe the versions when those notes were written.
+
 # Yearly chronicle corrective candidate — 2026-11-03
 
 Remaining: full normal gate, two exact independent Codex reviews, signed/rebased source with green CI, normal serialized4.16.2 release and npm/provenance verification. Games-deferred owns the release lock. No candidate publication, game adoption or speed pass is claimed.
