@@ -1,4 +1,10 @@
-# Remaining and current candidates — 2026-11-03
+# Voice Skip synchronization checkpoint — 2026-11-03
+
+Remaining: run the normal selected lane for this test-only correction, sign/review its exact commit, verify CI, then run the full normal serialized release again. No package/tag/publication completed. Core4.16.1 source1f2068c is merged with two exact CLEAR reviews, green source CI and an earlier complete full lane. Its repeated release check then failed the Voice initial-disabled assertion. The diagnostic observed retained words before Skip became disabled; historical failed timeout order and real worker click acceptance remain unproven. This patch waits for the actual disabled state and preserves all subsequent assertions and time limits. Product source, version and engine identity are unchanged.
+
+Pass PR24 ec912438 is merged with exact CLEAR and source/main CI green. Normal deployment version4dd7dbc8-190b-405e-a2c2-6e430aa7ea83 and public release.json match ec912438 with dirty:false. Two-size live public import at360×690/1280×800 preserves the complete game/native state and replay, and places the bathroom figure/label at250 versus back-door318, without errors or overflow. Bubble placement is source-verified only; general readability, historical phone-label cause and player acceptance remain open. The earlier paragraph below is a historical checkpoint.
+
+# Previous candidate checkpoint — 2026-11-03
 
 HF4.16.1 is a source candidate, not a published release. Two independent Codex source reviews qualified removal of only the first private transaction clone/freeze. Commit still detaches and freezes retained history, and the public result keeps its own copy. Normal frozen installation, generated stamp/API metadata, the complete normal gated lane, two exact signed-SHA reviews, exact green CI and the serialized normal release remain. No game speedup or original workload gate is proved. Games-deferred owns the release lock and this candidate.
 

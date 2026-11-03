@@ -44,7 +44,11 @@ it('explains why Skip is unavailable while retained updates are open, then resto
   const root = createRoot(el);
   try {
     flushSync(() => root.render(createElement(App)));
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await vi.waitFor(() => {
+      const skipButton = el.querySelector<HTMLButtonElement>('[aria-label="Skip to the next event"]');
+      expect(skipButton).not.toBeNull();
+      expect(skipButton?.disabled).toBe(true);
+    });
     const button = el.querySelector<HTMLButtonElement>('[aria-label="Skip to the next event"]');
     expect(button).not.toBeNull();
     expect(button?.disabled).toBe(true);
