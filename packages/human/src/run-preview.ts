@@ -1,5 +1,6 @@
 /** SCOPE: detached execution of the same runtime, stopping at actual host truth.
  * A person may propose only its own actions and receives only its visible events. */
+import { observerBodyAssumptions, projectObserverBody } from './body/body.ts';
 import { cloneData } from './core/clone.ts';
 import { createPerson, createRun } from './run.ts';
 import { hashCanonical } from './run-canonical.ts';
@@ -12,13 +13,22 @@ import type * as T from './run-schema.ts';
 import { step } from './run-step.ts';
 import { validateData } from './run-validation.ts';
 import { projectEvents } from './run-view.ts';
+import { impressionOf } from './social/impressions.ts';
 export function preview(
   run: T.Run,
   input: T.DeepReadonly<T.PreviewQuery>,
 ): T.Result<T.DeepReadonly<T.PreviewResult>> {
   const parsed = validateData('PreviewQuery', input);
   if (!parsed.ok) return parsed;
-  if (input.select && new Set(input.select).size !== input.select.length)
+  if (
+    input.select &&
+    new Set(input.select).size !== input.select.length &&
+    !(
+      input.bodyForecast !== undefined &&
+      input.perspective.kind === 'person' &&
+      input.perspective.observer !== input.person
+    )
+  )
     return { ok: false, error: { code: 'duplicate-id', path: '$.select', message: 'duplicate selection' } };
   const query = parsed.value,
     record = readKernel(run);
@@ -32,17 +42,115 @@ export function preview(
       };
     const observerId = query.perspective.observer;
     if (observerId !== query.person) {
-      // A new run contains only an imagined actor. Its constructor never receives
-      // the target. Explicit hypothetical offers are premises, never target truth.
-      if (query.bodyForecast !== undefined)
-        return {
+      if (query.bodyForecast !== undefined) {
+        const now = record.current.at;
+        const spans = query.bodyForecast;
+        const fail = (code: 'invalid-admission' | 'limit-exceeded', message: string): T.Result<never> => ({
           ok: false,
-          error: {
-            code: 'invalid-admission',
-            path: '$.bodyForecast',
-            message: 'Another person’s body is unknown',
+          error: { code, path: '$.bodyForecast', message },
+        });
+        if (query.inputs.length || query.select?.length || query.fidelity !== undefined)
+          return fail(
+            'invalid-admission',
+            'Observer body loads require empty inputs, no selection and no fidelity',
+          );
+        const physical: T.BodyKernelEffective = {
+          builtins: {
+            BODY_DEFAULTS: record.parameters.effective.builtins.BODY_DEFAULTS,
+            ENVIRONMENT_DEFAULTS: record.parameters.effective.builtins.ENVIRONMENT_DEFAULTS,
+            BLADDER_DEFAULTS: record.parameters.effective.builtins.BLADDER_DEFAULTS,
+            LIFE_DEFAULTS: record.parameters.effective.builtins.LIFE_DEFAULTS,
+            INJURY_DEFAULTS: record.parameters.effective.builtins.INJURY_DEFAULTS,
+            DOZE_DEFAULTS: record.parameters.effective.builtins.DOZE_DEFAULTS,
+            FAMILY_DEFAULTS: record.parameters.effective.builtins.FAMILY_DEFAULTS,
+            FORECAST_DEFAULTS: record.parameters.effective.builtins.FORECAST_DEFAULTS,
           },
+          doze: { hazardScale: record.parameters.effective.doze.hazardScale },
+          fixedPriors: { downing: record.parameters.effective.fixedPriors.downing },
         };
+        if (!spans.length || spans.length > 4 || spans.length > physical.builtins.FORECAST_DEFAULTS.maxSpans)
+          return fail(
+            'limit-exceeded',
+            'Observer body projection requires 1–4 spans within the source limit',
+          );
+        const labels = new Set<string>();
+        let duration = 0;
+        for (const span of spans) {
+          if (!span.label.trim() || labels.has(span.label))
+            return fail('invalid-admission', 'Labels must be unique and nonblank');
+          labels.add(span.label);
+          if (!Number.isSafeInteger(span.durationMs) || span.durationMs <= 0)
+            return fail('invalid-admission', 'Positive safe integer durations required');
+          if (
+            ![span.load.effort, span.load.focus].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) ||
+            !['awake', 'sleep'].includes(span.load.mode)
+          )
+            return fail('invalid-admission', 'Finite unit effort/focus and awake/sleep mode required');
+          duration += span.durationMs;
+          if (!Number.isSafeInteger(duration) || !Number.isSafeInteger(now + duration))
+            return fail('limit-exceeded', 'Observer projection time overflow');
+        }
+        if (duration > Math.min(86400000, physical.builtins.FORECAST_DEFAULTS.maxMinutes * 60000))
+          return fail('limit-exceeded', 'Observer projection exceeds the source horizon or 24 hours');
+        if (query.until !== now + duration)
+          return fail('invalid-admission', 'until must equal current time plus all declared spans');
+        const observer = record.current.people[observerId];
+        if (!observer) throw new TypeError('Preview observer disappeared');
+        const held = impressionOf(observer, query.person, now).cues.find((cue) => cue.key === 'fatigue');
+        let evidence: T.ObserverBodyEvidence | undefined;
+        let reason: Extract<T.ObserverBodyProjection, { status: 'unavailable' }>['reason'] | undefined;
+        if (!held) reason = 'unseen';
+        else {
+          evidence = { key: 'fatigue', fatigueValue: held.value, confidence: held.confidence };
+          if (![held.value, held.confidence].every((n) => Number.isFinite(n) && n >= 0 && n <= 1))
+            return fail('invalid-admission', 'Held fatigue and confidence must be finite unit values');
+          else if (held.seenAt === undefined) reason = 'unknown-age';
+          else {
+            const ageMs = now - held.seenAt;
+            if (
+              !Number.isSafeInteger(now) ||
+              !Number.isSafeInteger(held.seenAt) ||
+              !Number.isSafeInteger(ageMs) ||
+              ageMs < 0
+            )
+              return fail('invalid-admission', 'Held evidence requires safe nonfuture timestamps and age');
+            else {
+              evidence.seenAt = held.seenAt;
+              evidence.ageMs = ageMs;
+              if (held.confidence < 0.12) reason = 'weak-evidence';
+              else if (ageMs > 43200000) reason = 'stale-evidence';
+            }
+          }
+        }
+        let projected: T.Result<T.ObserverBodyProjection>;
+        if (reason) projected = { ok: true, value: { status: 'unavailable', reason } };
+        else {
+          if (!evidence) throw new TypeError('Observer fatigue evidence disappeared');
+          projected = projectObserverBody(evidence.fatigueValue, now, spans, physical);
+        }
+        if (!projected.ok) return projected;
+        return {
+          ok: true,
+          value: freezeData({
+            at: now,
+            hypothetical: true,
+            perspective: query.perspective,
+            possibilities: [],
+            boundary: { type: 'until' },
+            bodyForecast: {
+              kind: 'observer-conditional',
+              person: query.person,
+              from: now,
+              ...(evidence ? { evidence } : {}),
+              assumptions: observerBodyAssumptions,
+              projection: projected.value,
+            },
+            knowledgeLimit: observerBodyAssumptions,
+          }),
+        };
+      }
+      // The ordinary offer preview constructs only an imagined actor. Explicit
+      // hypothetical offers are premises, never target truth.
       if (
         query.inputs.some(
           (entry) =>
@@ -160,7 +268,12 @@ export function preview(
       perception: bodyPerception(actor, record.current.at),
     });
     if (!forecast.ok) return forecast;
-    bodyForecast = { person: query.person, from: record.current.at, spans: forecast.value };
+    bodyForecast = {
+      kind: 'conditional-body',
+      person: query.person,
+      from: record.current.at,
+      spans: forecast.value,
+    };
   }
   const fork = forkKernel(run);
   const hypothetical = readKernel(fork);

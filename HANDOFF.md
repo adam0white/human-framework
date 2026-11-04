@@ -1,3 +1,13 @@
+# HF 4.17.0 isolated observer candidate — 2026-11-04
+
+Remaining: two new independent final source reviews, root full checks, signed commit and exact green CI, normal publication with provenance verification, then separate game adoption. This is an uncommitted local candidate, not a ready or published release. Previous reviews and prototype checks do not qualify this isolated source.
+
+The public candidate adds generic observer bodily forecasts conditional on held fatigue evidence and explicit loads. Two assumed bodies disclose neutral priors; they do not predict the target, clear departure, predict autonomous sleep onset or establish accuracy. Host/self `bodyForecast` now carries `kind: 'conditional-body'`; other-person results carry `kind: 'observer-conditional'`. Callers must narrow the tag and projection status. Older 4.x saves start fresh under the exact-engine policy.
+
+The hand-maintained `DATA_SHAPES` receives only the 418 generic W1 lines; its source hint records the isolated schema's actual SHA-256. The engine stamp is produced by the normal script with public version 4.17.0. The private body prototype and pending central five-caller integration remain outside this candidate. No app pin or numerical fixture changes. Evidence and focused-check results are recorded in `/Users/abdul/code/.lab-scratch/games-deferred/watch-w1-isolated-writer1104/report.md`. Root owns the release lock; the tree remains under the no-delete hold.
+
+The published 4.16.3 checkpoint below remains historical.
+
 # HF 4.16.3 publication checkpoint — 2026-11-03
 
 Remaining: Child's original 36- and 180-month, 2,000 ms, full host save and whole-game qualification gates; Valley's day 12, 881-day and fingerprint gates; and Neighbours' 206/96-round, 30-day and 50 MiB gates and producer prerequisites. Central and Small Works deployments remain held. Watch W1 needs the owner's choice and W2 needs a physical reply. Player rounds remain paused; Adam’s readiness acceptance remains open. The broader open work across the 15 games is not closed by this library patch.

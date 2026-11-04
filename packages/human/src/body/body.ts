@@ -7,6 +7,7 @@ import { dcos, dexp, dlog } from '../core/libm.ts';
 import { EngineLimitError } from '../core/limit.ts';
 import { keyOf, Memo } from '../core/memo.ts';
 import { modifiersForAge } from '../lifecourse/lifecourse.ts';
+import { hashCanonical } from '../run-canonical.ts';
 import type * as T from '../run-schema.ts';
 import { bladderMotivation } from './bladder.ts';
 import {
@@ -449,7 +450,7 @@ function exactState(
   base: T.DeepReadonly<T.BodyVector>,
   start: number,
   at: number,
-  ctx: T.DeepReadonly<T.BodySpan>,
+  ctx: T.DeepReadonly<T.BodyKernelSpan>,
 ): T.BodyState {
   const t = (at - start) / 60000,
     p = ctx.effective.builtins.BODY_DEFAULTS,
@@ -501,14 +502,16 @@ function exactState(
 function rhs(
   base: T.DeepReadonly<T.BodyState>,
   keys: readonly T.BodyFieldKey[],
-  ctx: T.DeepReadonly<T.BodySpan>,
+  ctx: T.DeepReadonly<T.BodyKernelSpan>,
   start: number,
+  budget?: ProjectionBudget,
 ) {
   const P = ctx.effective.builtins.BODY_DEFAULTS,
     I = ctx.effective.builtins.INJURY_DEFAULTS,
     B = ctx.effective.builtins.BLADDER_DEFAULTS,
     E = ctx.effective.builtins.ENVIRONMENT_DEFAULTS;
   return (at: number, y: readonly number[]) => {
+    budget?.debit('rhs');
     const b = exactState(materialize(base, keys, y), bodyVector(base), start, at, ctx),
       mods = modifiersForAge(
         ageYearsAt(ctx.life.birthAt, start) + (at - start) / YEAR,
@@ -694,6 +697,7 @@ function rhs(
       if ((raw <= lo && v < 0) || (raw >= hi && v > 0)) v = 0;
       return v;
     });
+    budget?.debit('reads');
     const s = readBody(b, at, P).sleepiness;
     d.push(
       dozeIntensity(
@@ -714,7 +718,7 @@ function possibleDoze(
   base: T.BodyState,
   start: number,
   end: number,
-  ctx: T.DeepReadonly<T.BodySpan>,
+  ctx: T.DeepReadonly<T.BodyKernelSpan>,
 ): boolean {
   const p = ctx.effective.builtins.BODY_DEFAULTS,
     d = ctx.effective.builtins.DOZE_DEFAULTS;
@@ -780,7 +784,7 @@ function continuation(
 }
 function init(
   input: T.DeepReadonly<T.InitialBody>,
-  c: T.DeepReadonly<T.FrameContext>,
+  c: T.DeepReadonly<Pick<T.BodyKernelFrame, 'person' | 'at' | 'effectiveParametersHash'>>,
 ): ReturnType<T.BodyOwner['initialize']> {
   const b: T.BodyState = {
     satiety: input.satiety,
@@ -819,7 +823,7 @@ function init(
   };
 }
 /** Satiety and hydration loss per minute at `at`: the rhs law without its floor clamp. */
-function floorRates(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodySpan>) {
+function floorRates(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodyKernelSpan>) {
   const P = ctx.effective.builtins.BODY_DEFAULTS,
     E = ctx.effective.builtins.ENVIRONMENT_DEFAULTS;
   const mods = modifiersForAge(
@@ -845,15 +849,15 @@ function floorRates(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReado
  * next 2 ms of decline empties now. This drops at most 2 ms of loss (about 3e-8 at
  * default rates) so the emptying lands on an integer millisecond and starts a new
  * condition, instead of a sub-millisecond kink that no cell or readout can fit. */
-function floorsDue(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodySpan>) {
+function floorsDue(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodyKernelSpan>) {
   if (!b.alive) return [];
   const rates = floorRates(b, at, ctx);
   return (['satiety', 'hydration'] as const).filter((k) => b[k] > 0 && b[k] <= (2 * rates[k]) / 60000);
 }
-function snapFloors(b: T.BodyState, at: number, ctx: T.DeepReadonly<T.BodySpan>): void {
+function snapFloors(b: T.BodyState, at: number, ctx: T.DeepReadonly<T.BodyKernelSpan>): void {
   for (const k of floorsDue(b, at, ctx)) b[k] = 0;
 }
-function eventPredicate(b: T.DeepReadonly<T.BodyState>, ctx: T.DeepReadonly<T.BodySpan>): boolean {
+function eventPredicate(b: T.DeepReadonly<T.BodyState>, ctx: T.DeepReadonly<T.BodyKernelSpan>): boolean {
   const p = ctx.effective.builtins;
   return (
     b.health <= 0 ||
@@ -880,7 +884,7 @@ function eventPredicate(b: T.DeepReadonly<T.BodyState>, ctx: T.DeepReadonly<T.Bo
 function applyPhysical(
   b: T.BodyState,
   at: number,
-  ctx: T.DeepReadonly<Pick<T.BodySpan, 'effective'>>,
+  ctx: T.DeepReadonly<Pick<T.BodyKernelSpan, 'effective'>>,
 ): T.EventData[] {
   const e: T.EventData[] = [];
   const emit = (change: T.BodyChange) => e.push({ kind: 'body-change', change });
@@ -929,7 +933,7 @@ function firstPhysicalBoundary(
   cells: readonly T.ScalarCell[],
   keys: readonly T.BodyFieldKey[],
   bodyAt: (t: number) => T.BodyState,
-  ctx: T.DeepReadonly<T.BodySpan>,
+  ctx: T.DeepReadonly<T.BodyKernelSpan>,
 ): number | null {
   const pred = (t: number) => eventPredicate(bodyAt(t), { ...ctx, to: t });
   if (pred(at)) return at;
@@ -990,7 +994,7 @@ function constantBodyTrajectory(
   from: number,
   to: number,
   id: string,
-  ctx: T.DeepReadonly<T.BodySpan>,
+  ctx: T.DeepReadonly<T.BodyKernelSpan>,
 ): T.BodyTrajectory {
   const v = flatten(bodyVector(b));
   const names = [
@@ -1856,7 +1860,9 @@ export const bodyOwner: T.BodyOwner = {
 function forecast(
   state: T.DeepReadonly<T.BodyState>,
   spans: T.DeepReadonly<readonly { label: string; durationMs: number; load: T.BodyLoad }[]>,
-  ctx: T.DeepReadonly<T.FrameContext & T.BodyProjectionContext>,
+  ctx: T.DeepReadonly<T.BodyKernelFrame & T.BodyProjectionContext>,
+  budget?: ProjectionBudget,
+  endpoints?: { fatigue: number; sleepiness: number }[],
 ): ReturnType<T.BodyOwner['forecast']> {
   const failure = (message: string): ReturnType<T.BodyOwner['forecast']> => ({
     ok: false,
@@ -1894,7 +1900,7 @@ function forecast(
         const base = copy<T.BodyState>(b),
           anchor = bodyVector(base),
           flat = flatten(anchor);
-        const context: T.BodySpan = {
+        const context: T.BodyKernelSpan = {
           ...ctx,
           from: at,
           to: end,
@@ -1912,7 +1918,7 @@ function forecast(
           at,
           [...flat.values, 0],
           width,
-          rhs(base, flat.keys, context, at),
+          rhs(base, flat.keys, context, at, budget),
           1e-12,
           undefined,
           [],
@@ -1948,8 +1954,17 @@ function forecast(
           const segments = sampledPath(
             start,
             stop,
-            (t) =>
-              readBody(bodyAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception).perceived[key],
+            (t) => {
+              budget?.debit('reads');
+              return readBody(bodyAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception).perceived[
+                key
+              ];
+            },
+            0,
+            undefined,
+            undefined,
+            1e-12,
+            budget ? () => budget.debit('fits') : undefined,
           );
           const worst = Math.max(
             ...segments.map((s) =>
@@ -1979,10 +1994,168 @@ function forecast(
         applyPhysical(b, at, context);
       }
       at = end;
+      if (endpoints) {
+        budget?.debit('reads');
+        const reading = readBody(b, end, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception);
+        endpoints.push({ fatigue: reading.perceived.fatigue, sleepiness: reading.perceived.sleepiness });
+      }
       out.push(result);
     }
     return { ok: true, value: out };
   } catch (error) {
     return failure(error instanceof Error ? error.message : 'unsupported numerical forecast');
+  }
+}
+
+/** Shared request/sample accounting; debit before work, including failed trials.
+ * These counters bound numerical calls, not total CPU or boundary searches. */
+type ProjectionWork = { rhs: number; fits: number; reads: number };
+class ProjectionBudget {
+  private readonly sample: ProjectionWork = { rhs: 0, fits: 0, reads: 0 };
+  private readonly request: ProjectionWork;
+  constructor(request: ProjectionWork) {
+    this.request = request;
+  }
+  debit(kind: keyof ProjectionWork) {
+    const cap = kind === 'reads' ? 131072 : 8192;
+    if (this.sample[kind] >= cap || this.request[kind] >= cap * 2)
+      throw new EngineLimitError(`limit-exceeded: observer body ${kind}`);
+    this.sample[kind]++;
+    this.request[kind]++;
+  }
+}
+
+export const observerBodyAssumptions = [
+  'Two assumed bodies use pressure 0.2 and 0.8; exertion solves the raw held fatigue exactly. These are neither target truth, probabilities nor a bracket of compatible bodies.',
+  'Both assume age 30 years, awake and alive, satiety/hydration 0.7, fitness 0.5, health 1, pain/debt/depletion 0, circadian peak 15 hours, empty bladder and no injury, illness, exposure or pregnancy.',
+  'Both use fresh undrawn body/doze continuation, upright posture, stimulation 0.5, no fasting, and explicit neutral surroundings: cold/dark/crowding/beauty/weather 0, day length 12 hours, indoors.',
+  'Confidence below 0.12 and evidence older than 12 hours refuse by engineering policy. Confidence is not an error radius; queries never refresh evidence.',
+  'Only declared loads are projected. Sampled peak estimates and endpoints do not predict autonomous sleep onset, departure, action admission or future evidence. Numerical tolerance 1e-12 and the 1 ms floor are not prediction accuracy.',
+] as const;
+
+/** SCOPE: body-only initialization and the existing forecast kernel. No actor,
+ * ambient proxy, RunSpec, motives, continuation or RNG can enter this boundary. */
+export function projectObserverBody(
+  fatigue: number,
+  now: number,
+  spans: T.DeepReadonly<readonly T.BodyForecastLoad[]>,
+  physical: T.DeepReadonly<T.BodyKernelEffective>,
+): T.Result<T.ObserverBodyProjection> {
+  const effective = freezeData(copy<T.BodyKernelEffective>(physical));
+  const hash = hashCanonical('hf-run4/observer-body-physical/v1', effective);
+  const birthAt = now - 30 * YEAR;
+  if (!Number.isSafeInteger(now) || !Number.isSafeInteger(birthAt))
+    return { ok: true, value: { status: 'unavailable', reason: 'unrepresentable-time' } };
+  const frame: T.DeepReadonly<T.BodyKernelFrame> = {
+    effective,
+    effectiveParametersHash: hash,
+    person: 'observer-body-sample',
+    at: now,
+    priorAt: now,
+    phase: 0,
+    fidelity: { mode: 'fine' },
+    worldRevision: 0,
+    causes: [],
+  };
+  const request: ProjectionWork = { rhs: 0, fits: 0, reads: 0 };
+  const samples: Extract<T.ObserverBodyProjection, { status: 'available' }>['samples'][number][] = [];
+  const initialized = [];
+  try {
+    for (const [name, pressure] of [
+      ['lower-pressure', 0.2],
+      ['higher-pressure', 0.8],
+    ] as const) {
+      const budget = new ProjectionBudget(request);
+      const p = effective.builtins.BODY_DEFAULTS;
+      const sleepiness = clip(
+        p.sleepinessPressureWeight * pressure +
+          p.sleepinessCircadianWeight * (1 - circadianAlertness(now, 15 * 3600000)),
+      );
+      const exertion = 1 - (1 - fatigue) / (1 - 0.5 * sleepiness);
+      if (!Number.isFinite(exertion) || exertion < 0 || exertion > 1)
+        return {
+          ok: true,
+          value: { status: 'unavailable', reason: 'unrepresentable-exertion', sample: name },
+        };
+      const body = init(
+        {
+          satiety: 0.7,
+          hydration: 0.7,
+          sleepPressure: pressure,
+          exertion,
+          fitness: 0.5,
+          health: 1,
+          pain: 0,
+          sleepDebtHours: 0,
+          depletion: 0,
+          circadianPeakMs: 15 * 3600000,
+          asleep: false,
+          since: now,
+          doze: {
+            context: { posture: 'upright', stimulation: 0.5 },
+            basis: { kind: 'authored', author: 'observer-body-assumptions', at: now },
+          },
+          bladder: { fill: 0, pending: 0 },
+          injuries: [],
+          illnesses: [],
+          exposures: [],
+        },
+        frame,
+      );
+      budget.debit('reads');
+      const reading = readBody(body.state, now, p, { fasting: false, fastingDays: 0 });
+      if (reading.perceived.fatigue !== fatigue)
+        return {
+          ok: true,
+          value: { status: 'unavailable', reason: 'unrepresentable-readout', sample: name },
+        };
+      initialized.push({ name, pressure, exertion, body, reading, budget });
+    }
+    for (const { name, pressure, exertion, body, reading, budget } of initialized) {
+      const endpoints: { fatigue: number; sleepiness: number }[] = [];
+      const result = forecast(
+        body.state,
+        spans,
+        {
+          ...frame,
+          continuation: body.continuation,
+          dozeContinuation: body.dozeContinuation,
+          life: { birthAt },
+          perception: { fasting: false, fastingDays: 0 },
+          environment: {
+            cold: 0,
+            dark: 0,
+            crowding: 0,
+            beauty: 0,
+            weather: 0,
+            dayLengthHours: 12,
+            outdoors: false,
+          },
+        },
+        budget,
+        endpoints,
+      );
+      if (!result.ok) return result;
+      samples.push({
+        name,
+        initial: {
+          fatigue: reading.perceived.fatigue,
+          sleepiness: reading.perceived.sleepiness,
+          pressure,
+          exertion,
+        },
+        spans: result.value.map((span, i) => ({ ...span, endpoint: required(endpoints[i]) })),
+      });
+    }
+    return { ok: true, value: { status: 'available', samples } };
+  } catch (error) {
+    return {
+      ok: false,
+      error: {
+        code: 'limit-exceeded',
+        path: '$.bodyForecast',
+        message: error instanceof Error ? error.message : 'observer body numerical work exhausted',
+      },
+    };
   }
 }

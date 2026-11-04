@@ -342,8 +342,10 @@ export function sampledPath(
   maxDepth = Math.max(20, halvingsToOneMs(to - from) + 1),
   work = { fits: 0 },
   tolerance = 1e-12,
+  beforeFit?: () => void,
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];
+  beforeFit?.();
   if (++work.fits > 8192) throw new EngineLimitError('limit-exceeded: readout interpolation');
   const ys = QUARTIC_NODES.map((x) => f(from + x * (to - from)));
   const coefficients = quarticCoefficients(ys);
@@ -363,8 +365,8 @@ export function sampledPath(
     if (depth >= maxDepth) throw new EngineLimitError('limit-exceeded: readout interpolation');
     const mid = from + Math.floor((to - from) / 2);
     return [
-      ...sampledPath(from, mid, f, depth + 1, maxDepth, work, tolerance),
-      ...sampledPath(mid, to, f, depth + 1, maxDepth, work, tolerance),
+      ...sampledPath(from, mid, f, depth + 1, maxDepth, work, tolerance, beforeFit),
+      ...sampledPath(mid, to, f, depth + 1, maxDepth, work, tolerance, beforeFit),
     ];
   }
   return [{ kind: 'quartic', from, to, cell: { ...cell, estimatedError: error } }];
