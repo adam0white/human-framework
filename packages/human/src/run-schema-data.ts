@@ -4,6 +4,420 @@
  */
 import type { DataShape } from './run-validation.ts';
 export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
+  BodyForecastSpan: {
+    kind: 'object',
+    fields: {
+      label: {
+        optional: false,
+        shape: {
+          kind: 'string',
+        },
+      },
+      endsAt: {
+        optional: false,
+        shape: {
+          kind: 'scalar',
+          name: 'Time',
+        },
+      },
+      worst: {
+        optional: false,
+        shape: {
+          kind: 'scalar',
+          name: 'Unit',
+        },
+      },
+      worstOf: {
+        optional: false,
+        shape: {
+          kind: 'union',
+          options: [
+            {
+              kind: 'literal',
+              value: 'fatigue',
+            },
+            {
+              kind: 'literal',
+              value: 'sleepiness',
+            },
+            {
+              kind: 'literal',
+              value: 'hunger',
+            },
+            {
+              kind: 'literal',
+              value: 'thirst',
+            },
+          ],
+        },
+      },
+      basis: {
+        optional: false,
+        shape: {
+          kind: 'literal',
+          value: 'conditional-load-projection',
+        },
+      },
+    },
+  },
+  ObserverBodyEvidence: {
+    kind: 'object',
+    fields: {
+      key: {
+        optional: false,
+        shape: {
+          kind: 'literal',
+          value: 'fatigue',
+        },
+      },
+      fatigueValue: {
+        optional: false,
+        shape: {
+          kind: 'scalar',
+          name: 'Unit',
+        },
+      },
+      confidence: {
+        optional: false,
+        shape: {
+          kind: 'scalar',
+          name: 'Unit',
+        },
+      },
+      seenAt: {
+        optional: true,
+        shape: {
+          kind: 'scalar',
+          name: 'Time',
+        },
+      },
+      ageMs: {
+        optional: true,
+        shape: {
+          kind: 'scalar',
+          name: 'DurationMs',
+        },
+      },
+    },
+  },
+  ObserverBodyProjection: {
+    kind: 'union',
+    options: [
+      {
+        kind: 'object',
+        fields: {
+          status: {
+            optional: false,
+            shape: {
+              kind: 'literal',
+              value: 'unavailable',
+            },
+          },
+          reason: {
+            optional: false,
+            shape: {
+              kind: 'union',
+              options: [
+                {
+                  kind: 'literal',
+                  value: 'unseen',
+                },
+                {
+                  kind: 'literal',
+                  value: 'weak-evidence',
+                },
+                {
+                  kind: 'literal',
+                  value: 'unknown-age',
+                },
+                {
+                  kind: 'literal',
+                  value: 'stale-evidence',
+                },
+                {
+                  kind: 'literal',
+                  value: 'unrepresentable-time',
+                },
+                {
+                  kind: 'literal',
+                  value: 'unrepresentable-exertion',
+                },
+                {
+                  kind: 'literal',
+                  value: 'unrepresentable-readout',
+                },
+              ],
+            },
+          },
+          sample: {
+            optional: true,
+            shape: {
+              kind: 'union',
+              options: [
+                {
+                  kind: 'literal',
+                  value: 'lower-pressure',
+                },
+                {
+                  kind: 'literal',
+                  value: 'higher-pressure',
+                },
+              ],
+            },
+          },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          status: {
+            optional: false,
+            shape: {
+              kind: 'literal',
+              value: 'available',
+            },
+          },
+          samples: {
+            optional: false,
+            shape: {
+              kind: 'array',
+              element: {
+                kind: 'object',
+                fields: {
+                  name: {
+                    optional: false,
+                    shape: {
+                      kind: 'union',
+                      options: [
+                        {
+                          kind: 'literal',
+                          value: 'lower-pressure',
+                        },
+                        {
+                          kind: 'literal',
+                          value: 'higher-pressure',
+                        },
+                      ],
+                    },
+                  },
+                  initial: {
+                    optional: false,
+                    shape: {
+                      kind: 'object',
+                      fields: {
+                        fatigue: {
+                          optional: false,
+                          shape: {
+                            kind: 'scalar',
+                            name: 'Unit',
+                          },
+                        },
+                        sleepiness: {
+                          optional: false,
+                          shape: {
+                            kind: 'scalar',
+                            name: 'Unit',
+                          },
+                        },
+                        pressure: {
+                          optional: false,
+                          shape: {
+                            kind: 'scalar',
+                            name: 'Unit',
+                          },
+                        },
+                        exertion: {
+                          optional: false,
+                          shape: {
+                            kind: 'scalar',
+                            name: 'Unit',
+                          },
+                        },
+                      },
+                    },
+                  },
+                  spans: {
+                    optional: false,
+                    shape: {
+                      kind: 'array',
+                      element: {
+                        kind: 'object',
+                        fields: {
+                          label: {
+                            optional: false,
+                            shape: {
+                              kind: 'string',
+                            },
+                          },
+                          endsAt: {
+                            optional: false,
+                            shape: {
+                              kind: 'scalar',
+                              name: 'Time',
+                            },
+                          },
+                          worst: {
+                            optional: false,
+                            shape: {
+                              kind: 'scalar',
+                              name: 'Unit',
+                            },
+                          },
+                          worstOf: {
+                            optional: false,
+                            shape: {
+                              kind: 'union',
+                              options: [
+                                {
+                                  kind: 'literal',
+                                  value: 'fatigue',
+                                },
+                                {
+                                  kind: 'literal',
+                                  value: 'sleepiness',
+                                },
+                                {
+                                  kind: 'literal',
+                                  value: 'hunger',
+                                },
+                                {
+                                  kind: 'literal',
+                                  value: 'thirst',
+                                },
+                              ],
+                            },
+                          },
+                          basis: {
+                            optional: false,
+                            shape: {
+                              kind: 'literal',
+                              value: 'conditional-load-projection',
+                            },
+                          },
+                          endpoint: {
+                            optional: false,
+                            shape: {
+                              kind: 'object',
+                              fields: {
+                                fatigue: {
+                                  optional: false,
+                                  shape: {
+                                    kind: 'scalar',
+                                    name: 'Unit',
+                                  },
+                                },
+                                sleepiness: {
+                                  optional: false,
+                                  shape: {
+                                    kind: 'scalar',
+                                    name: 'Unit',
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    ],
+  },
+  PreviewBodyForecast: {
+    kind: 'union',
+    options: [
+      {
+        kind: 'object',
+        fields: {
+          kind: {
+            optional: false,
+            shape: {
+              kind: 'literal',
+              value: 'conditional-body',
+            },
+          },
+          person: {
+            optional: false,
+            shape: {
+              kind: 'scalar',
+              name: 'PersonId',
+            },
+          },
+          from: {
+            optional: false,
+            shape: {
+              kind: 'scalar',
+              name: 'Time',
+            },
+          },
+          spans: {
+            optional: false,
+            shape: {
+              kind: 'array',
+              element: {
+                kind: 'ref',
+                name: 'BodyForecastSpan',
+              },
+            },
+          },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          kind: {
+            optional: false,
+            shape: {
+              kind: 'literal',
+              value: 'observer-conditional',
+            },
+          },
+          person: {
+            optional: false,
+            shape: {
+              kind: 'scalar',
+              name: 'PersonId',
+            },
+          },
+          from: {
+            optional: false,
+            shape: {
+              kind: 'scalar',
+              name: 'Time',
+            },
+          },
+          evidence: {
+            optional: true,
+            shape: {
+              kind: 'ref',
+              name: 'ObserverBodyEvidence',
+            },
+          },
+          assumptions: {
+            optional: false,
+            shape: {
+              kind: 'array',
+              element: {
+                kind: 'string',
+              },
+            },
+          },
+          projection: {
+            optional: false,
+            shape: {
+              kind: 'ref',
+              name: 'ObserverBodyProjection',
+            },
+          },
+        },
+      },
+    ],
+  },
   PortableRetainedState: {
     kind: 'object',
     fields: {
@@ -12660,4 +13074,4 @@ export const ROOT_SHAPES = {
   CalendarProjection: { kind: 'ref', name: 'CalendarProjection' },
   PortablePersonEnvelope: { kind: 'ref', name: 'PortablePersonEnvelope' },
 } as const;
-export const DATA_SCHEMA_SOURCE_SHA256 = 'debf2d504769d33fb2b16a33be4c70a679d3ce5cf2305c319760fb8a623771db';
+export const DATA_SCHEMA_SOURCE_SHA256 = '5ccc2e20c0cb082825cb64fd91c7cff7c57c2907e6c93713780f9d0508d27001';

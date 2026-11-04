@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.17.0] — 2026-11-04
+
+Engine: 4.17.0.
+
+- Add another-person bodily `preview` conditional on the observer's held fatigue evidence and declared physical loads. The result discloses evidence, neutral priors and two named assumed-body samples, or an explicit unavailable reason. It does not read the target's hidden body.
+- This is an assumed-body conditional, not a target prediction, clearance, departure decision, autonomous sleep-onset forecast or claim of predictive accuracy. Evidence and numerical work limits can refuse the projection. No overall CPU bound is claimed. See the [SDK contract](https://github.com/adam0white/human-framework/blob/main/packages/human/README.md#source-trust-and-bodily-forecasts-44) and [port recipe](https://github.com/adam0white/human-framework/blob/main/docs/hf4-port-recipe.md).
+- Migration: narrow `bodyForecast.kind` before reading its fields. Host/self results use `conditional-body`; another-person results use `observer-conditional`, whose `projection.status` must also be narrowed. Older 4.x saves require a fresh start under the exact-engine policy. No legacy continuation or archive conversion is added.
+
 ## [4.16.3] — 2026-11-03
 
 Engine: 4.16.3.

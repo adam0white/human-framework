@@ -444,7 +444,7 @@ export type PreviewResult = {
   reading?: PersonView;
   /** Observer-held cues, including zero-confidence priors for missing condition cues. */
   impression?: ImpressionReading;
-  bodyForecast?: { person: PersonId; from: Time; spans: readonly BodyForecastSpan[] };
+  bodyForecast?: PreviewBodyForecast;
   at: Time;
   hypothetical: true;
   perspective: Perspective;
@@ -452,6 +452,46 @@ export type PreviewResult = {
   boundary: PreviewBoundary;
   knowledgeLimit: readonly string[];
 };
+/** Assumed bodies consistent with one held aggregate; neither truth nor a probability bracket. */
+export type ObserverBodyEvidence = {
+  key: 'fatigue';
+  fatigueValue: Unit;
+  confidence: Unit;
+  seenAt?: Time;
+  ageMs?: DurationMs;
+};
+export type ObserverBodyProjection =
+  | {
+      status: 'unavailable';
+      reason:
+        | 'unseen'
+        | 'weak-evidence'
+        | 'unknown-age'
+        | 'stale-evidence'
+        | 'unrepresentable-time'
+        | 'unrepresentable-exertion'
+        | 'unrepresentable-readout';
+      sample?: 'lower-pressure' | 'higher-pressure';
+    }
+  | {
+      status: 'available';
+      samples: readonly {
+        name: 'lower-pressure' | 'higher-pressure';
+        initial: { fatigue: Unit; sleepiness: Unit; pressure: Unit; exertion: Unit };
+        spans: readonly (BodyForecastSpan & { endpoint: { fatigue: Unit; sleepiness: Unit } })[];
+      }[];
+    };
+export type PreviewBodyForecast =
+  | { kind: 'conditional-body'; person: PersonId; from: Time; spans: readonly BodyForecastSpan[] }
+  | {
+      kind: 'observer-conditional';
+      person: PersonId;
+      from: Time;
+      evidence?: ObserverBodyEvidence;
+      assumptions: readonly string[];
+      projection: ObserverBodyProjection;
+    };
+
 export type RenderedLine = { eventId: EventId; audience: Perspective; text: string; variantId: Id };
 
 // Pure projection schemas. These are not alternate simulation paths.
@@ -4262,6 +4302,24 @@ export type FrameContext = {
   worldRevision: number;
   causes: readonly Id[];
 };
+/** Exact physical whitelist. Full owner frames structurally satisfy this view. */
+export type BodyKernelEffective = {
+  builtins: Pick<
+    EffectiveParameters['builtins'],
+    | 'BODY_DEFAULTS'
+    | 'ENVIRONMENT_DEFAULTS'
+    | 'BLADDER_DEFAULTS'
+    | 'LIFE_DEFAULTS'
+    | 'INJURY_DEFAULTS'
+    | 'DOZE_DEFAULTS'
+    | 'FAMILY_DEFAULTS'
+    | 'FORECAST_DEFAULTS'
+  >;
+  doze: Pick<EffectiveParameters['doze'], 'hazardScale'>;
+  fixedPriors: Pick<EffectiveParameters['fixedPriors'], 'downing'>;
+};
+export type BodyKernelFrame = Omit<FrameContext, 'effective'> & { effective: BodyKernelEffective };
+export type BodyKernelSpan = Omit<BodySpan, 'effective'> & { effective: BodyKernelEffective };
 export type OwnerOutput<S> = {
   state: S;
   effects: FacultyEffects;
@@ -4970,7 +5028,7 @@ export interface EnvironmentOwner {
 export interface OwnerConstructors {
   body(
     input: DeepReadonly<InitialBody>,
-    context: DeepReadonly<FrameContext>,
+    context: DeepReadonly<Pick<BodyKernelFrame, 'person' | 'at' | 'effectiveParametersHash'>>,
   ): { state: BodyState; continuation: BodyContinuation; dozeContinuation: DozeContinuation };
   affect(
     input: DeepReadonly<InitialAffect>,
@@ -5868,7 +5926,7 @@ export interface BodyOwner {
   };
   read(
     state: DeepReadonly<BodyState>,
-    context: DeepReadonly<FrameContext & { perception: BodyPerceptionContext }>,
+    context: DeepReadonly<Pick<BodyKernelFrame, 'at' | 'effective'> & { perception: BodyPerceptionContext }>,
   ): BodyReadout;
 }
 export type BodyProjectionContext = {
@@ -5896,7 +5954,7 @@ export interface BodyOwner {
         load: BodyLoad;
       }[]
     >,
-    context: DeepReadonly<FrameContext & BodyProjectionContext>,
+    context: DeepReadonly<BodyKernelFrame & BodyProjectionContext>,
   ): Result<readonly BodyForecastSpan[]>;
 }
 export interface LifecycleOwner {

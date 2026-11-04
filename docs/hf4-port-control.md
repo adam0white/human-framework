@@ -130,8 +130,10 @@ function arm(action: 'work' | 'rest') {
   assert.equal(forecast.hypothetical, true);
   assert.equal(forecast.bodyForecast?.person, 'ada');
   assert.equal(forecast.bodyForecast?.from, active.current.at);
-  assert.equal(forecast.bodyForecast?.spans[0]?.endsAt, START + 16 * MINUTE);
-  assert.equal(forecast.bodyForecast?.spans[0]?.basis, 'conditional-load-projection');
+  assert.equal(forecast.bodyForecast?.kind, 'conditional-body');
+  if (forecast.bodyForecast?.kind !== 'conditional-body') throw new Error('Missing host body forecast');
+  assert.equal(forecast.bodyForecast.spans[0]?.endsAt, START + 16 * MINUTE);
+  assert.equal(forecast.bodyForecast.spans[0]?.basis, 'conditional-load-projection');
   assert.equal(JSON.stringify(exportRun(run)), before);
   serve(run, host, book, START + 16 * MINUTE);
   serve(resumed, resumedHost, book, START + 16 * MINUTE);
