@@ -1,3 +1,17 @@
+# HF 4.17 publication and central adoption — 2026-11-04
+
+Remaining: central adoption is unfinished until its required local checks, exact signed-commit review and CI, normal deployment and live release metadata are verified. Whole Watch W1/W2, Child/Valley/Neighbours qualification, other open game work and paused player acceptance remain. This library release does not close them.
+
+[HF 4.17.0](https://github.com/adam0white/human-framework/releases/tag/v4.17.0) is published from [3f75eb58](https://github.com/adam0white/human-framework/commit/3f75eb58e2f5af064775351e595e7bd150ac0a51). [PR #121](https://github.com/adam0white/human-framework/pull/121) merged after independent exact-source CLEAR and [source CI 41804442076](https://github.com/adam0white/human-framework/actions/runs/41804442076) succeeded; the merge tree is identical. [Main CI 41808490504](https://github.com/adam0white/human-framework/actions/runs/41808490504) also succeeded. The two source personas independently reviewed knowledge boundaries and numerical behavior.
+
+The normal release repeated 388 passing files and 1,798 passing tests, with two files and five tests skipped, in 545.909 seconds including packing and publication setup. A prior attempt failed the SSH tag lookup before tests; the successful retry used HTTPS with existing GitHub credentials and unchanged release checks. All 9,059 tracked hashes stayed fixed. The suite lock was gone and all 489 sampled exact process identities were absent; sampling is not a universal descendant inventory. The tag signature verified.
+
+[Publisher 41811804571](https://github.com/adam0white/human-framework/actions/runs/41811804571) succeeded. npm integrity and registry-linked provenance payload/source/publisher consistency passed. All 197 package members match the GitHub artifact in contents, type, mode, link and size. The Sigstore certificate/signature chain was not independently audited. The own release lock and normal temporary release directory were cleaned; source trees remain held. Engine build is `31b2e76cda7c85a9429256be6b75d76bfcb346bf0eb9e3d047884bc0f6755894`; schema is `5ccc2e20c0cb082825cb64fd91c7cff7c57c2907e6c93713780f9d0508d27001`.
+
+This adoption updates the site's exact SDK pin and published-client dependency override to 4.17.0. Published client 0.5.15 and kit 0.5.32 artifacts remain unchanged; the legacy 3.x runtime remains separate. The tagged `bodyForecast` migration and exact-engine old-save refusal remain in force. No new forecast UI or target sleep prediction is added. The private body-ownership prototype and its five pending central callers are separate work.
+
+The isolated-candidate checkpoint below is historical; its pending release statements describe preparation before publication.
+
 # HF 4.17.0 isolated observer candidate — 2026-11-04
 
 Remaining: two new independent final source reviews, root full checks, signed commit and exact green CI, normal publication with provenance verification, then separate game adoption. This is an uncommitted local candidate, not a ready or published release. Previous reviews and prototype checks do not qualify this isolated source.
