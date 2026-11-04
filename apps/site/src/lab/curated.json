@@ -23543,6 +23543,214 @@
     "fix:days clarity or readability preference (open)"
    ],
    "source": "docs/lab/reviews/light-2026-10-30/days-retest2/reports/lucia/report.md.txt"
+  },
+  {
+   "id": "F-3155",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Biraz bir tık, font daha büyük etbiliriz.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED larger text, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3156",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Bana göre biraz daha az daha az daha suspension daha iyi olur.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED shorter choice timer (tentative), owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3157",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "şu mavi olsun şu kırmızı olsun ama yine de kötü veya iyi bir tarafa oynayabilirsin",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED color differentiation, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3158",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "First I am going to press and then... I am going to press. I will say that I will say that you can do multiplayer game. One of them. One of them is voice. I…",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED multiplayer concept, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3159",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "The game is very slow.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED pace or performance, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3160",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "5 değil ama 10 saniye kalınca tik tik falan.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED timer warning sound, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3161",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Bu tarafa boş oluyor.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED desktop layout, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3162",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "O zaman signup login falan falan filan ve gmail'e geliş.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur PROPOSED account or save transfer concept, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3163",
+   "date": "2026-11-03",
+   "game": "watch",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Ne yapıyorum?",
+   "verdict": "-",
+   "routes": [
+    "fix:watch PROPOSED explain the player role, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/watch-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3164",
+   "date": "2026-11-03",
+   "game": "watch",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "bir tanesini nasıl şey yapıyorum şuraya koyuyorum",
+   "verdict": "-",
+   "routes": [
+    "fix:watch PROPOSED explain post assignment timing, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/watch-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3165",
+   "date": "2026-11-03",
+   "game": "pass",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Kold side ne demek?",
+   "verdict": "-",
+   "routes": [
+    "fix:pass PROPOSED explain cold side, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/pass-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3166",
+   "date": "2026-11-03",
+   "game": "pass",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; unverified machine transcript, speaker unknown",
+   "words": "Nasıl oluyor ya? Allah Allah.",
+   "verdict": "-",
+   "routes": [
+    "fix:pass PROPOSED explain meal-break cover, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/pass-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3167",
+   "date": "2026-11-03",
+   "game": "well",
+   "kind": "human",
+   "who": "Nadir (human playtester)",
+   "words": "the game its self is complicated I do not understand what I am supposed to accomplish or the challenges I am ment to face this game has too many variables,",
+   "verdict": "-",
+   "routes": [
+    "fix:well PROPOSED goal and challenge explanation, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/well-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3168",
+   "date": "2026-11-03",
+   "game": "well",
+   "kind": "human",
+   "who": "Nadir (human playtester)",
+   "words": "overall this game needs a tutorial and i believe that the mentioned tutorial needs to be interactive for better understanding",
+   "verdict": "-",
+   "routes": [
+    "fix:well PROPOSED interactive tutorial, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/well-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3169",
+   "date": "2026-11-03",
+   "game": "well",
+   "kind": "human",
+   "who": "Nadir (human playtester)",
+   "words": "I would recommend adding a tutorial and making the names and the summery color coded for better understanding in the new generation we now face.",
+   "verdict": "-",
+   "routes": [
+    "fix:well PROPOSED color-coded names and summary, owner confirmation target 2026-11-10 (open)"
+   ],
+   "source": "docs/games/well-playtest-2026-11-01-human.md"
+  },
+  {
+   "id": "F-3170",
+   "date": "2026-11-03",
+   "game": "murmur",
+   "kind": "human",
+   "who": "Nadir (human playtester) session; owner-submitted state",
+   "words": "I'm stopping",
+   "verdict": "quit",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/games/murmur-playtest-2026-11-01-human.md"
   }
  ],
  "lessons": [
@@ -24167,10 +24375,10 @@
   }
  ],
  "routes": {
-  "fix": 2136,
+  "fix": 2151,
   "lesson": 291,
   "hf": 14,
   "calibration": 81,
-  "none": 9
+  "none": 10
  }
 }

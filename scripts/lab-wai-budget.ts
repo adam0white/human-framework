@@ -21,8 +21,11 @@ export { DAILY_HARD_NEURONS } from '../apps/site/worker/wai-budget.ts';
 import { DAILY_HARD_NEURONS } from '../apps/site/worker/wai-budget.ts';
 export const LOCAL_BUDGET_USD = 4;
 const ROOT = join(homedir(), 'code/.lab-scratch/wai-daily');
-// Published neuron rates per million input/output tokens, checked 2026-10-23.
+// Token models: neurons per million input/output tokens. Whisper: neurons per audio minute, 0.
+// Token rates checked 2026-10-23; Whisper checked 2026-11-03.
+// https://developers.cloudflare.com/workers-ai/platform/pricing/
 export const RATES: Record<string, readonly [number, number]> = {
+  '@cf/openai/whisper-large-v3-turbo': [46.63, 0],
   '@cf/qwen/qwen3-30b-a3b-fp8': [4625, 30475],
   '@cf/meta/llama-3.2-3b-instruct': [4625, 30475],
   '@cf/mistralai/mistral-small-3.1-24b-instruct': [31876, 50488],
@@ -248,12 +251,61 @@ export async function waiModels(): Promise<string[]> {
     throw new Error('Live model catalogue unavailable');
   }
 }
+// Derive duration only from a complete, uncompressed mono 16 kHz 16-bit RIFF WAV.
+function wavSeconds(audio: unknown): number {
+  if (typeof audio !== 'string' || !audio || audio.length % 4 !== 0 || /[^A-Za-z0-9+/=]/.test(audio))
+    throw new Error('Audio must be base64 PCM WAV');
+  const wav = Buffer.from(audio, 'base64');
+  if (
+    wav.toString('base64') !== audio ||
+    wav.length < 44 ||
+    wav.toString('ascii', 0, 4) !== 'RIFF' ||
+    wav.readUInt32LE(4) !== wav.length - 8 ||
+    wav.toString('ascii', 8, 12) !== 'WAVE'
+  )
+    throw new Error('Invalid PCM WAV');
+  let format = false;
+  let bytes = -1;
+  let offset = 12;
+  while (offset < wav.length) {
+    if (offset + 8 > wav.length) throw new Error('Invalid WAV chunk');
+    const id = wav.toString('ascii', offset, offset + 4);
+    const size = wav.readUInt32LE(offset + 4);
+    const start = offset + 8;
+    const end = start + size;
+    if (end + (size % 2) > wav.length) throw new Error('Invalid WAV chunk');
+    if (id === 'fmt ') {
+      if (
+        format ||
+        size !== 16 ||
+        wav.readUInt16LE(start) !== 1 ||
+        wav.readUInt16LE(start + 2) !== 1 ||
+        wav.readUInt32LE(start + 4) !== 16000 ||
+        wav.readUInt32LE(start + 8) !== 32000 ||
+        wav.readUInt16LE(start + 12) !== 2 ||
+        wav.readUInt16LE(start + 14) !== 16
+      )
+        throw new Error('Unsupported WAV format');
+      format = true;
+    } else if (id === 'data') {
+      if (bytes !== -1 || size === 0 || size % 2 !== 0) throw new Error('Invalid WAV data');
+      bytes = size;
+    }
+    offset = end + (size % 2);
+  }
+  if (!format || bytes < 0) throw new Error('Missing WAV data');
+  return bytes / 32000;
+}
 /** UTF-8 bytes upper-bound text BPE tokens, plus framing. Clairic bills each field pass.
  * Images reserve the whole documented 128k Mistral context, so the hard guard may reject them.
  */
 export function reservation(model: string, body: Record<string, unknown>): number {
   const rate = RATES[model];
   if (!rate) throw new Error('Model not allowlisted');
+  if (model === '@cf/openai/whisper-large-v3-turbo') {
+    if (body.task !== 'transcribe') throw new Error('Whisper requires transcribe task');
+    return Math.ceil((wavSeconds(body.audio) * rate[0]) / 60);
+  }
   const raw = JSON.stringify(body);
   const image = raw.includes('image_url') || raw.includes('"image"');
   const input = image ? 128_000 : Buffer.byteLength(raw) + 1024;
@@ -407,7 +459,8 @@ export async function waiRun(
     }
     if (json.success === false || !json.result || typeof json.result !== 'object')
       throw new Error('Inference failed; reservation retained');
-    const neurons = usageNeurons(model, json.result);
+    const neurons =
+      model === '@cf/openai/whisper-large-v3-turbo' ? reserve : usageNeurons(model, json.result);
     const usd = neurons * 0.000011;
     spend.neurons += neurons;
     spend.usd += usd;
