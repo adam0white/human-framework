@@ -26,5 +26,6 @@ overrides:
   vite: 8.3.5
   miniflare>undici: 7.30.1
   # Pin the registry origin so an equal-version workspace cannot replace the released core.
-  "@adam0white/human-framework@4.15.0": "npmjs:@adam0white/human-framework@4.16.0"
+  "@adam0white/human-framework@4.15.0": "npmjs:@adam0white/human-framework@4.17.0"
   "@adam0white/human-framework@4.16.0": "npmjs:@adam0white/human-framework@4.16.0"
+  "@adam0white/human-framework@4.17.0": "npmjs:@adam0white/human-framework@4.17.0"

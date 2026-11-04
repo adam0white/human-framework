@@ -165,8 +165,9 @@ settings:
 overrides:
   vite: 8.3.5
   miniflare>undici: 7.30.1
-  '@adam0white/human-framework@4.15.0': npmjs:@adam0white/human-framework@4.16.0
+  '@adam0white/human-framework@4.15.0': npmjs:@adam0white/human-framework@4.17.0
   '@adam0white/human-framework@4.16.0': npmjs:@adam0white/human-framework@4.16.0
+  '@adam0white/human-framework@4.17.0': npmjs:@adam0white/human-framework@4.17.0
 
 importers:
 
@@ -203,8 +204,8 @@ importers:
   apps/site:
     dependencies:
       '@adam0white/human-framework':
-        specifier: npmjs:@adam0white/human-framework@4.16.0
-        version: npmjs:4.16.0
+        specifier: npmjs:@adam0white/human-framework@4.17.0
+        version: npmjs:4.17.0
       '@adam0white/lab-client':
         specifier: https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz
         version: https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz
@@ -242,8 +243,8 @@ importers:
         specifier: npm:@adam0white/human-framework@3.0.0
         version: '@adam0white/human-framework@3.0.0'
       '@adam0white/human-framework':
-        specifier: npmjs:@adam0white/human-framework@4.16.0
-        version: npmjs:4.16.0
+        specifier: npmjs:@adam0white/human-framework@4.17.0
+        version: npmjs:4.17.0
     devDependencies:
       fake-indexeddb:
         specifier: 6.2.6
@@ -275,8 +276,8 @@ packages:
     resolution: {integrity: sha512-I/smuEJWiQPYd9rUEE4uhMNd48rEDX4VHDJxlixwQ/kAQJITNO3SCvKOJwlvsJXcqUjDstqUFeZnDifQFAWW4A==}
     engines: {node: '>=24'}
 
-  '@adam0white/human-framework@npmjs:4.16.0':
-    resolution: {integrity: sha512-nRY6LM6g0cueZHz7ACMO8YJ6/0S57UReDO9dCFxJcG9J0oLzv5vN8/AbrvRng13ngiblSRo+AG1nOSohdd71fQ==}
+  '@adam0white/human-framework@npmjs:4.17.0':
+    resolution: {integrity: sha512-qancWkliqLCfJ6TtVDhRfI6JreW+nq/ZKpJBxMA+BlUvYGf7H7I6pnvMMB81pevlWVzTgBAVXdOQFrclIzfQog==}
     engines: {node: '>=24'}
 
   '@adam0white/lab-client@https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz':
@@ -1751,12 +1752,12 @@ snapshots:
 
   '@adam0white/human-framework@3.2.0': {}
 
-  '@adam0white/human-framework@npmjs:4.16.0': {}
+  '@adam0white/human-framework@npmjs:4.17.0': {}
 
   '@adam0white/lab-client@https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz':
     dependencies:
       '@adam0white/hf-legacy': '@adam0white/human-framework@3.0.0'
-      '@adam0white/human-framework': npmjs:4.16.0
+      '@adam0white/human-framework': npmjs:4.17.0
 
   '@adam0white/lab-kit@https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.32/adam0white-lab-kit-0.5.32.tgz(@adam0white/lab-client@https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz)':
     optionalDependencies:
