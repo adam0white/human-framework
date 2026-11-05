@@ -277,6 +277,28 @@ export function App() {
     </section>
   ) : null;
   if (fileSession && !frame) return <main>{fileControls}</main>;
+  const firstGuide = frame && guideVisible && (guideReplay || frame.day === 1) && (
+    <section aria-label="First suggestion guide" className="v-hint">
+      <p>Help Halil reach his goals. He can decline suggestions and miss a goal.</p>
+      <p role="status">
+        {guideSent
+          ? (() => {
+              const account = requestAccount(liveVoice.frame ?? frame);
+              return account && account.id !== guidePrevious.current
+                ? `${account.answer?.text ?? 'Waiting for Halil’s answer.'} ${account.status}`
+                : 'Waiting for the suggestion to reach Halil.';
+            })()
+          : speaking
+            ? 'Choose a suggestion and say it, or choose to stay quiet.'
+            : canSpeak
+              ? 'Choose Speak below to suggest something.'
+              : 'Wait until Speak is available, then choose it.'}
+      </p>
+      <button type="button" onClick={() => setGuideVisible(false)}>
+        Skip guide
+      </button>
+    </section>
+  );
   return (
     <div
       className={`voice phase-${phase}`}
@@ -369,6 +391,7 @@ export function App() {
               onPause={() => actions.setPaused(true)}
               speakRequest={speakRequest}
               onSpeakingChange={setSpeaking}
+              speakingGuide={speaking ? firstGuide : null}
               onSpeakAvailability={(available, caption) => {
                 setCanSpeak(available);
                 setSpeakCaption(caption);
@@ -421,28 +444,7 @@ export function App() {
               )}
             </div>
           </aside>
-          {guideVisible && (guideReplay || frame.day === 1) && (
-            <section aria-label="First suggestion guide" className="v-hint">
-              <p>Help Halil reach his goals. He can decline suggestions and miss a goal.</p>
-              <p role="status">
-                {guideSent
-                  ? (() => {
-                      const account = requestAccount(liveVoice.frame ?? frame);
-                      return account && account.id !== guidePrevious.current
-                        ? `${account.answer?.text ?? 'Waiting for Halil’s answer.'} ${account.status}`
-                        : 'Waiting for the suggestion to reach Halil.';
-                    })()
-                  : speaking
-                    ? 'Choose a suggestion and say it, or choose to stay quiet.'
-                    : canSpeak
-                      ? 'Choose Speak below to suggest something.'
-                      : 'Wait until Speak is available, then choose it.'}
-              </p>
-              <button type="button" onClick={() => setGuideVisible(false)}>
-                Skip guide
-              </button>
-            </section>
-          )}
+          {!speaking && firstGuide}
           {!speaking && (
             <footer className="v-live-actions">
               <p>{settingWords(frame.muted ? 'You are silent today. Watch.' : speakCaption)}</p>

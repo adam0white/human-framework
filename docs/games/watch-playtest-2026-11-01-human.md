@@ -55,3 +55,21 @@ A local guide identifies the Keeper’s role and asks the player to select a wat
 A fresh synthetic skim of the revised screen said: “I’d click a watcher to post them at the east wall. I think the goal is to protect the people and grain from raids.” This second screenshot reaction is not a human retest or evidence of a full playthrough.
 
 A further synthetic skim asked what can go wrong said: “I’d click a watcher and post them at the mill wall. The goal is to protect the people and grain; raids can kill people or steal food.”
+
+### Interactive synthetic skim — 2026-11-05
+
+One gpt-6.1-terra tester at low effort played candidate `fcb1cbc` in a fresh desktop browser context, skimming screenshots and control labels without reading body text or game source. The candidate declares site HF 4.16.0 and workspace library 4.17.0; this does not qualify the final HF 4.17 combination or establish human acceptance. Time was not instrumented.
+
+It went up to the wall, selected Tamar, requested Mill wall, observed the waiting and requested-post states, then began the watch and saw Tamar's figure at the mill. It moved the lantern to Mill. It understood keeping people alive and grain safe, with raids able to kill and take food. Its exact words included:
+
+> “That is an assignment request, not proof she will stay; the waiting state makes the distinction clear.”
+
+> “I know I can move the light and ring the bell, but I do not yet know what will make a threat visible.”
+
+No raid, injury, loss or ending was observed. Skip was visible and unused. No hard blocker was reported.
+
+### Automated first-minute qualification — 2026-11-05
+
+The guide and first watcher/post controls use the same DOM and visual order. Both sizes displayed the real posting response, then the selected watcher arrived after the watch began. The integrated HF4.17 candidate passed scripted360×690 and1280×800 paths with guide, Skip and target hit checks before clicks and after the bounded keyboard path. Fresh contexts also passed Skip and menu Replay. The script is `scripts/central-first-minute.cjs`; serve the candidate locally and set `FIRST_MINUTE_URL` and `FIRST_MINUTE_OUTPUT` before running it with Node26.12.0.
+
+An independent private copy matched the integrated source, script and published HF4.17 runtime bytes. All six game/viewport cases passed with DNT, same-origin GET/HEAD-only routing and no page errors. These are bounded automated controls, separate from the earlier interactive synthetic reports and any human playtest. Five hit points do not establish full accessibility or every later layout. Later Watch arrival controls can scroll. An earlier Voice phone reply timeout remains evidence of variability; one passing run is not a reliability estimate. Exact committed review, CI and deployment remain pending.

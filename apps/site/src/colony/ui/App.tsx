@@ -1117,6 +1117,7 @@ export function App() {
                         </section>
                       )}
                       <PersonSheet
+                        guided={tutorial === 'place' && !shelf && !interstitial}
                         frame={frame}
                         id={person}
                         injuryNotice={selectedInjury}

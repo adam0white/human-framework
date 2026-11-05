@@ -965,6 +965,93 @@ export function DuskPanel({
           x.id !== (tracksUnwatched ? frame.warned : null) &&
           !frame.watchers.some((w) => w.posted && postSection(w.posted) === x.id),
       );
+  const roster = (
+    <ul className="w-roster">
+      {frame.watchers.map((w) => (
+        <li key={w.id}>
+          <button type="button" className={`w-person w-person-${w.id}`} onClick={() => setSelected(w.id)}>
+            <span className="w-person-head">
+              <strong>{settingWords(w.name)}</strong>
+              <span>{w.note}</span>
+            </span>
+            <span className="w-person-post">{whereWords(w, frame.phase)}</span>
+            <Impressions impressions={w.impressions} />
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+  const commit = (
+    <footer className="lk-commit">
+      {sel ? (
+        <>
+          <p className="w-post-caption">Post {settingWords(sel.name)} at</p>
+          <div className="w-places">
+            {SECTIONS.map((section) => {
+              const at = freePost(frame, section.id, sel.id);
+              const sec = frame.sections.find((x) => x.id === section.id);
+              const reason = at
+                ? null
+                : sec?.fallen
+                  ? 'fallen'
+                  : sec?.posts.length
+                    ? 'full'
+                    : 'closed tonight';
+              return (
+                <button
+                  key={section.id}
+                  type="button"
+                  className="w-place"
+                  disabled={!at}
+                  aria-pressed={sel.posted !== null && postSection(sel.posted) === section.id}
+                  onClick={() => {
+                    if (at) place(sel.id, at);
+                  }}
+                >
+                  {section.name}
+                  {section.id === frame.warned ? ' · tracks' : null}
+                  {reason ? <small>{reason}</small> : null}
+                </button>
+              );
+            })}
+          </div>
+          <div className="w-post-bottom">
+            <button type="button" className="w-secondary" onClick={() => place(sel.id, null)}>
+              {settingWords(sel.name)} Choose a post (still on watch)
+            </button>
+            <button type="button" className="w-primary" onClick={() => setSelected(null)}>
+              Done
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="w-primary"
+            disabled={frame.refugeVisit?.status === 'agreed'}
+            onClick={() => actions.input({ k: 'begin' })}
+          >
+            Begin the watch
+          </button>
+          {tracksUnwatched || emptyWalls.length > 0 ? (
+            <p className="w-grain-warning" role="status">
+              {tracksUnwatched
+                ? `Nobody is posted on ${theSectionName(frame.warned)}, where the scout warned of trouble${emptyWalls.length > 0 ? `, or on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}` : ''}.`
+                : `Nobody is posted on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}.`}
+              {emptyWalls.length > 0
+                ? ' Raids can come where the scout did not look, and an empty wall can lose grain.'
+                : ''}
+            </p>
+          ) : null}
+          <p className="w-note">
+            Tap a watcher to post them. Each ordinary wall has room for two watchers. A raised wall has room
+            for three.
+          </p>
+        </>
+      )}
+    </footer>
+  );
   return (
     <div className={`w-dusk ${guide ? 'is-guided' : ''}`}>
       {frame.refugeVisit?.status === 'agreed' ? (
@@ -1060,6 +1147,8 @@ export function DuskPanel({
             </button>
           </section>
         ) : null}
+        {guide && !sel && roster}
+        {guide && commit}
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
         {!sel ? (
           <p className="w-note">
@@ -1127,96 +1216,11 @@ export function DuskPanel({
                 {postedLine}
               </p>
             ) : null}
-            <ul className="w-roster">
-              {frame.watchers.map((w) => (
-                <li key={w.id}>
-                  <button
-                    type="button"
-                    className={`w-person w-person-${w.id}`}
-                    onClick={() => setSelected(w.id)}
-                  >
-                    <span className="w-person-head">
-                      <strong>{settingWords(w.name)}</strong>
-                      <span>{w.note}</span>
-                    </span>
-                    <span className="w-person-post">{whereWords(w, frame.phase)}</span>
-                    <Impressions impressions={w.impressions} />
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {!guide && roster}
           </>
         )}
       </div>
-      <footer className="lk-commit">
-        {sel ? (
-          <>
-            <p className="w-post-caption">Post {settingWords(sel.name)} at</p>
-            <div className="w-places">
-              {SECTIONS.map((section) => {
-                const at = freePost(frame, section.id, sel.id);
-                const sec = frame.sections.find((x) => x.id === section.id);
-                const reason = at
-                  ? null
-                  : sec?.fallen
-                    ? 'fallen'
-                    : sec?.posts.length
-                      ? 'full'
-                      : 'closed tonight';
-                return (
-                  <button
-                    key={section.id}
-                    type="button"
-                    className="w-place"
-                    disabled={!at}
-                    aria-pressed={sel.posted !== null && postSection(sel.posted) === section.id}
-                    onClick={() => {
-                      if (at) place(sel.id, at);
-                    }}
-                  >
-                    {section.name}
-                    {section.id === frame.warned ? ' · tracks' : null}
-                    {reason ? <small>{reason}</small> : null}
-                  </button>
-                );
-              })}
-            </div>
-            <div className="w-post-bottom">
-              <button type="button" className="w-secondary" onClick={() => place(sel.id, null)}>
-                {settingWords(sel.name)} Choose a post (still on watch)
-              </button>
-              <button type="button" className="w-primary" onClick={() => setSelected(null)}>
-                Done
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <button
-              type="button"
-              className="w-primary"
-              disabled={frame.refugeVisit?.status === 'agreed'}
-              onClick={() => actions.input({ k: 'begin' })}
-            >
-              Begin the watch
-            </button>
-            {tracksUnwatched || emptyWalls.length > 0 ? (
-              <p className="w-grain-warning" role="status">
-                {tracksUnwatched
-                  ? `Nobody is posted on ${theSectionName(frame.warned)}, where the scout warned of trouble${emptyWalls.length > 0 ? `, or on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}` : ''}.`
-                  : `Nobody is posted on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}.`}
-                {emptyWalls.length > 0
-                  ? ' Raids can come where the scout did not look, and an empty wall can lose grain.'
-                  : ''}
-              </p>
-            ) : null}
-            <p className="w-note">
-              Tap a watcher to post them. Each ordinary wall has room for two watchers. A raised wall has room
-              for three.
-            </p>
-          </>
-        )}
-      </footer>
+      {!guide && commit}
     </div>
   );
 }

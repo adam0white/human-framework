@@ -65,3 +65,21 @@ A local candidate guides the player from a person to a place and waits for that 
 A synthetic `gpt-6.1-terra` low-effort skim saw one desktop screenshot after the start control. It said: “I’d click Maryam. I think the goal is to build the roof and store meals before the storm.” It did not play the full tutorial or mention keeping everyone alive. This is a synthetic observation, not a human verdict.
 
 A fresh synthetic skim after the failure cue was made explicit said: “I’d click Maryam, then try to roof the house and store meals before the deadlines. People can die if I fail.” This remains a screenshot reaction, not a human retest.
+
+### Interactive synthetic skim — 2026-11-05
+
+One gpt-6.1-terra tester at low effort played the retained tutorial candidate `fcb1cbc` in a fresh desktop browser context, skimming screenshots and control labels without reading body text or game source. That candidate declares site HF 4.16.0 and workspace library 4.17.0; this is not final HF 4.17 qualification or a human test. Time was not instrumented and included tool and inspection delays.
+
+The tester chose Samira's opening option, began the morning, selected Maryam and chose Kitchen. It observed the real agreed order and understood that agreement did not establish a completed meal. It understood the roof, 12 meals and six survivors goal, and the possibility of refusal or death. Its exact words included:
+
+> “I like seeing both villages respond, but I need to find the person and place controls before I can make an order.”
+
+> “The answer tells me she accepted, though the useful place choices were below the initial viewport.”
+
+It scrolled to the place controls and completed the order. No storm, death, ending or completed meal attributable to that request was observed. Skip was visible and unused. The below-fold place controls are observed friction, not an unreachable-control failure.
+
+### Automated first-minute qualification — 2026-11-05
+
+The first person/place controls use the same DOM and visual order. Both sizes produced an actual refusal; Continue dismissed the guide. The integrated HF4.17 candidate passed scripted360×690 and1280×800 paths with guide, Skip and target hit checks before clicks and after the bounded keyboard path. Fresh contexts also passed Skip and menu Replay. The script is `scripts/central-first-minute.cjs`; serve the candidate locally and set `FIRST_MINUTE_URL` and `FIRST_MINUTE_OUTPUT` before running it with Node26.12.0.
+
+An independent private copy matched the integrated source, script and published HF4.17 runtime bytes. All six game/viewport cases passed with DNT, same-origin GET/HEAD-only routing and no page errors. These are bounded automated controls, separate from the earlier interactive synthetic reports and any human playtest. Five hit points do not establish full accessibility or every later layout. Later Watch arrival controls can scroll. An earlier Voice phone reply timeout remains evidence of variability; one passing run is not a reliability estimate. Exact committed review, CI and deployment remain pending.

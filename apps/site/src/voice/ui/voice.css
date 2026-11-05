@@ -4013,3 +4013,13 @@ button.v-log-btn {
   margin: 0.25rem 0.5rem;
   font-size: 0.85rem;
 }
+
+/* The guide belongs to the active speaking dialog. */
+.v-speaking-sheet .v-hint[aria-label="First suggestion guide"] {
+  flex: 0 0 auto;
+  padding: 4px 12px;
+  background: var(--paper-3);
+}
+.v-speaking-sheet .v-hint[aria-label="First suggestion guide"] p {
+  margin: 0 0 4px;
+}

@@ -23,7 +23,7 @@ it('shows public game descriptions and faculty labels', () => {
   expect(ordinary.textContent).toContain('Izmir');
 });
 
-it('shows each live pin and explains every retained 3.x game', async () => {
+it('shows each audited live pin and its current disposition', async () => {
   const { default: releases } = await import('../game-releases.json');
   const ordinary = shelf();
   for (const game of GAMES) {
@@ -36,7 +36,6 @@ it('shows each live pin and explains every retained 3.x game', async () => {
     if (receipt.framework.startsWith('3.')) {
       expect('reason' in receipt && receipt.reason.length > 20).toBe(true);
     }
+    if ('reason' in receipt) expect(card.textContent).toContain(receipt.reason);
   }
-  expect(ordinary.textContent).toContain('HF 4 still exceeds its simulation and saved-history budgets.');
-  expect(ordinary.textContent).toContain('November 24, 2026');
 });

@@ -558,3 +558,11 @@ F-475: unresolved live calls and scene offers already use the quarter-minute-per
 A local guide points to Speak, follows a real suggestion and displays the retained answer or status. It offers skip and replay in the menu. A scripted check followed these controls without reading body copy and reached a recorded reply. A synthetic `gpt-6.1-terra` low-effort screenshot skim said: “I’d click Speak to suggest something to Halil. I think the goal is to help him get through his day and keep his fast.” This was not a human retest.
 
 A fresh synthetic skim asked what can go wrong said: “I’d click Speak to suggest what Halil should do. The goal is to help him reach his goals, but he can decline and miss one.”
+
+Interactive synthetic candidate evidence, with the actual expired suggestion and later deferred doctor plan, is recorded separately in [the November5 report](voice-playtest-2026-11-05-synthetic.md). It does not qualify the final combined release or human acceptance.
+
+### Automated first-minute qualification — 2026-11-05
+
+The guide remains inside the active speaking dialog. Both sizes produced an actual reply after the player made a suggestion. The integrated HF4.17 candidate passed scripted360×690 and1280×800 paths with guide, Skip and target hit checks before clicks and after the bounded keyboard path. Fresh contexts also passed Skip and menu Replay. The script is `scripts/central-first-minute.cjs`; serve the candidate locally and set `FIRST_MINUTE_URL` and `FIRST_MINUTE_OUTPUT` before running it with Node26.12.0.
+
+An independent private copy matched the integrated source, script and published HF4.17 runtime bytes. All six game/viewport cases passed with DNT, same-origin GET/HEAD-only routing and no page errors. These are bounded automated controls, separate from the earlier interactive synthetic reports and any human playtest. Five hit points do not establish full accessibility or every later layout. Later Watch arrival controls can scroll. An earlier Voice phone reply timeout remains evidence of variability; one passing run is not a reliability estimate. Exact committed review, CI and deployment remain pending.
