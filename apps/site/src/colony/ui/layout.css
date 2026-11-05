@@ -1048,3 +1048,37 @@ body,
   max-inline-size: none;
   margin: 0.25rem 0.5rem;
 }
+
+/* Tutorial prompts sit directly above the controls they describe. */
+.well-tutorial {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  border: 2px solid #795d21;
+  background: #fff5d9;
+  color: #30240d;
+}
+.well-tutorial button {
+  justify-self: start;
+}
+/* Names remain explicit; colour is an additional way to follow each person. */
+.well-people > button:nth-child(4n + 1) strong {
+  color: #74412b;
+}
+.well-people > button:nth-child(4n + 2) strong {
+  color: #285a73;
+}
+.well-people > button:nth-child(4n + 3) strong {
+  color: #5d467d;
+}
+.well-people > button:nth-child(4n + 4) strong {
+  color: #365f38;
+}
+.well-stand tr > :nth-child(2) {
+  background: #e4edf2;
+  color: #173d52;
+}
+.well-stand tr > :nth-child(3) {
+  background: #f6eadb;
+  color: #573617;
+}

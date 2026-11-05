@@ -1,0 +1,3 @@
+# Teach through the first action
+
+A tutorial succeeds when a player who skips the surrounding prose can find a real control, act, and see the result. Give one short prompt beside the current control. Wait for the action and show its actual consequence before the next prompt. Say the goal and what can go wrong in plain words. Offer skip and replay from the game menu. Keep the game's rules and difficulty intact; the tutorial is guidance, not a separate simulation. Test this with a scripted first minute that does not read body copy, then a cold skim and a human retest. A scripted pass or synthetic reaction is not evidence of human understanding.
