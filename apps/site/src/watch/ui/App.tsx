@@ -966,7 +966,7 @@ export function DuskPanel({
           !frame.watchers.some((w) => w.posted && postSection(w.posted) === x.id),
       );
   return (
-    <div className="w-dusk">
+    <div className={`w-dusk ${guide ? 'is-guided' : ''}`}>
       {frame.refugeVisit?.status === 'agreed' ? (
         <section aria-label="Kian and Ada’s pending visit">
           <p>
@@ -1047,16 +1047,13 @@ export function DuskPanel({
       <div className="lk-sheet-body">
         {guide ? (
           <section aria-label="First watch guide" className="w-first-guide">
-            <p>
-              You are the Keeper. Protect the village and its grain. At dusk, you can ask watchers to guard
-              posts. At night, carry the lantern to see threats and use the bell or ask watchers for help.
-            </p>
+            <p>You are the Keeper. Protect the people and grain; raids can kill and take food.</p>
             <p role="status">
               {sel
                 ? `Now choose a wall below or tap a post on the map to ask ${settingWords(sel.name)} to guard it.`
                 : asked
                   ? (postedLine ?? 'Waiting for the watcher’s reply.')
-                  : 'Try it: choose a watcher below, then choose a wall or tap a post on the map.'}
+                  : 'Tap a watcher below.'}
             </p>
             <button type="button" className="w-chip" onClick={onSkipGuide}>
               Skip guide

@@ -63,3 +63,5 @@ The feedback concerns explanation and presentation. Keep the existing challenge.
 A local candidate guides the player from a person to a place and waits for that order’s actual reply. It states the goal and risks, adds skip and menu replay, and uses color alongside names and village labels. The rules and difficulty are unchanged. A scripted desktop check followed those controls without reading body copy and reached a reply. This is not a human retest; F-3167, F-3168 and F-3169 remain open until delivery and retest.
 
 A synthetic `gpt-6.1-terra` low-effort skim saw one desktop screenshot after the start control. It said: “I’d click Maryam. I think the goal is to build the roof and store meals before the storm.” It did not play the full tutorial or mention keeping everyone alive. This is a synthetic observation, not a human verdict.
+
+A fresh synthetic skim after the failure cue was made explicit said: “I’d click Maryam, then try to roof the house and store meals before the deadlines. People can die if I fail.” This remains a screenshot reaction, not a human retest.

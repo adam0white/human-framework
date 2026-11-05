@@ -2838,3 +2838,13 @@
 .w-dusk .w-day {
   font-size: 1rem;
 }
+
+/* During the guide, show that each watcher is an actionable control. */
+.w-dusk.is-guided .w-roster .w-person {
+  border: 2px solid #e8aa63;
+}
+.w-first-guide [role="status"] {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffd69c;
+}

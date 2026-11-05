@@ -549,3 +549,9 @@ Lesson: narration can also be a comparison key. Well's HF duty counter and host 
 The host uses published HF3.0.0 (engine2.23.0), lab client0.4.10 and kit0.5.11. This maintenance pass retains Voice's existing simulation and timing rules.
 
 F-475: unresolved live calls and scene offers already use the quarter-minute-per-second reading pace; personal replies remain held, scene choices retain their rendered identity and ordinary conversation has one-tap words separate from the planning form. These existing paths must be checked on the current build before adding another timing or dialogue rule. Current premise Game menu access works; the older blocked-menu report was not reproduced in that path. The settled prior plain-English pass is retained. F-492 game readiness and F-465/F-491 owner receiving/retest acceptance remain due2026-11-03. Received-support research (F-285) stays with HF research, review2026-11-15; authored care captions do not establish a change in Halil's state.
+
+## First-minute candidate — 2026-11-05
+
+A local guide points to Speak, follows a real suggestion and displays the retained answer or status. It offers skip and replay in the menu. A scripted check followed these controls without reading body copy and reached a recorded reply. A synthetic `gpt-6.1-terra` low-effort screenshot skim said: “I’d click Speak to suggest something to Halil. I think the goal is to help him get through his day and keep his fast.” This was not a human retest.
+
+A fresh synthetic skim asked what can go wrong said: “I’d click Speak to suggest what Halil should do. The goal is to help him reach his goals, but he can decline and miss one.”

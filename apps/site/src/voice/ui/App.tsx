@@ -423,7 +423,7 @@ export function App() {
           </aside>
           {guideVisible && (guideReplay || frame.day === 1) && (
             <section aria-label="First suggestion guide" className="v-hint">
-              <p>You are a voice in Halil’s thoughts. He decides whether to act on a suggestion.</p>
+              <p>Help Halil reach his goals. He can decline suggestions and miss a goal.</p>
               <p role="status">
                 {guideSent
                   ? (() => {

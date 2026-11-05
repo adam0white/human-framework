@@ -86,7 +86,7 @@ it('guides the first dusk through selecting a watcher and choosing a post', () =
     post: vi.fn(),
   };
   const start = render(createElement(DuskPanel, props));
-  expect(start.querySelector('[aria-label="First watch guide"]')?.textContent).toContain('choose a watcher');
+  expect(start.querySelector('[aria-label="First watch guide"]')?.textContent).toContain('Tap a watcher');
   const selected = render(createElement(DuskPanel, { ...props, selected: 'samira' }));
   expect(selected.querySelector('[aria-label="First watch guide"]')?.textContent).toContain('choose a wall');
   const later = render(createElement(DuskPanel, { ...props, guide: false }));

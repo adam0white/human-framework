@@ -1,6 +1,6 @@
 # The Night Watch: human playtester, 2026-11-01
 
-Human playtester. Played on the owner’s computer on 2026-11-01; intake dated 2026-11-03. These are historical builds, not a new panel round or a test of the current deployment. Viewport dimensions were not recorded. There is no phone session or same-tester retest claimed here.
+Human playtester. Played on 2026-11-01; intake dated 2026-11-03. These are historical builds, not a new panel round or a test of the current deployment. Viewport dimensions were not recorded. There is no phone session or same-tester retest claimed here.
 
 The private recordings were transcribed with Workers AI Whisper, in two-minute ffmpeg PCM chunks, through the shared admission and dollar caps. The recordings mix Turkish, English and background speech. **Audio excerpts below copy the machine transcript exactly; they are provisional, not manually verified verbatim speech. The transcript does not identify speakers.** They are game-related conversation from the reported play session; individual lines cannot yet be attributed confidently to the human playtester. Translations are coordinator translations. Garbled passages, unrelated conversation and personal details are omitted. Submitted feedback is distinguished from audio. Raw audio, complete transcripts, browser identity and payloads remain private.
 
@@ -40,10 +40,18 @@ English (translated from Turkish): How do I, um, put one of them here?
 
 ## Tester ledger
 
-| Session                                                         | Full return sentence | Disposition          | Routing                                                        |
-| --------------------------------------------------------------- | -------------------- | -------------------- | -------------------------------------------------------------- |
-| Historical desktop session / `88632a1d7aa5ede5ec7912e1b1035a1e` | Not supplied         | -; no return verdict | F-3163, F-3164; PROPOSED; owner confirmation target 2026-11-10 |
+| Session                                                 | Full return sentence | Disposition          | Routing                                                        |
+| ------------------------------------------------------- | -------------------- | -------------------- | -------------------------------------------------------------- |
+| Historical session / `88632a1d7aa5ede5ec7912e1b1035a1e` | Not supplied         | -; no return verdict | F-3163, F-3164; PROPOSED; owner confirmation target 2026-11-10 |
 
 ## Coordinator reading
 
 The feedback concerns explanation and presentation. Keep the existing challenge. No game code, rules or difficulty changed. No bug with an established cause was found or fixed in this intake. Proposals await owner confirmation; no new player round or retest is claimed.
+
+## 2026-11-05 candidate
+
+A local guide identifies the Keeper’s role and asks the player to select a watcher and a wall at dusk. It waits for the posting receipt; the menu offers replay at dusk. A scripted check followed those controls without reading body copy and reached the recorded posting result. The first synthetic `gpt-6.1-terra` low-effort screenshot skim said: “I’d click ‘Begin the watch.’ I think the goal is to protect the village and its grain from raids.” The watcher controls and prompt were made more prominent in response. No human retest is claimed.
+
+A fresh synthetic skim of the revised screen said: “I’d click a watcher to post them at the east wall. I think the goal is to protect the people and grain from raids.” This second screenshot reaction is not a human retest or evidence of a full playthrough.
+
+A further synthetic skim asked what can go wrong said: “I’d click a watcher and post them at the mill wall. The goal is to protect the people and grain; raids can kill people or steal food.”

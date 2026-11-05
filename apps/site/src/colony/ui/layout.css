@@ -1062,17 +1062,23 @@ body,
   justify-self: start;
 }
 /* Names remain explicit; colour is an additional way to follow each person. */
-.well-people > button:nth-child(4n + 1) strong {
+.well-people > button:nth-child(1) strong {
   color: #74412b;
 }
-.well-people > button:nth-child(4n + 2) strong {
+.well-people > button:nth-child(2) strong {
   color: #285a73;
 }
-.well-people > button:nth-child(4n + 3) strong {
+.well-people > button:nth-child(3) strong {
   color: #5d467d;
 }
-.well-people > button:nth-child(4n + 4) strong {
+.well-people > button:nth-child(4) strong {
   color: #365f38;
+}
+.well-people > button:nth-child(5) strong {
+  color: #824451;
+}
+.well-people > button:nth-child(6) strong {
+  color: #5b5420;
 }
 .well-stand tr > :nth-child(2) {
   background: #e4edf2;
