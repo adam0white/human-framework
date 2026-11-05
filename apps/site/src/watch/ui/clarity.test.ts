@@ -74,6 +74,24 @@ it('shows the controlled-watch count as ordinary visible strip text', () => {
   const strip = render(createElement(WatchStrip, { frame: dusk }));
   expect(strip.querySelector('.w-thaw-state > span')?.textContent).toBe(`${dusk.winter.nights} watches left`);
 });
+it('guides the first dusk through selecting a watcher and choosing a post', () => {
+  const props = {
+    frame: dusk,
+    actions,
+    guide: true,
+    selected: null,
+    setSelected: vi.fn(),
+    press: 'ask' as const,
+    setPress: vi.fn(),
+    post: vi.fn(),
+  };
+  const start = render(createElement(DuskPanel, props));
+  expect(start.querySelector('[aria-label="First watch guide"]')?.textContent).toContain('choose a watcher');
+  const selected = render(createElement(DuskPanel, { ...props, selected: 'samira' }));
+  expect(selected.querySelector('[aria-label="First watch guide"]')?.textContent).toContain('choose a wall');
+  const later = render(createElement(DuskPanel, { ...props, guide: false }));
+  expect(later.querySelector('[aria-label="First watch guide"]')).toBeNull();
+});
 it('separates starting lantern from the selected person’s post actions', () => {
   const props = {
     frame: dusk,

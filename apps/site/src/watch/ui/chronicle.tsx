@@ -273,6 +273,7 @@ export function Chronicle({
   saving: _saving,
   onClose,
   onFeedback,
+  onGuide,
 }: {
   frame: Frame;
   actions: WatchActions;
@@ -283,6 +284,7 @@ export function Chronicle({
   onClose: () => void;
   tallySetting?: React.ReactNode;
   onFeedback?: () => void;
+  onGuide?: () => void;
   onTitle?: () => void;
 }) {
   const [confirmNew, setConfirmNew] = useState(false);
@@ -313,6 +315,11 @@ export function Chronicle({
         >
           Feedback <Decoration kind="chevron" />
         </button>
+        {onGuide ? (
+          <button type="button" className="w-menu-row" onClick={onGuide}>
+            Replay first watch guide
+          </button>
+        ) : null}
         <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
         <button
           type="button"

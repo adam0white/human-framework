@@ -125,6 +125,9 @@ export function App() {
   const [title, setTitle] = useState(false);
   const [feedback, setFeedback] = useState(false);
   const [helper, setHelper] = useState(false);
+  const [guide, setGuide] = useState(true);
+  const [guideReplay, setGuideReplay] = useState(false);
+  const [mapAsked, setMapAsked] = useState<{ who: WatcherId; section: SectionId; frame: Frame } | null>(null);
   const stage = useRef<HTMLElement>(null);
   const postingOrigin = useRef<WatcherId | null>(null);
   const stageController = useRef<ReturnType<typeof phoneStage> | null>(null);
@@ -404,6 +407,7 @@ export function App() {
       const p = frame.sections.flatMap((s) => s.posts).find((x) => x.id === hit.post);
       const occupant = p?.posted ?? p?.watcher ?? null;
       if (selected) {
+        setMapAsked({ who: selected, section: postSection(hit.post as PostId), frame });
         post(selected, hit.post as PostId);
       } else if (occupant) setSelected(occupant);
       else actions.input({ k: 'lantern', section: postSection(hit.post as PostId) });
@@ -412,6 +416,7 @@ export function App() {
     if (selected) {
       const at = freePost(frame, hit.section, selected);
       if (at) {
+        setMapAsked({ who: selected, section: hit.section, frame });
         post(selected, at);
       }
     } else actions.input({ k: 'lantern', section: hit.section });
@@ -523,6 +528,17 @@ export function App() {
               saving={saving}
               current={current}
               onClose={closeFileMenu}
+              onGuide={
+                frame.phase === 'dusk'
+                  ? () => {
+                      setMapAsked(null);
+                      setGuide(true);
+                      setGuideReplay(true);
+                      setSelected(null);
+                      closeFileMenu();
+                    }
+                  : undefined
+              }
               onFeedback={() => {
                 closeFileMenu();
                 setFeedback(true);
@@ -563,6 +579,10 @@ export function App() {
                 <DuskPanel
                   frame={frame}
                   actions={actions}
+                  mapAsked={mapAsked}
+                  clearMapAsked={() => setMapAsked(null)}
+                  guide={guide && (guideReplay || frame.winter?.night === 1)}
+                  onSkipGuide={() => setGuide(false)}
                   selected={selected}
                   setSelected={setSelected}
                   press={selected ? pressFor() : 'ask'}
@@ -816,6 +836,10 @@ export function GoalPage({
   return (
     <div className="w-page w-goal">
       <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>
+      <p>
+        You are the Keeper. At dusk, ask watchers to guard posts. At night, carry the lantern, ring the bell
+        and help the watchers.
+      </p>
       <Sacks have={frame.grain} lost={0} label="The granary, where the village stores grain, is full" />
       <button type="button" className="w-menu-row" onClick={() => setSheet('hopes')}>
         The village’s hopes: “
@@ -882,6 +906,10 @@ export function DuskPanel({
   press,
   setPress,
   post,
+  guide = false,
+  onSkipGuide,
+  mapAsked,
+  clearMapAsked,
 }: {
   frame: Frame;
   actions: WatchActions;
@@ -890,16 +918,22 @@ export function DuskPanel({
   press: Press;
   setPress: (p: Press) => void;
   post: (who: WatcherId, at: PostId | null) => void;
+  guide?: boolean;
+  onSkipGuide?: () => void;
+  mapAsked?: { who: WatcherId; section: SectionId; frame: Frame } | null;
+  clearMapAsked?: () => void;
 }) {
   const sel = frame.watchers.find((w) => w.id === selected);
   const reads = selected ? frame.postingReads?.[selected] : undefined;
   const [picker, setPicker] = useState(false);
   // 2026-10-27 retest: a post must say it took. The line reads the frame, so it shows what the run holds.
   // It waits for the first frame after the tap (the worker answers with a new frame), so it never reads the old one.
-  const [asked, setAsked] = useState<{ who: WatcherId; section: SectionId | null; frame: Frame } | null>(
+  const [panelAsked, setAsked] = useState<{ who: WatcherId; section: SectionId | null; frame: Frame } | null>(
     null,
   );
+  const asked = mapAsked ?? panelAsked;
   const place = (who: WatcherId, at: PostId | null) => {
+    clearMapAsked?.();
     setAsked({ who, section: at ? postSection(at) : null, frame });
     post(who, at);
   };
@@ -1011,6 +1045,24 @@ export function DuskPanel({
         )}
       </header>
       <div className="lk-sheet-body">
+        {guide ? (
+          <section aria-label="First watch guide" className="w-first-guide">
+            <p>
+              You are the Keeper. Protect the village and its grain. At dusk, you can ask watchers to guard
+              posts. At night, carry the lantern to see threats and use the bell or ask watchers for help.
+            </p>
+            <p role="status">
+              {sel
+                ? `Now choose a wall below or tap a post on the map to ask ${settingWords(sel.name)} to guard it.`
+                : asked
+                  ? (postedLine ?? 'Waiting for the watcher’s reply.')
+                  : 'Try it: choose a watcher below, then choose a wall or tap a post on the map.'}
+            </p>
+            <button type="button" className="w-chip" onClick={onSkipGuide}>
+              Skip guide
+            </button>
+          </section>
+        ) : null}
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
         {!sel ? (
           <p className="w-note">
@@ -1268,6 +1320,12 @@ export function NightPanel({
   return (
     <div className="w-night">
       <div className="lk-sheet-body" ref={body} hidden={Boolean(who?.account)}>
+        {frame.winter?.night === 1 && !who ? (
+          <p className="w-note">
+            Posting happens at dusk. Tonight, move the lantern to see threats and select a watcher to ask for
+            help or relief.
+          </p>
+        ) : null}
         {frame.moment && frame.moment.id !== dismissedMoment ? (
           <NightMoment
             frame={frame}
