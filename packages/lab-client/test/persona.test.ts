@@ -34,6 +34,7 @@ describe('persona shelf contract', () => {
     let nested: unknown = 1;
     for (let n = 0; n < 26; n++) nested = { nested };
     expect(() => boundedPersonaJson(nested)).toThrow('complex');
+    expect(PERSONA_ORIGINS.has('https://play.adamwhite.work')).toBe(true);
     expect(PERSONA_ORIGINS.has('https://evil.adamwhite.work')).toBe(false);
     expect(PERSONA_ORIGINS.has('http://pass.adamwhite.work')).toBe(false);
   });

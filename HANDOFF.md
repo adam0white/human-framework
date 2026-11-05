@@ -1,3 +1,7 @@
+# Games monorepo authorization — 2026-11-05
+
+Remaining: integrate and verify the games monorepo and path-scoped releases, then independently verify the route and redirects after deployment. The owner authorized `adam0white/games`, `play.adamwhite.work`, and redirects from old game subdomains, and accepted lost saves and progress. Authorization does not establish that the repository, route or redirects exist or are live. No deployment is recorded by this change.
+
 # HF 4.17 publication and central adoption — 2026-11-04
 
 Remaining: central adoption is unfinished until its required local checks, exact signed-commit review and CI, normal deployment and live release metadata are verified. Whole Watch W1/W2, Child/Valley/Neighbours qualification, other open game work and paused player acceptance remain. This library release does not close them.

@@ -741,7 +741,15 @@ type Live = { commit?: string; framework?: string; app?: string; dirty?: boolean
 async function liveRelease(env: Env, href: string): Promise<Live> {
   try {
     const res = href.startsWith('http')
-      ? await fetch(new URL('/release.json', href).toString(), { cf: { cacheTtl: 300 } } as RequestInit)
+      ? await fetch(
+          new URL(
+            new URL(href).hostname === 'play.adamwhite.work'
+              ? `/${new URL(href).pathname.split('/').filter(Boolean)[0]}/release.json`
+              : '/release.json',
+            href,
+          ).toString(),
+          { cf: { cacheTtl: 300 } } as RequestInit,
+        )
       : await env.ASSETS.fetch('https://human.adamwhite.work/release.json');
     if (!res.ok) return null;
     const r = (await res.json()) as Record<string, unknown>;
