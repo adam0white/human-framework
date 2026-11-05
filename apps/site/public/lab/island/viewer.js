@@ -74,7 +74,8 @@
           goal &&
           typeof goal.id === 'string' &&
           typeof goal.label === 'string' &&
-          natural(goal.minute) &&
+          finite(goal.minute) &&
+          goal.minute >= 0 &&
           ['active', 'achieved', 'abandoned'].includes(goal.status) &&
           ['hf', 'task'].includes(goal.source) &&
           typeof goal.proposed === 'boolean' &&
