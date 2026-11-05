@@ -69,11 +69,11 @@
     "checked": "2026-11-05"
   },
   "repair": {
-    "framework": "4.11.0",
-    "commit": "ae2d1d88ee84484ee4d5acd323a67fc308c46c47",
+    "framework": "4.17.0",
+    "commit": "fa17feee190ca6f926417717b2b4674026109090",
     "release": "https://repair.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "The HF 4.17 update is prepared; deployment remains blocked. This release stays on HF 4.11. Next review: November 12, 2026."
+    "status": "Release source checkpoint; verify the linked live record before central rollout."
   },
   "neighbours": {
     "framework": "4.17.0",
