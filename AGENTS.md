@@ -57,7 +57,7 @@ Done means (coordinator proposals, owner may change):
 - **Build first, prove after.** A faculty lands with tests, a control and a scope comment. Negative findings go to [findings](docs/findings.md); deferrals to the roadmap or a Deferred list, with a target.
 - **Lanes (owner, 2026-10-20):** run `npm run check:lane` before every commit. Gated paths (`packages/human`, lab client, kit and Worker, manifests, CI, deploy and release scripts, Worker config) run `npm run check`. CI is the truth: whoever pushes a red `main` fixes or reverts. `npm run deploy` needs green `ci` on the exact commit. The machine lock covers full suites only; focused runs never queue.
 - **One worktree per agent** (`npm run wt -- add <repo-dir> <name>`); the shared checkout is for the owner and coordinator. Extracts go to `~/code/.lab-scratch/`. HF releases are serialized.
-- **Stack:** TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.5, Vitest 5.0.5, Biome 2.6.3, React 19.3.1, Wrangler 4.152.0, Playwright 1.64.1, Canvas 2D.
+- **Stack:** pnpm 12.16.1, Node 26.12.0, TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.5, Vitest 5.1.0, Biome 2.6.5, React 19.3.1, Wrangler 4.157.0, Playwright 1.64.1, Canvas 2D.
 
 ## Delivery
 

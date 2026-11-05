@@ -121,5 +121,12 @@
     "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
     "release": "https://lefthand.adamwhite.work/release.json",
     "checked": "2026-10-30"
+  },
+  "island": {
+    "framework": "4.17.0",
+    "commit": "736c4b4a74adbac62633bd69ffd0e093e63df69e",
+    "release": "https://human.adamwhite.work/lab/island/release.json",
+    "checked": "2026-11-05",
+    "status": "source merged and green; deployment pending"
   }
 }

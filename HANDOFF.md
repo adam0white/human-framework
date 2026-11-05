@@ -1,3 +1,13 @@
+# UPKEEP integration — 2026-11-05
+
+Remaining: exact combined-source lane, hosted Codex review and green CI; normal merge, artifact publication where required, deployment and clean release verification. Valley, Child and Neighbours remain unqualified HF 4.17 candidates. Their original workload and replay failures are not closed by dependency installation. Island's current default candidate verifies 240 host steps and its native archive; its source gate, viewer delivery and listing remain separate.
+
+This candidate records the November 5 owner direction and GD retirement, resumes the signed central 4.17 adoption, integrates Clarity's action tutorials, and includes MONO's later approval record and path/origin preparation. MONO's source-only full lane passed 388 files and 1,799 tests before this combined dependency update; it is not an exact-head check of this candidate. The existing released client artifacts do not contain the path/origin preparation. Source client 0.5.16 remains under the explicit reader-rollout publication hold: exact central and pending external live reader proofs are required before tagging client16/kit33. It needs its own reviewed immutable release and consumer adoption before a new-origin delivery is claimed.
+
+Dependencies use pnpm 12.16.1, frozen installs, the existing 1,440-minute release-age policy and explicit native build permissions. Worker compatibility is 2026-11-05. Dependabot #12 is folded into this combined candidate; close it as superseded only after merge. Dependabot #11 is declined: requirements.txt is hash-bound by the archived learning-pilot freeze and reproduction runner. Its historical bytes remain unchanged.
+
+Current follow-up checkpoint: 2026-11-12. Reconcile the exact deployed source for the earlier Well/reader/inbox/receiver candidates; verify live engine manifests; inspect the unresolved historical feedback-note cause; check owner readiness separately from automated delivery. These checks are dated because the older receipts cannot establish current source, a human reply or acceptance. Original publication, failed attempts and raw owner/player records below remain historical evidence. Existing 2026-11-10, 11-17 and 11-24 engineering targets remain unless explicitly replaced in the current roadmap.
+
 # Games monorepo authorization — 2026-11-05
 
 Remaining: integrate and verify the games monorepo and path-scoped releases, then independently verify the route and redirects after deployment. The owner authorized `adam0white/games`, `play.adamwhite.work`, and redirects from old game subdomains, and accepted lost saves and progress. Authorization does not establish that the repository, route or redirects exist or are live. No deployment is recorded by this change.
@@ -239,7 +249,6 @@ Protocol and budget reference: the playtest director owns authorized HF 3 lab ro
 The existing $5 experiment envelope is split: $4 local scripts, including $0.207 debited for documented historical experiments, and $1 for the translator. Local durable reservations live outside git; the translator reserves $0.04/pair in one conditional R2 counter, at most 25 pairs ever and ten/day. Never delete either budget to recover capacity. The new AI binding is used only by fixed-model translation. Worker errors circuit-break future admissions; player confirmation supplies only a currently listed canonical mention to Halil now. Normal menu input remains available, and replay does not call a model. Public request logging remains off.
 
 Clef labels on reports and new inbox notes are opt-in suggestions for a person, never automatic routes or ledger writes. Daily run receipts and remaining work: `~/code/.lab-scratch/wai-daily/report.md`; coordinator ledger lines: `~/code/.lab-scratch/sweep/wai-ledger.md`. The owner reviews the experiment afterwards. Synthetic Workers AI players are weaker evidence than Codex, owner and friend play.
-
 
 ## Frictionless recording and feedback — owner, 2026-10-23
 

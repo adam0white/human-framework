@@ -1,5 +1,9 @@
 # Game 2 — _The Day You Say Nothing_
 
+## Current overdue follow-up — 2026-11-05
+
+Next checkpoint: **2026-11-12** for Third encounter, body-specific past wording and the round-two batch. A current encounter control and versioned presentation history are required. Earlier felt readings were never saved; do not invent them or treat tool stops as reproduced input faults. This replaces their expired review targets; later future targets and the literal historical records below remain unchanged.
+
 **Verified site delivery.** The central site was verified on 2026-10-26 at signed `00dcdad`, with published HF 3.2.0 / engine 3.2.0, library 3.2.0 and `dirty:false`. It includes lab-client 0.4.11 and lab-kit 0.5.12. See the [site receipt](../releases.md#central-site-32-delivery-2026-10-26) and live [release.json](https://human.adamwhite.work/release.json). External-game adoption and player acceptance need separate receipts.
 
 **Original delivery snapshot.** The following opening paragraph records the HF 2.0 delivery. Its live-version description is historical.
@@ -317,6 +321,7 @@ Owner direction (2026-10-19): bring the earlier games to the latest HF and apply
 **Tools.** `apps/site/scripts/play-voice.ts` is a text harness that drives the sim directly and prints what the page shows (top bar, log, beat banner, composer with its telegraph, panes, between-days card, report with the month you never spoke); `help` lists the commands, and `export`/`load` read and write the page's playtest file. `apps/site/scripts/hf-voice-adapter.ts` and `hf-voice-session.ts` let the playtester package's personas play it (`node apps/site/scripts/hf-voice-session.ts seeds=2`).
 
 **Audit (seed 7, own play and the personas).**
+
 - The first choice comes at once: the suhoor prefill pauses about 0 s into play; a whole played day takes about 45 s of real play at Slow when quiet (the running clock only; §9 now says so). Every persona's frustration moment was a "Not now, after I rest/eat" deferral; no persona hit a long lull.
 - Dishonest hint: at the 07:59 wake the composer said "He's leaning toward rest at home" and offered no workshop; at 08:00 he went to the workshop. The leaning came from last night's decision, and the offers were those of 07:59 (the job opens at 08:00).
 - Free override: an urge that wins costs nothing and earns full trust, and insisting costs trust only when he is already pressed. On seed 7, insisting on every prefill kept Osman's date (300 on Ramadan 15) with the same end trust as confirming them, which missed it.
@@ -328,6 +333,7 @@ Owner direction (2026-10-19): bring the earlier games to the latest HF and apply
 - HF 2.4–2.8: the fast is already declared to HF (an `abstain` commitment, N2b perception), so 2.6's fasting perception in the forecast does not apply and nothing was added. Promptings, muhasaba, fullness, the forecast and the fatigue store would add mechanics this game does not need; `decide(…, { reconsider })` for a re-asked word is the one that fits (deferred below).
 
 **Changed (rules 2, scenario `voice-2`).**
+
 1. _The wake is honest._ While he is waking, the composer offers what he can do at the minute he wakes, and the look-ahead, leaning, prefill and telegraph read that minute. Seed 7, quiet days 1–2: under rules 1 both 07:59 wake leanings were wrong (the suhoor ones were right); under rules 2 every wake leaning matched his next decision (`levelup.test.ts`); the workshop is now on offer at the 07:59 wake.
 2. _Insisting is not free._ Work done under protest (HF's `Activity.protest`, whose quality HF leaves to the host) has 0.6 of his usual chance of a good day (`PROTEST_WORK`, an engineering default); a bad day pays 40%. The telegraph says so when an insist on work would be done under protest: "Work done under protest tends to go worse, and pays less." Seed 7, insisting on every prefill: Osman's date kept on Ramadan 15 → paid on Ramadan 16. Urging and taking his yes is now the way to make the date by insisting less.
 3. _A craving he has already turned down pauses only when there is a word to say_ (Deferred item "the 10:00 craving beat can fire after his decision"): it is logged without stopping the clock. The Eid first cigarette keeps its beat.
@@ -400,9 +406,7 @@ Measurement: a seeded five-minute clock script uses default Slow, 100 ms samples
 
 Cost/risk: bounded authored replies can repeat, and they do not develop a general conversation faculty. Earlier dialogue requires a disclosure while four reply lines are open. Revert this branch’s Voice implementation and this section together to restore the previous UI; for exports containing `sceneWord` or `suggest.sceneLine`, retain the additive parser and sidecar reader in `protocol.ts`, `sim/record.ts`, `scene-words.ts` and `worker.ts`. Reverting only the interface preserves their simulation and replay; removing that reader would reject those new exports. No framework migration is needed.
 
-
 **Round 2.** Nadia’s retest of the F-271 change asked: “Let me keep Halil’s personal reply visible until I am ready to leave it,” “Give me enough time to read the call and choose to stay with Selin,” and “Make the ending’s speech count describe what it counts.” A personal reply now stays with its place and people until Back to today, another spoken line, or leaving the scene; later activity remains in Timeline. The automatic day card waits until the player leaves the reply. Let time pass remains available during automatic slowdown, including busy calls. Live calls and scene-limited stay offers slow playback to one simulated minute per four real seconds, before Speak is opened; answering, choosing silence or the encounter ending releases that slowdown. The selected pace stays unchanged. Summaries count accepted care and questions separately from suggestions, and care-only endings say “You kept him company without suggesting anything,” without claiming a benefit. A surfaced care topic gets one bounded response across the run rather than reopening on each activity; clinic and Nuran’s table permit quiet. Planning retains the person and conversation that it interrupted, shows recorded rent progress/date for work or rent choices, and keeps its send row outside the scrolling controls. This serves DL-15, DL-19, DL-22 and DL-30–DL-33. The matched first-day control reduces care exchanges 14→4 and rent repetitions 8→1, at the same minute and full simulation hash. This trades repeated care prompts for quiet; raw speech-access timing is not proof of enjoyment or DL-32’s visible-line target. No simulation edition, HF pin or legacy reader changes. Revert the round-2 commit to restore the prior presentation; keep the existing additive speech parser and sidecar reader. Fresh player acceptance remains unverified.
-
 
 ### Round 3 input fix (2026-10-20)
 
@@ -534,7 +538,6 @@ The source calendar exposed two blockers. The older makeup scheduler could assig
 A returned answer starts a new chapter from this browser's pinned original departure run. The worker reconstructs the complete source input prefix and admits the pinned returned Selin before new simulation inputs. It constructs the continuing office duty once, rather than duplicating the source role template. The next connected Halil/Selin call can convey the answer she actually heard from Nermin. The answer does not change his health, erase debt or invent a care visit. The replay exports its original prefix, admitted initial Person, admission envelope, exact accepted shelf head and top-level `oneCast` rows; historical checkpoint rows remain alongside admission rows. A validated reload restores only that saved accepted head; a newer shelf head remains a conflict. File validation holds an unknown recording gate until acceptance and restores the prior gate on rejection. A detached worker preflight checks a return before its shelf claim advances.
 
 A loaded run is never refreshed from the latest shelf. Missing source storage makes a return chapter unavailable and leaves fresh play available. Blocked sharing permits an explicit passport download; file return still requires the original source chapter in this browser. No old world is placed on the shared shelf, and this path promises no cross-device recovery. Independent platform review and live delivery receipts belong to the wave handoff.
-
 
 ## HF 2.21.0 narration adoption (2026-10-25)
 

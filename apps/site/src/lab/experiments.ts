@@ -25,7 +25,7 @@ export const EXPERIMENTS: Experiment[] = [
     status: 'reported',
     href: '/lab/island/',
     writeup: `${DOCS}/island-2026-10-20.md`,
-    line: 'An HF person and LLM agents on the same small island with no task. Claude built a tower; HF, even with its memory and goals wired in, did not play.',
+    line: 'Current HF 4.17 recorded exploration with a complete replay export, alongside preserved historical HF and language-model runs. This viewer plays recorded frames; it does not run a mind.',
   },
   {
     id: 'triage',

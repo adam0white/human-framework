@@ -580,8 +580,8 @@ export function createLab(options: LabOptions): Lab {
   };
   if (!buildKnown && typeof fetch === 'function') {
     fetch(
-      location.hostname === 'play.adamwhite.work'
-        ? `/${location.pathname.split('/').filter(Boolean)[0]}/release.json?lab-client=0.4.8`
+      globalThis.location?.hostname === 'play.adamwhite.work'
+        ? `/${globalThis.location.pathname.split('/').filter(Boolean)[0]}/release.json?lab-client=0.4.8`
         : '/release.json?lab-client=0.4.8',
       { cache: 'no-store', credentials: 'omit' },
     )
