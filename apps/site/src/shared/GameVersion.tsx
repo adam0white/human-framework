@@ -6,7 +6,9 @@ export function GameVersion({ id }: { id: keyof typeof releases }) {
   return (
     <span className="game-version">
       <span>HF {release.framework}</span>
-      {'reason' in release && <span className="game-line">{release.reason}</span>}
+      {'reason' in release && typeof release.reason === 'string' && (
+        <span className="game-line">{release.reason}</span>
+      )}
       <span className="game-line">
         <a href={release.release}>Release record</a> · checked {release.checked}
       </span>

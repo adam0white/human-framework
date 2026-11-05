@@ -34,8 +34,11 @@ it('shows each audited release source and its current disposition', async () => 
     expect(card.textContent).toContain(`HF ${receipt.framework}`);
     expect(card.querySelector('a[href*="release.json"]')?.getAttribute('href')).toBe(receipt.release);
     if (receipt.framework.startsWith('3.')) {
-      expect('reason' in receipt && receipt.reason.length > 20).toBe(true);
+      expect('reason' in receipt && typeof receipt.reason === 'string' && receipt.reason.length > 20).toBe(
+        true,
+      );
     }
-    if ('reason' in receipt) expect(card.textContent).toContain(receipt.reason);
+    if ('reason' in receipt && typeof receipt.reason === 'string')
+      expect(card.textContent).toContain(receipt.reason);
   }
 });
