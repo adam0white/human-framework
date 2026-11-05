@@ -309,7 +309,9 @@ export function PersonSheet({
   onRepeat,
   outline,
   injuryNotice,
+  guided = false,
 }: {
+  guided?: boolean;
   frame: Frame;
   id: VillagerId;
   rush: boolean;
@@ -347,10 +349,95 @@ export function PersonSheet({
   const injury = h?.needs.find((need) => need.id === 'injury');
   const places = placesFor(id, frame.rules);
   if (outline?.startsWith('home-')) places.unshift(...places.splice(7, 1));
+  const placeControls = pending ? (
+    <div className="well-risk">
+      <strong>
+        {shortName(id)} → {PLACE_LABEL[pending]} · {jobPhrase(inferredJob(frame, pending))}
+      </strong>
+      <p>
+        {settingWords(riskyPlace(frame, pending))?.replace('can cause injury', `can injure ${shortName(id)}`)}{' '}
+        {forecasts[pending]?.input.personId === id &&
+        forecasts[pending]?.input.placeId === pending &&
+        Boolean(forecasts[pending]?.input.rush) === rush &&
+        Boolean(forecasts[pending]?.input.insist) === insist &&
+        (forecasts[pending]?.input.appeal ?? null) === appeal
+          ? forecastWords(forecasts[pending].prediction.text)
+          : 'Checking the answer…'}
+      </p>
+      <TaskContext job={inferredJob(frame, pending)} village={frame.village} />
+      <button type="button" className="well-send-anyway" onClick={onConfirm}>
+        Send anyway
+      </button>
+      <button type="button" onClick={onCancelRisk}>
+        Back
+      </button>
+    </div>
+  ) : appealOpen ? (
+    <div className="well-appeals">
+      {APPEALS.map((a) => (
+        <button type="button" key={a.id} aria-pressed={appeal === a.id} onClick={() => onAppeal(a.id)}>
+          {a.id === 'children' ? 'For the children' : a.id === 'duty' ? 'Duty' : "You'll be safer"}
+        </button>
+      ))}
+      <button type="button" onClick={() => onAppeal(null)}>
+        No appeal
+      </button>
+    </div>
+  ) : (
+    <div className="well-places">
+      {places.map((p) => {
+        const risk = riskyPlace(frame, p),
+          prediction = forecasts[p];
+        const match =
+          prediction?.input.personId === id &&
+          Boolean(prediction.input.rush) === rush &&
+          Boolean(prediction.input.insist) === insist &&
+          (prediction.input.appeal ?? null) === appeal;
+        const kind = match ? prediction.prediction.kind : null;
+        const answer = risk
+          ? '⚠ risky'
+          : kind === 'willNot' || kind === 'cannot'
+            ? "✗ won't"
+            : kind === 'notNow'
+              ? '◷ later'
+              : kind
+                ? '✓ yes'
+                : '…';
+        return (
+          <button
+            type="button"
+            key={p}
+            className={outline === p ? 'is-outlined' : ''}
+            aria-label={`Order ${shortName(id)} to ${PLACE_LABEL[p]}`}
+            aria-pressed={asked === p}
+            onClick={() => onPlace(p)}
+            onPointerEnter={() => onHover(p)}
+            onPointerLeave={() => onHover(null)}
+          >
+            <strong>{PLACE_LABEL[p]}</strong>
+            <span>{settingWords(JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p))}</span>
+            <small title={match ? forecastWords(prediction.prediction.text) : undefined}>
+              {settingWords(answer)}
+              <span className="well-forecast-long">
+                {settingWords(
+                  match && kind === 'notNow'
+                    ? risk
+                      ? `. ${forecastWords(prediction.prediction.text)}`
+                      : `: ${forecastWords(prediction.prediction.text).replace(/^Later, /, '')}`
+                    : '',
+                )}
+              </span>
+            </small>
+          </button>
+        );
+      })}
+    </div>
+  );
   return (
     <>
       <SheetHeader title={shortName(id)} onBack={onBack} />
       <div className="well-person-body">
+        {guided && placeControls}
         <p>Human village: {settingWords(activityLabel(h?.label ?? 'waiting'))}</p>
         <p>Classic village: {settingWords(activityLabel(c?.label ?? 'waiting'))}</p>
         {injuryNotice?.personId === id && (
@@ -484,93 +571,7 @@ export function PersonSheet({
         </div>
         <TaskContext job={inferredJob(frame, 'site')} village={frame.village} />
         <TaskContext job={inferredJob(frame, 'kitchen')} village={frame.village} />
-        {pending ? (
-          <div className="well-risk">
-            <strong>
-              {shortName(id)} → {PLACE_LABEL[pending]} · {jobPhrase(inferredJob(frame, pending))}
-            </strong>
-            <p>
-              {settingWords(riskyPlace(frame, pending))?.replace(
-                'can cause injury',
-                `can injure ${shortName(id)}`,
-              )}{' '}
-              {forecasts[pending]?.input.personId === id &&
-              forecasts[pending]?.input.placeId === pending &&
-              Boolean(forecasts[pending]?.input.rush) === rush &&
-              Boolean(forecasts[pending]?.input.insist) === insist &&
-              (forecasts[pending]?.input.appeal ?? null) === appeal
-                ? forecastWords(forecasts[pending].prediction.text)
-                : 'Checking the answer…'}
-            </p>
-            <TaskContext job={inferredJob(frame, pending)} village={frame.village} />
-            <button type="button" className="well-send-anyway" onClick={onConfirm}>
-              Send anyway
-            </button>
-            <button type="button" onClick={onCancelRisk}>
-              Back
-            </button>
-          </div>
-        ) : appealOpen ? (
-          <div className="well-appeals">
-            {APPEALS.map((a) => (
-              <button type="button" key={a.id} aria-pressed={appeal === a.id} onClick={() => onAppeal(a.id)}>
-                {a.id === 'children' ? 'For the children' : a.id === 'duty' ? 'Duty' : "You'll be safer"}
-              </button>
-            ))}
-            <button type="button" onClick={() => onAppeal(null)}>
-              No appeal
-            </button>
-          </div>
-        ) : (
-          <div className="well-places">
-            {places.map((p) => {
-              const risk = riskyPlace(frame, p),
-                prediction = forecasts[p];
-              const match =
-                prediction?.input.personId === id &&
-                Boolean(prediction.input.rush) === rush &&
-                Boolean(prediction.input.insist) === insist &&
-                (prediction.input.appeal ?? null) === appeal;
-              const kind = match ? prediction.prediction.kind : null;
-              const answer = risk
-                ? '⚠ risky'
-                : kind === 'willNot' || kind === 'cannot'
-                  ? "✗ won't"
-                  : kind === 'notNow'
-                    ? '◷ later'
-                    : kind
-                      ? '✓ yes'
-                      : '…';
-              return (
-                <button
-                  type="button"
-                  key={p}
-                  className={outline === p ? 'is-outlined' : ''}
-                  aria-label={`Order ${shortName(id)} to ${PLACE_LABEL[p]}`}
-                  aria-pressed={asked === p}
-                  onClick={() => onPlace(p)}
-                  onPointerEnter={() => onHover(p)}
-                  onPointerLeave={() => onHover(null)}
-                >
-                  <strong>{PLACE_LABEL[p]}</strong>
-                  <span>{settingWords(JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p))}</span>
-                  <small title={match ? forecastWords(prediction.prediction.text) : undefined}>
-                    {settingWords(answer)}
-                    <span className="well-forecast-long">
-                      {settingWords(
-                        match && kind === 'notNow'
-                          ? risk
-                            ? `. ${forecastWords(prediction.prediction.text)}`
-                            : `: ${forecastWords(prediction.prediction.text).replace(/^Later, /, '')}`
-                          : '',
-                      )}
-                    </span>
-                  </small>
-                </button>
-              );
-            })}
-          </div>
-        )}
+        {!guided && placeControls}
         <details className="well-construction-details">
           <summary>Construction details and remaining materials</summary>
           <section className="well-construction-inventory" aria-label="Current stores and construction">

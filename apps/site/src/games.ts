@@ -111,9 +111,9 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Valley',
     href: 'https://valley.adamwhite.work',
-    publicNote: 'Valley is still on the older engine; we will check again on 24 November.',
-    line: 'You keep an absent landlord’s seal while managing two hamlets for three years. Their households remember your decisions.',
-    faculties: ['Will', 'Memory and belief', 'A whole life'],
+    publicNote: 'A complete opening episode, from 07:00 to 13:00.',
+    line: 'You hold an absent landlord’s seal. Hear household requests and decide how to answer.',
+    faculties: ['Will', 'Memory and belief', 'Relationships'],
   },
   {
     id: 'voice',
@@ -157,7 +157,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Neighbours',
     href: 'https://neighbours.adamwhite.work',
-    line: 'Help a riverside town reopen its flooded community hall.',
+    line: 'Help six residents of a riverside town reopen their flooded community hall.',
     faculties: ['Relationships', 'Memory and belief', 'Needs and feelings'],
   },
   {
@@ -205,7 +205,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'What the Child Saw',
     href: 'https://child.adamwhite.work',
-    line: 'Elif learns from the work she sees. Choose what to show her as she grows, then let her decide what to do alone.',
+    line: 'Guide Elif through five childhood episodes, with narrated years between them. Show her work, then let her decide what to do alone.',
     faculties: ['A whole life', 'Memory and belief', 'Will'],
   },
   {

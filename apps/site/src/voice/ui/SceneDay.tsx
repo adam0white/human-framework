@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
@@ -32,6 +33,7 @@ export interface SceneDayProps {
   onPersonalReply?: (held: boolean) => void;
   speakRequest?: number;
   onSpeakingChange?: (open: boolean) => void;
+  speakingGuide?: ReactNode;
   onSpeakAvailability?: (available: boolean, caption: string) => void;
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
@@ -585,6 +587,7 @@ function SceneDayContent(
               ×
             </button>
           </header>
+          {props.speakingGuide}
           <div className="v-speaking-body">
             {scene && presentedLines.at(-1) && (
               <p className="v-scene-offer">

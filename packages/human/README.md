@@ -257,7 +257,6 @@ Shared counters debit before each RHS call (8192/sample, 16384/request), interpo
 
 `DEFAULT_NORMS` supplies sourced authoring defaults for `definitions.norms` and calendar validation. Its research and interpretation references retain pending review status and modelling limitations. A held norm is a person's understanding, never a ruling. For daily prayer, supply `definitions.calendar.days[].prayers` and `nextFajrMs`, a `salah` definition with the default sourced provenance and source references, and a `pray` action. A person holding salah as obligatory or recommended receives the five worship duties whose windows have not closed at admission. Existing matching retained duties remain authoritative; earlier missed duties are not invented. Supplied times are offsets from midnight in milliseconds, and the host supplies one-shadow Asr and red-twilight Isha. The framework computes no astronomy or divine acceptance. Ramadan and Eid scheduling are not part of this route.
 
-
 ## Retained portable people (4.4)
 
 `hf-portable-person/1` remains the approximate profile/body/mood passport. `hf-portable-person/2` additionally retains beliefs, source trust, episodes, gists, expectations, contradictions, held norm provenance, continuing commitments, owed duties, exemption evidence, age and the source calendar definition. Runtime clocks, scheduler continuations and RNG remain in the source archive. Unsupported active activities, clinical state, ongoing goals and other unsupported obligations refuse projection instead of disappearing.
@@ -265,7 +264,6 @@ Shared counters debit before each RHS call (8192/sample, 16384/request), interpo
 For a current run, call `inspect` with host perspective, one person, `select: ['persona', 'calendar']`, and `portable: {person, castId, castRevision}`. Keep cast registry validation and claim ownership in the host. For admission, pass an otherwise empty authored memory/agenda opening to `createPerson` with `portable: {person: passport, mapping: {offsetMs, references}}`. Each reference has `kind` (`action`, `entity`, `source`, `norm` or `proposition`), `source` and `target`. The offset must align the source instant with the receiving run. Time-bearing records and age shift together. The referenced receiving actions, people, sources and sourced norms must exist. Missing mappings, collisions, conflicting opening duties and incompatible norm claims refuse the complete admission. The original portable input is retained for exact run replay. Portable admission occurs before the first step; an arriving-person input cannot silently bypass it.
 
 `projectPortablePerson` can project a restored native legacy person with an explicit source `calendar` expressed in milliseconds. Legacy engine 2.21/2.23 and 3.x actor clocks use minutes; the adapter converts their semantic times once. Legacy held norms without provenance require explicit `legacyNormProvenance` plus the actual `legacyNormCatalogue`; the claims must match the sourced receiving catalogue apart from the added provenance. A biography-only or calendar-only historical passport cannot recover memories that it never contained. Preserve the original source archive and use its verified historical replay boundary. This is a bounded retained-state transfer, not an old-save converter or a claim of arbitrary-world portability.
-
 
 ## Authoring identifiers and tuning bounds
 
@@ -362,7 +360,6 @@ Sources: [Netlib fdlibm](https://netlib.org/fdlibm/) and
  * ====================================================
 
 ```
-
 
 ### Narration and game phrasebooks
 

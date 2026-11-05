@@ -203,7 +203,6 @@ This control does not establish general portability, game adoption or a peer jou
 The earlier published 4.2 control correctly rejected persona/calendar at that version. Its negative
 result remains historical evidence; this 4.4 rerun measures the new supported public contract.
 
-
 ### Historical 4.2 control, 2026-10-27
 
 The earlier published 4.2 run passed the work/rest protocol controls and rejected persona/calendar

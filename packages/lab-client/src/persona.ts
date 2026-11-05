@@ -11,6 +11,7 @@ export const PERSONA_LIMITS = {
 export const PERSONA_ORIGINS = new Set(
   [
     'human',
+    'play',
     'pass',
     'murmur',
     'stairwell',

@@ -1,125 +1,134 @@
 {
   "murmur": {
-    "framework": "4.9.0",
-    "commit": "2f787400e357d81975d485162eef05cdb9d6102e",
+    "framework": "4.17.0",
+    "commit": "7ab344bf5f181c8043866078d71b5d3022481126",
     "release": "https://murmur.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "stairwell": {
-    "framework": "4.14.0",
-    "commit": "ecf6da82b7a6e267f4f8165eab0990cb271a614d",
+    "framework": "4.17.0",
+    "commit": "8ff83b59bb3149b19f0ce9a061dd0ce992937043",
     "release": "https://stairwell.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "pass": {
-    "framework": "4.12.0",
-    "commit": "b6e919a8601554aa2aac34045286f1b3cf8f9245",
+    "framework": "4.17.0",
+    "commit": "c7bebaffd00a2e5b64d971d62c73b60ed3ada6c4",
     "release": "https://pass.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "glance": {
-    "framework": "4.14.0",
-    "commit": "e97b91077d9d9f584bf31c8f3fd2ad495d4c5432",
+    "framework": "4.17.0",
+    "commit": "6971b4d72ff0bdb3ac11b6f55119a9ebab90ec8a",
     "release": "https://glance.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "watch": {
-    "framework": "4.15.0",
-    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05",
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "hearsay": {
-    "framework": "4.12.0",
-    "commit": "76ebfb8f73956e1bbdc5cc6318d9f15e453d105b",
+    "framework": "4.17.0",
+    "commit": "f6737badd333a7e889a8a9abb91653aae04b370a",
     "release": "https://hearsay.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "goodhands": {
-    "framework": "4.8.1",
-    "commit": "25d428213bd451eab2fa374be3c9ad499fa04ec2",
+    "framework": "4.17.0",
+    "commit": "b1cdb1802d53729e10e21a5393227cf054bfd75f",
     "release": "https://goodhands.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "valley": {
-    "framework": "3.0.0",
-    "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+    "framework": "4.17.0",
+    "commit": "92f7653478254227edcd0e3c172ba60bc4f5960f",
     "release": "https://valley.adamwhite.work/release.json",
-    "checked": "2026-10-30",
-    "reason": "HF 3.0.0 remains live. HF 4 still exceeds its simulation and saved-history budgets. The next check is scheduled for November 24, 2026, with Child."
+    "checked": "2026-11-05"
   },
   "voice": {
-    "framework": "4.15.0",
-    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05",
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "well": {
-    "framework": "4.15.0",
-    "commit": "19974c5329b6e164346bc5367d2c50ae0f225c3c",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05",
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "warren": {
-    "framework": "4.10.0",
-    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "framework": "4.17.0",
+    "commit": "a964e30dd63477da9ccebea67a4b31d8b00a2c3c",
     "release": "https://warren.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "repair": {
-    "framework": "4.8.0",
-    "commit": "d48782129bbf015e2b2bf1475d144838c095c93f",
+    "framework": "4.17.0",
+    "commit": "fa17feee190ca6f926417717b2b4674026109090",
     "release": "https://repair.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05",
+    "status": "Release source checkpoint; verify the linked live record before central rollout."
   },
   "neighbours": {
-    "framework": "3.0.0",
-    "commit": "7b0dcd1c494b39975219df5ed6ee05d616ba731b",
+    "framework": "4.17.0",
+    "commit": "b7ecb8a8b28702a7e019696ed554f22f6c6f6a01",
     "release": "https://neighbours.adamwhite.work/release.json",
-    "checked": "2026-10-30",
-    "reason": "HF 3.0.0 remains live. The HF 4 port has failing browser checks and a timed-out stress test. Fix and verify the port before deployment; check again November 3, 2026."
+    "checked": "2026-11-05",
+    "status": "Release source checkpoint; verify the linked live record before central rollout."
   },
   "rope": {
-    "framework": "4.15.0",
-    "commit": "3fd8b6e53ff9c1f289d87ea0998f3518db627ae9",
+    "framework": "4.17.0",
+    "commit": "c69a43cd9237d397ed6ea21031f783932c86046e",
     "release": "https://rope.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "commonstead": {
-    "framework": "4.8.1",
-    "commit": "70f107a324aecb61a89e925ec9652eaeb7f36e70",
+    "framework": "4.17.0",
+    "commit": "4daa46e5a0ab070f4a4a6be584366ab488092718",
     "release": "https://commonstead.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "smoke": {
-    "framework": "4.8.0",
-    "commit": "7070afb11b2262ffc5fef8997189f749238ef653",
+    "framework": "4.17.0",
+    "commit": "63c801e71381fc4cc4673329653a1ccc0439ff64",
     "release": "https://smoke.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "word": {
-    "framework": "4.0.0",
-    "commit": "0fbe19a5a5e4dc8915c4406f31f49f0f43990050",
+    "framework": "4.17.0",
+    "commit": "06866be5b594313f2ca71864dc81b8f78234464d",
     "release": "https://word.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "child": {
-    "framework": "3.2.0",
-    "commit": "c6f74826cb1ae4590ee321202da097b344bea131",
+    "framework": "4.17.0",
+    "commit": "5d9f5564100cacda1d8481f5a37c6ed45c811a51",
     "release": "https://child.adamwhite.work/release.json",
-    "checked": "2026-10-30",
-    "reason": "HF 3.2.0 remains live because HF 4 exceeds its daily simulation and reload budgets. The next workload check is scheduled for November 24, 2026, with Valley."
+    "checked": "2026-11-05"
   },
   "days": {
-    "framework": "4.8.1",
-    "commit": "2741f06a0e4c96ffdec26e2e5b6b8874765dc126",
+    "framework": "4.17.0",
+    "commit": "b6371b31786d2f72ed863ddcfd1be592cade81fa",
     "release": "https://days.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
   },
   "lefthand": {
-    "framework": "4.10.0",
-    "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+    "framework": "4.17.0",
+    "commit": "6b4e2c28edaa58579e4c4ff1544ee1c74f9c0db3",
     "release": "https://lefthand.adamwhite.work/release.json",
-    "checked": "2026-10-30"
+    "checked": "2026-11-05"
+  },
+  "island": {
+    "framework": "4.17.0",
+    "commit": "736c4b4a74adbac62633bd69ffd0e093e63df69e",
+    "release": "https://human.adamwhite.work/lab/island/release.json",
+    "checked": "2026-11-05",
+    "status": "Independent source receipt; served as part of this central release."
   }
 }

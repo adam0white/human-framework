@@ -10,17 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adam0white/human-framework": "4.16.0",
+    "@adam0white/human-framework": "4.17.0",
     "@adam0white/lab-client": "https://github.com/adam0white/human-framework/releases/download/lab-client-v0.5.15/adam0white-lab-client-0.5.15.tgz",
+    "@adam0white/lab-kit": "https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.32/adam0white-lab-kit-0.5.32.tgz",
     "react": "19.3.1",
-    "react-dom": "19.3.1",
-    "@adam0white/lab-kit": "https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.32/adam0white-lab-kit-0.5.32.tgz"
+    "react-dom": "19.3.1"
   },
   "devDependencies": {
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.1.2",
-    "fake-indexeddb": "6.2.6",
+    "@vitejs/plugin-react": "6.2.1",
+    "fake-indexeddb": "6.2.7",
     "vite": "8.3.5"
   }
 }

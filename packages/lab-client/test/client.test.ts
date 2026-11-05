@@ -48,6 +48,34 @@ async function waitFor(count: number) {
   await vi.waitFor(() => expect(envelopes).toHaveLength(count));
 }
 describe('linked lab client', () => {
+  it('initializes without browser location when fetch is available', () => {
+    vi.stubGlobal('location', undefined);
+    const fetchRelease = vi.fn(async () => Response.json({ commit: 'abc1234' }));
+    vi.stubGlobal('fetch', fetchRelease);
+    let lab: ReturnType<typeof createLab> | undefined;
+    expect(() => {
+      lab = createLab({ game: 'pass' });
+    }).not.toThrow();
+    expect(fetchRelease).toHaveBeenCalledWith('/release.json?lab-client=0.4.8', {
+      cache: 'no-store',
+      credentials: 'omit',
+    });
+    lab?.dispose();
+  });
+  it('fetches the path-scoped release on the games host', () => {
+    vi.stubGlobal('location', {
+      hostname: 'play.adamwhite.work',
+      origin: 'https://play.adamwhite.work',
+      pathname: '/pass/chapter',
+    });
+    const fetchRelease = vi.fn(async () => Response.json({ commit: 'abc1234' }));
+    vi.stubGlobal('fetch', fetchRelease);
+    createLab({ game: 'pass' });
+    expect(fetchRelease).toHaveBeenCalledWith('/pass/release.json?lab-client=0.4.8', {
+      cache: 'no-store',
+      credentials: 'omit',
+    });
+  });
   it('bounds serialized log messages so a full Unicode burst and later screen deliver', async () => {
     const lab = createLab({ game: 'pass', build: { a: 'log-bytes' } });
     for (let i = 0; i < 59; i++) lab.log('game', '界'.repeat(1000));

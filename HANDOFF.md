@@ -1,3 +1,31 @@
+# UPKEEP integration — 2026-11-05
+
+Remaining: exact final hosted review and green CI; normal merge, deployment and clean release verification. Valley and Child have merged and deployed on HF 4.17 with complete current-version exports. Neighbours has merged its six-resident HF 4.17 edition and release-identity correction; merged-source CI and verified deployment remain. Their original larger workload and performance gates remain unqualified. Island PR2 has merged; its 240-step native and host replay, complete export and all 29 viewer records pass. Central viewer delivery and live verification remain. Repair has resumed public CI after the owner lifted its earlier private-minutes hold. Repair and Neighbours must be verified live on HF 4.17 before central rollout.
+
+This candidate records the November 5 owner direction and GD retirement, resumes the signed central 4.17 adoption, integrates Clarity's action tutorials, and includes MONO's later approval record and path/origin preparation. MONO's source-only full lane passed 388 files and 1,799 tests before this combined dependency update; it is not an exact-head check of this candidate. The existing released client artifacts do not contain the path/origin preparation. Source client 0.5.16 remains under the explicit reader-rollout publication hold: exact central and pending external live reader proofs are required before tagging client16/kit33. It needs its own reviewed immutable release and consumer adoption before a new-origin delivery is claimed.
+
+Dependencies use pnpm 12.16.1, frozen installs, the existing 1,440-minute release-age policy and explicit native build permissions. Worker compatibility is 2026-11-05. Dependabot #12 is folded into this combined candidate; close it as superseded only after merge. Dependabot #11 is declined: requirements.txt is hash-bound by the archived learning-pilot freeze and reproduction runner. Its historical bytes remain unchanged.
+
+Current follow-up checkpoint: 2026-11-12. Reconcile the exact deployed source for the earlier Well/reader/inbox/receiver candidates; verify live engine manifests; inspect the unresolved historical feedback-note cause; check owner readiness separately from automated delivery. These checks are dated because the older receipts cannot establish current source, a human reply or acceptance. Original publication, failed attempts and raw owner/player records below remain historical evidence. Existing 2026-11-10, 11-17 and 11-24 engineering targets remain unless explicitly replaced in the current roadmap.
+
+# Games monorepo authorization — 2026-11-05
+
+Remaining: integrate and verify the games monorepo and path-scoped releases, then independently verify the route and redirects after deployment. The owner authorized `adam0white/games`, `play.adamwhite.work`, and redirects from old game subdomains, and accepted lost saves and progress. Authorization does not establish that the repository, route or redirects exist or are live. No deployment is recorded by this change.
+
+# HF 4.17 publication and central adoption — 2026-11-04
+
+Remaining: central adoption is unfinished until its required local checks, exact signed-commit review and CI, normal deployment and live release metadata are verified. Whole Watch W1/W2, Child/Valley/Neighbours qualification, other open game work and paused player acceptance remain. This library release does not close them.
+
+[HF 4.17.0](https://github.com/adam0white/human-framework/releases/tag/v4.17.0) is published from [3f75eb58](https://github.com/adam0white/human-framework/commit/3f75eb58e2f5af064775351e595e7bd150ac0a51). [PR #121](https://github.com/adam0white/human-framework/pull/121) merged after independent exact-source CLEAR and [source CI 41804442076](https://github.com/adam0white/human-framework/actions/runs/41804442076) succeeded; the merge tree is identical. [Main CI 41808490504](https://github.com/adam0white/human-framework/actions/runs/41808490504) also succeeded. The two source personas independently reviewed knowledge boundaries and numerical behavior.
+
+The normal release repeated 388 passing files and 1,798 passing tests, with two files and five tests skipped, in 545.909 seconds including packing and publication setup. A prior attempt failed the SSH tag lookup before tests; the successful retry used HTTPS with existing GitHub credentials and unchanged release checks. All 9,059 tracked hashes stayed fixed. The suite lock was gone and all 489 sampled exact process identities were absent; sampling is not a universal descendant inventory. The tag signature verified.
+
+[Publisher 41811804571](https://github.com/adam0white/human-framework/actions/runs/41811804571) succeeded. npm integrity and registry-linked provenance payload/source/publisher consistency passed. All 197 package members match the GitHub artifact in contents, type, mode, link and size. The Sigstore certificate/signature chain was not independently audited. The own release lock and normal temporary release directory were cleaned; source trees remain held. Engine build is `31b2e76cda7c85a9429256be6b75d76bfcb346bf0eb9e3d047884bc0f6755894`; schema is `5ccc2e20c0cb082825cb64fd91c7cff7c57c2907e6c93713780f9d0508d27001`.
+
+This adoption updates the site's exact SDK pin and published-client dependency override to 4.17.0. Published client 0.5.15 and kit 0.5.32 artifacts remain unchanged; the legacy 3.x runtime remains separate. The tagged `bodyForecast` migration and exact-engine old-save refusal remain in force. No new forecast UI or target sleep prediction is added. The private body-ownership prototype and its five pending central callers are separate work.
+
+The isolated-candidate checkpoint below is historical; its pending release statements describe preparation before publication.
+
 # HF 4.17.0 isolated observer candidate — 2026-11-04
 
 Remaining: two new independent final source reviews, root full checks, signed commit and exact green CI, normal publication with provenance verification, then separate game adoption. This is an uncommitted local candidate, not a ready or published release. Previous reviews and prototype checks do not qualify this isolated source.
@@ -221,7 +249,6 @@ Protocol and budget reference: the playtest director owns authorized HF 3 lab ro
 The existing $5 experiment envelope is split: $4 local scripts, including $0.207 debited for documented historical experiments, and $1 for the translator. Local durable reservations live outside git; the translator reserves $0.04/pair in one conditional R2 counter, at most 25 pairs ever and ten/day. Never delete either budget to recover capacity. The new AI binding is used only by fixed-model translation. Worker errors circuit-break future admissions; player confirmation supplies only a currently listed canonical mention to Halil now. Normal menu input remains available, and replay does not call a model. Public request logging remains off.
 
 Clef labels on reports and new inbox notes are opt-in suggestions for a person, never automatic routes or ledger writes. Daily run receipts and remaining work: `~/code/.lab-scratch/wai-daily/report.md`; coordinator ledger lines: `~/code/.lab-scratch/sweep/wai-ledger.md`. The owner reviews the experiment afterwards. Synthetic Workers AI players are weaker evidence than Codex, owner and friend play.
-
 
 ## Frictionless recording and feedback — owner, 2026-10-23
 

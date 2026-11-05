@@ -579,7 +579,12 @@ export function createLab(options: LabOptions): Lab {
     return true;
   };
   if (!buildKnown && typeof fetch === 'function') {
-    fetch('/release.json?lab-client=0.4.8', { cache: 'no-store', credentials: 'omit' })
+    fetch(
+      globalThis.location?.hostname === 'play.adamwhite.work'
+        ? `/${globalThis.location.pathname.split('/').filter(Boolean)[0]}/release.json?lab-client=0.4.8`
+        : '/release.json?lab-client=0.4.8',
+      { cache: 'no-store', credentials: 'omit' },
+    )
       .then((r) => (r.ok ? r.json() : {}))
       .then((r: Record<string, unknown>) => {
         build = {

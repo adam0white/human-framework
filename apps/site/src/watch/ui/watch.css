@@ -2838,3 +2838,48 @@
 .w-dusk .w-day {
   font-size: 1rem;
 }
+
+/* During the guide, show that each watcher is an actionable control. */
+.w-dusk.is-guided .w-roster .w-person {
+  border: 2px solid #e8aa63;
+}
+.w-first-guide [role="status"] {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffd69c;
+}
+
+/* Put the first actionable watcher immediately after the guide. */
+.w-dusk.is-guided .lk-sheet-body {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 899px) {
+  .phase-dusk .w-stage:has(.w-dusk.is-guided) {
+    grid-template-rows: 44px 100px minmax(0, 1fr);
+  }
+}
+/* Let the guided body and its controls participate in the same scroll flow. */
+.w-dusk.is-guided {
+  overflow: auto;
+}
+.w-dusk.is-guided .lk-sheet-body {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+/* Keep the active post choices after the guide in the same flow. */
+.w-dusk.is-guided .lk-sheet-body {
+  display: contents;
+}
+.w-dusk.is-guided .lk-sheet-body > *,
+.w-dusk.is-guided > .lk-commit {
+  flex: 0 0 auto;
+}
+.w-dusk.is-guided .w-first-guide p {
+  margin: 4px 0;
+}
+@media (max-width: 899px) {
+  .phase-dusk .w-stage:has(.w-dusk.is-guided) {
+    grid-template-rows: 44px 70px minmax(0, 1fr);
+  }
+}

@@ -279,7 +279,6 @@ unchanged; host replacements and extensions retain precedence. This choice is
 saved in the lexicon and changes recorded prose, not decisions or RNG. Hosts must
 pin the choice in replay setup. Unknown host prose still needs host-authored wording.
 
-
 `Lexicon.variety` varies assent and deferral replies by person and minute without consuming RNG;
 it is read by ordinary `decide` and `predict`. It also varies `reviewLine` by
 person and day. `Lexicon.nounActions` uses “did” and “doing” around an action label
@@ -410,7 +409,6 @@ Limits: 24 rules, 8 conditions each, 16 retained examples per rule, 256 recent e
 
 - `ENGINE_VERSION` 2.2.0 (2026-10-14, release 2.2.1) grades each acquired action independently. Success of another action no longer counts as a failure. The 2.1.0 → 2.2.0 migration stamps the version and preserves optional method records. Same-action failure, source trust, decay and restore bounds remain unchanged.
 
-
 ### Received consequences (2.3.0)
 
 `prospection/` owns optional `Person.prospection`; its entries retain source, `told` or host-seeded `known` channel, received time and any own completed-trigger time. `Percept.consequences` carries typed `ReceivedConsequence` entries; `withdrawConsequences` carries source-local id/revision withdrawals. Both are acquired only after attention from an external `actorId`, addressed to this person or broadcast with no target. Self testimony and testimony explicitly addressed to another recipient are rejected. Invalid or conflicting combined batches mutate no prospection state. No direct observation channel, host utility value or invented goal progress is admitted. Known setup claims are described below.
@@ -462,7 +460,6 @@ A person can anticipate their own body during exertion they know must follow an 
 
 Limits come from the body model: exertion relaxes toward the current effort; only a person with the opt-in fatigue store (2.6.0, `body.depletion`) carries a long ascent into the descent. An open fast's hunger damping applies (thirst is not damped). Unfelt sleep debt stays unfelt, host surroundings are not applied, and nothing plans rests on the way. The [control](https://github.com/adam0white/human-framework/blob/v3.2.0/packages/human/examples/body-forecast-control.ts) shows a rested person taking the far point, a depleted person taking the near one, the same depleted person going far when the return is not declared (ablation), a fed person at 20:00 weighing a harder return, and identical results in a renamed domain.
 
-
 ### Evening review, muhasaba (2.7.0)
 
 The second slice of [research/reconciliation.md](../research/reconciliation.md) §7: once a day, from `at` (default 21:00) or at the day's close if the evening passed, a person with `enableReview` looks over the commitments the chronicle recorded as kept or broken since their last review. Each broken one (never a released or excused one: 2:286) forms or renews a _resolve_, an if–then intention for its next occasion (E1, Gollwitzer & Sheeran 2006). While a matching commitment is pending, `consider()` adds one bounded `review:resolve` term (each resolve once per option, clamped to ±0.3) with the sign of that commitment's own term, at most `resolveScale` (0.3) × strength. Strength gains half the remaining headroom per lapse, keeps 60% when the commitment is kept, and halves over seven days. Held styles: `accounting` (Q 59:18, where a daily reading of "tomorrow" is an inference; ʿUmar's saying reported by Tirmidhi after 2459, an athar) forms full resolves and feels nothing extra (an engineering mapping to E3, self-compassion after failure); `ruminating` forms weak resolves and feels some distress (E4, abstract repetitive thought); `none` never reviews. `reviewLine(p)` gives the person's words: "I didn't keep the evening task. Next time I'll be ready when it comes."
@@ -472,6 +469,7 @@ Limits: the review reads commitments only, not methods or promptings; it models 
 ### Game requests: going along, fullness, a voice's word (2.8.0)
 
 From the games' requests ([triage](game-requests-2026-10-18.md)). Each piece is opt-in or new API, so a host that uses none of it continues exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).
+
 - **Going along.** `Affordance.alongside: PersonId[]` names people going this way (unlike `with`, who take part). For each known, living tie in it, `consider()` adds `together:<id>` = 0.12 × closeness. `decide(p, offers, { reconsider: true })` drops the running activity's inertia bonus for that one decision, for a host-forced review after something changed (a tug, a call); promise inertia stays. In the [control](https://github.com/adam0white/human-framework/blob/v3.2.0/packages/human/examples/game-requests-control.ts) a person resting beside a close partner goes on with them in 12 of 12 seeds only with both; either alone leaves 0 of 12.
 - **Fullness.** `enableFullness(p)` or `enable: { fullness: true }`: an offer advertising food, water or relief to a need already past its comfort level gets `full:<need>` = −0.03 × gain × over² (negative alliesthesia). Idle choice then falls through to waiting or sitting: 120 sips in eight full hours fall to 2. HF's `relief` is pain relief. This 2.8.0 slice had no bladder model; HF 2.21.0 later added opt-in `enableBladder`, with `voidsBladder` offers and completion-only `voidedBladder` effects.
 - **A voice's word.** `seedVoice(p, voiceId, trust, { replace? })` sets an authored starting trust on an existing person. `noteVoicePromise(p, voiceId, { kept, at, action })` moves trust by whether the voice did what it said: kept gains 0.1 of the headroom, divided by 1 + the decayed count of kept promises for that action; broken loses 0.25 of the trust.
@@ -480,6 +478,7 @@ From the games' requests ([triage](game-requests-2026-10-18.md)). Each piece is 
 ### Game requests: several commitments, cued responses, a resolve's name (2.9.0)
 
 From the polish requests filed against 2.8.0 ([triage](game-requests-2026-10-18.md#outcome-hf-290-2026-10-19)). Scope: four small generic changes and three doc notes; no new faculty. Each is opt-in or additive except the first, which changes only outcomes that name two or more commitments. It does not cover: a per-response half-life (no source gives phrases different decay), a separate `reviewLabel` (labels are documented as noun phrases instead), negative goal terms (goals stay attractors by design), or revising a response in review (roadmap §3b).
+
 - **Several named commitments.** When `Outcome.fulfills` (default: the activity's `Affordance.fulfills`) lists two or more ids, every listed commitment that is pending and in window is kept, and no other. With one listed (or none of several eligible), one completion keeps the earliest-ending match, explicit or by action, as before, so a single listed commitment can still lose to an earlier implicit match. In the [control](https://github.com/adam0white/human-framework/blob/v3.2.0/packages/human/examples/game-requests-29-control.ts) one dinner keeps a word to a friend and the daily call.
 - **Cued responses.** `PromptingResponse.cue`: an action, an offer tag, or the opposing norm or goal. At a prompt the person uses the most practised response whose cue matches, else the most practised uncued one; a cued response never serves another prompt (the literal "global best" fallback would let a phrase learned at the alarm turn the person from gossip, the case the request reports). Without cues this is the 2.4.0 rule exactly. Each response used at a decision point gains practice once.
 - **Practice half-life.** `enablePromptings(p, { practiceHalfLifeDays })`, one value per person (the need is the host's time scale), default 60 days. Practice decays lazily from last use, so a new half-life applies to disuse already elapsed: a week unused leaves 0.80 at 0.74 by default, 0.40 at seven days.
@@ -525,7 +524,6 @@ Relationships (`social.relationships`) and impressions (`social.impressions`) ar
 
 `chapter-clock.ts` owns only a seeded monotone real-hour watermark and bounded24-slot return calculation. It does not own Person state or step the actor loop. The browser host pins its input and outcomes, authors qualified assignment/local encounter fiction and applies existing passport gates before an atomic shelf claim. Secret biographies, host roles and storage remain outside `packages/human`. HF 2.18.0 kept engine 2.17.0 at introduction; this helper does not set the current engine version.
 
-
 ## Explicit host setup and effects
 
 `PersonSpec.habits` and `PersonSpec.expectations` copy authored records in source order, including nested cues and need deltas. Omission keeps the prior creation path. Setup rejects non-finite/out-of-domain numbers, empty action/key identifiers and lists beyond the existing40-habit/150-expectation bounds with `RangeError`. Duplicate records remain as authored; the existing matcher and learning rules decide their meaning. Setup does not sort, learn or draw RNG.
@@ -535,7 +533,6 @@ Relationships (`social.relationships`) and impressions (`social.impressions`) ar
 `confirmObservedReputation(p, prop, truth, now, table?)` composes existing belief confirmation, source recalibration and reputation-belief application in the same order as Hearsay's manual wrapper. It introduces no formula, attention or observation inference and returns the existing detached misled-source IDs. The host supplies only facts the person observed.
 
 `qalbReading(p)` returns detached, attributed descriptions of retained attention evidence, held norms/conviction, mood and separate trust records. Missing memories do not show absent attention. Sources justify this narration lens, not a diagnosis. No state, RNG, decision term, spiritual score, rank or ruling is produced. Hosts must not present the rows as spiritual health or religious assessment. The control compares the complete state/RNG and next decision before and after a read. Inner-life behavioral faculties remain separate deferred work.
-
 
 ### Optional community death handling, upbringing and forecast context (3.1)
 

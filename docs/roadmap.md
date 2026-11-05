@@ -1,10 +1,37 @@
 # Roadmap
 
-**Current routing, 2026-10-26.** The [HF 4.0 owner direction](owner-directions-2026-10-18.md#2026-10-26--hf-40-everything-on-holistic-bolder-games-adam-verbatim), recorded in `52a811f` and reconciled at `f4ab19b`, supersedes new 3.x feature targets: stop new opt-in 3.x minors; 3.x patches only. Remaining buildable engineering is ACTIVE under the 4.0 director, with permanently-on faculties and consolidated inputs/outputs. Older version labels and opt-in proposals below remain historical scope descriptions, not current release instructions. These seven gates are design inputs, not seven shipped faculties. Owner review remains 2026-11-03; no all-HF-complete claim follows.
+## Target reconciliation — 2026-11-05
+
+This table replaces expired targets for the listed open work. It does not rewrite historical receipts or claim delivery. Future targets retain their dates. Each checkpoint is an agent follow-up, not an owner appointment.
+
+| Open work                                                                             | Next checkpoint | Reason                                                                                                                                                          |
+| ------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| P3 host stale-read audit; P5 memoization                                              | 2026-11-12      | Recheck current HF 4.17 hosts first; memoization requires complete state, offer, suggestion and clock invalidation.                                             |
+| P6/R2 V10 decay; P11 live ties; R2 V11 fine allocations                               | 2026-11-12      | Current profiles and retained-knowledge requirements are missing; old HF3 timings do not justify a representation change.                                       |
+| Q33 guardian absence; Eid missed-prayer cost                                          | 2026-11-12      | The required owner/research decisions remain unrecorded; preserve the standing rules.                                                                           |
+| R2 1b wording adoption; flat daytime offers                                           | 2026-11-12      | Bind actual current host wording and offers before changing policy or claiming adoption.                                                                        |
+| Joint availability and distinct-deed identity                                         | 2026-11-12      | Reachability and report identity need explicit contracts; retain the later habituation target.                                                                  |
+| Late-contact age documentation; retelling test duplication; lifecycle heading spacing | 2026-11-12      | Check exact current documentation and equivalent test coverage before editing or deleting controls.                                                             |
+| Ordinary game ask routing; P10 yearbook reader; F-192 host receipts                   | 2026-11-12      | Source implementation, public reading support and actual receiving evidence remain separate.                                                                    |
+| Cloudflare CLI trial                                                                  | 2026-11-12      | Workspace build output and upload equivalence remain unproved; retain Wrangler and its rollback.                                                                |
+| Narration vocabulary proposals                                                        | 2026-11-12      | Published admission/README changes do not establish adoption of optional authored wording.                                                                      |
+| Watch W1/W2 and outstanding warning, cover, fight-call and reading-pace asks          | 2026-11-12      | Whole-watch prediction and physical reply remain unproved; reconcile later source fixes before opening duplicate work.                                          |
+| Voice encounter and body-history presentation asks                                    | 2026-11-12      | Actual encounter evidence and versioned past felt readings are needed; old readings cannot be reconstructed as fact.                                            |
+| Well F2731–F2750, F2994, F2997, F2999 and F474                                        | 2026-11-12      | Inspect current personal context, touch/delivery, meal thresholds, reachability and source/live status; keep each original request and its acceptance separate. |
+
+| hf401 step-cost delivery and remaining game workload measurements | 2026-11-12 | Published HF4.17 and passing bounded ports do not qualify the old continuous Child/Valley budgets. Reconcile exact release and workload receipts before closing this row. |
+| H3 lockstep export review | 2026-11-12 | Review the existing caller-owned export contract only. Multiplayer remains deferred; no service or network implementation is authorized here. |
+| H3 speech host adoption | 2026-11-12 | Check actual current host receipt and abuse controls; the built opt-in recipe alone does not establish adoption. Broader design keeps November15. |
+| H3 starter lab, validation and deployment gaps | 2026-11-12 | Inspect the current starter against the three recorded gaps before choosing a bounded follow-up. The copied template is not full integration. |
+| H3 cast mapping and richer host adoption | 2026-11-12 | GD is retired. Recheck current registry exclusions and published native admission; no account transfer or custody claim follows from an old scratch mapping. |
+| H3 prediction availability and labels | 2026-11-12 | Verify availability and eligible labels against the registered cohort. Human-evidence verification and real prediction remain pending; do not recruit or invent labels. |
+
+**Historical routing, 2026-10-26.** The [HF 4.0 owner direction](owner-directions-2026-10-18.md#2026-10-26--hf-40-everything-on-holistic-bolder-games-adam-verbatim), recorded in `52a811f` and reconciled at `f4ab19b`, supersedes new 3.x feature targets: stop new opt-in 3.x minors; 3.x patches only. At that checkpoint, remaining buildable engineering was ACTIVE under the 4.0 director, with permanently-on faculties and consolidated inputs/outputs. Older version labels and opt-in proposals below remain historical scope descriptions, not current release instructions. These seven gates are design inputs, not seven shipped faculties. That November3 review target is historical. Current follow-ups are above; no all-HF-complete claim follows.
 
 The single list of open deferred work and targets for HF and its example games, updated 2026-10-25. Finished items are removed; release history is in [history.md](history.md) and [CHANGELOG.md](../CHANGELOG.md). The owner authorized continued roadmap implementation on2026-10-25; [AGENTS.md](../AGENTS.md) defines the current v3 and cast increments. The dated items below remain open until their own evidence and delivery requirements are met.
 
 **Historical version classes.** The original review used these labels:
+
 - **2.x**: behaviour-neutral (no replay, fixture or hash changes); fits any minor release after 2.1.0.
 - **2.2**: needs an `ENGINE_VERSION` bump because it moves replays or changes decisions; batch these into one engine release, re-record the Games 1–2 playtest fixtures and bump the Game 3 scenario.
 - **3.0**: breaking API change (removal or rename).
@@ -26,9 +53,9 @@ The [2026-10-27 owner direction](owner-directions-2026-10-18.md#2026-10-27--ever
 
 Targets: existing `hf401` step-cost patch **2026-11-03**; run bridge/replay recipe **2026-11-10**; existing 4.1 contract checkpoints and Child's daily-clock performance diagnosis **2026-11-17**. Proposed game port candidates **2026-11-24**, first delivery/blocker review **2026-12-01**. Portable admission still needs a passing third-world gate and a delivery date after its design checkpoint. Valley keeps the semantic-memory review **2027-01-15**; proposed all-eighteen acceptance review **2027-01-22**, conditional on the shared contracts. These are engineering targets, not permission for deferred panels or claims that games have moved. Each game maintainer owns its exact 4.x pin, replaying export, exact green CI and clean deployed receipt; the owner accepts the all-games outcome.
 
-## Queue held by the soft stop (2026-10-27)
+## Historical queue under the soft stop (2026-10-27)
 
-Owner, 2026-10-27: no new Claude agents until the owner lifts the soft stop; Codex is paused. HF 4.0 is the exception and runs to its done-means. Each item below starts when the stop lifts, in this order.
+The following records the October27 stop. The November5 direction supersedes the Codex pause and uses no Claude for this assignment. Owner, 2026-10-27: no new Claude agents until the owner lifts the soft stop; Codex is paused. HF 4.0 is the exception and runs to its done-means. Each item below starts when the stop lifts, in this order.
 
 | Item                      | Work                                                                                                                                                                                                                                                                                                                                                                                         | Target     |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
@@ -74,7 +101,7 @@ The owner approved the 4.0 scope on 2026-10-27: "All good decisions (codex to 4.
 
 ## Horizon 3: first probes and remaining targets (2026-10-25)
 
-The [eight first probes](hf-roadmap-2026-10-20.md#horizon-3-long-bets) ran without an H3 release. Narrow GO does not establish emergence, human enjoyment or predictive validity. The 4.0 director owns remaining engineering; owner review remains2026-11-03. Historical targets below do not authorize 3.x feature minors.
+The [eight first probes](hf-roadmap-2026-10-20.md#horizon-3-long-bets) ran without an H3 release. Narrow GO does not establish emergence, human enjoyment or predictive validity. The earlier 4.0-director assignment and November3 review below are historical. The reconciliation table above assigns current follow-ups; GD is retired. Historical targets below do not authorize 3.x feature minors.
 
 | Item          | Remaining work                                                                                                                                                                                                                                                                                                                                                                                               | Target                                              |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
@@ -134,6 +161,7 @@ The coordinator accepted these low findings for the next source batch on 2026-10
 The full list, with module names and research references, is [faculty-inventory.md](faculty-inventory.md). Counts (2026-10-05, against engine 2.0.0): 142 faculties, 79 Done, 34 Partial, 23 Missing, 6 Excluded. All Missing and Partial rows are **unscheduled** unless named in §1–2 above; none blocks a current game. A row the next goal needs moves into §1 or §2 with a target.
 
 **Missing (23).**
+
 - Body and perception: temperature and specific nutrients; attention that costs time. Bladder, involuntary doze and explicit quantity observation are implemented as opt-ins in the 2.21 release; release receipts are recorded in [releases.md](releases.md).
 - Memory and reasoning (bounded multi-step planning and present bias done in 2.12.0): interference, false memory and reconsolidation; inference between beliefs; motivated reasoning; metacognition; imagination and counterfactuals.
 - Affect and commitments: fear habituation; implementation intentions; life purpose, vocation and life narrative.
@@ -143,6 +171,7 @@ The full list, with module names and research references, is [faculty-inventory.
 - Composites: creativity, humour, dreams.
 
 **Partial (34)**, grouped by what is missing:
+
 - Opt-in long-run faculties that work but are off by default: experience over years, lasting gists, trait and value change over life, chronic onsets and natural death.
 - Life course and family: life stages, developmental curves, childhood, physical and aptitude inheritance (no passion), kinship and household, attachment, moral development, sexuality and pregnancy (pregnancy only; no complications).
 - Mind: working memory, semantic knowledge, autobiography, learning from told experience (host-driven `retell` only), reflection that revises methods, skills aging (disuse only, no old-age decline).
@@ -207,11 +236,12 @@ Each graduated game has a deferred list; ordinary engineering is active and the 
 - _The Day You Say Nothing_ (Game 2): [voice.md, Deferred](games/voice.md#deferred).
 - _The Night Watch_ (Game 3): [watch.md §12](games/watch.md#12-after-graduation-deferred-features), targets T1 (first pass if resumed), T2 (needs an HF release first: Q50, larger cast), T3 (polish). It carries the H2 game rows P8, P10, S7, Q49, Q50, Q51. P10 source qualification (2026-10-29): public closed-day records are available in HF 4.11; a supported native-yearbook reading is still unproved. CENTRAL-GAPS owns that follow-up by **2026-11-03**. Preserve native history and keep this separate from the available game-host work.
 
-**Next set of games: classics rebuilt with HF (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--next-games-are-classics-with-hf-baked-in-adam-verbatim)).** After HF 4.x folds in the planned faculties and most games are migrated to it, the next new games are not new ideas: they are replicas of classic games or known game types, rebuilt with HF people inside. No new concepts are drafted before then. Titles may be bold parodies that nod openly to the original (owner, 2026-10-27); the owner chose the wagon trail as the only classic and dropped the other five as too polished to replicate (2026-10-27). Target: propose a shortlist when 4.x is in place and most games run on it (earliest after the 2026-11-03 owner review).
+**Next set of games: classics rebuilt with HF (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--next-games-are-classics-with-hf-baked-in-adam-verbatim)).** After HF 4.x folds in the planned faculties and most games are migrated to it, the next new games are not new ideas: they are replicas of classic games or known game types, rebuilt with HF people inside. That prohibition is historical and superseded by the November5 ongoing idea list and new-games direction in AGENTS.md. Titles may be bold parodies that nod openly to the original (owner, 2026-10-27); the owner chose the wagon trail as the only classic and dropped the other five as too polished to replicate (2026-10-27). Target: propose a shortlist when 4.x is in place and most games run on it (earliest after the 2026-11-03 owner review).
 
 **Named design approaches and game categories (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--big-picture-taste-named-design-approaches-categories-adam-verbatim)).** After HF 4.x, alongside the classics: a few named, carefully chosen design approaches that follow great games and game makers, each held by a designer persona and used across several games, so the games stop sharing one look and feel. The site groups the games into categories instead of one flat list of 20+. Human taste comes from the owner, friends on selected games and later Show HN; the LLM panel stays a filter for bugs and clarity. Owner decided 2026-10-27: adopt Chronicle, Inner Voice, Desk and Clock across the whole game, no probe first, and the five site categories. Target: start after HF 4.x ships, earliest after the 2026-11-03 owner review.
 
 Site-wide, from the R2 reviews (all unscheduled):
+
 - R2 V5: the framework is bundled once per worker; serve the hindsight job from the colony worker.
 - R2 V6: worker download waits for the entry JS; a small Vite plugin for `<link rel=prefetch>`.
 - R2 S2, S4: main-thread long tasks and Game 2's 12-day skip on a low-end phone; take a Chrome trace at 4× CPU throttle.

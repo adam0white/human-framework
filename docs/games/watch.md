@@ -1,5 +1,9 @@
 # Game 3 — _The Night Watch_
 
+## Current overdue follow-up — 2026-11-05
+
+Next checkpoint: **2026-11-12** for Watch W1/W2; F289, F359–F362, F423 and the October 19 polish list. Whole-watch prediction and actual caution/reply speech remain unproved. Reconcile F309, F1599 and F2113–F2116 against later source fixes before opening duplicate work; source fixes do not establish owner feel. This replaces their expired review targets; later future targets and the literal historical records below remain unchanged.
+
 **Current cast and opening.** The six canonical watchers are Tamar, Kian, Samira, Idris, Danyal and Meryem. Tamar, Kian and Samira arrive on night 1; Idris and Danyal on night 2; Meryem on night 3. The two-person opening in §2 and the Mara/Joss/Ruslan/Yunus table in §8 record the earlier design. Their names remain historical evidence.
 
 The central site was verified on 2026-10-26 at signed `00dcdad`, with published HF 3.2.0 / engine 3.2.0, library 3.2.0 and `dirty:false`. It includes lab-client 0.4.11 and lab-kit 0.5.12. See the [site receipt](../releases.md#central-site-32-delivery-2026-10-26) and live [release.json](https://human.adamwhite.work/release.json). External-game adoption and player acceptance need separate receipts.
@@ -42,6 +46,7 @@ At 15 minutes a year, Mara's children come of age around evening 3: the inherita
 **Permanent losses short of death** (so the long run never settles into a safe equilibrium): whole households leave after a bad winter (HF decides from mood, ties and trust); some wounds end a person's time on the wall (a limp for life); a house burns; a wall section is lost for a year. Growth costs too: more grain draws more thieves, a longer wall has more posts than people. These are irreversible map and chronicle changes, never undone within a volume.
 
 **What carries across generations:**
+
 - **Stories.** Memorable nights become lasting gists people retell (HF L1, conversation); a child who hears how the east wall broke fears it before standing there.
 - **The Keeper's reputation:** a newborn's trust starts from the household's stories.
 - **Habits and values** by upbringing exposure (L2), **temperament** by loose heredity (`createChild`; a tendency with wide noise, never a destiny).
@@ -160,6 +165,7 @@ The first night alone loses 0.5, 4.0 and 6.3 sacks. The matched plan beats the m
 **Played (desktop 1280×800, phone 360×690).** A matched first night lost nothing. Standing posts against an east warning lost sacks at the empty east wall, and the dawn page said "Nobody stood the east wall."
 
 **Review (game designer, Opus).** Accepted:
+
 - The dawn page names an empty section and says where the scout was wrong.
 - The Keeper's lantern counts at an empty stretch.
 - No rope wear while the bell still rings.
@@ -169,6 +175,7 @@ The first night alone loses 0.5, 4.0 and 6.3 sacks. The matched plan beats the m
 - A clearer dawn heading.
 
 Rejected for G3-1:
+
 - A vaguer warning spanning two sections, to make posting a real split. It is a director question for G3-3; G3-2's people add choice of their own.
 - A gentler first night. The first night is already one threat with an honest scout. Losing a third of the granary by ignoring him is what the gate asks for.
 
@@ -197,6 +204,7 @@ G3-2 (`sim/gate2.test.ts`) approximates "a tester names one fear and one bond wi
 **Played (desktop 1280×800, phone 360×690, two nights each).** A tired Kian walked home before dawn and the card offered to call him back. On the phone the card overlays the top of the map.
 
 **Review (game designer, Opus).** Accepted and done:
+
 - Dozing no longer reads as fear.
 - Fear lasts across nights.
 - Reads show their reason.
@@ -206,20 +214,24 @@ G3-2 (`sim/gate2.test.ts`) approximates "a tester names one fear and one bond wi
 - The splice line no longer names a watcher.
 
 Not done:
+
 - Talks (spec §4) are deferred to G3-3.
 - Mara and Joss sharing a night, and spreading cards across the cast, are left to tuning.
 - Urge and insist share strength 0.6 by design: insist differs by HF's flag (compliance under protest, no trust earned).
 - Day sleep is unchanged. Drowsiness by 02:00–04:00 comes from the framework's sleep-pressure calibration.
 
 **Review (wildcard: a charge nurse, Sonnet, played on a phone).** Accepted:
+
 - Say what ask, urge and insist do, and what the rope is.
 - Hide ties to people who haven't arrived ("close to Joss" on night 1).
 
 Found while acting on the reviews:
+
 - A family card read the substitute against a post still held by the leaver.
 - Walking home was read as fear of the place.
 
 Rejected:
+
 - Cards that hold until answered. Slowdown rather than pause is the game direction.
 - Dawn advice ("put someone on the east wall"). The dawn page already says "Nobody stood the east wall."
 
@@ -230,6 +242,7 @@ Deferred: saving a night in progress (done in G3-4) and two small UI overlaps (s
 This phase adds the year around the winter and play across generations.
 
 Code:
+
 - `sim/season.ts`: the year.
 - `sim/director.ts`: winters from year 2.
 - `sim/life.ts`: aging, courtship, births, leaving, newcomers.
@@ -297,6 +310,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
   - Resuming a page reaches the same end state as the unbroken run (`sim/years.test.ts`), and an export made after resuming still replays from the seed.
 
 **Checks, headless.**
+
 - `sim/years.test.ts`:
   - Three years on one seed: harvest, fair and winter lines, and annals.
   - The three-year export replays to the same full hash.
@@ -318,12 +332,14 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - The G3-1 and G3-2 gates still pass. They measure the first three nights, which are unchanged.
 
 **Decisions.**
+
 - Played nights run back to back from the first dusk.
 - Failing a winter question costs only a chronicle line.
 - Resettlement is cut: a village that falls ends its volume.
 - "Three nights nobody comes" is not built.
 
 **Review (wildcard: a phone player on 360×690, Sonnet).**
+
 - _What they said:_ the player lost the first winter twice, on nights 4 and 5, when the granary ran out. They got no dawn for the last night and no warning beforehand. "a village that scatters after four or five nights is too harsh for a first winter."
 - _What mattered most to them:_ dawn quotes that name a person and a place ("Joss got me off the wall. I owe him.").
 - Accepted and done:
@@ -334,6 +350,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - Deferred to G3-4: eleven phone and feedback items (repeated dawn lines, the shifting lantern row, the card over the scene, the chronicle menu, the stale watcher at a post, the blank map, the hidden speed bar, bell feedback, similar talk answers, tap-to-move, leftovers). All were done in G3-4.
 
 **Review (game designer, Opus, 1280×800).** The reviewer played two years. Part of the play came before the first-winter change, so their run 1 fell on night 4.
+
 - _Their verdict:_ the second year produced the first real long-run story: a wall came down where it was climbed, a hungry spring, refugees, a birth, aging in words, bonds from shared nights.
 - Accepted and done:
   - The Keeper's read of people no longer fades to "you don't know them yet" over the summer. Lasting cues hold and are marked "from last winter" (`sim/reads.ts`, tested in `sim/years.test.ts`).
@@ -350,6 +367,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - Deferred to G3-4: #3–#22. G3-4 did the heir, routine nights, the fair, the birth card, saves, winter questions, taglines and ranked talks. Still open: #7, #13 (more person cards), #16, #19 and #21 (sprites); see [§12](#12-after-graduation-deferred-features).
 
 **Played (Claude Browser pane, 2026-10-04).**
+
 - Desktop 1024×768:
   - The first winter of a new chronicle with no planning reached the thaw. The granary emptied on night 4, and each later dawn said "The granary is empty. The spring will be hungry."
   - The thaw page brought the west wall down, then came a hungry spring and refugees.
@@ -369,6 +387,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26 and on desktop, over many years.
 
 **Saves follow §6, with explicit local recovery added 2026-10-24.** Decided:
+
 - A chronicle has one running page (`<chronicle>:auto`). It is kept as you go: 1.5 s after an input, every 8 s while the clock runs, when the clock is held, when the tab is hidden or closed, and before a load or a new village. Reloading loses at most a few seconds.
 - "Continue" opens the running page. An explicit season-backup recovery can replace later local progress with an earlier saved page; it keeps that page’s exact accepted cast receipts and makes no new claim.
 - Each closed or fallen volume is kept as a page on the shelf. "Take up again" on a closed volume starts a **new** chronicle from that page, so the original chronicle is never rewritten.
@@ -378,6 +397,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 - Pages from an older build (the scenario version is now 6) are refused with a note that says so.
 
 **Playtest export.**
+
 - Where: the chronicle menu, the closed-volume page and the fallen page.
 - How: copy to clipboard (the size is shown in KB) or save as a file named `night-watch-seed{seed}-year{year}.json`. A text box is the fallback when both are blocked.
 - What: seed, input log, end state and hash.
@@ -391,6 +411,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
   - Gzip round-trip, pruning and the backup fallback are tested too.
 
 **Phone.**
+
 - The night panel has a fixed height at ≤480 px, so the lantern and bell row no longer shifts.
 - The moment card docks at the bottom (safe-area aware), and "…or let it be" closes it for that moment.
 - The chronicle menu scrolls within the screen. Its Load buttons are at least 44 × 96 px.
@@ -404,6 +425,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 - Galaxy S26 (confirmed from spec sites): 1080×2340, DPR 3, CSS 360×780. Inferred, to be measured on a device: about 640–690 px tall with the browser's bars. Tested at 360×660 and 360×780.
 
 **Long-run depth.**
+
 - Talks: four topics, ranked per watcher by the Keeper's read (`topicsFor`), and the top two are offered:
   - the night;
   - the body;
@@ -419,12 +441,14 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 - Taglines age with the person: trade, winters on the wall, "old on the wall", "keeps the Gate", "heir to the Gate".
 
 **The granary at its cap.** Annals over 25 years:
+
 - Seed 1 reaches winter with 39–40 sacks every year from year 10 on.
 - Seed 2 reaches winter with 39–40 sacks from year 21 on.
 - Hungry springs still happen at the cap (seed 1: years 17, 19, 20), because a winter now carries off 22–28 sacks.
 - So the cap is not making the autumn meaningless the way G3-3 feared. This phase added sinks (rebuild, a granary-limited fair) and did not retune the cap.
 
 **Wildcard review: a historian of medieval rural life (Sonnet, about 45 minutes, seed 23, two years into the third winter, 1280×800 and 360×660).**
+
 - Kept, in the reviewer's words: Mara's "Joss keeps the fire in till I'm home" ("That is a person"), the heir line, and the fallen west wall.
 - Also worked: reload mid-night then Continue (twice), and Copy the playtest (28 KB).
 - Acted on:
@@ -440,6 +464,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 - Deferred: the outsider family's story, head knocks, summer and autumn scenes, a taller phone map, deaths and leavings as cards; see [§12](#12-after-graduation-deferred-features).
 
 **Designer review (Opus, rerun on f3f35f8, seed 11, about 35 minutes, mostly at 360×660, played passively; the first designer run stalled when the dev server dropped).**
+
 - Kept, as the reviewer listed them:
   - The thaw's hunger line.
   - Joss's fire line.
@@ -484,6 +509,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 Game 3 moved to HF 2.0 with the release and took two of its G3-4 deferrals. Scenario version 7 (pages from scenario 6 are refused with the usual note).
 
 **Seed 11's first winter.** On seed 11 both waves of opening nights 2 and 3 came at stretches the scout had not named, and the planning Keeper lost 17 of 20 sacks in two nights. Two changes, both limited to the authored opening (year 1, the first three nights):
+
 - The scout is right about at least one wave a night (night 1 stays right about every wave).
 - One night carries off at most half of what the granary held at dusk (`OPENING_CARRY_SHARE`); after the opening the usual cap of three sacks plus the rich-granary extra applies.
 
@@ -556,10 +582,12 @@ The owner asked: "if it stays at the gate how do we ring it when we're watching 
 Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the other games taught. **Save version: none changed.** Every change is words or pacing, so scenario 9 stands, every scenario 9 export still replays, and the owner's scenario 7 fixture replays tolerantly as before. A scenario 9 export pinned today (`apps/site/test/fixtures/watch-scenario9-2026-10-19.json`, harness policy, seed 1, two years) must replay to its `ruleHash`, so a later rule change has to bump the scenario.
 
 **Tools.** Both run from the repository root with Node 24 and need no build.
+
 - `apps/site/scripts/play-watch.ts` is a text harness over the game's own sim. It prints what the page shows: sacks, rope strands and pips as glyphs, and reads in words. It never prints needs, trust or dice. The run lives in a state file passed by `--state`. `help` lists the commands, and `export` writes the page's playtest export.
 - `apps/site/scripts/hf-watch-adapter.ts` and `hf-watch-session.ts` let the playtester's HF personas play the Keeper through that harness.
 
 **Audit, played through the harness before any change** (seeds 7 and 11, year 1, plus an auto-policy year):
+
 - The first choice that matters (the first card) came about 47 real seconds after Begin. The first dusk already asks where the warned stretch is held.
 - **Refusals were not said in the moment.** A refused posting printed "X won't take the post you gave" with no reason, and only under the lantern. A leaving in the dark showed one word on the empty post, and the reason waited for dawn. This was the owner's first ask.
 - **The seasons were a dead stretch.** In seed 7, Tamar (the founder, the Gate keeper, the volume's subject) died in late autumn of year 1. At Seasons pace her death passed in about 2.5 real seconds of a "news" ease, so a player waiting through the autumn never saw it.
@@ -568,6 +596,7 @@ Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the o
 - **Bland lines:** under the lantern, a doze, a bell answered, a waking or a prayer fell back to "Joss at the mill wall."
 
 **Built.**
+
 1. **Refusals said as they happen, with the watcher's reason** (`night.ts`, `refusalLine`, `ownReason`).
    - A refused posting, a "not yet" or another post is a slowing ticker line in the watcher's own voice. Example: "Mara says the east wall will have to wait. 'The cold's in my bones. Find someone else.'"
    - The reason comes from `selfReport`, so a proud or reserved person may blame the cold for fear. That is the existing design for dawn voices, now said in the moment.
@@ -582,6 +611,7 @@ Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the o
 6. **Grave news slows the seasons** (`pace.ts`, `GRAVE_DAYS`). A death or a household leaving eases the open seasons to the slowest pace for two sim days, about 13 real seconds, and the header says "the days slow: a death in the village". The harness's `wait` stops there too.
 
 **HF 2.4–2.8 features considered, not adopted.** Each would move decisions and need a scenario bump.
+
 - **Fatigue store (2.6):** standing a post costs effort 0.15–0.2, below the store's 0.3 floor, and watchers sleep by day, so the store would barely move. The night's tiredness is already HF sleep pressure (negative finding).
 - **`forecastAt`/`followedBy` (2.5/2.8):** a posting is one leg with no declared follow-on.
 - **`reconsider` (2.8):** a re-ask at night is already a card plus `interruptPerson`.
@@ -601,6 +631,7 @@ Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the o
 | restless      | 2    | quit  | 12  | year 2, night | 0.76       | 0 s          |
 
 How to read it:
+
 - No persona got bored. Every one quit on distress (HF `distress:rest`) during a winter night, after wolves over the wall and watchers going home.
 - The table before the change was the same within a minute. That is expected: this pass changed words and pacing, and the adapter weighs losses, not reasons.
 - Signal for the next pass: a wolf in the store feels like a loss with nothing to do about it. That points at §12 T1 granary protections and night tools, not at more words.
@@ -633,6 +664,7 @@ Three reviews of the endless-play draft, 2026-10-04.
 **2026-10-28 sweep.** The [routing inventory](../roadmap-sweep-2026-10-28.md) records open items, reasons, targets and later superseding dispositions. Unscheduled ordinary work routes by 2026-11-03; existing future implementation dates remain. Explicit owner, player and device gates remain. Historical findings require current verification before a duplicate fix.
 
 The owner graduated Game 3 at the 2026-10-05 playtest. This is the one list of deferred game work; earlier sections point here. Targets:
+
 - **T1:** the first pass if Game 3 is picked up again.
 - **T2:** needs a framework (HF) release first.
 - **T3:** polish, whenever convenient.
@@ -640,9 +672,11 @@ The owner graduated Game 3 at the 2026-10-05 playtest. This is the one list of d
 Review this list by 2026-11-05; the owner decides which T1 items to schedule and which to drop.
 
 **Round 2 retest (2026-10-20).**
+
 - Target **2026-11-03**, **a brief spoken warning at night.** Callum: “tapping him does not produce a direct warning.” No general spoken-warning input exists. The named bell rings, wears the rope and presses a hold command; relabelling it would conceal those costs. Accounts are read-only in this round. A warning needs a separately justified edition and exact legacy replay controls.
 
 **Round 3 retest (2026-10-20, [README](../lab/reviews/watchwell-2026-10-20b/README.md)).** No tester missed the night requests; none chose Milder winter or asked for an easier game.
+
 - Target **2026-11-03**, **say what a cover or call-back order did** (F-359, F-362). Sam: “I would rather stop than spend another night guessing what my orders mean.”
 - Target **2026-11-03**, **the relief and help sheets slow the clock like a watcher's decision** (F-361). Sam: “I want to make an order after reading it; I do not want to race the menu.”
 - Target **2026-11-05**, **a during-fight call** (F-360), a candidate only: the Keeper still does not fight. Sam: “I wanted to run the defence during the fight.”
@@ -650,6 +684,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 **Owner taste direction (2026-10-20).** "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The 2026-10-20c night acts keep the pressure: each is an ask the watcher may refuse, the reliever's stretch thins or empties, nothing happens beyond the Keeper's voice, and no difficulty value changed. Done **2026-10-20**, **an opt-in easier watch** in scenario 12: Milder winter gives later packs and earlier movement warnings, chosen on the flyleaf and recorded in the export. Hard winter remains the default. See [the design change](#design-change-2026-10-20d-owner-may-veto). Fresh human acceptance is targeted for **2026-11-03**.
 
 **From the owner's playtest (2026-10-05).**
+
 - T1, **more to do in winter and the other seasons.** "we just need to nourish it with more things to do, and variety". Night tools beyond the lantern, the bell and cards, and season actions beyond answering cards.
 - T1, **investigating events.** For example, why someone left despite an urge. A follow-up the Keeper can open from the ticker or the dawn: asking, looking, asking others.
 - T1, **more and pricier upgrades.** "I've been buying all possible improvements". A deeper fair with costly, lasting works.
@@ -668,9 +703,11 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **performance on a real phone.** Occasional 50–100 ms frame gaps remain at 360 px and DPR 3 in headless Firefox. Not measured on a device or with a CPU throttle.
 
 **Found 2026-10-06.**
+
 - Done 2026-10-07, **almost nobody dies over fifty years.** `npm run bench` (`watch/sim/years.timing.ts`, seed 1) had 195 villagers ever lived and 0 deaths on bdd1c43 (1 at a371afd and 29c7b09). Traced: the death path works (a ×200 hazard gave chronicled deaths; person clocks never lag the game's), and winter was not the gap (the routine winter days after the played nights go through `liveDays` with mortality; only the 6–8 played nights do not). Two causes. (1) HF's age hazard is a modern, uncalibrated baseline (0.0005 a year at 30, doubling every 8 years), and the village stays young: one or two people over 55 in most years, because crowded couples under 35 leave and arrivals are young. The living's summed hazard was 0.016–0.16 a year, about two expected deaths in fifty years, so 0 or 1 is the expected draw. (2) The two oldest, alone, left by the household-leaving rule at 69 and 79. Fix (scenario 9): natural death runs at `MORTALITY_MULTIPLIER` 4 times HF's hazard (a pre-modern village; `config.ts`), and a household whose adults are all past `RETIRE_AGE` no longer leaves (`householdPulls`, test in `years.test.ts`). After: seed 1 has 187 ever lived, 8 deaths, 4 generations and 49 leavings (before 195, 0, 3 and 53), and the bench passes; seeds 2 and 3 (probe, same policy) 8 and 5 deaths, all at 45–81. The multiplier is a tuning choice, not a sourced rate. Open: the played winter nights still roll no natural death (about 2% of the year); deaths from 15 to 59 all read "a sickness that would not lift".
 
 **From the owner's exported run (2026-10-05, seed 20261004, years 1 to 4).** Bugs found there are fixed (findings.md, same date); these remain.
+
 - Done 2026-10-05, **exports name their build** and **the export hash covers rules, not wording**: see [Export provenance and hash policy](#export-provenance-and-hash-policy-2026-10-05).
 - Done 2026-10-05, **separate RNG streams**: see [World streams as built](#world-streams-as-built-2026-10-05).
 - T1, **expecting mothers on the wall.** Sena was posted at the Gate while expecting. The spec is silent; decide whether that is allowed or whether she should be offered as off-duty.
@@ -680,6 +717,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **`talks.asked` is never pruned** (26 entries by year 4). It only feeds a score bonus.
 
 **From the polish playtests (2026-10-19)** ([record](watch-playtest-2026-10-19.md)). Three testers who had not read the source, plus HF personas. Only the harness fixes were made before the owner's soft stop; everything below targets **2026-11-05** (review with this list). Ranked by fun per effort, text that contradicts state first (believing the people is the game's strongest feature).
+
 - **Text that contradicts state:**
   - The thaw says the goal "It was done" while households leave that same thaw. Name the leavings beside it.
   - A dawn says wolves "tore into the store" or "carried sacks off", then "(No sacks lost)" when the store was bare.
@@ -721,6 +759,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
   - The bigger bell still snaps after about 7 pulls.
 
 **Carried from G3-2 to G3-4 and H2.**
+
 - T1, **posting pressure once families are admitted** (#19).
 - T1, **talk topics that change behaviour directly**: rest tonight, practise with, mend.
 - T1, **more than one person card per off-season** (#13), and deaths and leavings as cards. In part 2026-10-19: grave news now slows the open seasons for two days so it is seen; cards with choices remain.
@@ -742,6 +781,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **small overlaps**: postures sit a few pixels apart at small sizes, and the Keeper's sprite can overlap names.
 
 **Carried from the H2 reviews** ([summary](../reviews/2026-10-04-h2-summary.md); targeted "G3-5" there).
+
 - T1, **saves**: P8, the save cadence while the clock runs (night saves now wait 30 s; seasons still save every 8 s), and S7, storage that stops saving silently.
 - T2, **Q50**: the game writes framework slices directly. Add the two HF gaps first (an additive trust gesture, host-caused tiredness), then move the game.
 - T3, **Q49**: pregnancy through HF `conceive`/`deliver`. This changes every run (gestation 268 days, not 200), so it needs a scenario bump.
@@ -768,7 +808,6 @@ Cost: a shorter scene while posting, one pressure reading at a time, and optiona
 Verification: real Chromium renders at 360×690 and 1280×800, plus 320 px and 200% text; DOM/focus, short-camera and existing replay/save tests. Nine captured pre-change exports and midpoint saves replay/continue to identical full-state hashes. No edition or save migration. Evidence and audit exceptions: `scratch/patterns/watch-report.md` in the coordinating repository; screenshots under `/Users/abdul/code/.lab-scratch/patterns/watch-shots/`.
 
 Revert this increment's commit (the Watch UI, SheetActions, camera layout/test and this section). No simulation file, framework pin or lab-kit source changes are needed.
-
 
 **Round 2.** Callum's fresh retest asked, “Put the morning conversations and their sleep cost in view before the large 'On to dusk' control draws me away,” and “Give me a readable grain condition alongside the wall and when I order someone.” His report is `scratch/patterns/retest/watch.md` in the coordinating repository (no ledger id assigned there yet); F-250 remains the earlier phone-pressure evidence above. The persistent winter strip now gives coarse grain against spring food needs, progress through the played watches and the remaining routine winter to the thaw, and the known souls still here (not a claim that all are unhurt). Dawn puts talks and their sleep cost first; continuation follows every talk and account in the scrolling page, with no fixed dawn footer. Scene placement sends the existing default Ask; Urge and Insist remain sheet controls. A night tap selects the drawn watcher, including shared posts and hall/home figures, and opens a short current account. A conscious watcher within voice reach speaks from their own activity and existing local danger read; distant, sleeping and downed people do not produce invented replies. This serves DL-2, DL-13, DL-22, DL-24, DL-30, DL-31 and DL-33. No simulation, input vocabulary, speed or edition changed.
 
@@ -836,7 +875,6 @@ Verification: act legality, reach, candidates, actual acceptance/refusal, relief
 
 Revert: revert “Let the Keeper relieve and help watchers at night”.
 
-
 **Round 2 (fun review).** “Watch hides the exact response the retest needs.” Rest / Send down now stays below a short, explicit tired/hurt account; the lantern and bell return on Back. Send relief / Send help replaces the account with candidates and their reads and departure costs. Unavailable people collapse into one line per reason. Dusk fatigue reads say “seemed tiring at dusk” and remain actionable through the night until a newer observation replaces them; the current body still decides the answer and destination. Options seen during an account visit stay listed, with a reason if no longer available. Departure costs name who remains on the stretch. The strip distinguishes a call awaiting an answer, a reliever holding the post, an outgoing watcher asked down, and actual departure. Existing rules move people at acceptance, so it does not invent a travelling phase. Cost and risk: one extra sheet to choose a helper; older reads can prompt a refused rest request. This broadens ask eligibility but adds no saved state or HF rule. Scenario 11 stays: pinned 9/10/11 exports and midpoint continuations retain their exact hashes (`05460984`, `26d92083`, `3c84c1c3`). Fresh-player acceptance remains targeted for 2026-11-03. Revert: revert “Keep the night acts on screen and honest”.
 
 **Retest (2026-10-20, Protocol 2, live `05f124b`):** three of four phone testers used the relief and help acts and called them the work they came for. Those three did not ask again for a way to rotate a tired watcher, and no tester said the night became easy. One tester never found the acts and another found them late. Discoverability and the reason for a disabled post stay open (F-347, F-349, F-350). All four sessions ended on a driver TOOL stop, so voluntary stopping times are not established ([reports](../lab/reviews/watchwell-2026-10-20/README.md)).
@@ -865,7 +903,6 @@ Revert: revert “Clarify watcher access and changing night requests”.
 
 Morning now gives a plain outcome above the talks and four rough marks for watched-night progress. Routine winter still follows the last watch. Scenario 13 adds **0.08 exertion** once when HF accepts a relieve/help request that takes a helper off a different post, including a carry. The Keeper names the tiring crossing and the people left behind. Requests remain available; a refusal, same-post relief or helper from the hall pays no crossing cost. This adds no travel delay. Saved states without `nightDepartureEffort` and scenario 9–12 replays keep the old cost; their captured hashes still hold. Focused tests include an accepted-crossing control against the legacy arm. Owner feel remains to be tested; revisit by **2026-11-03** with the existing Watch retest.
 
-
 ## HF 2.21.0 narration adoption (2026-10-25)
 
 The site pins HF 2.21.0. Fresh actors opt into persisted `Lexicon.plainEnglish`; saved actors keep their choice. Canonical chapters pin that choice in the admitted initial actor. No new faculty is enabled. Current exports retain the runtime version and replay checks; Voice and Well refuse files from earlier narration versions with a start-fresh message.
@@ -883,7 +920,6 @@ F-469: selecting a watcher at dusk now explains that posting does not grant a ni
 Regression: focused count tests cover early, singular, final and thaw boundaries; the ordinary DOM test requires visible count text, and the dusk component test requires the rest explanation. Lesson: updating an SVG's accessible description alone does not make a count visible in ordinary play.
 
 F-299's reference to F-290 is a stale umbrella, not a new failure of the three closed F-290 routes. Morning outcomes and the watched-night bar remain. F-423's scenario13 departure cost remains unchanged, with owner feel due2026-11-03. F-289's warning remains a deferred design question, review2026-11-03. F-360's during-fight Keeper call remains a candidate, not a commitment or a new fighting role; review2026-11-05. Existing handover messages, night helper sheets and named accounts require current UI verification rather than a second implementation. F-492 readiness, F-465 receiving acceptance and F-491 owner retest remain due2026-11-03.
-
 
 ### Source delivery pending — 2026-10-26
 
@@ -923,6 +959,7 @@ WATCH-cold-timing: the downloaded playtest file now carries `clock`, kept by the
 The [2026-10-27 retest](watch-playtest-2026-10-27-retest.md) asked that "my taps on Urge and the posts tell me they worked".
 
 **What went wrong (confirmed from the driver log).** Neither the east-wall post nor the Urge reached the game. The tester's taps were refused by the lab driver, not by the game:
+
 - At dusk of night 2 the button read "East wall · tracks", because the scout found tracks there. The tap asked for "East wall", so the driver found no such control. The tester then pressed Done and Begin the watch, so no post was sent.
 - Each Urge option carries its likely answer ("Urge Kian to hold The watcher will probably agree."). Two taps by the name "Urge Kian to hold" matched nothing. The tap that worked, "Ring and call Kian by name The watcher will stay.", used the full name. A third Urge tap, by text, was refused as "not on the page now" although the control was there just before. Its cause is not confirmed.
 - Assumed, not confirmed: the tester's helper script dropped the driver's error replies, so the failures looked silent.
@@ -930,6 +967,7 @@ The [2026-10-27 retest](watch-playtest-2026-10-27-retest.md) asked that "my taps
 From the code, not observed in that run: the post rule, the hit area and the disabled state work, and a tap on "East wall · tracks" posts the watcher. After deploy, a live tap on a tracks-labelled button ("Gate · tracks") posted the watcher at 360x690 and 1280x800.
 
 **What changed (words only; rules and difficulty unchanged).**
+
 - An Urge or call-back answer now puts the watcher's reply in the ticker, as a named bell call does: "You urge Kian to hold the Gate. “I’ll hold,” Kian answers." The reply follows the same read the card's option shows, so "will not agree" is answered "Kian does not answer." It is not a promise; they still decide. Sending someone else to the post says so too ("“I’ll go,”"). An Urge with no post to go back to says that it changes nothing; it used to close silently.
 - After a post at dusk, the roster says "Idris is posted on the east wall (asked)", or that the post did not take.
 - Beside Begin the watch, a line warns when nobody is posted on the stretch where the scout warned of trouble.
@@ -979,7 +1017,6 @@ Verdict: **finished** (iteration 2) on `6a389e0`; 0 keep, 12 mixed, 2 quit. Deta
 - Target **2026-11-10** (retests-1027c): F-1600, F-1602 to F-1606, F-1608, F-1610 to F-1617, F-1619 still open, F-1607 not raised this round, F-1618 partly met (title boxes, developer wording, button names, header count, speaker names, hopes sheet, overlaps, scout reliability, night messages, silent lantern move, six-night sample, resume check, controls under panels, people leaving lists).
 - Target **2026-11-10** (retests-1027c): smaller asks F-2117 to F-2129 (walking-to-post status, "is deciding" after "say nothing", night-off answer before the watch, Insist cost, dense help lines, small Today list, thaw wall falling unwarned, the stuck bell label, cover order naming an absent watcher, the same children story twice, dawn empty-wall line gaps, a caution with no answer, "full" wall found by trying). Details in the retests-1027c round doc.
 
-
 ## Watch fixes — 2026-10-27 (`watch-fix`)
 
 Scope: F-309, F-1599 and F-2113–F-2129 from the [panel](watch-playtest-2026-10-27-panel.md) and [same-tester retest](watch-playtest-2026-10-27-panel-retest.md). Player quotations in those reports stay unchanged. This is an engineering fix cycle, not a new panel or owner acceptance. The earlier dated Deferred entries above record the state at each round; the dispositions below supersede them for this scope.
@@ -1010,11 +1047,9 @@ New villages enable the existing night-off requests and spoken cautions directly
 
 HF follow-up: [W1 and W2](../hf4-game-needs.md#watch-fix-follow-up-2026-10-27) reuse the shared G4/G1 contracts. The game must not infer a true future departure, fabricate a reply, or treat an agreement as a completed handover.
 
-
 ### Targeted native handover coverage — 2026-11-02
 
 The in-repo regression covers one natural handover; its normal lane and independent review are the source delivery gates. A prior private diagnostic passed against exact base `f118303e023ba79de06e65a8a9465e0bd634c9db`: seed 7 selected the first available Tamar/Kian relief after 167 opening steps, recorded Kian's accepted post start and later interruption, and passed full native replay, cold restore and same-next continuation. Tamar's separate sleep request was `not-started`; this does not establish a sleep guarantee. The earlier failed fixed-1280 setup remains preserved. This targeted evidence does not close whole-Watch projection or reply coverage, or human acceptance.
-
 
 ### W2 reply integration dependency — source plan 2026-11-02
 

@@ -23,6 +23,7 @@ import { HalilPane } from './HalilPane.tsx';
 import { Intro } from './Intro.tsx';
 import { Premise } from './Premise.tsx';
 import { Report } from './Report.tsx';
+import { requestAccount } from './request-account.ts';
 import { SceneDay } from './SceneDay.tsx';
 import { RecordingPreference, SendWord } from './SendWord.tsx';
 import { InfoPanel, MenuPanel, OtherWays } from './ShellPanels.tsx';
@@ -64,6 +65,10 @@ export function App() {
   const [speakCaption, setSpeakCaption] = useState('You can wait without choosing a suggestion.');
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
+  const [guideVisible, setGuideVisible] = useState(true);
+  const [guideReplay, setGuideReplay] = useState(false);
+  const [guideSent, setGuideSent] = useState(false);
+  const guidePrevious = useRef<string | null>(null);
 
   const cancelFileSelection = useCallback(() => {
     if (!fileSession) return;
@@ -191,7 +196,14 @@ export function App() {
   }, [actions]);
 
   // The game resumes itself on Confirm (and stays paused if the option went away), so no setPaused here.
-  const suggest = useCallback((d: Draft, line?: string) => actions.suggest(d, line), [actions]);
+  const suggest = useCallback(
+    (d: Draft, line?: string) => {
+      guidePrevious.current = frame ? (requestAccount(frame)?.id ?? null) : null;
+      setGuideSent(true);
+      actions.suggest(d, line);
+    },
+    [actions, frame],
+  );
   const sayNothing = useCallback(() => {
     actions.dismissSceneOffer();
     actions.setPaused(false);
@@ -265,6 +277,28 @@ export function App() {
     </section>
   ) : null;
   if (fileSession && !frame) return <main>{fileControls}</main>;
+  const firstGuide = frame && guideVisible && (guideReplay || frame.day === 1) && (
+    <section aria-label="First suggestion guide" className="v-hint">
+      <p>Help Halil reach his goals. He can decline suggestions and miss a goal.</p>
+      <p role="status">
+        {guideSent
+          ? (() => {
+              const account = requestAccount(liveVoice.frame ?? frame);
+              return account && account.id !== guidePrevious.current
+                ? `${account.answer?.text ?? 'Waiting for Halil’s answer.'} ${account.status}`
+                : 'Waiting for the suggestion to reach Halil.';
+            })()
+          : speaking
+            ? 'Choose a suggestion and say it, or choose to stay quiet.'
+            : canSpeak
+              ? 'Choose Speak below to suggest something.'
+              : 'Wait until Speak is available, then choose it.'}
+      </p>
+      <button type="button" onClick={() => setGuideVisible(false)}>
+        Skip guide
+      </button>
+    </section>
+  );
   return (
     <div
       className={`voice phase-${phase}`}
@@ -357,6 +391,7 @@ export function App() {
               onPause={() => actions.setPaused(true)}
               speakRequest={speakRequest}
               onSpeakingChange={setSpeaking}
+              speakingGuide={speaking ? firstGuide : null}
               onSpeakAvailability={(available, caption) => {
                 setCanSpeak(available);
                 setSpeakCaption(caption);
@@ -409,6 +444,7 @@ export function App() {
               )}
             </div>
           </aside>
+          {!speaking && firstGuide}
           {!speaking && (
             <footer className="v-live-actions">
               <p>{settingWords(frame.muted ? 'You are silent today. Watch.' : speakCaption)}</p>
@@ -526,6 +562,12 @@ export function App() {
           pace={voice.paceSetting}
           actions={actions}
           onClose={closeFileMenu}
+          onGuide={() => {
+            setGuideVisible(true);
+            setGuideReplay(true);
+            setGuideSent(false);
+            closeFileMenu();
+          }}
           onTitle={() => {
             closeFileMenu();
             setTitleOpen(false);

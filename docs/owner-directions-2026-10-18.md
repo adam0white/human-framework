@@ -40,6 +40,7 @@ These apply to all HF games and to the framework. They add to the game direction
 "Definitely the opt in extra telemetry (compressed) , with optional notes. And more regular telemetry. I like the idea of a lab dashboard, not as a facade UI toy but as something that helps you, play testers, me, or human visitors. I think we should find ways to benefit the entire lab from almost each specific feedback. I'll share my feedback as I play."
 
 How this is read:
+
 - This lifts the no-server-infrastructure rule for lab telemetry only: a Worker endpoint and R2 storage. It does not lift it for games themselves.
 - Regular telemetry is anonymous and minimal. It sends no personal data and sets no cookies, and it honours Do Not Track and Global Privacy Control. Each data point is documented on a privacy note.
 - Opt-in runs are compressed replays, optionally with a note. They are stored privately. They are not public.
@@ -64,6 +65,7 @@ The same day the owner reported, about The Valley (paraphrased by the coordinato
 "I've enjoyed many of our games. This is becoming a new obsession... I tend to be a patient gamer, moreso when I have a stake. I like that you're building better harnesses and procedures to satisfy the auto testers, but be aware of what I said about taste. Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty. The games where I look for a setting, a workaround, or even an accessibility toggle to make it easier, while feeling 'can't stop' even for the difficulty, tend to be the games that I enjoy thoroughly. Those reports were probably mine, too. Have a single list of games on human subdomain. I think it's time we rank them there, and then freeze some experiments that rank towards the bottom. We can also get cross-game feedback, like what type of future games fit well into our combination of demonstrated strengths. We can also start thinking about more complex UI and gameplay elements, now that the concepts have been proven."
 
 How this is read:
+
 - Testers are evidence, not the target. Taste governs: the [Taste section](lab/design-language.md#taste) of the clarity checklist. Keep edges, natural difficulty and slight controversy. "Can't stop even though it's hard" outranks smoothness.
 - "Those reports were probably mine": the two newest notebook runs (Stairwell `r-4btpch9kdq`, Hearsay `r-qax48tk58y`) are owner runs, as the ledger already records (F-311..F-318). Earlier runs with no note or a stub note may be his too; they stay unattributed (not confirmed).
 - One ranked list of games on human.adamwhite.work, at /games/: [ranking](lab/ranking-2026-10-20.md). The bottom of the ranking is frozen: still playable and listed as a frozen experiment, with no further work. The owner can unfreeze any of them.
@@ -165,13 +167,11 @@ Source: owner message to the bug-hunt coordinator, 2026-10-23.
 
 Use linked telemetry, the 2026-10-23 playtest round and a fresh live smoke at 360×690 and 1280×800. Keep one public bug list in [bugs-2026-10-23.md](lab/bugs-2026-10-23.md). Fix confirmed bugs without redesign or softened difficulty. Old saves need not load. Use at most two game workers, each in its own worktree, and wait for any existing writer in that repo. Each fix gets focused proof where possible, one independent Codex review, signed commits, lane checks, rebased push, exact green CI, deployment and live verification. Add a short How to playtest page linked from the lab. Consolidate ledger routes and deploy the HF site with a matching clean release manifest. Owner acceptance of the games remains separate.
 
-
 ## 2026-10-23 frictionless recording and feedback (Adam, verbatim)
 
 > Why can't we make linking and all that automatic? We already notify at first visit that we're gonna record stuff. I want to make it as frictionless as possible. Hit send feedback, type something, agree to share everything if not agreed before, submit. My mobile firefox, I'm unable to enable recording. And "enable recording even though your do not track is on" being a separate button is just wrong.
 
 Owner implementation direction: first-visit notice covers recording and automatic linking across games on this device. There is no separate continuing-person consent or gate, including after recording identity changes or file imports. One menu recording switch explicitly opts in even with DNT/GPC, which only sets the default off. Send word has verdict, note, optional name and Submit on one page. When recording is off, one unticked checkbox says “Share this run and my play with the lab”. Submit with the box ticked enables recording and linking and sends the run. Unticked Submit sends the note alone without linkage. Old separate consent state migrates silently. Character analysis retains its separate opt-in.
-
 
 ## 2026-10-24 — Simplify the games (Adam, verbatim)
 
@@ -184,7 +184,6 @@ It appears that you can't find some of the issues by yourself without me specifi
 On the Ramadan game, for example, menu has tons of options. All increases cognitive load, new topics and concepts for the player they don't even need to know at all. I'm asking for background, opinionated auto decision on a lot of these. The difficulty of the English appears across games. I don't know if it's because of a claimed taste or consistent design, but it makes things harder to understand. Minor thing, also work on the artwork on the list of all games. Change the one for the Rope, it seems like a hanging man.
 
 Commonstead branch protection is dropped. Friends’ playtests and Show HN are paused until Adam says the games are ready. The later setting direction below resolves the vocabulary discussion; places, names and setting remain. F-491 remains mandatory: automatic recording linkage follows the recording switch; feedback stays on one page with optional sharing when recording is off.
-
 
 ## 2026-10-24 — Keep the setting (Adam, verbatim)
 
@@ -217,6 +216,7 @@ Coordinator reading: the v3 increment widens from Horizon 2 closure and Horizon 
 > "TypeScript 5? What about 7? Keep going until you finish all the tasks and playtests and iterations. It's okay to take some time. If there are things that need my decision, ask now."
 
 Answers to the coordinator's questions (the option labels the owner chose):
+
 - Playtests: **"Lab panel only"**. Rounds resume with the 12 standing playtesters and 2 cold slots (Codex, Claude and Workers AI personas) on every game, and the games iterate on what they say. Friends' playtests and Show HN stay paused.
 - Player labels: **"Add it in Feedback"**. Two quiet choices, "I'm stopping" and "I'm confused", sit inside the existing Feedback menu. They are recorded with the run while recording is on. Nothing pops up during play.
 - Lab client on npm: **"Keep artifacts"**. The lab client and kit stay GitHub release artifacts. The Deferred items that ask for the npm install close as not needed.
@@ -251,6 +251,7 @@ Coordinator reading, acted on now: spend Claude abundantly until the Tuesday 02:
 Both lifts were then granted for one game each (answers below).
 
 Owner answers, 2026-10-26 (to the coordinator's three questions):
+
 - Faith-themed game, lift "Games keep faith gentle" for one game: **"Yes, for one game"**.
 - Action game, lift "no action-game polish, real-time graphics" for one game: **"Yes, for one game"**.
 - New games before the 2026-11-03 review: **"Up to 4, added (Recommended)"**: build every concept that passes review, on top of the current goal; playtests of the existing 15 keep priority.
@@ -266,6 +267,7 @@ Coordinator reading: new games may use another language, engine or tool (for exa
 > "Catching up. Juicy! Let's make every opt in feature default v4 go! Sacrifice compatibility and saves. Shall we even make everything permanently on, like you can't turn it off, so every persona stays holistic? It's okay if we leave some games on older HF versions. The separate fast option or others may cause problems, we should consolidate and eliminate redundancy in the input/output, features and code across HF itself. I like the boldness with tech, like Godot and ink. I like that we're making sure to not quantity faith, but it might be okay to have a goal about it, you know? Otherwise we can't make faith the stakes in anywhere and then it stays internal. My vision for HF is to reconcile faith and science and have a holistic simulation that handles both, letting anything affect anything. I like that the new games wanted to push HF forward, exposing weaknesses and missing features. We don't need to keep cutting death from games. I wonder which of our limitations like this are holding us back. I think our simple English rule should change alder Quay name altogether lol. We can shovel those features for HF from games into HF. Okay, good progress so far, let's keep going. It sounds like we're finally pushing things bolder and further, we'll see if the games prove that."
 
 Coordinator reading, acted on now:
+
 - **HF 4.0 is one holistic person.** Every opt-in faculty is on, permanently: the `enable*` switches, legacy-continuation paths and the separate fast option are removed, and HF's inputs, outputs, features and code are consolidated so each concern has one way in and one way out. Coordinator answer to "permanently on": yes. People differ through their state (someone may hold faith lightly, tire slowly, or never have learned a method), never through switches. Hosts still choose what they show and what they feed in. Old saves, old exports and 3.x compatibility are given up at 4.0; games may stay on 3.x until they choose to move. Cost, stated once: a game on 4.0 can no longer turn off a faculty that misbehaves in its setting, so such a problem is fixed in HF itself.
 - **Game asks go into HF.** HF requests from the new games (fiction context, retelling drift, fatigue in being downed, and others in the coordination file) are built into 4.0 as ordinary faculties, not opt-ins.
 - **Faith may be a goal and a stake.** A game may set a goal about faith and let the player fail it: keeping a prayer, a fast, a vow or a duty to the dead under pressure. The rules against computing divine acceptance, putting quantities on the ruh and stating rulings still hold, and claims are still sourced from `research/`. HF's aim is a holistic simulation that reconciles faith and science, in which anything can affect anything.
@@ -362,6 +364,7 @@ Coordinator reading: the soft stop on new Claude agents is lifted for HF 4.0 onl
 > Once we confirm this direction is working, we'll remove the mentions of a lab flag or any query string altogether, keeping history in agents and other popular MD files isn't a good idea. I'll let you know once soft stops are lifted. For now, focus on making sure to not lose tasks, and finishing v4 properly. Thanks"
 
 Coordinator reading:
+
 - No feature flags and no query-string switches. Every gameplay feature is public.
 - People who appear in more than one game carry over automatically, with no opt-in.
 - Cast controls and chosen persona experiments move to the public, central shelf (the personas page that lists people from this browser).
@@ -442,7 +445,6 @@ Coordinator reading: Run no playtesters on Claude until Tuesday 2026-11-03, 2 AM
 
 Coordinator reading: Codex is available again, Claude is not; work continues.
 
-
 ## 2026-11-03 — Human play, light usage and future direction (Adam, verbatim except withheld private details)
 
 > "Alright we're officially out of usage, we can continue lightly once it's reset tonigh
@@ -461,3 +463,11 @@ Coordinator reading: process the mixed-language recordings, omit unrelated conve
 > "Yeah those shouldn't be public. These are good, thanks for transcribing. However they point towards a general direction. Our games are too bland and text based. It might be fine for now, but we need more than these for eventual show HN. We'll talk more."
 
 Coordinator reading: the tester's identifying details stay out of public files. The owner finds the games too bland and text based, which may be fine for now but is not enough for an eventual Show HN. No new goal is set; the owner will discuss it further.
+
+## 2026-11-05 — upkeep and new direction (owner, verbatim)
+
+"Still limited on Claude tokens, and have extra on Codex. Leave his bigger ideas like multiplayer for later discussion, apply fixes and small/medium changes. You see most of his confusion came from not reading the instructions, which is a tutorial failure. Clean up work trees, cache, voice files. Update dependencies, compat and other dates, whatnot. Get those last games to v4. Then, since you've finished automated play tests for existing games, I think a good direction would be to keep generating new (or old) ideas and new (or clones of known) games. Of course play testing those new ones is fair. I've also started thinking that we'll probably want to merge all these into a single subdomain sooner than later. A monorepo holding all games (but outside HF) is also fine and might be worth it. How do you want to proceed here?"
+
+"Losing saves and progress is totally fine. That's a good direction, keep going."
+
+The owner approved `adam0white/games`, `play.adamwhite.work`, and redirects from the old game subdomains. The earlier up-to-four new-games cap is superseded. Every game must move to current published HF 4.x; the earlier allowance to stay on 3.x with a reason is superseded. Old saves may be sacrificed. Multiplayer and account transfer are not authorized. The GD director is retired; UPKEEP owns its stranded work and remaining ports.

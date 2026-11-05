@@ -45,6 +45,7 @@ import {
   Timeline,
 } from './parts.tsx';
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
+import { advanceTutorial, type TutorialStep } from './tutorial.ts';
 import { useColony } from './useColony.ts';
 import { preparationWords, VILLAGE_WORDS } from './village-words.ts';
 import { wellWords as settingWords } from './words.ts';
@@ -78,6 +79,25 @@ function oldVillageError(error: unknown): string | null {
     : null;
 }
 export function App() {
+  const [tutorial, setTutorial] = useState<TutorialStep>(() => {
+    if (fileSession) return 'done';
+    try {
+      return localStorage.getItem('well.tutorial.seen') ? 'done' : 'person';
+    } catch {
+      return 'person';
+    }
+  });
+  const [tutorialOrder, setTutorialOrder] = useState<{
+    personId: VillagerId;
+    placeId: PlaceId;
+    existing: string[];
+  } | null>(null);
+  const finishTutorial = () => {
+    setTutorial('done');
+    try {
+      if (!fileSession) localStorage.setItem('well.tutorial.seen', '1');
+    } catch {}
+  };
   const [fileError, setFileError] = useState<string | null>(null);
   const fileRead = useRef(0);
   const colony = useColony();
@@ -256,6 +276,7 @@ export function App() {
     return card?.human.state === 'willNot' ? card.order.placeId : outline;
   };
   const pick = (id: VillagerId) => {
+    setTutorial((step) => advanceTutorial(step, 'person'));
     setSelectedInjury(null);
     setNewsReturn(null);
     const destination = refusedDestination();
@@ -280,6 +301,14 @@ export function App() {
     (input: OrderInput, id?: string) => {
       if (selectedInjury?.personId !== input.personId) setSelectedInjury(null);
       actions.order(input, id);
+      if (tutorial === 'place') {
+        setTutorialOrder({
+          personId: input.personId,
+          placeId: input.placeId,
+          existing: (frame?.cards ?? []).map((card) => card.order.id),
+        });
+        setTutorial((step) => advanceTutorial(step, 'order'));
+      }
       setDraft(null);
       setPerson(input.personId);
       setFollowing(input.personId);
@@ -299,7 +328,7 @@ export function App() {
       flashTimer.current = window.setTimeout(() => setFlash(''), 2200);
       saveRef.current();
     },
-    [actions, selectedInjury],
+    [actions, selectedInjury, tutorial, frame],
   );
   const inputFor = (placeId: PlaceId): OrderInput | null =>
     person
@@ -537,6 +566,15 @@ export function App() {
   const newest =
     latestPersonOrder(frame?.cards ?? [], person) ??
     frame?.cards.findLast((c) => c.human.state !== 'pending');
+  const tutorialReply =
+    tutorialOrder &&
+    frame?.cards.find(
+      (card) =>
+        !tutorialOrder.existing.includes(card.order.id) &&
+        card.order.personId === tutorialOrder.personId &&
+        card.order.placeId === tutorialOrder.placeId &&
+        card.human.state !== 'pending',
+    );
   const pace = frame?.ended
     ? 'the run is over'
     : menu
@@ -939,6 +977,36 @@ export function App() {
                 )}
               </div>
               <section className="well-sheet" aria-label="Village orders">
+                {tutorial !== 'done' && !shelf && !interstitial && (
+                  <div className="well-tutorial" role="status">
+                    <strong>
+                      {tutorial === 'person'
+                        ? 'Tap a person below'
+                        : tutorial === 'place'
+                          ? 'Tap a place below to give an order'
+                          : tutorialReply
+                            ? `${shortName(tutorialReply.order.personId)}: ${CHIP_TEXT[tutorialReply.human.state]}`
+                            : 'Wait for the answer'}
+                    </strong>
+                    {tutorial === 'person' && (
+                      <span>Roof the house and store meals before the deadlines. People can die.</span>
+                    )}
+                    {tutorial === 'place' && (
+                      <span>Both villages receive the order. A person may refuse or wait.</span>
+                    )}
+                    {tutorial === 'answer' && tutorialReply && (
+                      <span>{tutorialReply.human.says ?? tutorialReply.human.label}</span>
+                    )}
+                    {tutorial === 'answer' && tutorialReply && (
+                      <button type="button" onClick={finishTutorial}>
+                        Continue
+                      </button>
+                    )}
+                    <button type="button" onClick={finishTutorial}>
+                      Skip tutorial
+                    </button>
+                  </div>
+                )}
                 {frame &&
                   (sheet === 'people' ? (
                     <People
@@ -1049,6 +1117,7 @@ export function App() {
                         </section>
                       )}
                       <PersonSheet
+                        guided={tutorial === 'place' && !shelf && !interstitial}
                         frame={frame}
                         id={person}
                         injuryNotice={selectedInjury}
@@ -1157,6 +1226,17 @@ export function App() {
                   </button>
                 ))}
               </fieldset>
+              <button
+                type="button"
+                onClick={() => {
+                  setTutorialOrder(null);
+                  setTutorial('person');
+                  backPeople();
+                  closeFileMenu();
+                }}
+              >
+                Replay tutorial
+              </button>
               <button type="button" onClick={() => setFeedback('menu')}>
                 Feedback
               </button>
