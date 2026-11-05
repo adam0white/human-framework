@@ -1,6 +1,6 @@
 import releases from '../game-releases.json';
 
-/** Checked-in live release receipts; never substitute the library version for a game's pin. */
+/** Qualified release sources; the linked live manifest is the deployment authority. */
 export function GameVersion({ id }: { id: keyof typeof releases }) {
   const release = releases[id];
   return (

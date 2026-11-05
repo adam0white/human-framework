@@ -1,10 +1,9 @@
 {
   "murmur": {
-    "framework": "4.15.1",
-    "commit": "97009124b59303fd9733d5208b5c8b315614637e",
+    "framework": "4.17.0",
+    "commit": "7ab344bf5f181c8043866078d71b5d3022481126",
     "release": "https://murmur.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "Combined HF4.17 tutorial source merged; final release remains pending. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "stairwell": {
     "framework": "4.17.0",
@@ -14,26 +13,26 @@
   },
   "pass": {
     "framework": "4.17.0",
-    "commit": "28cf1d47fd42aca0cb3b84f9c2801de6813ccd6d",
+    "commit": "c7bebaffd00a2e5b64d971d62c73b60ed3ada6c4",
     "release": "https://pass.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
   "glance": {
     "framework": "4.17.0",
-    "commit": "8e9e97d5d297cd000d60c11567bb4faa1a0345c1",
+    "commit": "6971b4d72ff0bdb3ac11b6f55119a9ebab90ec8a",
     "release": "https://glance.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
   "watch": {
-    "framework": "4.16.0",
-    "commit": "e12bd235ecacba1c9f31b40dcb4c2eb1832095da",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "Central HF4.17 source in PR122; strict tutorial visibility fixes, review, CI and deployment remain pending. Follow-up checkpoint2026-11-12."
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "hearsay": {
     "framework": "4.17.0",
-    "commit": "2fb948bbb6d3ea779e31e93b6dadc32d032085a7",
+    "commit": "f6737badd333a7e889a8a9abb91653aae04b370a",
     "release": "https://hearsay.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
@@ -44,50 +43,48 @@
     "checked": "2026-11-05"
   },
   "valley": {
-    "framework": "3.0.0",
-    "commit": "d014874ff3ec1fb02581c5b2713508555b8a74db",
+    "framework": "4.17.0",
+    "commit": "92f7653478254227edcd0e3c172ba60bc4f5960f",
     "release": "https://valley.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "HF4.17 opening episode PR12 is under final replay, review and CI; the old continuous-term budgets remain unqualified. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "voice": {
-    "framework": "4.16.0",
-    "commit": "e12bd235ecacba1c9f31b40dcb4c2eb1832095da",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "Central HF4.17 source in PR122; strict tutorial visibility fixes, review, CI and deployment remain pending. Follow-up checkpoint2026-11-12."
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "well": {
-    "framework": "4.16.0",
-    "commit": "e12bd235ecacba1c9f31b40dcb4c2eb1832095da",
+    "framework": "4.17.0",
+    "commit": "590ad42f9b55655ba4f1c989d65c487782f2e30b",
     "release": "https://human.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "Central HF4.17 source in PR122; strict tutorial visibility fixes, review, CI and deployment remain pending. Follow-up checkpoint2026-11-12."
+    "status": "Central source checkpoint; the linked live record identifies the deployed commit."
   },
   "warren": {
-    "framework": "4.10.0",
-    "commit": "ea36aecf31a6833bc3c1e86a94c7eb8ac6aff222",
+    "framework": "4.17.0",
+    "commit": "a964e30dd63477da9ccebea67a4b31d8b00a2c3c",
     "release": "https://warren.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "HF4.17 combined source merged at a964e30; deployment remains pending. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "repair": {
     "framework": "4.11.0",
     "commit": "ae2d1d88ee84484ee4d5acd323a67fc308c46c47",
     "release": "https://repair.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "HF4.17 PR19 passed all test partitions; GitHub private-repo minutes prevent the final aggregate CI job, so merge and deployment remain blocked. Follow-up checkpoint2026-11-12."
+    "reason": "The HF 4.17 update is prepared; deployment remains blocked. This release stays on HF 4.11. Next review: November 12, 2026."
   },
   "neighbours": {
-    "framework": "3.0.0",
-    "commit": "6077ea23f5307ca02da1001c0f840bdb6826eee6",
+    "framework": "4.17.0",
+    "commit": "b7ecb8a8b28702a7e019696ed554f22f6c6f6a01",
     "release": "https://neighbours.adamwhite.work/release.json",
     "checked": "2026-11-05",
-    "reason": "HF4.17 candidate is in existing PR8; exact review, complete export and CI gates remain separate. Follow-up checkpoint2026-11-12."
+    "status": "Release source checkpoint; verify the linked live record before central rollout."
   },
   "rope": {
     "framework": "4.17.0",
-    "commit": "9989ee495f40e371ec20e3c3d83a068b2783fe57",
+    "commit": "c69a43cd9237d397ed6ea21031f783932c86046e",
     "release": "https://rope.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
@@ -99,42 +96,39 @@
   },
   "smoke": {
     "framework": "4.17.0",
-    "commit": "619960e549e063b2912e371f0dc8dd2509d7e041",
+    "commit": "63c801e71381fc4cc4673329653a1ccc0439ff64",
     "release": "https://smoke.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
   "word": {
-    "framework": "4.0.0",
-    "commit": "f1011cbf4532a7e4b272bf7e46328cdbe36b1e36",
+    "framework": "4.17.0",
+    "commit": "06866be5b594313f2ca71864dc81b8f78234464d",
     "release": "https://word.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "HF4.17 PR6 merged at22ababd; merged-main CI and deployment are pending. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "child": {
-    "framework": "3.2.0",
-    "commit": "f3dc3965ce39b4af5ae8b1ffb6f42792627079e5",
+    "framework": "4.17.0",
+    "commit": "5d9f5564100cacda1d8481f5a37c6ed45c811a51",
     "release": "https://child.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "HF4.17 five-episode PR8 merged at a526750; merged-main CI and deployment are pending. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "days": {
     "framework": "4.17.0",
-    "commit": "b13209fae7c7b12775ee95b5eab028db83d3a651",
+    "commit": "b6371b31786d2f72ed863ddcfd1be592cade81fa",
     "release": "https://days.adamwhite.work/release.json",
     "checked": "2026-11-05"
   },
   "lefthand": {
-    "framework": "4.10.0",
-    "commit": "7aa45980295c193389a8a00e7b7cdee0ba7949f5",
+    "framework": "4.17.0",
+    "commit": "6b4e2c28edaa58579e4c4ff1544ee1c74f9c0db3",
     "release": "https://lefthand.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "reason": "HF4.17 PR8 merged atce06827; merged-main CI and deployment are pending. Follow-up checkpoint2026-11-12."
+    "checked": "2026-11-05"
   },
   "island": {
     "framework": "4.17.0",
     "commit": "736c4b4a74adbac62633bd69ffd0e093e63df69e",
     "release": "https://human.adamwhite.work/lab/island/release.json",
     "checked": "2026-11-05",
-    "status": "source merged and green; deployment pending"
+    "status": "Independent source receipt; served as part of this central release."
   }
 }

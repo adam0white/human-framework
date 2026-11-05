@@ -23,7 +23,7 @@ it('shows public game descriptions and faculty labels', () => {
   expect(ordinary.textContent).toContain('Izmir');
 });
 
-it('shows each audited live pin and its current disposition', async () => {
+it('shows each audited release source and its current disposition', async () => {
   const { default: releases } = await import('../game-releases.json');
   const ordinary = shelf();
   for (const game of GAMES) {
