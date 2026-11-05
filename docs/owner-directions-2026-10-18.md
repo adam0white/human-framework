@@ -461,3 +461,9 @@ Coordinator reading: process the mixed-language recordings, omit unrelated conve
 > "Yeah those shouldn't be public. These are good, thanks for transcribing. However they point towards a general direction. Our games are too bland and text based. It might be fine for now, but we need more than these for eventual show HN. We'll talk more."
 
 Coordinator reading: the tester's identifying details stay out of public files. The owner finds the games too bland and text based, which may be fine for now but is not enough for an eventual Show HN. No new goal is set; the owner will discuss it further.
+
+## 2026-11-05 — upkeep and new direction (owner, verbatim)
+
+"Still limited on Claude tokens, and have extra on Codex. Leave his bigger ideas like multiplayer for later discussion, apply fixes and small/medium changes. You see most of his confusion came from not reading the instructions, which is a tutorial failure. Clean up work trees, cache, voice files. Update dependencies, compat and other dates, whatnot. Get those last games to v4. Then, since you've finished automated play tests for existing games, I think a good direction would be to keep generating new (or old) ideas and new (or clones of known) games. Of course play testing those new ones is fair. I've also started thinking that we'll probably want to merge all these into a single subdomain sooner than later. A monorepo holding all games (but outside HF) is also fine and might be worth it. How do you want to proceed here?"
+
+The earlier up-to-four new-games cap is superseded. Every game must move to current published HF 4.x; the earlier allowance to stay on 3.x with a reason is superseded. Old saves may be sacrificed. One site and a separate games monorepo remain proposals awaiting owner approval. Multiplayer and account transfer are not authorized. The GD director is retired; UPKEEP owns its stranded work and remaining ports.
