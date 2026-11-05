@@ -94,6 +94,7 @@ export function MenuPanel({
   onClose,
   onTitle,
   onSendWord,
+  onGuide,
 }: {
   label: string;
   pace: 'automatic' | Pace;
@@ -101,6 +102,7 @@ export function MenuPanel({
   onClose: () => void;
   onTitle: () => void;
   onSendWord: () => void;
+  onGuide?: () => void;
   canReturn: boolean;
   freeText: boolean;
   onFreeText: (enabled: boolean) => void;
@@ -167,6 +169,11 @@ export function MenuPanel({
             Experimental free-text suggestions (Cloudflare AI)
           </label>
         }
+        {onGuide && (
+          <button type="button" onClick={onGuide}>
+            Replay first suggestion guide
+          </button>
+        )}
         <FullscreenButton variant="item" />
         <button type="button" onClick={() => (confirmNew ? onTitle() : setConfirmNew(true))}>
           {confirmNew ? 'Replace this game and start again' : 'New game'}
