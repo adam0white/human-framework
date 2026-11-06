@@ -6,6 +6,7 @@ const { chromium } = requireSnapshot('playwright');
 const root = resolve(process.env.FIRST_MINUTE_OUTPUT || '/tmp/hf-first-minute');
 mkdirSync(root, { recursive: true });
 const base = process.env.FIRST_MINUTE_URL || 'http://127.0.0.1:5173';
+const expiryScenario = process.env.FIRST_MINUTE_SCENARIO === 'voice-expiry';
 const configs = {
   voice: {
     path: '/voice/',
@@ -145,18 +146,40 @@ async function caseRun(browser, name, vp) {
     const watcherName =
       name === 'watch' ? (await page.locator('.w-roster .w-person strong').first().textContent()).trim() : '';
     await clickChecked(page, run, 'first', page.locator(cfg.first), guide, skip);
+    if (expiryScenario)
+      await page
+        .getByText('These choices are from an earlier moment.', { exact: false })
+        .waitFor({ state: 'visible', timeout: 180000 });
+    const selectedWords =
+      name === 'voice' ? ((await page.locator(cfg.second).first().textContent()) || '').trim() : '';
+    const unsaid = page.locator('.v-spoken-lines[role="status"]').filter({ hasText: 'Unsaid:' });
+    if (name === 'voice' && (await unsaid.count())) throw Error('An older Unsaid result is already present');
     await clickChecked(page, run, 'second', page.locator(cfg.second), guide, skip);
-    const result = page.locator(cfg.result).first();
+    const result =
+      name === 'voice'
+        ? page.locator('.v-request-account, .v-spoken-lines[role="status"]:has-text("Unsaid:")').first()
+        : page.locator(cfg.result).first();
     await result.waitFor({ state: 'visible', timeout: 30000 });
     const resultText = ((await result.textContent()) || '').trim();
     const outcomeText = ((await (name === 'well' ? guide : result).textContent()) || '').trim();
     if (name === 'well' && (!outcomeText || /wait for the answer/i.test(outcomeText)))
       throw Error('No actual Well reply');
-    if (name === 'voice' && (!resultText || /waiting/i.test(resultText)))
+    const missed =
+      name === 'voice' &&
+      (await result.evaluate((element) => element.matches('.v-spoken-lines[role="status"]')));
+    if (expiryScenario && !missed) throw Error('The expired choice did not produce Unsaid');
+    if (
+      missed &&
+      (!selectedWords ||
+        !resultText.includes(selectedWords) ||
+        !/That moment has passed\. Nothing was said\./.test(resultText))
+    )
+      throw Error('Unsaid result does not match the current selected option and missed-window consequence');
+    if (name === 'voice' && !missed && (!resultText || /waiting/i.test(resultText)))
       throw Error('No actual Voice reply');
     if (name === 'watch' && (!resultText || !/is posted|was not posted|has no post/i.test(resultText)))
       throw Error('No frame-confirmed Watch posting response');
-    const visibleOutcome = name === 'well' ? guide : guide.locator('[role=status]');
+    const visibleOutcome = missed ? result : name === 'well' ? guide : guide.locator('[role=status]');
     const visibleText = ((await visibleOutcome.textContent()) || '').trim();
     const visibleGeometry = await geometry(visibleOutcome);
     if (!visibleGeometry.ok || !visibleText || /waiting for|wait for the answer/i.test(visibleText))
@@ -216,7 +239,14 @@ async function caseRun(browser, name, vp) {
       await skipContext.close();
     }
     if (errors.length) throw Error(`Page errors: ${errors.join('; ')}`);
-    results.push({ run, outcome: 'PASS', resultText, visibleText, errors });
+    results.push({
+      run,
+      outcome: 'PASS',
+      consequence: missed ? 'missed-window-unsaid' : name === 'voice' ? 'actual-reply' : 'actual-outcome',
+      resultText,
+      visibleText,
+      errors,
+    });
   } catch (e) {
     await page.screenshot({ path: `${root}/${run}-failure.png` }).catch(() => {});
     results.push({ run, outcome: 'FAIL', error: String(e), errors });
@@ -232,8 +262,10 @@ async function caseRun(browser, name, vp) {
       for (const vp of [
         { width: 360, height: 690 },
         { width: 1280, height: 800 },
-      ])
+      ]) {
+        if (expiryScenario && name !== 'voice') continue;
         await caseRun(browser, name, vp);
+      }
   } finally {
     await browser.close();
     writeFileSync(`${root}/results.json`, JSON.stringify({ results, steps: runLog }, null, 2));

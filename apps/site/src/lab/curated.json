@@ -23657,7 +23657,7 @@
    "words": "Ne yapıyorum?",
    "verdict": "-",
    "routes": [
-    "fix:watch IMPLEMENTED player-role action guide in combined HF PR122.  final review/CI/deployment pending.  synthetic understanding is not human acceptance"
+    "fix:watch RELEASED player-role guide at clean HF4.17 commit 843f76f. exact review and source/main CI passed. two-size live first-minute controls passed. human readiness unaccepted"
    ],
    "source": "docs/games/watch-playtest-2026-11-01-human.md"
   },
@@ -23670,7 +23670,7 @@
    "words": "bir tanesini nasıl şey yapıyorum şuraya koyuyorum",
    "verdict": "-",
    "routes": [
-    "fix:watch IMPLEMENTED real dusk post/request/reply guidance in combined HF PR122.  final review/CI/deployment pending"
+    "fix:watch RELEASED actual dusk post and reply guidance at clean HF4.17 commit 843f76f. live phone and desktop checks reached the selected watcher’s actual arrival. human readiness unaccepted"
    ],
    "source": "docs/games/watch-playtest-2026-11-01-human.md"
   },
@@ -23709,7 +23709,7 @@
    "words": "the game its self is complicated I do not understand what I am supposed to accomplish or the challenges I am ment to face this game has too many variables,",
    "verdict": "-",
    "routes": [
-    "fix:well IMPLEMENTED goal and survival stakes in action guide, HF PR122.  final review/CI/deployment pending"
+    "fix:well RELEASED goal and survival-stakes guide at clean HF4.17 commit 843f76f. exact review and source/main CI passed. two-size live first-minute controls passed. human readiness unaccepted"
    ],
    "source": "docs/games/well-playtest-2026-11-01-human.md"
   },
@@ -23722,7 +23722,7 @@
    "words": "overall this game needs a tutorial and i believe that the mentioned tutorial needs to be interactive for better understanding",
    "verdict": "-",
    "routes": [
-    "fix:well IMPLEMENTED person/place/order/actual-reply guide with Skip and menu replay, HF PR122.  final review/CI/deployment pending"
+    "fix:well RELEASED person/place/order and actual-reply guide with Skip and menu replay at clean HF4.17 commit 843f76f. live phone and desktop checks showed a real refusal and Continue. human readiness unaccepted"
    ],
    "source": "docs/games/well-playtest-2026-11-01-human.md"
   },
@@ -23735,7 +23735,7 @@
    "words": "I would recommend adding a tutorial and making the names and the summery color coded for better understanding in the new generation we now face.",
    "verdict": "-",
    "routes": [
-    "fix:well IMPLEMENTED name and summary colors in HF PR122.  final review/CI/deployment pending"
+    "fix:well RELEASED name and summary colors at clean HF4.17 commit 843f76f. exact review and source/main CI passed. two-size live first-minute checks passed. human readiness unaccepted"
    ],
    "source": "docs/games/well-playtest-2026-11-01-human.md"
   },
