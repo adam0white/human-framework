@@ -29,6 +29,7 @@ export function retryAfterMs(value: string | null, now = Date.now()): number {
 export type LinkedKind = 'events' | 'run' | 'save' | 'logs' | 'note';
 export type Link = { player: string; session: string; runId: string };
 type Pending = {
+  game?: string;
   kind?: LinkedKind;
   id: string;
   body: Blob;
@@ -147,20 +148,23 @@ export function linkedTransport(options: {
             const request = connection.transaction('pieces').objectStore('pieces').getAll();
             request.onsuccess = async () => {
               for (const record of request.result as Pending[]) {
-                // Queues written before 0.4.7 omitted kind. Recover it without
+                // Older queues omitted game and/or kind. Recover them without
                 // changing the original compressed envelope or content id.
-                if (record && !record.kind && record.body instanceof Blob) {
+                if (record && (!record.game || !record.kind) && record.body instanceof Blob) {
                   try {
                     const envelope = (await new Response(
                       record.body.stream().pipeThrough(new DecompressionStream('gzip')),
-                    ).json()) as { kind?: LinkedKind };
-                    record.kind = envelope.kind;
+                    ).json()) as { kind?: LinkedKind; game?: string };
+                    record.kind ??= envelope.kind;
+                    record.game ??= envelope.game;
                   } catch {
                     /* Keep unreadable pieces without guessing their contents or deleting them. */
                   }
                 }
                 if (
                   !record ||
+                  typeof record.game !== 'string' ||
+                  !record.game ||
                   typeof record.id !== 'string' ||
                   !(record.body instanceof Blob) ||
                   typeof record.player !== 'string' ||
@@ -174,6 +178,8 @@ export function linkedTransport(options: {
                   blocked = true;
                   continue;
                 }
+                // Count the shared journal toward admission limits, but eligible()
+                // permits delivery only under the original game's preference.
                 pending.set(record.id, record);
                 durable.add(record.id);
                 bytes += record.body.size;
@@ -282,6 +288,7 @@ export function linkedTransport(options: {
     }
   }
   const eligible = (record: Pending) =>
+    record.game === options.game &&
     record.player === options.link()?.player &&
     (record.kind === 'note' || Date.now() - record.at <= 7 * 86400000);
   function schedule() {
@@ -379,7 +386,7 @@ export function linkedTransport(options: {
       const body = await gzip(envelope);
       if (body.size > LINKED_LIMITS.compressed)
         throw new Error('Compressed recording piece exceeds the server limit.');
-      additions.push({ kind, id, body, next: 0, attempts: 0, player: link.player, at });
+      additions.push({ game: options.game, kind, id, body, next: 0, attempts: 0, player: link.player, at });
     }
     if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
       throw new Error('Lab recording is off.');

@@ -178,3 +178,7 @@ These bindings do not port a host or interpret its references. Hosts retain
 public HF admission, clinical and unfinished-duty refusals, ownership checks,
 reference mapping and complete replay inputs. See the
 [coverage and adoption boundary](../../docs/lab/portable-role-bindings.md).
+
+## Shared-origin queue isolation (0.5.17)
+
+Pending recording belongs to its original game. Each client retries only that game's records, including older rows whose game is recovered from their original compressed envelope. A client never drains another game's queue under its own recording preference. Foreign records remain stored with the original compressed bytes and content IDs. Unknown unreadable records remain stored and block new queue additions rather than being discarded. This does not add automatic save migration or merge game preferences. Existing open pages need to load the new client before they have this fix.
