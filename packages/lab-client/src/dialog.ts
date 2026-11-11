@@ -101,11 +101,12 @@ export function openSendDialog(options: SendDialogOptions): void {
   const draftKey = `hf-lab-feedback-draft:${lab.game}`;
   note.value = (options.note ?? readLocal(draftKey) ?? '').slice(0, 4000);
   note.placeholder = 'What happened, what you wanted, what got in the way.';
+  const nameKey = `hf-lab-feedback-name:${lab.game}`;
   const name = el('input', {
     id: 'hflab-name',
     type: 'text',
     maxLength: 60,
-    value: options.name ?? readLocal('hf-lab-feedback-name') ?? '',
+    value: options.name ?? readLocal(nameKey) ?? '',
   });
   const verdict = el('fieldset', { 'aria-label': 'Would you keep playing?' });
   let verdictValue = '';
@@ -321,7 +322,7 @@ export function openSendDialog(options: SendDialogOptions): void {
         ...(approvedRun !== undefined ? { run: approvedRun } : {}),
       });
       writeLocal(draftKey, null);
-      writeLocal('hf-lab-feedback-name', approvedName || null);
+      writeLocal(nameKey, approvedName || null);
       status.className = 'status ok';
       status.textContent = `Sent. Reference ${id}.`;
       send.remove();
