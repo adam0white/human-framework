@@ -1,5 +1,7 @@
 # @adam0white/lab-kit
 
+Kit 0.5.35 is a source candidate that extends its peer compatibility to client 0.5.18. Publication and host adoption are separate gates. Earlier source-version descriptions below are historical.
+
 Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit source version 0.5.33. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit distribution uses immutable GitHub release artifacts, not npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
 Workspace version: **0.5.33**. It declares compatibility with client 0.5.16 while retaining its earlier exact peer versions. It exports `PEOPLE_ACROSS_GAMES` for links to the central people page. It adds the collapsed Debug footer and makes Save available without a query switch. It retains optional client 0.4.11–0.4.14 compatibility and adds client 0.4.15. The recording notice no longer blocks game controls at phone width (818c352). Existing 0.5.16 artifacts remain immutable. Candidate builds, publication, host adoption and browser admission are separate outcomes.

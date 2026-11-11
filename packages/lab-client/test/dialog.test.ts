@@ -2,11 +2,15 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createLab, RUN_LIMITS } from '../src/index.ts';
 import { documentFixture } from './dom.ts';
 
-function setup() {
+function setup(game = 'pass', deferRecording = false) {
   vi.stubGlobal('location', { hostname: 'human.adamwhite.work', origin: 'https://human.adamwhite.work' });
   const document = documentFixture();
   vi.stubGlobal('document', document);
-  const lab = createLab({ game: 'pass', build: {} });
+  const lab = createLab({
+    game,
+    build: {},
+    ...(deferRecording ? { preservation: 'preserve' as const, deferRecording: true } : {}),
+  });
   const sent: string[] = [];
   lab.sendFeedback = async (note, options = {}) => {
     sent.push(
@@ -61,6 +65,42 @@ describe('bounded send dialog', () => {
     expect(find('hflab-name').value).toBe('Sam');
     await settled();
   });
+  it('keeps feedback names scoped to their game and leaves the legacy key untouched', async () => {
+    const values = new Map([
+      ['hf-lab-feedback-name', 'Old ambiguous'],
+      ['hf-lab-feedback-name:word', 'Word name'],
+    ]);
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+      removeItem: (key: string) => values.delete(key),
+    });
+    const first = setup('pass', true);
+    const unlinked = vi.fn(async (_note: string, options?: { sharePlay?: boolean }) => {
+      expect(options?.sharePlay).toBe(false);
+      return 'unlinked-receipt';
+    });
+    first.lab.sendFeedback = unlinked;
+    expect(first.lab.telemetryOn).toBe(false);
+    first.lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+    expect(first.find('hflab-name').value).toBe('');
+    first.find('hflab-name').value = 'Pass name';
+    await first.find('hflab-name').fire('input');
+    await settled();
+    await first.find('send').fire('click');
+    expect(unlinked).toHaveBeenCalledOnce();
+    expect(values.get('hf-lab-feedback-name:pass')).toBe('Pass name');
+    expect(values.get('hf-lab-feedback-name:word')).toBe('Word name');
+    expect(values.get('hf-lab-feedback-name')).toBe('Old ambiguous');
+    first.lab.dispose();
+    const second = setup('word', true);
+    second.lab.openSendDialog({ getRun: () => ({ seed: 2 }) });
+    expect(second.find('hflab-name').value).toBe('Word name');
+    expect(values.get('hf-lab-feedback-name:pass')).toBe('Pass name');
+    expect(values.get('hf-lab-feedback-name')).toBe('Old ambiguous');
+    second.lab.dispose();
+  });
+
   it.each(['off', 'privacy', 'persona'])('sends from the same sheet when %s', async (choice) => {
     vi.stubGlobal('location', { hostname: 'human.adamwhite.work', origin: 'https://human.adamwhite.work' });
     vi.stubGlobal('navigator', choice === 'privacy' ? { globalPrivacyControl: true } : {});

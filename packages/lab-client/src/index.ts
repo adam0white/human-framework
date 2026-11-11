@@ -71,6 +71,8 @@ export type LabOptions = {
   runSource?: RunSource;
   /** Reuse existing local identity/session without replacing storage or contacting the identity frame. */
   preservation?: 'preserve';
+  /** With preservation: preserve, keep recording and pending delivery inactive until explicit opt-in. */
+  deferRecording?: boolean;
   /** game id, the subdomain: 'pass', 'glance', 'murmur' */
   game: string;
   /** build info. Default: read from this site's /release.json (commit, framework, app). */
@@ -206,11 +208,14 @@ const setItem = (s: Storage | undefined, k: string, v: string | null) => {
 };
 
 export function createLab(options: LabOptions): Lab {
+  if (options.deferRecording === true && options.preservation !== 'preserve')
+    throw new Error('deferRecording requires preservation: preserve.');
   const runSource = resolveRunSource(options.runSource);
   const preserve = options.preservation === 'preserve';
+  let deferred = options.deferRecording === true;
   let preservationStatus: PreservationStatus = preserve ? 'existing-local' : 'standard';
   try {
-    acceptGameNavigation(Date.now(), { preserve });
+    if (!deferred || preserve) acceptGameNavigation(Date.now(), { preserve });
   } catch {
     preservationStatus = 'identity-mismatch';
   }
@@ -246,6 +251,7 @@ export function createLab(options: LabOptions): Lab {
       preservationStatus = 'incompatible-session';
     return (
       disposed ||
+      deferred ||
       (preserve && preservationStatus !== 'existing-local') ||
       off ||
       getItem(local, offKey) === '1' ||
@@ -275,7 +281,7 @@ export function createLab(options: LabOptions): Lab {
       if (central && central !== existingPlayer) preservationStatus = 'identity-mismatch';
     }
   }
-  if (fresh && (!preserve || preservationStatus === 'existing-local')) {
+  if (!deferred && fresh && (!preserve || preservationStatus === 'existing-local')) {
     sid = randomId();
     started = Date.now();
     setItem(session, sessionKey, `${sid}:${started}`);
@@ -291,11 +297,12 @@ export function createLab(options: LabOptions): Lab {
     preservationStatus === 'existing-local'
   )
     preservationStatus = 'incompatible-session';
-  if (!preserve || (storedRun === null && preservationStatus === 'existing-local'))
+  if (!deferred && (!preserve || (storedRun === null && preservationStatus === 'existing-local')))
     setItem(session, runStorageKey, runId);
   acceptedSession = getItem(session, sessionKey);
   acceptedRun = getItem(session, runStorageKey);
   if (
+    !deferred &&
     preserve &&
     preservationStatus === 'existing-local' &&
     (acceptedSession !== `${sid}:${started}` || acceptedRun !== runId)
@@ -303,7 +310,7 @@ export function createLab(options: LabOptions): Lab {
     preservationStatus = 'incompatible-session';
   let build: Build = options.build ?? {};
   let buildKnown = Boolean(options.build);
-  let transport: ReturnType<typeof linkedTransport>;
+  let transport: ReturnType<typeof linkedTransport> | undefined;
   const explicitUploads = new Set<AbortController>();
   let generation = 0;
   const reset = () => {
@@ -335,6 +342,7 @@ export function createLab(options: LabOptions): Lab {
   const activate = () => {
     if (
       disposed ||
+      deferred ||
       off ||
       readLocal(RECORDING_OFF) === '1' ||
       (privacySignal(g) && !override) ||
@@ -348,18 +356,22 @@ export function createLab(options: LabOptions): Lab {
     player = localPlayer();
     identity ??= identityBridge(onIdentity);
   };
+  const startTransport = () => {
+    if (transport || deferred || disposed) return;
+    transport = linkedTransport({
+      game,
+      endpoint,
+      runSource,
+      preserve,
+      build: () => build,
+      override: () => override,
+      enabled: () => !stopped(),
+      link: () => (player ? { player, session: sid, runId } : null),
+      ready: identity?.ready,
+    });
+  };
   activate();
-  transport = linkedTransport({
-    game,
-    endpoint,
-    runSource,
-    preserve,
-    build: () => build,
-    override: () => override,
-    enabled: () => !stopped(),
-    link: () => (player ? { player, session: sid, runId } : null),
-    ready: identity?.ready,
-  });
+  startTransport();
   // Each immutable chunk has its own key, so another tab cannot overwrite it
   // while appending or retiring a different chunk. Limits are checked after
   // writing; on contention only this append's new keys are rolled back.
@@ -463,7 +475,7 @@ export function createLab(options: LabOptions): Lab {
     try {
       await (identity?.ready ?? Promise.resolve());
       if (epoch !== generation || stopped() || player !== entry.link.player) return;
-      await transport.send(entry.kind, entry.data, entry.link, undefined, 'due', true, {
+      await transport!.send(entry.kind, entry.data, entry.link, undefined, 'due', true, {
         build: entry.build,
         privacyOverride: entry.override,
         runSource: entry.runSource,
@@ -486,6 +498,7 @@ export function createLab(options: LabOptions): Lab {
   let runKey: (() => string | number) | undefined;
   let observedKey: string | number | undefined;
   const syncRun = () => {
+    if (deferred) return;
     const next = runKey?.();
     if (observedKey !== undefined && next !== observedKey) {
       runId = randomId();
@@ -501,7 +514,7 @@ export function createLab(options: LabOptions): Lab {
       reset();
       return;
     }
-    void transport.drain();
+    void transport?.drain();
     if (!buildKnown && !allowUnknownBuild) return;
     if (!queue.length && !logs.length) {
       replayJournal();
@@ -559,7 +572,7 @@ export function createLab(options: LabOptions): Lab {
           if (epoch !== generation || stopped() || player !== base.player) return;
           for (const entry of entries) {
             if (epoch !== generation || stopped() || player !== base.player) return;
-            await transport.send(entry.kind, entry.data, entry.link, undefined, false, false, {
+            await transport!.send(entry.kind, entry.data, entry.link, undefined, false, false, {
               build: entry.build,
               privacyOverride: entry.override,
               runSource: entry.runSource,
@@ -677,6 +690,26 @@ export function createLab(options: LabOptions): Lab {
     cleanup.push(() => clearInterval(flushTimer));
   }
   const setOff = (value: boolean) => {
+    if (disposed) return;
+    const wasDeferred = deferred;
+    if (!value && deferred) {
+      // Recheck the preserved identity and original session before writing anything.
+      recordingStopped();
+      if (preserve && preservationStatus !== 'existing-local') return;
+      if (fresh) {
+        sid = randomId();
+        started = Date.now();
+        setItem(session, sessionKey, `${sid}:${started}`);
+      }
+      if (storedRun === null || !preserve) setItem(session, runStorageKey, runId);
+      acceptedSession = getItem(session, sessionKey);
+      acceptedRun = getItem(session, runStorageKey);
+      if (preserve && (acceptedSession !== `${sid}:${started}` || acceptedRun !== runId)) {
+        preservationStatus = 'incompatible-session';
+        return;
+      }
+      deferred = false;
+    }
     // The menu switch and feedback checkbox are explicit opt-in, including DNT/GPC.
     if (!value) {
       override = true;
@@ -700,7 +733,13 @@ export function createLab(options: LabOptions): Lab {
       identity.setOff(true);
     } else {
       activate();
+      startTransport();
       identity?.setOff(false);
+      if (wasDeferred) {
+        if (fresh) push(['start', 0]);
+        replayJournal();
+        void snapshot?.();
+      }
     }
     g.dispatchEvent?.(new Event('hf-lab-preference'));
   };
@@ -750,16 +789,17 @@ export function createLab(options: LabOptions): Lab {
     dispose() {
       disposed = true;
       reset();
-      transport.dispose();
+      transport?.dispose();
       for (const stop of cleanup) stop();
     },
     build: () => build,
     setPersonaRecording(key) {
+      if (disposed) return;
       if (key !== null && !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(key))
         throw new Error('Invalid persona recording key.');
       // Compatibility with older hosts: first-visit disclosure now covers linkage.
       // Discard obsolete per-person decisions silently; recording is the only gate.
-      if (key && !preserve) writeLocal(`hf-persona-recording:${key}`, null);
+      if (key && !preserve && !deferred) writeLocal(`hf-persona-recording:${key}`, null);
     },
     get personaRecordingAllowed() {
       return true;
@@ -786,6 +826,7 @@ export function createLab(options: LabOptions): Lab {
       return override;
     },
     setPrivacyOverride(value) {
+      if (disposed) return;
       override = value;
       setItem(local, overrideKey, value ? '1' : null);
       if (off || readLocal(RECORDING_OFF) === '1') {
@@ -819,7 +860,7 @@ export function createLab(options: LabOptions): Lab {
           const generation = opts.runKey?.();
           const run = await getRun();
           if (run !== undefined && run !== null && !disposed && !stopped() && generation === opts.runKey?.())
-            await transport.send('run', run, captured);
+            await transport!.send('run', run, captured);
           for (const line of opts.getLogs?.() ?? []) if (typeof line === 'string') log('game', line);
         } catch {
         } finally {
@@ -840,17 +881,18 @@ export function createLab(options: LabOptions): Lab {
       };
     },
     captureSave(value) {
+      if (stopped()) return;
       syncRun();
       const captured = player ? { player, session: sid, runId } : undefined;
       if (!stopped())
         void (identity?.ready ?? Promise.resolve())
-          .then(() => transport.send('save', value, captured))
+          .then(() => transport!.send('save', value, captured))
           .catch(() => {});
     },
     async sendFeedback(note, options = {}) {
       if (options.sharePlay === true) setOff(false);
       await (identity?.ready ?? Promise.resolve());
-      syncRun();
+      if (!deferred) syncRun();
       const text = note.trim().slice(0, 4000);
       const feedbackGeneration = generation;
       if (stopped()) {
@@ -869,7 +911,7 @@ export function createLab(options: LabOptions): Lab {
         return sendUnlinked(envelope, fallback, capturedGeneration);
       }
       try {
-        if (options.run) await transport.send('run', options.run);
+        if (options.run) await transport!.send('run', options.run);
         else if (snapshot) {
           let timeout: ReturnType<typeof setTimeout> | undefined;
           try {
@@ -889,22 +931,23 @@ export function createLab(options: LabOptions): Lab {
       const fallback = prepareRun(game, build, { feedbackOnly: true }, { note: text, name: options.name });
       if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
       try {
-        return await transport.send('note', { note: text }, undefined, options.name, true);
+        return await transport!.send('note', { note: text }, undefined, options.name, true);
       } catch (error) {
         if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
         throw error;
       }
     },
     async sendRun(run, extra = {}) {
+      if (deferred) throw new Error('Lab recording is not enabled for this instance.');
       if (preserve && preservationStatus !== 'existing-local')
         throw new Error(`Lab preservation blocked: ${preservationStatus}.`);
       if (preserve && stopped()) throw new Error('Lab recording is off.');
       syncRun();
       if (!stopped()) {
         await (identity?.ready ?? Promise.resolve());
-        const id = await transport.send('run', run);
+        const id = await transport!.send('run', run);
         if (extra.note || extra.name?.trim())
-          await transport.send(
+          await transport!.send(
             'note',
             { note: extra.note?.trim().slice(0, 4000) ?? '' },
             undefined,
@@ -917,6 +960,7 @@ export function createLab(options: LabOptions): Lab {
       return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
+      if (deferred) throw new Error('Lab recording is not enabled for this instance.');
       if (preserve && preservationStatus !== 'existing-local')
         throw new Error(`Lab preservation blocked: ${preservationStatus}.`);
       if (preserve && stopped()) throw new Error('Lab recording is off.');
