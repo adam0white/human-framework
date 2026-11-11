@@ -71,7 +71,7 @@ export type LabOptions = {
   runSource?: RunSource;
   /** Reuse existing local identity/session without replacing storage or contacting the identity frame. */
   preservation?: 'preserve';
-  /** Keep recording and pending delivery inactive until this instance explicitly opts in. */
+  /** With preservation: preserve, keep recording and pending delivery inactive until explicit opt-in. */
   deferRecording?: boolean;
   /** game id, the subdomain: 'pass', 'glance', 'murmur' */
   game: string;
@@ -208,6 +208,8 @@ const setItem = (s: Storage | undefined, k: string, v: string | null) => {
 };
 
 export function createLab(options: LabOptions): Lab {
+  if (options.deferRecording === true && options.preservation !== 'preserve')
+    throw new Error('deferRecording requires preservation: preserve.');
   const runSource = resolveRunSource(options.runSource);
   const preserve = options.preservation === 'preserve';
   let deferred = options.deferRecording === true;

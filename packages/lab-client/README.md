@@ -1,6 +1,6 @@
 # Lab client
 
-Client 0.5.18 is a source candidate. `createLab({ game, deferRecording: true })` keeps this instance from recording or retrying pending data until an explicit `setEventsOff(false)`, `setTelemetryOff(false)`, or feedback with `sharePlay: true`. While deferred, feedback without sharing sends only the unlinked note, even when a run is supplied. The option does not change saved preferences or create recording storage during construction. Preserving mode continues to refuse incompatible identities or sessions. Feedback names are stored under `hf-lab-feedback-name:<game>`; the earlier unscoped name is left untouched. Publication and host adoption are separate gates.
+Client 0.5.18 is a source candidate. `createLab({ game, preservation: 'preserve', deferRecording: true })` keeps this instance from recording or retrying pending data until an explicit `setEventsOff(false)`, `setTelemetryOff(false)`, or feedback with `sharePlay: true`. While deferred, feedback without sharing sends only the unlinked note, even when a run is supplied. Using `deferRecording: true` without `preservation: 'preserve'` throws before initialization. The option does not change saved preferences or create recording storage during construction. Preserving mode continues to refuse incompatible identities or sessions. Feedback names are stored under `hf-lab-feedback-name:<game>`; the earlier unscoped name is left untouched. Publication and host adoption are separate gates.
 
 Earlier source-version descriptions below are historical.
 

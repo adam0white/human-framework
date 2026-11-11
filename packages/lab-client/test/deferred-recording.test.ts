@@ -131,41 +131,38 @@ it('holds existing pending bytes and journals through unshared feedback, then re
   }
 });
 
-it('does not initialize storage or create a queue when deferred identity is absent', async () => {
+it('rejects non-preserving deferred mode before storage, navigation or network effects', () => {
   const local = memory(),
-    session = memory(),
-    open = vi.fn(() => {
-      throw Error('unexpected database');
-    });
+    session = memory();
+  const localRead = vi.spyOn(local, 'getItem');
+  const sessionRead = vi.spyOn(session, 'getItem');
+  const open = vi.fn(),
+    fetch = vi.fn(),
+    replaceState = vi.fn();
   vi.stubGlobal('indexedDB', { open });
   vi.stubGlobal('localStorage', local);
   vi.stubGlobal('sessionStorage', session);
-  vi.stubGlobal('location', { hostname: 'play.adamwhite.work', pathname: '/word/file/' });
-  vi.stubGlobal('navigator', {});
-  vi.stubGlobal('addEventListener', undefined);
-  const requests: Record<string, unknown>[] = [];
-  vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {
-    const payload = JSON.parse(
-      gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString(),
-    );
-    requests.push(payload);
-    return Response.json({ id: 'receipt' });
+  vi.stubGlobal('fetch', fetch);
+  vi.stubGlobal('history', { state: null, replaceState });
+  vi.stubGlobal('document', { referrer: 'https://human.adamwhite.work/games/' });
+  vi.stubGlobal('location', {
+    hostname: 'word.adamwhite.work',
+    origin: 'https://word.adamwhite.work',
+    href: 'https://word.adamwhite.work/',
+    pathname: '/',
+    search: '',
+    hash: '#hf-lab-navigation=fixture',
   });
-  const lab = createLab({ game: 'word', build: {}, deferRecording: true });
-  try {
-    expect([...local.values]).toEqual([]);
-    expect([...session.values]).toEqual([]);
-    expect(open).not.toHaveBeenCalled();
-    await expect(lab.sendRun({ secret: true })).rejects.toThrow('not enabled');
-    await lab.sendFeedback('hello', { run: { secret: true }, sharePlay: false });
-    expect(requests).toHaveLength(1);
-    expect(requests[0]).toMatchObject({ run: { feedbackOnly: true } });
-    expect([...local.values]).toEqual([]);
-    expect([...session.values]).toEqual([]);
-    expect(open).not.toHaveBeenCalled();
-  } finally {
-    lab.dispose();
-  }
+  expect(() => createLab({ game: 'word', deferRecording: true })).toThrow(
+    'deferRecording requires preservation',
+  );
+  expect(localRead).not.toHaveBeenCalled();
+  expect(sessionRead).not.toHaveBeenCalled();
+  expect([...local.values]).toEqual([]);
+  expect([...session.values]).toEqual([]);
+  expect(open).not.toHaveBeenCalled();
+  expect(fetch).not.toHaveBeenCalled();
+  expect(replaceState).not.toHaveBeenCalled();
 });
 
 it.each(['setEventsOff', 'sharePlay'] as const)('activates only on explicit %s opt-in', async (method) => {

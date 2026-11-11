@@ -6,7 +6,11 @@ function setup(game = 'pass', deferRecording = false) {
   vi.stubGlobal('location', { hostname: 'human.adamwhite.work', origin: 'https://human.adamwhite.work' });
   const document = documentFixture();
   vi.stubGlobal('document', document);
-  const lab = createLab({ game, build: {}, deferRecording });
+  const lab = createLab({
+    game,
+    build: {},
+    ...(deferRecording ? { preservation: 'preserve' as const, deferRecording: true } : {}),
+  });
   const sent: string[] = [];
   lab.sendFeedback = async (note, options = {}) => {
     sent.push(
