@@ -1,5 +1,4 @@
 import { readFileSync } from 'node:fs';
-import { createPerson, promise } from '@adam0white/hf-legacy';
 import type { PersonAuthoring, Result, RunSpec } from '@adam0white/human-framework';
 import { describe, expect, it, vi } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
@@ -14,16 +13,8 @@ import { admitPortablePerson, claimPortablePerson, projectPortablePerson } from 
 import { PORTABLE_READERS } from '../src/portable-readers.ts';
 
 const castId = 'hf.cast.burak.stairwell';
-const actor = () =>
-  createPerson({
-    id: castId,
-    name: 'Burak',
-    bornAt: -31 * 525960,
-    sex: 'male',
-    seed: 9,
-    traits: canonicalCast(castId).traits,
-    values: canonicalCast(castId).values,
-  });
+const legacy = JSON.parse(readFileSync(new URL('./legacy-capture.json', import.meta.url), 'utf8'));
+const actor = () => structuredClone(legacy.actors[castId]);
 const project = (person = actor()) =>
   projectPortablePerson({
     castId,
@@ -82,15 +73,7 @@ describe('portable shelf contract', () => {
   });
   it('carries Selin from Voice into her Good Hands role', async () => {
     const id = 'hf.cast.selin.voice';
-    const person = createPerson({
-      id: 'selin',
-      name: 'Selin',
-      bornAt: -32 * 525960,
-      sex: 'female',
-      seed: 9,
-      traits: canonicalCast(id).traits,
-      values: canonicalCast(id).values,
-    });
+    const person = structuredClone(legacy.selin);
     person.body.satiety = 0.41;
     const transfer = projectPortablePerson({
       castId: id,
@@ -109,15 +92,7 @@ describe('portable shelf contract', () => {
       transfer,
       limitations: [],
     });
-    const opening = createPerson({
-      id: 'selin-voice',
-      name: 'Selin',
-      bornAt: -32 * 525960,
-      sex: 'female',
-      seed: 10,
-      traits: canonicalCast(id).traits,
-      values: canonicalCast(id).values,
-    });
+    const opening = structuredClone(legacy.selinOpening);
     expect(admitPortablePerson(parent, 'goodhands', opening).body.satiety).toBe(0.41);
     const readers = PORTABLE_READERS as Record<string, { client: string; perPersonSkips: boolean }>;
     const ready = readers.goodhands;
@@ -250,15 +225,8 @@ describe('portable shelf contract', () => {
     expect(() => admitPortablePerson(departed, 'days', actor())).not.toThrow();
   });
   it('refuses all recurring chain states, precommitments and clinical injuries', () => {
-    const person = actor();
-    const duty = promise(person, {
-      kind: 'promise',
-      actions: ['rest'],
-      from: 0,
-      until: 60,
-      importance: 0.5,
-      recurEvery: 1440,
-    });
+    const person = structuredClone(legacy.dutyPerson);
+    const duty = person.agenda.commitments[0];
     for (const status of ['pending', 'kept', 'broken', 'released'] as const) {
       duty.status = status;
       expect(() => project(person)).toThrow(/cannot continue/);

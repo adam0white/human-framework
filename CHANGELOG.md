@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Lab client 0.5.19 and kit 0.5.36
+
+- Use the HF 4.17 chapter projection for coarse life while retaining its serialized clock format; remove the Lab client HF 3 dependency. Preserve old test data as captured fixtures. Kit admits client 0.5.19. Publication and consumer adoption remain pending.
+
 Releases of Human Framework (HF), packaged as `@adam0white/human-framework` (`@human/framework` up to 2.1.0). The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 The release version is the package version, tagged `vX.Y.Z`. Up to 3.x each entry also names the
