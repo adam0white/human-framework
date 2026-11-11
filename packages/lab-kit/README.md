@@ -1,3 +1,5 @@
+Kit 0.5.36 is a source candidate adding client 0.5.19 to its peer range. Publication and host adoption remain open.
+
 # @adam0white/lab-kit
 
 Kit 0.5.35 is a source candidate that extends its peer compatibility to client 0.5.18. Publication and host adoption are separate gates. Earlier source-version descriptions below are historical.

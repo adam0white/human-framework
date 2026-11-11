@@ -2,7 +2,47 @@
  * Bounded host-authored coarse life. No Person mutation, health recovery, duty settlement, secret
  * disclosure, qualification or full lived-day claim. Only new chapters consume this pinned input. Assignment changes stay inside the authored occupation and qualifications; minors remain supervised. No work completion or payment is asserted. Existing obligations still take precedence.
  */
-import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/hf-legacy';
+import { projectChapterClock } from '@adam0white/human-framework';
+
+// The shelf format stays stable; HF4 owns projection and the seeded draws.
+export interface ChapterClock {
+  version: 'hf-chapter-clock/1';
+  watermark: number;
+  seed: number;
+}
+const HOUR = 3_600_000;
+function slot(nowMs: number): number {
+  if (!Number.isSafeInteger(nowMs) || nowMs < 0) throw new Error('Invalid chapter clock.');
+  return Math.floor(nowMs / HOUR);
+}
+function createChapterClock(seed: number, nowMs: number): ChapterClock {
+  if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('Invalid chapter seed.');
+  return { version: 'hf-chapter-clock/1', watermark: slot(nowMs), seed };
+}
+function advanceChapterClock(clock: ChapterClock, nowMs: number) {
+  if (
+    clock.version !== 'hf-chapter-clock/1' ||
+    !Number.isSafeInteger(clock.watermark) ||
+    clock.watermark < 0 ||
+    !Number.isInteger(clock.seed) ||
+    clock.seed < 0 ||
+    clock.seed > 0xffffffff
+  )
+    throw new Error('Unsupported chapter clock.');
+  const end = Math.max(clock.watermark, slot(nowMs));
+  const wallAtMs = clock.watermark * HOUR;
+  const result = projectChapterClock(
+    { seed: clock.seed || 0, wallAtMs: wallAtMs || 0, slot: clock.watermark || 0, remainderMs: 0 },
+    end * HOUR || 0,
+  );
+  if (!result.ok) throw new Error('Invalid chapter clock.');
+  return {
+    clock: { ...clock, watermark: end },
+    slots: result.value.slots.map(({ slot: at, draw }) => ({ at, draw })),
+    skipped: result.value.skipped,
+  };
+}
+
 import { CANONICAL_CAST, canonicalCast } from './cast.ts';
 import { boundedPersonaJson, createPersona, type PersonaEnvelope, type PersonaRequest } from './persona.ts';
 import { claimPortablePerson, portablePassport, portablePersonOwner } from './persona-portable.ts';

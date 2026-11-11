@@ -1,4 +1,4 @@
-import { createPerson } from '@adam0white/hf-legacy';
+import { readFileSync } from 'node:fs';
 import { expect, it, vi } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
 import { claimCastChapterBatch, preparePersonaLife } from '../src/life.ts';
@@ -12,18 +12,13 @@ import {
 } from '../src/persona-portable.ts';
 import { PORTABLE_READERS } from '../src/portable-readers.ts';
 
-// Synthetic bodies isolate binding from biography. No second cast table or actor matrix.
+// Captured from genuine HF3 createPerson; only identity is changed per authored role.
+const legacy = JSON.parse(readFileSync(new URL('./legacy-capture.json', import.meta.url), 'utf8'));
 function actor(castId: string, id: string) {
-  const cast = canonicalCast(castId);
-  return createPerson({
-    id,
-    name: cast.name,
-    bornAt: -cast.age * 525960,
-    sex: 'male',
-    seed: 9,
-    traits: cast.traits,
-    values: cast.values,
-  });
+  const captured =
+    legacy.roleActors[`${castId}/${id}`] ?? (id === castId ? legacy.actors[castId] : undefined);
+  if (!captured) throw new Error(`Missing captured HF3 actor ${castId}/${id}`);
+  return structuredClone(captured);
 }
 async function departure(game: string, castId: string, id: string) {
   const person = actor(castId, id);
