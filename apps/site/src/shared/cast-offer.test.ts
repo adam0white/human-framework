@@ -27,7 +27,7 @@ it('automatically saves the selected person and offers a retry if saving fails',
   await act(async () => {
     host.querySelector('button')?.click();
   });
-  expect(host.querySelector('a')?.getAttribute('href')).toBe('https://goodhands.adamwhite.work');
+  expect(host.querySelector('a')?.getAttribute('href')).toBe('https://play.adamwhite.work/goodhands/');
   await act(() => root.unmount());
   host.remove();
 });

@@ -1952,7 +1952,8 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             )}
             {!fileSession && frame.refugeReady && visitSave === 'saved' && (
               <p role="status">
-                Their visit is saved. <a href="https://warren.adamwhite.work/">Go to the Warren together</a>
+                Their visit is saved.{' '}
+                <a href="https://play.adamwhite.work/warren/">Go to the Warren together</a>
               </p>
             )}
             <div className="w-choice-pair">

@@ -1,27 +1,27 @@
 {
   "murmur": {
     "framework": "4.17.0",
-    "commit": "7ab344bf5f181c8043866078d71b5d3022481126",
-    "release": "https://murmur.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/murmur/release.json",
+    "checked": "2026-11-12"
   },
   "stairwell": {
     "framework": "4.17.0",
-    "commit": "8ff83b59bb3149b19f0ce9a061dd0ce992937043",
-    "release": "https://stairwell.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/stairwell/release.json",
+    "checked": "2026-11-12"
   },
   "pass": {
     "framework": "4.17.0",
-    "commit": "c7bebaffd00a2e5b64d971d62c73b60ed3ada6c4",
-    "release": "https://pass.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/pass/release.json",
+    "checked": "2026-11-12"
   },
   "glance": {
     "framework": "4.17.0",
-    "commit": "6971b4d72ff0bdb3ac11b6f55119a9ebab90ec8a",
-    "release": "https://glance.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/glance/release.json",
+    "checked": "2026-11-12"
   },
   "watch": {
     "framework": "4.17.0",
@@ -32,21 +32,21 @@
   },
   "hearsay": {
     "framework": "4.17.0",
-    "commit": "f6737badd333a7e889a8a9abb91653aae04b370a",
-    "release": "https://hearsay.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/hearsay/release.json",
+    "checked": "2026-11-12"
   },
   "goodhands": {
     "framework": "4.17.0",
-    "commit": "b1cdb1802d53729e10e21a5393227cf054bfd75f",
-    "release": "https://goodhands.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/goodhands/release.json",
+    "checked": "2026-11-12"
   },
   "valley": {
     "framework": "4.17.0",
-    "commit": "92f7653478254227edcd0e3c172ba60bc4f5960f",
-    "release": "https://valley.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/valley/release.json",
+    "checked": "2026-11-12"
   },
   "voice": {
     "framework": "4.17.0",
@@ -64,65 +64,63 @@
   },
   "warren": {
     "framework": "4.17.0",
-    "commit": "a964e30dd63477da9ccebea67a4b31d8b00a2c3c",
-    "release": "https://warren.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/warren/release.json",
+    "checked": "2026-11-12"
   },
   "repair": {
     "framework": "4.17.0",
-    "commit": "fa17feee190ca6f926417717b2b4674026109090",
-    "release": "https://repair.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "status": "Release source checkpoint; verify the linked live record before central rollout."
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/smallworks/release.json",
+    "checked": "2026-11-12"
   },
   "neighbours": {
     "framework": "4.17.0",
-    "commit": "b7ecb8a8b28702a7e019696ed554f22f6c6f6a01",
-    "release": "https://neighbours.adamwhite.work/release.json",
-    "checked": "2026-11-05",
-    "status": "Release source checkpoint; verify the linked live record before central rollout."
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/neighbours/release.json",
+    "checked": "2026-11-12"
   },
   "rope": {
     "framework": "4.17.0",
-    "commit": "c69a43cd9237d397ed6ea21031f783932c86046e",
-    "release": "https://rope.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/rope/release.json",
+    "checked": "2026-11-12"
   },
   "commonstead": {
     "framework": "4.17.0",
-    "commit": "4daa46e5a0ab070f4a4a6be584366ab488092718",
-    "release": "https://commonstead.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/commonstead/release.json",
+    "checked": "2026-11-12"
   },
   "smoke": {
     "framework": "4.17.0",
-    "commit": "63c801e71381fc4cc4673329653a1ccc0439ff64",
-    "release": "https://smoke.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/smoke/release.json",
+    "checked": "2026-11-12"
   },
   "word": {
     "framework": "4.17.0",
-    "commit": "06866be5b594313f2ca71864dc81b8f78234464d",
-    "release": "https://word.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/word/release.json",
+    "checked": "2026-11-12"
   },
   "child": {
     "framework": "4.17.0",
-    "commit": "5d9f5564100cacda1d8481f5a37c6ed45c811a51",
-    "release": "https://child.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/child/release.json",
+    "checked": "2026-11-12"
   },
   "days": {
     "framework": "4.17.0",
-    "commit": "b6371b31786d2f72ed863ddcfd1be592cade81fa",
-    "release": "https://days.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/days/release.json",
+    "checked": "2026-11-12"
   },
   "lefthand": {
     "framework": "4.17.0",
-    "commit": "6b4e2c28edaa58579e4c4ff1544ee1c74f9c0db3",
-    "release": "https://lefthand.adamwhite.work/release.json",
-    "checked": "2026-11-05"
+    "commit": "fbdc1eb38699b839fd66341573193679804366c2",
+    "release": "https://play.adamwhite.work/lefthand/release.json",
+    "checked": "2026-11-12"
   },
   "island": {
     "framework": "4.17.0",
