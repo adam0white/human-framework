@@ -26,8 +26,18 @@ it('shows public game descriptions and faculty labels', () => {
 it('shows each audited release source and its current disposition', async () => {
   const { default: releases } = await import('../game-releases.json');
   const ordinary = shelf();
+  const central = new Map([
+    ['watch', '/watch/'],
+    ['voice', '/voice/'],
+    ['well', '/colony/'],
+  ]);
+  expect(GAMES.filter((game) => !central.has(game.id))).toHaveLength(17);
   for (const game of GAMES) {
     const receipt = releases[game.id as keyof typeof releases];
+    const slug = game.id === 'repair' ? 'smallworks' : game.id;
+    const href = central.get(game.id) ?? `https://play.adamwhite.work/${slug}/`;
+    expect(game.href).toBe(href);
+    if (!central.has(game.id)) expect(receipt.release).toBe(`${href}release.json`);
     expect(receipt.commit).toMatch(/^[a-f0-9]{40}$/);
     const card = ordinary.querySelector(`li[value="${game.rank}"]`);
     if (!card) throw new Error(`Missing card: ${game.id}`);

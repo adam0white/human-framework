@@ -1200,7 +1200,7 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
   await act(async () => finishCapture(true));
   expect(stay?.disabled).toBe(false);
   expect(host.textContent).toContain('Their visit is saved. Go to the Warren together');
-  expect(host.querySelector('a')?.getAttribute('href')).toBe('https://warren.adamwhite.work/');
+  expect(host.querySelector('a')?.getAttribute('href')).toBe('https://play.adamwhite.work/warren/');
   await act(async () => root.unmount());
   host.remove();
   select.mockRestore();

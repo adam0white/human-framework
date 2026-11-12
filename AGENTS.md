@@ -2,6 +2,8 @@
 
 [HANDOFF.md](HANDOFF.md) holds state; this file holds rules. Then read [the architecture](docs/framework.md). Accepted goals are in [history](docs/history.md); owner words in [owner directions](docs/owner-directions-2026-10-18.md) (OD).
 
+[Cloud readiness](docs/cloud-readiness.md) records current Mac assumptions and proposed replacements; it does not claim those replacements are deployed.
+
 ## Goals
 
 - **Posture (owner, 2026-10-02):** one TypeScript framework with one actor (`Person`), shown through games; full autonomy, bold and opinionated over safe and generic.

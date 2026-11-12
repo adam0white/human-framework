@@ -3,7 +3,7 @@ import { declaredLabel, LAB_GAMES } from './games.ts';
 
 describe('His Word lab registration', () => {
   it('accepts its game and authored labels while excluding player text', () => {
-    expect(LAB_GAMES.find((game) => game.id === 'word')?.href).toBe('https://word.adamwhite.work');
+    expect(LAB_GAMES.find((game) => game.id === 'word')?.href).toBe('https://play.adamwhite.work/word/');
     for (const screen of [
       'His Word',
       'At the cutting table',
