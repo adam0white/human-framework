@@ -1028,7 +1028,7 @@ describe('browser continuity transport with test admission', () => {
 });
 
 it('uncertified peer admission preserves the real HF4 source head without preflight', async () => {
-  const parent = await head();
+  const parent = await head('hf.cast.halil.voice');
   control.state = acceptPersona(control.state, parent);
   const worker = new FakeWorker();
   await begin(worker);
@@ -1037,7 +1037,7 @@ it('uncertified peer admission preserves the real HF4 source head without prefli
   expect(worker.requests('castPreflight')).toHaveLength(0);
   expect(castState('voice').localNotice).toContain('could not carry over');
   const { claimPortablePerson } = await import('@adam0white/lab-client');
-  expect(() => claimPortablePerson(parent, 'voice')).toThrow(/read-only.*hearsay/);
+  expect(() => claimPortablePerson(parent, 'voice')).toThrow(/read-only.*repair/);
 });
 
 it('native phase, hidden and pagehide checkpoints publish real bound source journals and accepted parents', async () => {
