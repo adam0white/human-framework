@@ -29,7 +29,7 @@
         "src/**/*.test.ts",
         "src/{colony,voice,watch}/worker.ts",
         "worker/lab.ts",
-        "scripts/{colony-view,hf-colony-session,hf-voice-session,hf-watch-session,play-colony,play-voice,play-watch,watch-night-control,watch-phone-layout,watch-winter-control}.ts",
+        "scripts/{colony-view,hf-colony-session,hf-voice-session,hf-watch-session,play-colony,play-voice,play-watch,watch-night-control,watch-winter-control}.ts",
         "src/colony/ui/phone-readability.browser.mjs",
         "public/lab/island/{boot,viewer}.js"
       ],

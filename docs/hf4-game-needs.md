@@ -167,7 +167,7 @@ Each table contains its concrete contract or proof needs. Shared item IDs identi
 
 ### Murmur
 
-Source: `murmur@baef5f56`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/game.ts`](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/game.ts), [`src/sim/dilan.ts`](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/dilan.ts), [`src/sim/cast-chapter.ts`](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/cast-chapter.ts). Uses `decide/begin/finish/tick`, body forecasts, promptings and `reviewLine`; `enablePromptings`, `enableReview` and fatigue-store selectors disappear. It also assigns `will.temperature=0`.
+Source: `murmur@baef5f56`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/game.ts` (archived private source)](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/game.ts), [`src/sim/dilan.ts` (archived private source)](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/dilan.ts), [`src/sim/cast-chapter.ts` (archived private source)](https://github.com/adam0white/murmur/blob/baef5f56/src/sim/cast-chapter.ts). Uses `decide/begin/finish/tick`, body forecasts, promptings and `reviewLine`; `enablePromptings`, `enableReview` and fatigue-store selectors disappear. It also assigns `will.temperature=0`.
 
 Recorded stay reason: The seven-day reflection and voice controls need a separate always-on assent/narration move and replay proof.
 
@@ -181,7 +181,7 @@ Recorded stay reason: The seven-day reflection and voice controls need a separat
 
 ### Stairwell
 
-Source: `stairwell@329919a`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/game.ts`](https://github.com/adam0white/stairwell/blob/329919a/src/sim/game.ts), [`src/sim/people.ts`](https://github.com/adam0white/stairwell/blob/329919a/src/sim/people.ts), [`src/sim/cast-life.ts`](https://github.com/adam0white/stairwell/blob/329919a/src/sim/cast-life.ts). Uses perceptions, belief confirmation/contradiction, conversation and source trust; residents opt into the fatigue store today.
+Source: `stairwell@329919a`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/game.ts` (archived private source)](https://github.com/adam0white/stairwell/blob/329919a/src/sim/game.ts), [`src/sim/people.ts` (archived private source)](https://github.com/adam0white/stairwell/blob/329919a/src/sim/people.ts), [`src/sim/cast-life.ts` (archived private source)](https://github.com/adam0white/stairwell/blob/329919a/src/sim/cast-life.ts). Uses perceptions, belief confirmation/contradiction, conversation and source trust; residents opt into the fatigue store today.
 
 Recorded stay reason: Keep delivered disclosure and resident-trust rules while the existing panel baseline is reconciled.
 
@@ -232,7 +232,7 @@ blocker review 2026-12-01. The host stays on its current release pending those c
 
 ### The Pass
 
-Source: `pass@9930eef5`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/kitchen.ts`](https://github.com/adam0white/pass/blob/9930eef5/src/sim/kitchen.ts), [`src/sim/cooks.ts`](https://github.com/adam0white/pass/blob/9930eef5/src/sim/cooks.ts), [`src/sim/narration-edition.ts`](https://github.com/adam0white/pass/blob/9930eef5/src/sim/narration-edition.ts), [`docs/hf-requests.md`](https://github.com/adam0white/pass/blob/9930eef5/docs/hf-requests.md). Uses request outcomes, observer `predictAs`, `glimpsePerson`, review/prompting lines and edition-selected suggestion reasons. Host code removes the last cook's break offers and sets voice trust after requests.
+Source: `pass@9930eef5`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/kitchen.ts` (archived private source)](https://github.com/adam0white/pass/blob/9930eef5/src/sim/kitchen.ts), [`src/sim/cooks.ts` (archived private source)](https://github.com/adam0white/pass/blob/9930eef5/src/sim/cooks.ts), [`src/sim/narration-edition.ts` (archived private source)](https://github.com/adam0white/pass/blob/9930eef5/src/sim/narration-edition.ts), [`docs/hf-requests.md` (archived private source)](https://github.com/adam0white/pass/blob/9930eef5/docs/hf-requests.md). Uses request outcomes, observer `predictAs`, `glimpsePerson`, review/prompting lines and edition-selected suggestion reasons. Host code removes the last cook's break offers and sets voice trust after requests.
 
 Recorded stay reason: Preserve the F-1953–F-1959 request/kitchen baseline; collective coverage needs a generic contract.
 
@@ -248,7 +248,7 @@ Recorded stay reason: Preserve the F-1953–F-1959 request/kitchen baseline; col
 
 ### Glance
 
-Source: `glance@e2939d09`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/dam.ts`](https://github.com/adam0white/glance/blob/e2939d09/src/sim/dam.ts), [`src/sim/reading.ts`](https://github.com/adam0white/glance/blob/e2939d09/src/sim/reading.ts), [`src/sim/keepers.ts`](https://github.com/adam0white/glance/blob/e2939d09/src/sim/keepers.ts), [`src/sim/passport.ts`](https://github.com/adam0white/glance/blob/e2939d09/src/sim/passport.ts). Uses `bodyForecast`, prediction, doze context, review, fatigue-store/doze switches and `estimateQuantity` for gauge readings.
+Source: `glance@e2939d09`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/dam.ts` (archived private source)](https://github.com/adam0white/glance/blob/e2939d09/src/sim/dam.ts), [`src/sim/reading.ts` (archived private source)](https://github.com/adam0white/glance/blob/e2939d09/src/sim/reading.ts), [`src/sim/keepers.ts` (archived private source)](https://github.com/adam0white/glance/blob/e2939d09/src/sim/keepers.ts), [`src/sim/passport.ts` (archived private source)](https://github.com/adam0white/glance/blob/e2939d09/src/sim/passport.ts). Uses `bodyForecast`, prediction, doze context, review, fatigue-store/doze switches and `estimateQuantity` for gauge readings.
 
 Recorded stay reason: Fatigue and forecast judgments need their own major-version replay and frame-time check.
 
@@ -285,7 +285,7 @@ These are numbered acceptance needs from F-2113/F-2128, not new host-side rules.
 
 ### Hearsay
 
-Source: `hearsay@2cd5479e`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/garden.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden.ts), [`src/sim/garden-visit.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-visit.ts), [`src/sim/garden-dialogue.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-dialogue.ts), [`src/sim/garden-continuity.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-continuity.ts). The current garden entry uses conversation, beliefs and source trust; `testimony.ts` owns the host graph. The older `one-cast.ts` shell is not the production consumer.
+Source: `hearsay@2cd5479e`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/garden.ts` (archived private source)](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden.ts), [`src/sim/garden-visit.ts` (archived private source)](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-visit.ts), [`src/sim/garden-dialogue.ts` (archived private source)](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-dialogue.ts), [`src/sim/garden-continuity.ts` (archived private source)](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-continuity.ts). The current garden entry uses conversation, beliefs and source trust; `testimony.ts` owns the host graph. The older `one-cast.ts` shell is not the production consumer.
 
 Recorded stay reason: Retain delivered testimony/source-trust chains until retelling is proved through 4.x.
 
@@ -299,7 +299,7 @@ Recorded stay reason: Retain delivered testimony/source-trust chains until retel
 
 ### Good Hands
 
-Source: `goodhands@327f804a`; exact HF pin **3.0.0 (frozen editions also alias 2.9.0)** in `package.json`. Bridge: [`src/sim/index.ts`](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/index.ts), [`src/sim/voices.ts`](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/voices.ts), [`src/sim/guests.ts`](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/guests.ts), [`src/sim/cast-chapter.ts`](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/cast-chapter.ts). Uses confirmation versus hearsay, trust, observed acts, guest action loops, `outwardSigns` and `selfReport`. Editions 1–4 separately retain their 2.9 runtime.
+Source: `goodhands@327f804a`; exact HF pin **3.0.0 (frozen editions also alias 2.9.0)** in `package.json`. Bridge: [`src/sim/index.ts` (archived private source)](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/index.ts), [`src/sim/voices.ts` (archived private source)](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/voices.ts), [`src/sim/guests.ts` (archived private source)](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/guests.ts), [`src/sim/cast-chapter.ts` (archived private source)](https://github.com/adam0white/goodhands/blob/327f804a/src/sim/cast-chapter.ts). Uses confirmation versus hearsay, trust, observed acts, guest action loops, `outwardSigns` and `selfReport`. Editions 1–4 separately retain their 2.9 runtime.
 
 Recorded stay reason: Interview evidence and placement judgments need a bounded always-on belief/habit move.
 
@@ -312,7 +312,7 @@ Recorded stay reason: Interview evidence and placement judgments need a bounded 
 
 ### Valley
 
-Source: `valley@65f30a89`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/valley.ts`](https://github.com/adam0white/valley/blob/65f30a89/src/sim/valley.ts), [`src/sim/game.ts`](https://github.com/adam0white/valley/blob/65f30a89/src/sim/game.ts), [`src/sim/passport.ts`](https://github.com/adam0white/valley/blob/65f30a89/src/sim/passport.ts), [`docs/hf-requests.md`](https://github.com/adam0white/valley/blob/65f30a89/docs/hf-requests.md). Uses mixed routine/fine community time, births/deaths, partnering, recall, bodily prediction and host-targeted voice trust, plus full/compact host replays.
+Source: `valley@65f30a89`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/valley.ts` (archived private source)](https://github.com/adam0white/valley/blob/65f30a89/src/sim/valley.ts), [`src/sim/game.ts` (archived private source)](https://github.com/adam0white/valley/blob/65f30a89/src/sim/game.ts), [`src/sim/passport.ts` (archived private source)](https://github.com/adam0white/valley/blob/65f30a89/src/sim/passport.ts), [`docs/hf-requests.md` (archived private source)](https://github.com/adam0white/valley/blob/65f30a89/docs/hf-requests.md). Uses mixed routine/fine community time, births/deaths, partnering, recall, bodily prediction and host-targeted voice trust, plus full/compact host replays.
 
 Recorded stay reason: Preserve the exact household-history comparison; own-act evidence and memory retention are explicit dependencies.
 
@@ -354,7 +354,7 @@ Recorded stay reason: Orders-versus-autonomy needs matched run/input conditions 
 
 ### Warren
 
-Source: `warren@d9e5ede5`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/warren.ts`](https://github.com/adam0white/warren/blob/d9e5ede5/src/sim/warren.ts), [`src/sim/game.ts`](https://github.com/adam0white/warren/blob/d9e5ede5/src/sim/game.ts), [`docs/hf-requests.md`](https://github.com/adam0white/warren/blob/d9e5ede5/docs/hf-requests.md), [`docs/design.md`](https://github.com/adam0white/warren/blob/d9e5ede5/docs/design.md). Uses community state/cache, physical offers, injuries, interruptions and decision records. The source is later than the recorded live disposition.
+Source: `warren@d9e5ede5`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/warren.ts` (archived private source)](https://github.com/adam0white/warren/blob/d9e5ede5/src/sim/warren.ts), [`src/sim/game.ts` (archived private source)](https://github.com/adam0white/warren/blob/d9e5ede5/src/sim/game.ts), [`docs/hf-requests.md` (archived private source)](https://github.com/adam0white/warren/blob/d9e5ede5/docs/hf-requests.md), [`docs/design.md` (archived private source)](https://github.com/adam0white/warren/blob/d9e5ede5/docs/design.md). Uses community state/cache, physical offers, injuries, interruptions and decision records. The source is later than the recorded live disposition.
 
 Recorded stay reason: Preserve the measured work/refusal baseline and prepared retest before a separate port.
 
@@ -367,7 +367,7 @@ Recorded stay reason: Preserve the measured work/refusal baseline and prepared r
 
 ### Repair (Small Works)
 
-Source: `repair-game@5896db84`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/game/people.ts`](https://github.com/adam0white/repair-game/blob/5896db84/src/game/people.ts), [`src/game/community.ts`](https://github.com/adam0white/repair-game/blob/5896db84/src/game/community.ts), [`src/game/cast.ts`](https://github.com/adam0white/repair-game/blob/5896db84/src/game/cast.ts), [`docs/framework-boundary.md`](https://github.com/adam0white/repair-game/blob/5896db84/docs/framework-boundary.md). Uses demonstrations, method cues/context exit, fatigue/fullness and voice promises. Faults, tools, inventory and repair outcomes remain host-owned.
+Source: `repair-game@5896db84`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/game/people.ts` (archived private source)](https://github.com/adam0white/repair-game/blob/5896db84/src/game/people.ts), [`src/game/community.ts` (archived private source)](https://github.com/adam0white/repair-game/blob/5896db84/src/game/community.ts), [`src/game/cast.ts` (archived private source)](https://github.com/adam0white/repair-game/blob/5896db84/src/game/cast.ts), [`docs/framework-boundary.md` (archived private source)](https://github.com/adam0white/repair-game/blob/5896db84/docs/framework-boundary.md). Uses demonstrations, method cues/context exit, fatigue/fullness and voice promises. Faults, tools, inventory and repair outcomes remain host-owned.
 
 Recorded stay reason: Method learning, slow focus fatigue and companion requests need generic contracts and a retention/transfer control.
 
@@ -395,7 +395,7 @@ Recorded stay reason: Native/Pyodide and TypeScript parity/continuation is tied 
 
 ### Rope
 
-Source: `rope@8ff481e6`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/climb.ts`](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/climb.ts), [`src/sim/season.ts`](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/season.ts), [`src/sim/passport.ts`](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/passport.ts). Five people step each simulated minute; body forecasts and predictions govern warnings/refusal. Terrain, slips, weather and ropes belong to the host. Fullness/bladder switches disappear.
+Source: `rope@8ff481e6`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/climb.ts` (archived private source)](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/climb.ts), [`src/sim/season.ts` (archived private source)](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/season.ts), [`src/sim/passport.ts` (archived private source)](https://github.com/adam0white/rope/blob/8ff481e6/src/sim/passport.ts). Five people step each simulated minute; body forecasts and predictions govern warnings/refusal. Terrain, slips, weather and ropes belong to the host. Fullness/bladder switches disappear.
 
 Recorded stay reason: Climbing safety needs a scheduler/input-ownership replay and performance proof.
 
@@ -409,7 +409,7 @@ Recorded stay reason: Climbing safety needs a scheduler/input-ownership replay a
 
 ### Commonstead
 
-Source: `commonstead@05179553`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim.ts`](https://github.com/adam0white/commonstead/blob/05179553/src/sim.ts), [`src/settlement.ts`](https://github.com/adam0white/commonstead/blob/05179553/src/settlement.ts), [`src/passport.ts`](https://github.com/adam0white/commonstead/blob/05179553/src/passport.ts). Eight people use direct decisions/actions, conversation, promises, `prayerWindows`, `DEFAULT_NORMS` and fullness. Map/path/job/carried/commitment state belongs to the host.
+Source: `commonstead@05179553`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim.ts` (archived private source)](https://github.com/adam0white/commonstead/blob/05179553/src/sim.ts), [`src/settlement.ts` (archived private source)](https://github.com/adam0white/commonstead/blob/05179553/src/settlement.ts), [`src/passport.ts` (archived private source)](https://github.com/adam0white/commonstead/blob/05179553/src/passport.ts). Eight people use direct decisions/actions, conversation, promises, `prayerWindows`, `DEFAULT_NORMS` and fullness. Map/path/job/carried/commitment state belongs to the host.
 
 Recorded stay reason: Eight-person schedules, shared meals and continuation need multi-person settlement proof.
 
@@ -422,7 +422,7 @@ Recorded stay reason: Eight-person schedules, shared meals and continuation need
 
 ### Smoke on the Stairs
 
-Source: `smoke@5b2fab9b`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/sim.ts`](https://github.com/adam0white/smoke/blob/5b2fab9b/src/sim.ts), [`docs/design.md`](https://github.com/adam0white/smoke/blob/5b2fab9b/docs/design.md). Four people run in a 20 Hz host with 60 fps drawing. Uses answer/decision/action/perception/interruption/tick; smoke density and hazard tolerances are host rules.
+Source: `smoke@5b2fab9b`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/sim.ts` (archived private source)](https://github.com/adam0white/smoke/blob/5b2fab9b/src/sim.ts), [`docs/design.md` (archived private source)](https://github.com/adam0white/smoke/blob/5b2fab9b/docs/design.md). Four people run in a 20 Hz host with 60 fps drawing. Uses answer/decision/action/perception/interruption/tick; smoke density and hazard tolerances are host rules.
 
 Recorded stay reason: The actual 4.0 candidate missed the frame and bot budgets; its saved patch awaits the shared speed fix.
 
@@ -434,7 +434,7 @@ Recorded stay reason: The actual 4.0 candidate missed the frame and bot budgets;
 
 ### What the Child Saw
 
-Source: `child@32bbf872`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/model.ts`](https://github.com/adam0white/child/blob/32bbf872/src/model.ts), [`docs/design.md`](https://github.com/adam0white/child/blob/32bbf872/docs/design.md). Uses method evidence/cues/demonstration and monthly `liveCommunity` over 180 months. No second aging loop is allowed.
+Source: `child@32bbf872`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/model.ts` (archived private source)](https://github.com/adam0white/child/blob/32bbf872/src/model.ts), [`docs/design.md` (archived private source)](https://github.com/adam0white/child/blob/32bbf872/docs/design.md). Uses method evidence/cues/demonstration and monthly `liveCommunity` over 180 months. No second aging loop is allowed.
 
 Recorded stay reason: 4.0 costs about 0.5 s per idle person-day and 6.9 MB per fed person-month; multi-year chapters cannot fit that cost.
 
@@ -447,7 +447,7 @@ Recorded stay reason: 4.0 costs about 0.5 s per idle person-day and 6.9 MB per f
 
 ### The Left Hand
 
-Source: `lefthand@23387ddb`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/host.ts`](https://github.com/adam0white/lefthand/blob/23387ddb/src/host.ts), [`src/main.ts`](https://github.com/adam0white/lefthand/blob/23387ddb/src/main.ts), [`docs/design.md`](https://github.com/adam0white/lefthand/blob/23387ddb/docs/design.md). Godot draws a projection; TypeScript owns the fixed 10 Hz host, Persons, RNG and input log/hash. Uses tick/create/decide/perceive/relationship reads. Source is later than the recorded live disposition.
+Source: `lefthand@23387ddb`; exact HF pin **3.2.0** in `package.json`. Bridge: [`src/host.ts` (archived private source)](https://github.com/adam0white/lefthand/blob/23387ddb/src/host.ts), [`src/main.ts` (archived private source)](https://github.com/adam0white/lefthand/blob/23387ddb/src/main.ts), [`docs/design.md` (archived private source)](https://github.com/adam0white/lefthand/blob/23387ddb/docs/design.md). Godot draws a projection; TypeScript owns the fixed 10 Hz host, Persons, RNG and input log/hash. Uses tick/create/decide/perceive/relationship reads. Source is later than the recorded live disposition.
 
 Recorded stay reason: The Godot bridge is a separate run-API change after the completed retest and approved F-1631 fix.
 

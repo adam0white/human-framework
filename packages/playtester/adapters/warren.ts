@@ -1,5 +1,5 @@
 /**
- * A `GameAdapter` for The Warren (github.com/adam0white/warren): a plateau village digs a refuge into soft stone, in
+ * A `GameAdapter` for The Warren (github.com/adam0white/games/tree/main/games/warren): a plateau village digs a refuge into soft stone, in
  * cross-section. An HF persona plays the dig-master who chalks walls, marks rooms, hangs lamps, places doors and rings
  * the bell. Read-only against The Warren: it imports the headless sim from a checkout (`WARREN_DIR`, default
  * ~/code/warren) and never edits it. Written against warren 0.1.0 at commit 7067eac.

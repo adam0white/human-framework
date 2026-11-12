@@ -1,5 +1,5 @@
 /**
- * The canonical `GameAdapter` for The Two Voices (github.com/adam0white/murmur): an HF persona is the quiet voice in
+ * The canonical `GameAdapter` for The Two Voices (github.com/adam0white/games/tree/main/games/murmur): an HF persona is the quiet voice in
  * Dilan's week, answering moments where a pull tempts her. Read-only against the game: it imports the headless sim
  * from a checkout (`MURMUR_DIR`, default ~/code/murmur) and never edits it. Written against 0.2.1 (commits dcadc48
  * and 50f9366; also runs 4fc01c6). The game's scratch copy (scratch/hf-adapter.ts) may drift; this one is canonical.

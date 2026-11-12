@@ -155,7 +155,7 @@ Filed by The Pass after four source-unread playtests and the HF-character playte
 
 ## The Valley (2026-10-19, against HF 2.8.0)
 
-Filed by The Valley ([valley](https://github.com/adam0white/valley), `docs/hf-requests.md`), a valley of about 50 to 60 HF people in 14 households over three years, mixed full and routine living. None blocks the game; each workaround is in the game.
+Filed by The Valley ([valley (archived private source)](https://github.com/adam0white/valley), `docs/hf-requests.md`), a valley of about 50 to 60 HF people in 14 households over three years, mixed full and routine living. None blocks the game; each workaround is in the game.
 
 - **Valley 1, a voice's own acts move trust in that voice.** Voice trust moves only from followed-advice outcomes, insisting and commands. A steward's gift, a seizure, a visit or sending someone away from the door never reaches it. Workaround: `adoptVoiceTrust` with a hand-set target and rate per act (engineering assumption), plus a remembered percept.
 - **Valley 2, material help between households as an HF act.** No HF act moves goods from one person's household to another's, so a neighbour feeding a hungry house is a host world rule (agreeableness-gated, seeded) and nobody remembers it.

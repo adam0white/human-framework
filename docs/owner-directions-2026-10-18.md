@@ -471,3 +471,9 @@ Coordinator reading: the tester's identifying details stay out of public files. 
 "Losing saves and progress is totally fine. That's a good direction, keep going."
 
 The owner approved `adam0white/games`, `play.adamwhite.work`, and redirects from the old game subdomains. The earlier up-to-four new-games cap is superseded. Every game must move to current published HF 4.x; the earlier allowance to stay on 3.x with a reason is superseded. Old saves may be sacrificed. Multiplayer and account transfer are not authorized. The GD director is retired; UPKEEP owns its stranded work and remaining ports.
+
+## 2026-11-12 — Machine exit (owner, verbatim)
+
+> "Once migration is done, we should do a deep cleaning, then make sure the repos and work process and goals and my deferred ideas are all ready for moving out of this machine. We should be ready to even delete both repos locally altogether without losing progress."
+
+The owner defined done: the local HF, Games and scratch directories can be deleted without losing progress. Prove recovery with a fresh temporary clone of each GitHub repository, a frozen install and green `check`. Record anything that still needs the Mac and how cloud operation replaces it. Migration is the prerequisite. Preserve owner directions, goals, done criteria, Deferred lists, proposals, coordination rulings and work process in HF documentation. Keep private data out of public files and list private custody needs for the coordinator. Use one normally gated PR per repository. Move eligible scratch to dated Trash only after both PRs merge; keep active director dependencies, briefs and the retry launcher until released. See the [exit runbook](lab/machine-exit-2026-11-12.md).
