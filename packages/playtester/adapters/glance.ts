@@ -1,5 +1,5 @@
 /**
- * The canonical `GameAdapter` for The Glance (github.com/adam0white/glance), the night desk at a dam: an HF persona
+ * The canonical `GameAdapter` for The Glance (github.com/adam0white/games/tree/main/games/glance), the night desk at a dam: an HF persona
  * plays the engineer who asks two keepers for readings and gate turns through five storm nights. Read-only against
  * The Glance: it imports the headless sim from a checkout (`GLANCE_DIR`, default ~/code/glance) and never edits it.
  * Written against glance@1 at commit 8e694c0 (also runs 8e870e7). The game's scratch copy

@@ -164,7 +164,7 @@ cancellation and continued play separately from headless replay correctness.
 
 ## First candidate: Stairwell
 
-Audited source: [stairwell@329919a](https://github.com/adam0white/stairwell/tree/329919a).
+Audited source: [stairwell@329919a (archived private source)](https://github.com/adam0white/stairwell/tree/329919a).
 Production pin remains HF 3.0.0. Process/worktree inspection found no Stairwell writer;
 Hearsay had a running Vite preview. The deferred director's named games were excluded.
 

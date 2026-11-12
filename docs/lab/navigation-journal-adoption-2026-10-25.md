@@ -26,11 +26,11 @@ Native Firefox production controls now verify two intended regular-event storage
 
 Verified external 0.4.9/0.5.10 deliveries, all retaining HF 2.21:
 
-| Game   | Signed source                              | Exact green CI                                                               | Deployment                             |
-| ------ | ------------------------------------------ | ---------------------------------------------------------------------------- | -------------------------------------- |
-| Pass   | `7b5d8c81219b518e8adf8f3da14f2bbea6e0dbf5` | [40220532890](https://github.com/adam0white/pass/actions/runs/40220532890)   | `d1bdcf7c-59d3-405d-8c07-ec9cbf66bc61` |
-| Valley | `9641fd1c9a0730ee55617ab213273c291523c4a2` | [40220070156](https://github.com/adam0white/valley/actions/runs/40220070156) | `fc98ed76-1394-4566-811a-c49006b8ab7f` |
-| Murmur | `d79cb561485b16f949d8321b70032fc01d0f6907` | [40221659661](https://github.com/adam0white/murmur/actions/runs/40221659661) | `f11fb286-b056-4e57-9b57-eb6304dcbe1c` |
+| Game   | Signed source                              | Exact green CI                                                                                         | Deployment                             |
+| ------ | ------------------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| Pass   | `7b5d8c81219b518e8adf8f3da14f2bbea6e0dbf5` | [40220532890 (archived private source)](https://github.com/adam0white/pass/actions/runs/40220532890)   | `d1bdcf7c-59d3-405d-8c07-ec9cbf66bc61` |
+| Valley | `9641fd1c9a0730ee55617ab213273c291523c4a2` | [40220070156 (archived private source)](https://github.com/adam0white/valley/actions/runs/40220070156) | `fc98ed76-1394-4566-811a-c49006b8ab7f` |
+| Murmur | `d79cb561485b16f949d8321b70032fc01d0f6907` | [40221659661 (archived private source)](https://github.com/adam0white/murmur/actions/runs/40221659661) | `f11fb286-b056-4e57-9b57-eb6304dcbe1c` |
 
 These live release manifests match with `dirty:false`; served JS/CSS match the fresh builds. Chromium and WebKit checks pass at 360×690, 820×1180, 1180×820 and 1280×800. Task trees/branches are removed. Remaining adoption is separate from these receipts and owner readiness acceptance.
 

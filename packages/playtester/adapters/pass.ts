@@ -1,5 +1,5 @@
 /**
- * The canonical `GameAdapter` for The Pass (github.com/adam0white/pass), the kitchen campaign: an HF persona plays
+ * The canonical `GameAdapter` for The Pass (github.com/adam0white/games/tree/main/games/pass), the kitchen campaign: an HF persona plays
  * the chef. Read-only against The Pass: it imports the game's own headless sim from a checkout (`PASS_DIR`,
  * default ~/code/pass) and never edits it. Written against pass@3 (commit 01601bc); it also runs pass@2 (85e32e9),
  * which has the same sim surface, so two builds can be compared. The game's scratch copy (scratch/hf/adapter.ts)

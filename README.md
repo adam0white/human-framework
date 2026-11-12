@@ -114,3 +114,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately as desc
 ### Repository development
 
 Use the shared Node 26.12.0 and pnpm 12.14.0. Run `pnpm install --frozen-lockfile` to install this repository. The default store (`~/Library/pnpm/store` on macOS) shares dependency files across worktrees. `npm run check`, `npm run build`, and the other script commands still work. Published-package consumers can keep their preferred installer.
+
+For moving to another machine or cloud session, use the [exit runbook](docs/lab/machine-exit-2026-11-12.md) and [durable direction index](docs/lab/exit-knowledge-2026-11-12.md). Private evidence and WAI state require separate verified custody.

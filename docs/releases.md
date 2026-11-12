@@ -149,7 +149,7 @@ Live release files checked on 2026-10-30 report 17 of 20 games on HF 4.x. Valley
 | days        | [4.8.1](https://days.adamwhite.work/release.json)        | `2741f06a0e4c96ffdec26e2e5b6b8874765dc126` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
 | lefthand    | [4.10.0](https://lefthand.adamwhite.work/release.json)   | `7aa45980295c193389a8a00e7b7cdee0ba7949f5` | On HF 4.x; player acceptance remains separate.                                                                                                                        |
 
-Neighbours’ recorded HF 4 port blockers are browser-check failures and a 45-minute stress-test timeout in the [2026-10-30 audit](https://github.com/adam0white/neighbours/pull/8). This records unfinished port work, not owner acceptance of a permanent stay on 3.x. Valley and Child remain over their recorded [workload budgets](findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29); November 24 is a scheduled check, not a completed one.
+Neighbours’ recorded HF 4 port blockers are browser-check failures and a 45-minute stress-test timeout in the [2026-10-30 audit (archived public source)](https://github.com/adam0white/concordia/pull/8). This records unfinished port work, not owner acceptance of a permanent stay on 3.x. Valley and Child remain over their recorded [workload budgets](findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29); November 24 is a scheduled check, not a completed one.
 
 ## HF releases
 
