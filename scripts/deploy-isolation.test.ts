@@ -64,7 +64,13 @@ beforeEach(() => {
   vi.mocked(mkdtempSync).mockReturnValue(temporary);
   vi.spyOn(console, 'log').mockImplementation(() => {});
   vi.spyOn(console, 'warn').mockImplementation(() => {});
-  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ json: async () => ({ commit }) }));
+  vi.stubGlobal(
+    'fetch',
+    vi.fn().mockResolvedValue({
+      headers: new Headers({ 'x-frame-options': 'DENY' }),
+      json: async () => ({ commit }),
+    }),
+  );
   vi.mocked(execFileSync).mockImplementation((cmd, args) => {
     const words = args as string[];
     if (cmd === process.execPath) return JSON.stringify({ framework: '2.18.0', frameworkLibrary: '2.20.0' });
@@ -106,7 +112,7 @@ describe('deploy workflow identity and isolation', () => {
     }
     expect(calls()).toContainEqual(['pnpm', ['install', '--frozen-lockfile']]);
     expect(calls()).toContainEqual(['npm', ['run', 'build']]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
+    expect(calls()).toContainEqual(['pnpm', ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production']]);
     expect(readFileSync).toHaveBeenCalledWith(join(checkout, 'package.json'), 'utf8');
     expect(writeFileSync).toHaveBeenCalledWith(
       join(checkout, 'apps/site/dist/release.json'),
@@ -132,7 +138,10 @@ describe('deploy workflow identity and isolation', () => {
     await run('--dry-run', '--trust-ci');
     expect(calls()).not.toContainEqual(['git', ['status', '--porcelain']]);
     expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy', '--dry-run']]);
+    expect(calls()).toContainEqual([
+      'pnpm',
+      ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production', '--dry-run'],
+    ]);
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -141,7 +150,10 @@ describe('deploy workflow identity and isolation', () => {
     await run('--dry-run');
     expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
     expect(calls()).toContainEqual(['git', ['worktree', 'add', '--detach', checkout, commit]]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy', '--dry-run']]);
+    expect(calls()).toContainEqual([
+      'pnpm',
+      ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production', '--dry-run'],
+    ]);
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -262,15 +274,17 @@ describe('deploy workflow identity and isolation', () => {
     expect(mkdtempSync).not.toHaveBeenCalled();
   });
 
-  it.each(['pnpm install --frozen-lockfile', 'npm run build', 'npx wrangler deploy'])(
-    'cleans up after %s fails',
-    async (command) => {
-      failure = command;
-      await expect(run()).rejects.toThrow('injected failure');
-      expect(calls()).toContainEqual(['git', ['worktree', 'remove', '--force', checkout]]);
-      expect(rmSync).toHaveBeenCalled();
-    },
-  );
+  it.each([
+    'pnpm install --frozen-lockfile',
+    'npm run build',
+    'pnpm exec vite build',
+    'pnpm exec cf deploy --prebuilt --mode production',
+  ])('cleans up after %s fails', async (command) => {
+    failure = command;
+    await expect(run()).rejects.toThrow('injected failure');
+    expect(calls()).toContainEqual(['git', ['worktree', 'remove', '--force', checkout]]);
+    expect(rmSync).toHaveBeenCalled();
+  });
 
   it('cleans up after a failing fallback check', async () => {
     runs = [[]];
@@ -280,7 +294,10 @@ describe('deploy workflow identity and isolation', () => {
   });
 
   it('cleans up after live verification fails', async () => {
-    vi.mocked(fetch).mockResolvedValue({ json: async () => ({ commit: 'wrong' }) } as Response);
+    vi.mocked(fetch).mockResolvedValue({
+      headers: new Headers({ 'x-frame-options': 'DENY' }),
+      json: async () => ({ commit: 'wrong' }),
+    } as Response);
     const result = expect(run()).rejects.toThrow(`Live commit wrong != ${commit}`);
     await vi.advanceTimersByTimeAsync(30_000);
     await result;

@@ -56,7 +56,13 @@ beforeEach(() => {
   pushed = commit;
   vi.spyOn(console, 'log').mockImplementation(() => {});
   vi.spyOn(console, 'warn').mockImplementation(() => {});
-  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ json: async () => ({ commit }) }));
+  vi.stubGlobal(
+    'fetch',
+    vi.fn().mockResolvedValue({
+      headers: new Headers({ 'x-frame-options': 'DENY' }),
+      json: async () => ({ commit }),
+    }),
+  );
   vi.mocked(execFileSync).mockImplementation((cmd, args) => {
     const words = args as string[];
     if (cmd === process.execPath) return JSON.stringify({ framework: '2.18.0', frameworkLibrary: '2.20.0' });
@@ -93,17 +99,44 @@ describe('deploy CI gate', () => {
     );
     expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
     expect(calls()).toContainEqual(['npm', ['run', 'build']]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
+    expect(calls()).toContainEqual(['pnpm', ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production']]);
     expect(writeFileSync).toHaveBeenCalled();
     expect(fetch).toHaveBeenCalledWith('https://human.adamwhite.work/release.json', {
       cache: 'no-store',
     });
   });
 
+  it('bundles with Vite before the cf upload', async () => {
+    await run();
+    const order = calls().map(([cmd, args]) => `${cmd} ${(args as string[]).join(' ')}`);
+    expect(order.indexOf('pnpm exec vite build')).toBeGreaterThan(order.indexOf('npm run build'));
+    expect(order.indexOf('pnpm exec vite build')).toBeLessThan(
+      order.indexOf('pnpm exec cf deploy --prebuilt --mode production'),
+    );
+    expect(calls()).not.toContainEqual(['npx', ['wrangler', 'deploy']]);
+  });
+
+  it('--wrangler rolls back to the Wrangler upload', async () => {
+    await run('--wrangler');
+    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
+    expect(calls().some(([cmd, args]) => cmd === 'pnpm' && (args as string[]).includes('cf'))).toBe(false);
+  });
+
+  it('fails when the live site lost its header policy', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({ headers: new Headers(), json: async () => ({ commit }) }),
+    );
+    await expect(run()).rejects.toThrow('_headers policy');
+  });
+
   it('keeps --trust-ci as an accepted alias', async () => {
     await run('--trust-ci', '--dry-run');
     expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy', '--dry-run']]);
+    expect(calls()).toContainEqual([
+      'pnpm',
+      ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production', '--dry-run'],
+    ]);
     expect(fetch).not.toHaveBeenCalled();
   });
 
@@ -156,7 +189,10 @@ describe('deploy CI gate', () => {
       responses = [response];
       await run('--full-check', '--dry-run');
       expect(calls()).toContainEqual(['npm', ['run', 'check']]);
-      expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy', '--dry-run']]);
+      expect(calls()).toContainEqual([
+        'pnpm',
+        ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production', '--dry-run'],
+      ]);
     },
   );
 
@@ -190,7 +226,7 @@ describe('deploy CI gate', () => {
     await run();
     expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
     expect(calls()).toContainEqual(['pnpm', ['install', '--frozen-lockfile']]);
-    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
+    expect(calls()).toContainEqual(['pnpm', ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production']]);
   });
 
   it('refuses unpushed HEAD before installation even with --full-check', async () => {

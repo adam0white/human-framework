@@ -3,6 +3,7 @@ node_modules/
 dist/
 .types/
 .wrangler/
+.cloudflare/
 .env
 .env.*
 .dev.vars

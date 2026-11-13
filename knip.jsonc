@@ -11,6 +11,8 @@
       "entry": [
         "scripts/{api-doc,bench-run,continue-old-engine,deploy,install-wai-daily,lab-inbox,lab-ledger,lab-phone,lab-plain-english,lab-play,lab-wai-budget,lab-wai-play,lane,lockfile-sync,pack-smoke,release,site-smoke,suite-lock}.ts",
         "scripts/**/*.test.ts",
+        // Read by `vite build` and `cf deploy` at the root (scripts/deploy.ts), not imported by source.
+        "cloudflare.config.ts",
         "docs/lab/experiments/clairic-triage-2026-10-20/{bakeoff,score}.ts",
         "docs/lab/experiments/free-text-2026-10-23/{benchmark,score}.ts",
         "docs/lab/experiments/clef-inbox-2026-10-20/run.ts",

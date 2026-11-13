@@ -19,7 +19,7 @@ function fileLane(path: string): Lane {
     // Worker source dependencies: lab modules, free-text/core.ts, and src/games.ts.
     // The import audit in lane-contract.test.ts guards additions outside this directory.
     /^(packages\/(human|lab-client|lab-kit)\/|apps\/site\/(worker|src\/lab)\/|\.github\/)/.test(path) ||
-    /^(apps\/site\/src\/free-text\/core\.ts|package-lock\.json|pnpm-lock\.yaml|pnpm-workspace\.yaml|\.nvmrc|scripts\/(deploy|release|suite-lock|lane|lockfile-sync)\.ts|wrangler\.jsonc|apps\/site\/(public\/_headers|src\/games\.ts)|biome\.json)$/.test(
+    /^(apps\/site\/src\/free-text\/core\.ts|package-lock\.json|pnpm-lock\.yaml|pnpm-workspace\.yaml|\.nvmrc|scripts\/(deploy|release|suite-lock|lane|lockfile-sync)\.ts|wrangler\.jsonc|cloudflare\.config\.ts|vite\.config\.ts|apps\/site\/(public\/_headers|src\/games\.ts)|biome\.json)$/.test(
       path,
     ) ||
     /(?:^|\/)(package\.json|tsconfig[^/]*\.json|vitest[^/]*\.config\.ts|AGENTS\.md|CLAUDE\.md)$/.test(path) ||
