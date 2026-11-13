@@ -1,5 +1,7 @@
 # Leaving the Mac, 2026-11-12
 
+> Update 2026-11-13: the owner let the Mac checkout and scratch go and chose a Worker cron over an Actions schedule, hosted in the games repository. The budget, receipts and plist are preserved in the private lab archive (`wai-daily-state/`, `machine-config/`). [The cron Worker](https://github.com/adam0white/games/tree/main/workers/wai-daily) is the replacement source for the play sessions. Browser Rendering supplies the browser, which removes the "cron alone cannot run this" limit below. It is not deployed or qualified yet, so no daily run exists anywhere today. The local-runner steps below are superseded.
+
 The source repositories are [Human Framework](https://github.com/adam0white/human-framework) and [Games](https://github.com/adam0white/games). A source clone is not a backup of private recordings, local Git refs, scheduler state, or ignored prototypes. The exit is finished only when those have verified custody and both fresh GitHub clones pass a frozen install and `check`. The owner accepts the result.
 
 ## Source and cloud execution
