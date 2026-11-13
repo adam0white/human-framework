@@ -165,6 +165,16 @@ it('combines script high-water accounting and concurrent translator reservations
   expect(await admitDaily(b, '2026-10-23', 'local', 11_001)).toBe(false);
   expect(await admitDaily(b, '2026-10-23', 'translator', 1)).toBe(false);
   expect(await admitDaily(b, '2026-10-24', 'local', 8_000)).toBe(true);
+  // The cron Worker's ledger is a third high-water mark under the same ceiling.
+  expect(await admitDaily(b, '2026-10-24', 'cron', 3_000)).toBe(true);
+  expect(await admitDaily(b, '2026-10-24', 'cron', 2_000)).toBe(true);
+  expect(await admitDaily(b, '2026-10-24', 'translator', 1_000)).toBe(true);
+  expect(await admitDaily(b, '2026-10-24', 'cron', 3_001)).toBe(false);
+  expect(JSON.parse((await (await b.get(dailyKey('2026-10-24')))?.text()) ?? '{}')).toEqual({
+    local: 8_000,
+    translator: 1_000,
+    cron: 3_000,
+  });
   const stored = await b.get(dailyKey('2026-10-23'));
   if (!stored) throw new Error('Missing daily accounting');
   expect(JSON.parse(await stored.text())).toMatchObject({
