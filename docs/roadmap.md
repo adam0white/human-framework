@@ -268,7 +268,6 @@ Rollback: `npm run deploy -- --wrangler`. Keep `wrangler.jsonc` and the Wrangler
 
 Superseded by the 2026-11-13 switch above; kept as the record of what blocked it.
 
-
 Retain Wrangler 4.152.0 and `wrangler.jsonc`. Exact trial `cf@1.0.0-beta.21` converts the Worker configuration but `cf build` and `cf deploy --dry-run` reject HF's workspace root before producing Build Output. Moving the trial configuration to `apps/site` invokes the existing Vite build, then fails because `.cloudflare/output/v0/config.json` is absent. Wrangler dry-run and the site build pass. Upload-manifest equivalence remains unproved; no live switch occurred.
 
 **Re-check 2026-11-02:** after the package-manager switch, test a newer exact cf beta for workspace support or a separately reviewed Cloudflare Vite plugin integration. Preserve exact-commit CI, detached installation/build, stamped `release.json`, all seven bindings, domain, cron, privacy and asset headers. cf also lacks streamed tail and single-secret updates. See [official migration docs](https://developers.cloudflare.com/cf/wrangler/migrate/) and [command gaps](https://developers.cloudflare.com/cf/wrangler/reference/).
