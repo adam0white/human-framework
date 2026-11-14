@@ -7,6 +7,10 @@
  * installed with pnpm install --frozen-lockfile; always remove it afterwards. Local checkout edits are excluded.
  * --dry-run uses the same guards, install, build and cleanup; --trust-ci is a legacy alias.
  * Stamp release.json with that SHA and verify the live manifest after a real upload.
+ * Upload path (owner, 2026-11-13): Vite bundles the lab Worker and copies the stamped site into
+ * .cloudflare/output, then `cf deploy --prebuilt` uploads exactly that. After a cf upload the live response must
+ * also carry the `_headers` policy. --wrangler is the one-command rollback: it uploads with `wrangler deploy`
+ * from wrangler.jsonc, which stays until cf has run clean (HANDOFF.md).
  */
 import { execFileSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -25,6 +29,7 @@ const git = (...args: string[]) => run('git', args, true).trim();
 
 const dryRun = process.argv.includes('--dry-run');
 const fullCheck = process.argv.includes('--full-check');
+const legacyWrangler = process.argv.includes('--wrangler');
 const commit = git('rev-parse', 'HEAD');
 git('fetch', 'origin', 'main');
 const pushed = git('rev-parse', 'origin/main');
@@ -150,19 +155,28 @@ try {
   };
   writeFileSync(join(checkout, 'apps/site/dist/release.json'), `${JSON.stringify(release, null, 2)}\n`);
   console.log('release', release);
-  isolated('npx', ['wrangler', 'deploy', ...(dryRun ? ['--dry-run'] : [])]);
+  const dry = dryRun ? ['--dry-run'] : [];
+  if (legacyWrangler) isolated('npx', ['wrangler', 'deploy', ...dry]);
+  else {
+    isolated('pnpm', ['exec', 'vite', 'build']);
+    isolated('pnpm', ['exec', 'cf', 'deploy', '--prebuilt', '--mode', 'production', ...dry]);
+  }
   if (!dryRun) {
     // The edge can serve the previous release for a few seconds after upload.
     let live = '';
+    let frameOptions: string | null = null;
     for (let attempt = 0; attempt < 10 && live !== commit; attempt++) {
       if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 3000));
-      live = (
-        (await (await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' })).json()) as {
-          commit: string;
-        }
-      ).commit;
+      const response = await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' });
+      frameOptions = response.headers.get('x-frame-options');
+      live = ((await response.json()) as { commit: string }).commit;
     }
     if (live !== commit) throw new Error(`Live commit ${live} != ${commit}`);
+    // apps/site/public/_headers sets this on every path. Its absence means the upload dropped the header rules.
+    if (frameOptions !== 'DENY')
+      throw new Error(
+        `Live site lost its _headers policy (X-Frame-Options: ${frameOptions}). Roll back: npm run deploy -- --wrangler`,
+      );
     console.log('Verified live release at', commit);
   }
 } finally {

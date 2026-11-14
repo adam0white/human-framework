@@ -272,6 +272,8 @@ HF development uses pnpm 12.14.0 with the shared Node 26.12.0 runtime pinned in 
 
 ## cf CLI trial — 2026-10-26
 
+**Update 2026-11-13:** the owner chose to switch; `npm run deploy` now uploads with `cf`, and `npm run deploy -- --wrangler` is the one-command rollback. No live cf deploy has happened yet. The clean week starts at the first one. Details: [roadmap](docs/roadmap.md#cf-cli-switch--2026-11-13).
+
 **Remaining:** workspace Build Output support and upload equivalence; re-check 2026-11-02 ([roadmap](docs/roadmap.md#cf-cli-migration-trial--2026-10-26)). Retain Wrangler 4.152.0, `wrangler.jsonc`, current deploy/auth/R2 scripts and their tests. `cf@1.0.0-beta.21` migration generates the expected config, but root build/dry-run reject the workspace. An app-directory trial builds Vite assets then fails for missing cf Build Output. No cf deployment, authentication change, telemetry write, secret operation or live browser session occurred. Live `/release.json` still reports `1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3`, `dirty:false` at trial time. The Voice round 1 hold was in force at trial time; its later collection closure and separate site delivery are recorded above.
 
 Trial configs and command logs: `~/code/.lab-scratch/cfcli/evidence/`; mapping and other-repo instructions: `~/code/.lab-scratch/cfcli/report.md`. Only adopt after pkgmgr's actual switch commit and a successful new equivalence trial. A future live cf switch must retain a one-command Wrangler rollback for a clean week; that period has not started.

@@ -256,7 +256,17 @@ Site-wide, from the R2 reviews (all unscheduled):
 
 **Lab clarity deferred (2026-10-20).** (a) Each game works its ranked clarity fixes (ledger F-206..F-217) in its own polish round; target 2026-11-03, owned by each game's agent. (b) Adopt `@adam0white/lab-kit` 0.1.0 first in The Valley (glossary, English dates, intro card), then in games that copy the tokens and stamp script; target 2026-11-03. (c) Kit additions the survey found duplicated but not built: service-worker template, speed bar and wake lock, title/continue scaffold; target 2026-11-03, only if two games adopt the kit first. (d) Done 2026-10-23: rewrote lessons L5, L7, L14 and L15 to match the revised checklist, as the Codex review proposed ([review](lab/reviews/design-language-codex-2026-10-20.md)); regenerated the matching curated lesson entries. (e) Done within inspected coverage 2026-10-23: the four canonical adapters expose screen-derived `goal`/`next` and visible disabled controls where available. Missing older UI readers, newer unsupported Pass phases, Warren browser-local raid warnings and frozen example adapters remain unmeasured; see [adapter coverage](../packages/playtester/README.md#clarity-rubric).
 
+## cf CLI switch — 2026-11-13
+
+Owner decision 2026-11-13: deploy through the beta `cf` CLI now. `scripts/deploy.ts` keeps exact-commit CI, the detached install and build, and the stamped `release.json`. It then runs `vite build` at the root (root `vite.config.ts` with `@cloudflare/vite-plugin` 2.0.0-beta.v.15, `publicDir` = `apps/site/dist`) and `cf deploy --prebuilt --mode production` (`cf` 1.0.0-beta.30). This avoids the workspace-root rejection the October trial hit: `cf build` still refuses a workspace root, `vite build` does not.
+
+Checked 2026-11-13 without credentials: the dry run lists all seven bindings; `worker.config.json` carries the domain, cron, `observability.enabled: false` and `runWorkerFirst`; the uploaded assets directory is byte-identical to `apps/site/dist`, including `_headers` and `_redirects`. Not checked: a real upload, and whether `cf` applies `_headers` the way Wrangler does. The deploy script therefore fails after a cf upload if the live response lacks `X-Frame-Options: DENY`.
+
+Rollback: `npm run deploy -- --wrangler`. Keep `wrangler.jsonc` and the Wrangler dependency until cf deploys have run clean for a week; that period starts at the first live cf deploy. Until then, change `wrangler.jsonc` and `cloudflare.config.ts` together. Wrangler also stays for `wrangler tail`, single-secret updates and the lab scripts' auth token.
+
 ## cf CLI migration trial — 2026-10-26
+
+Superseded by the 2026-11-13 switch above; kept as the record of what blocked it.
 
 Retain Wrangler 4.152.0 and `wrangler.jsonc`. Exact trial `cf@1.0.0-beta.21` converts the Worker configuration but `cf build` and `cf deploy --dry-run` reject HF's workspace root before producing Build Output. Moving the trial configuration to `apps/site` invokes the existing Vite build, then fails because `.cloudflare/output/v0/config.json` is absent. Wrangler dry-run and the site build pass. Upload-manifest equivalence remains unproved; no live switch occurred.
 
