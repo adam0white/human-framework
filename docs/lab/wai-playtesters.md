@@ -1,5 +1,7 @@
 # Daily Workers AI players
 
+> Runner status, 2026-11-13: the Mac LaunchAgent described below no longer exists. [The cron Worker in games](https://github.com/adam0white/games/tree/main/workers/wai-daily) is its replacement for the play sessions, pending deployment; its README lists what differs. The local commands below remain for manual attempts from a checkout with Wrangler authentication and a state directory.
+
 > Dispatch status: The owner authorized HF 3 lab-panel rounds under the playtest director: twelve standing testers and two cold slots. Each game gets a round, fixes and a retest by the same testers. The cycle ends when a retest raises no new blocking ask, or after two iterations; remaining asks retain dated Deferred entries. Completion requires actual round and retest receipts. Friends’ playtests and Show HN stay paused until owner readiness acceptance. This document does not dispatch a round. The commands below document the instrument; they do not prove a timer is installed or a session completed. The playtest director owns scheduling and round receipts.
 
 The runner uses Protocol 2 in `playtester-prompt.md`. It gives each model only live player-visible text and accessible controls from `lab:play`. It does not supply source, network payloads, exports or debug state. This is synthetic playtest evidence. A failed or interrupted run remains incomplete.

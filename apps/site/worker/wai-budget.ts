@@ -1,27 +1,31 @@
-/** One UTC-day ceiling for local scripts and the translator. R2 CAS serializes admissions.
+/** One UTC-day ceiling for local scripts, the daily cron Worker and the translator. R2 CAS serializes admissions.
  * Local scripts submit their durable cumulative high-water mark under a machine-wide lock.
+ * The cron Worker submits the high-water mark of its own R2 ledger the same way.
  * Translator reservations are never refunded. This cannot bound unrelated account callers.
  */
 import type { Env } from './lab.ts';
 export const DAILY_HARD_NEURONS = 12_000;
 export const dailyKey = (day: string) => `ai-budget/daily-v1/${day}.json`;
-type Daily = { local: number; translator: number };
+type Daily = { local: number; translator: number; cron?: number };
 export async function admitDaily(
   bucket: Env['LAB'],
   day: string,
-  caller: 'local' | 'translator',
+  caller: 'local' | 'translator' | 'cron',
   neurons: number,
 ): Promise<boolean> {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isFinite(neurons) || neurons < 0) return false;
   for (let i = 0; i < 8; i++) {
     const old = await bucket.get(dailyKey(day));
     const state: Daily = old ? await old.json<Daily>() : { local: 0, translator: 0 };
-    if (![state.local, state.translator].every((n) => Number.isFinite(n) && n >= 0)) return false;
+    const cron = state.cron ?? 0;
+    if (![state.local, state.translator, cron].every((n) => Number.isFinite(n) && n >= 0)) return false;
     const next =
       caller === 'local'
         ? { ...state, local: Math.max(state.local, neurons) }
-        : { ...state, translator: state.translator + neurons };
-    if (next.local + next.translator > DAILY_HARD_NEURONS) return false;
+        : caller === 'cron'
+          ? { ...state, cron: Math.max(cron, neurons) }
+          : { ...state, translator: state.translator + neurons };
+    if (next.local + next.translator + (next.cron ?? 0) > DAILY_HARD_NEURONS) return false;
     if (
       await bucket.put(dailyKey(day), JSON.stringify(next), {
         onlyIf: old ? { etagMatches: old.etag } : { etagDoesNotMatch: '*' },

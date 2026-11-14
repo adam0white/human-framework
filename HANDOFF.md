@@ -1,3 +1,7 @@
+# Daily Workers AI player moves to games — 2026-11-13
+
+Owner direction, 2026-11-13: this repository and its Worker hold the framework; usage such as the daily Workers AI cron lives in `adam0white/games`. The replacement for the Mac LaunchAgent is Worker `games-wai-daily` in [games `workers/wai-daily`](https://github.com/adam0white/games/tree/main/workers/wai-daily), pending its pull request, deployment and one qualified run. The Mac scheduler is gone (owner, 2026-11-13), so no daily run exists today. Here, the shared daily neuron counter gains a third `cron` field so that Worker and the translator stay under one 12,000-neuron ceiling; the lab Worker needs a deploy with it before the cron's first run. Remaining lab usage that should move to games is not yet inventoried (review 2026-11-27).
+
 # Machine exit cleanup — 2026-11-12
 
 Remaining: private evidence and scheduler-state custody, the documented cloud runner work, and human readiness acceptance. Source cleanup alone does not prove safe deletion; check the exit PR integration and fresh-clone receipts, plus the coordinator’s private custody record, first. [The exit runbook](docs/lab/machine-exit-2026-11-12.md) names the Mac dependencies and proposed cloud replacements. [Durable owner knowledge](docs/lab/exit-knowledge-2026-11-12.md) preserves goals, proposals and operating rules. Historical private archive links below are labeled; public Concordia remains the Neighbours lineage source.
