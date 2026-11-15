@@ -1,3 +1,7 @@
+# Game lab direction — 2026-11-14
+
+Remaining: the owner sets a spend cap and confirms the bake-off entries; then the bake-off is built in `adam0white/games`. The owner approved the [direction document](https://github.com/adam0white/games/blob/main/docs/game-lab-direction-2026-11-13.md) on 2026-11-14 ([owner directions](docs/owner-directions-2026-10-18.md)). The current goal and the loosened rules are in [AGENTS.md](AGENTS.md) and in games `AGENTS.md`. Nothing has been built or spent under the new direction. Older entries below describe work under the earlier goals.
+
 # Daily Workers AI player moves to games — 2026-11-13
 
 Owner direction, 2026-11-13: this repository and its Worker hold the framework; usage such as the daily Workers AI cron lives in `adam0white/games`. The replacement for the Mac LaunchAgent is Worker `games-wai-daily` in [games `workers/wai-daily`](https://github.com/adam0white/games/tree/main/workers/wai-daily), pending its pull request, deployment and one qualified run. The Mac scheduler is gone (owner, 2026-11-13), so no daily run exists today. Here, the shared daily neuron counter gains a third `cron` field so that Worker and the translator stay under one 12,000-neuron ceiling; the lab Worker needs a deploy with it before the cron's first run. Remaining lab usage that should move to games is not yet inventoried (review 2026-11-27).
