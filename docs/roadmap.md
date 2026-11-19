@@ -264,6 +264,8 @@ Checked 2026-11-13 without credentials: the dry run lists all seven bindings; `w
 
 Rollback: `npm run deploy -- --wrangler`. Keep `wrangler.jsonc` and the Wrangler dependency until cf deploys have run clean for a week; that period starts at the first live cf deploy. Until then, change `wrangler.jsonc` and `cloudflare.config.ts` together. Wrangler also stays for `wrangler tail`, single-secret updates and the lab scripts' auth token.
 
+2026-11-19: moved to the release candidate (`cf` 1.0.0-rc.1, `@cloudflare/vite-plugin` 2.0.0-rc.1, Wrangler 4.164.0). Cloudflare states the `cloudflare.config.ts` format and the Build Output format are stable through 1.0 ([changelog](https://developers.cloudflare.com/changelog/post/2026-11-17-release-candidate/)). Build Output now lives in `.cloudflare/output/v1`. The dry run still lists all seven bindings.
+
 ## cf CLI migration trial — 2026-10-26
 
 Superseded by the 2026-11-13 switch above; kept as the record of what blocked it.
