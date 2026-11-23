@@ -1,35 +1,49 @@
-import { GAMES, type Game } from '../games.ts';
+import { GAMES, type Game } from "../games.ts";
 
 /** The lab reads the site's ranking and status; it never maintains another list. */
-export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[] = GAMES.map(
-  ({ id, name, href, rank, status }) => ({ id, name, href, rank, status }),
-);
+export const LAB_GAMES: Pick<
+  Game,
+  "id" | "name" | "href" | "rank" | "status"
+>[] = GAMES.map(({ id, name, href, rank, status }) => ({
+  id,
+  name,
+  href,
+  rank,
+  status,
+}));
 
 /**
- * Prototypes in adam0white/games (`prototypes/<slug>/`, served at play.adamwhite.work/proto/<slug>/) whose play
- * records the lab accepts. They send through that repository's `prototypes/kit/lab.js`. They are not HF games, so
+ * Experiments in adam0white/games (`experiments/<slug>/`, served at play.adamwhite.work/<slug>/) whose play
+ * records the lab accepts. They send through that repository's `experiments/kit/lab.js`. They are not HF games, so
  * they stay out of GAMES: no shelf entry, release receipt or dashboard card. Their events use the basic labels.
  */
-export const LAB_PROTOTYPES: readonly string[] = ['lantern', 'ant-promotion'];
+export const LAB_PROTOTYPES: readonly string[] = ["lantern", "ant-promotion"];
 /** Every game id the lab accepts records for. */
-export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);
+export const LAB_GAME_IDS: ReadonlySet<string> = new Set([
+  ...LAB_GAMES.map((g) => g.id),
+  ...LAB_PROTOTYPES,
+]);
 
 /** Reviewed event identifiers. Exact matches only: input text never becomes a public label. */
 const numbered = (count: number, render: (n: number) => string): string[] =>
   Array.from({ length: count }, (_, i) => render(i + 1));
-export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms: readonly string[] }>> = {
-  days: { scr: ['day 1', 'day 2', 'day 3', 'ending'], ms: ['ending reached'] },
-  smoke: { scr: ['stairwell', 'outcome', 'replay'], ms: [] },
+export const EVENT_LABELS: Readonly<
+  Record<string, { scr: readonly string[]; ms: readonly string[] }>
+> = {
+  days: { scr: ["day 1", "day 2", "day 3", "ending"], ms: ["ending reached"] },
+  smoke: { scr: ["stairwell", "outcome", "replay"], ms: [] },
   rope: {
     scr: [
-      'title',
-      'season',
-      ...['hollin', 'tooth', 'kestrel'].flatMap((id, i) =>
-        ['hut', 'climb', 'debrief'].map((phase) => `climb ${i + 1} ${id}: ${phase}`),
+      "title",
+      "season",
+      ...["hollin", "tooth", "kestrel"].flatMap((id, i) =>
+        ["hut", "climb", "debrief"].map(
+          (phase) => `climb ${i + 1} ${id}: ${phase}`,
+        ),
       ),
     ],
     ms: [
-      'season done',
+      "season done",
       ...numbered(3, (n) => `climb ${n} done`),
       ...numbered(3, (n) => `climb ${n} summit`),
       ...numbered(3, (n) => `climb ${n} all home`),
@@ -37,91 +51,109 @@ export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms:
   },
   pass: {
     scr: [
-      'title',
-      'sunday',
-      'ending',
+      "title",
+      "sunday",
+      "ending",
       ...numbered(6, (n) => `night ${n}: service`),
       ...numbered(6, (n) => `night ${n}: evening`),
     ],
     ms: [
-      'ending reached',
+      "ending reached",
       ...numbered(6, (n) => `service ${n} done`),
       ...numbered(52, (n) => `week ${n} done`),
     ],
   },
   glance: {
     scr: [
-      'title',
-      'ending',
+      "title",
+      "ending",
       ...numbered(7, (n) => `night ${n}: watch`),
       ...numbered(7, (n) => `night ${n}: dawn`),
     ],
-    ms: ['ending reached', ...numbered(7, (n) => `night ${n} done`)],
+    ms: ["ending reached", ...numbered(7, (n) => `night ${n} done`)],
   },
   hearsay: {
-    scr: ['title', 'play', 'review', 'notebook'],
+    scr: ["title", "play", "review", "notebook"],
     ms: [
-      'run started',
-      'first word told',
-      'first refusal heard',
-      'a rumour reached you',
-      'the engagement settled',
-      'fortnight ended',
+      "run started",
+      "first word told",
+      "first refusal heard",
+      "a rumour reached you",
+      "the engagement settled",
+      "fortnight ended",
     ],
   },
   goodhands: {
-    scr: ['title', 'office', 'city', 'scene', 'review', 'menu'],
+    scr: ["title", "office", "city", "scene", "review", "menu"],
     ms: [
-      'run started',
-      'first interview',
-      'first placement',
-      'first trial verdict',
-      'first confidence',
-      'week 1 done',
-      'week 2 done',
-      'week 3 done',
-      'month ended',
+      "run started",
+      "first interview",
+      "first placement",
+      "first trial verdict",
+      "first confidence",
+      "week 1 done",
+      "week 2 done",
+      "week 3 done",
+      "month ended",
     ],
   },
   warren: {
-    scr: ['title', 'play', 'raid', 'notebook'],
+    scr: ["title", "play", "raid", "notebook"],
     ms: [
-      'run started',
-      'a family arrived',
-      'riders came and went',
-      'a death',
-      ...['chalk', 'first', 'store', 'lamp', 'raid', 'door', 'beds', 'water', 'grow', 'deep', 'year'].map(
-        (id) => `goal ${id}`,
-      ),
+      "run started",
+      "a family arrived",
+      "riders came and went",
+      "a death",
+      ...[
+        "chalk",
+        "first",
+        "store",
+        "lamp",
+        "raid",
+        "door",
+        "beds",
+        "water",
+        "grow",
+        "deep",
+        "year",
+      ].map((id) => `goal ${id}`),
     ],
   },
   murmur: {
     scr: [
-      'title',
-      'ending',
-      'back page',
+      "title",
+      "ending",
+      "back page",
       ...numbered(7, (n) => `day ${n}`),
       ...numbered(7, (n) => `day ${n}: evening`),
     ],
-    ms: ['ending reached', ...numbered(7, (n) => `day ${n} done`)],
+    ms: ["ending reached", ...numbered(7, (n) => `day ${n} done`)],
   },
   word: {
     scr: [
-      'His Word',
-      'At the cutting table',
-      'What they need',
-      'One agreement',
-      'Your word',
-      'Read it together',
-      'They kept their word.',
-      'The shop stayed shut.',
+      "His Word",
+      "At the cutting table",
+      "What they need",
+      "One agreement",
+      "Your word",
+      "Read it together",
+      "They kept their word.",
+      "The shop stayed shut.",
     ],
-    ms: ['ending:win', 'ending:loss'],
+    ms: ["ending:win", "ending:loss"],
   },
 };
-const basic = { scr: ['title', 'play', 'ending'], ms: ['run started', 'ending reached'] };
-export function declaredLabel(game: string, kind: string, value: unknown): string | undefined {
-  if (typeof value !== 'string' || (kind !== 'scr' && kind !== 'ms')) return undefined;
+const basic = {
+  scr: ["title", "play", "ending"],
+  ms: ["run started", "ending reached"],
+};
+export function declaredLabel(
+  game: string,
+  kind: string,
+  value: unknown,
+): string | undefined {
+  if (typeof value !== "string" || (kind !== "scr" && kind !== "ms"))
+    return undefined;
   const names = EVENT_LABELS[game] ?? basic;
   return names[kind].includes(value) ? value : undefined;
 }
