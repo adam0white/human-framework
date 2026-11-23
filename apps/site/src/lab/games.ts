@@ -10,7 +10,13 @@ export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[]
  * records the lab accepts. They send through that repository's `experiments/kit/lab.js`. They are not HF games, so
  * they stay out of GAMES: no shelf entry, release receipt or dashboard card. Their events use the basic labels.
  */
-export const LAB_PROTOTYPES: readonly string[] = ['lantern', 'ant-promotion'];
+export const LAB_PROTOTYPES: readonly string[] = [
+  'lantern',
+  'ant-promotion',
+  'grapevine',
+  'fixit',
+  'ducklings',
+];
 /** Every game id the lab accepts records for. */
 export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);
 
