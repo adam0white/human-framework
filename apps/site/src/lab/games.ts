@@ -5,6 +5,15 @@ export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[]
   ({ id, name, href, rank, status }) => ({ id, name, href, rank, status }),
 );
 
+/**
+ * Prototypes in adam0white/games (`prototypes/<slug>/`, served at play.adamwhite.work/proto/<slug>/) whose play
+ * records the lab accepts. They send through that repository's `prototypes/kit/lab.js`. They are not HF games, so
+ * they stay out of GAMES: no shelf entry, release receipt or dashboard card. Their events use the basic labels.
+ */
+export const LAB_PROTOTYPES: readonly string[] = ['lantern', 'ant-promotion'];
+/** Every game id the lab accepts records for. */
+export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);
+
 /** Reviewed event identifiers. Exact matches only: input text never becomes a public label. */
 const numbered = (count: number, render: (n: number) => string): string[] =>
   Array.from({ length: count }, (_, i) => render(i + 1));
