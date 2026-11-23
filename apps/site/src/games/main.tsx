@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Decoration } from '../shared/Decoration.tsx';
 import '../home/home.css';
-import { GAMES } from '../games.ts';
+import { GAMES, PUBLIC_GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
 import { GameVersion } from '../shared/GameVersion.tsx';
 
@@ -35,7 +35,7 @@ function Collection() {
               <p className="lede">
                 Choose a game. Each story puts you alongside people who make their own choices.
               </p>
-              <GameList games={GAMES} />
+              <GameList games={PUBLIC_GAMES} />
             </>
           )}
         </section>

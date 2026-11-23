@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { GAMES } from './games.ts';
+import { GAMES, PUBLIC_GAMES } from './games.ts';
 import { LAB_GAMES } from './lab/games.ts';
 import { GameList } from './shared/GameList.tsx';
 
@@ -45,6 +45,19 @@ describe('ranked games', () => {
         status,
       })),
     );
+  });
+
+  it('keeps archived games off the public list and numbers the rest without gaps', () => {
+    expect(GAMES.filter((g) => g.listed === false).map((g) => g.id)).toEqual([
+      'repair',
+      'neighbours',
+      'commonstead',
+    ]);
+    const html = renderToStaticMarkup(createElement(GameList, { games: PUBLIC_GAMES }));
+    expect(html.match(/<li value="\d+">/g)).toEqual(PUBLIC_GAMES.map((_, i) => `<li value="${i + 1}">`));
+    for (const id of ['smallworks', 'neighbours', 'commonstead'])
+      expect(html).not.toContain(`play.adamwhite.work/${id}/`);
+    expect(html).toContain('play.adamwhite.work/murmur/');
   });
 
   it('renders semantic ranks and playable links without development labels', () => {
