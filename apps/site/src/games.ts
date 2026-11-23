@@ -92,24 +92,31 @@ export const GAMES: Game[] = [
   },
   {
     id: 'hearsay',
+    listed: false,
     rank: 6,
     status: 'active',
     name: 'Hearsay',
     href: 'https://play.adamwhite.work/hearsay/',
     line: 'You run a tea garden by a fountain for two weeks. The news you share can change as people repeat it.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
+    labNote:
+      'Archived 2026-11-23: same street, cast and subject as The Stairwell; its code is kept for reuse. Still served at its URL until the games deploy.',
   },
   {
     id: 'goodhands',
+    listed: false,
     rank: 7,
     status: 'active',
     name: 'Good Hands',
     href: 'https://play.adamwhite.work/goodhands/',
     line: 'You run a small placement agency in Izmir during November. Applicants may leave important things out in their interviews.',
     faculties: ['Memory and belief', 'Relationships', 'Habits and character'],
+    labNote:
+      'Archived 2026-11-23: the largest game to maintain and it opens on tabs and notes; the owner sees potential, so its code is kept for reuse. Still served at its URL until the games deploy.',
   },
   {
     id: 'valley',
+    listed: false,
     rank: 8,
     status: 'active',
     name: 'The Valley',
@@ -117,6 +124,8 @@ export const GAMES: Game[] = [
     publicNote: 'A complete opening episode, from 07:00 to 13:00.',
     line: 'You hold an absent landlord’s seal. Hear household requests and decide how to answer.',
     faculties: ['Will', 'Memory and belief', 'Relationships'],
+    labNote:
+      'Archived 2026-11-23: one morning of a larger design, and the heading prints over the map on a phone. Still served at its URL until the games deploy.',
   },
   {
     id: 'voice',
@@ -211,23 +220,27 @@ export const GAMES: Game[] = [
   },
   {
     id: 'child',
-    labNote: 'Owner acceptance pending.',
+    listed: false,
     rank: 18,
     status: 'active',
     name: 'What the Child Saw',
     href: 'https://play.adamwhite.work/child/',
     line: 'Guide Elif through five childhood episodes, with narrated years between them. Show her work, then let her decide what to do alone.',
     faculties: ['A whole life', 'Memory and belief', 'Will'],
+    labNote:
+      'Archived 2026-11-23: reads as a worksheet, with the same three choices each afternoon; no owner verdict. Still served at its URL until the games deploy.',
   },
   {
     id: 'days',
-    labNote: 'Owner acceptance pending.',
+    listed: false,
     rank: 19,
     status: 'active',
     name: 'Three Days',
     href: 'https://play.adamwhite.work/days/',
     line: 'A daughter has three days of leave, an uncertain account and a promised visit. Choose what to check, what to share and when to ask for help.',
     faculties: ['Relationships', 'Body', 'Memory and belief'],
+    labNote:
+      'Archived 2026-11-23: choice text is hard to read over the picture; no owner verdict. Still served at its URL until the games deploy.',
   },
   {
     id: 'lefthand',
