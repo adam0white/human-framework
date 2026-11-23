@@ -8,6 +8,7 @@
  *   href      a path on this site ('/watch/') or a full URL; full URLs are marked as another site
  *   line      one-line pitch
  *   faculties HF faculties it shows, named as in FACULTIES below
+ *   listed    false takes an archived game off the public lists; the lab keeps its id, rank and records
  */
 export type Game = {
   id: string;
@@ -17,6 +18,8 @@ export type Game = {
   href: string;
   line: string;
   faculties: string[];
+  /** false: archived. Off the homepage and /games/; its lab records and id stay. */
+  listed?: false;
   /** A note shown on the public game list. Lab-only status stays in labNote. */
   publicNote?: string;
   labNote?: string;
@@ -144,21 +147,27 @@ export const GAMES: Game[] = [
   },
   {
     id: 'repair',
+    listed: false,
     rank: 12,
     status: 'active',
     name: 'Small Works',
     href: 'https://play.adamwhite.work/smallworks/',
     line: 'You run a repair workshop. Your neighbours can watch, learn and choose whether to help.',
     faculties: ['Habits and character', 'Memory and belief', 'Will'],
+    labNote:
+      'Archived 2026-11-23: frozen since 2026-10-20 with no owner verdict; testers found weak pressure. Still served at its URL.',
   },
   {
     id: 'neighbours',
+    listed: false,
     rank: 13,
     status: 'active',
     name: 'Neighbours',
     href: 'https://play.adamwhite.work/neighbours/',
     line: 'Help six residents of a riverside town reopen their flooded community hall.',
     faculties: ['Relationships', 'Memory and belief', 'Needs and feelings'],
+    labNote:
+      'Archived 2026-11-23: frozen since 2026-10-20; a study more than a game, and the first visit downloads about 15 MB.',
   },
   {
     id: 'rope',
@@ -171,7 +180,9 @@ export const GAMES: Game[] = [
   },
   {
     id: 'commonstead',
-    labNote: 'Owner acceptance pending.',
+    listed: false,
+    labNote:
+      'Archived 2026-11-23: a new game failed to start in the iPhone browser profile (Playwright WebKit); no owner verdict.',
     rank: 15,
     status: 'active',
     name: 'Commonstead',
@@ -229,5 +240,8 @@ export const GAMES: Game[] = [
     faculties: ['Memory and belief', 'Relationships', 'Will'],
   },
 ];
+
+/** What the public pages list: every game that is not archived. */
+export const PUBLIC_GAMES: Game[] = GAMES.filter((g) => g.listed !== false);
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);

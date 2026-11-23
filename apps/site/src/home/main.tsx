@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { FACULTIES, GAMES } from '../games.ts';
+import { FACULTIES, PUBLIC_GAMES } from '../games.ts';
 import { Decoration } from '../shared/Decoration.tsx';
 import { GameList } from '../shared/GameList.tsx';
 import './home.css';
@@ -8,7 +8,7 @@ import './home.css';
 declare const __HF_LIBRARY_VERSION__: string;
 declare const __HF_PACKAGE_VERSION__: string;
 
-const ACTIVE_GAMES = GAMES.filter((g) => g.status === 'active');
+const ACTIVE_GAMES = PUBLIC_GAMES.filter((g) => g.status === 'active');
 const TOP_GAME = ACTIVE_GAMES[0] ?? { name: 'Twice at the Well', href: '/colony/' };
 
 const REPO = 'https://github.com/adam0white/human-framework';

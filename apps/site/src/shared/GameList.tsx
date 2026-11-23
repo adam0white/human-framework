@@ -5,7 +5,7 @@ import { type Game, isExternal } from '../games.ts';
 import { GameVersion } from './GameVersion.tsx';
 import { sketchFor } from './sketches.tsx';
 
-/** The notebook cards for a list of games (home.css). */
+/** The notebook cards for a list of games (home.css). Numbers follow the list shown, so an archived game leaves no gap. */
 export function GameList({ games }: { games: Game[] }) {
   const notice = useRef<HTMLDivElement>(null);
   const noticeNode = useRef<HTMLElement | null | undefined>(undefined);
@@ -22,8 +22,8 @@ export function GameList({ games }: { games: Game[] }) {
     <>
       {/* biome-ignore lint/a11y/noRedundantRoles: Safari removes list semantics when list-style is none. */}
       <ol className="games" role="list">
-        {games.map((g) => (
-          <li key={g.id} value={g.rank}>
+        {games.map((g, i) => (
+          <li key={g.id} value={i + 1}>
             <a
               className="game"
               href={g.href}
@@ -35,7 +35,7 @@ export function GameList({ games }: { games: Game[] }) {
               <span className="game-text">
                 <span className="game-name">
                   <span className="game-rank" aria-hidden="true">
-                    {g.rank}.
+                    {i + 1}.
                   </span>{' '}
                   {g.name}
                   {isExternal(g) && (
