@@ -22,6 +22,54 @@ const envelope = (extra: Record<string, unknown> = {}) => ({
   data: { state: 1 },
   ...extra,
 });
+describe('prototype records', () => {
+  it('accepts the registered prototypes and still refuses unknown games', () => {
+    const now = Date.now();
+    for (const game of ['lantern', 'ant-promotion']) {
+      const run = parseLinked(
+        JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
+        now,
+      );
+      expect(run.ok).toBe(true);
+      const events = parseLinked(
+        JSON.stringify(
+          envelope({
+            game,
+            kind: 'events',
+            runSource: 'agent',
+            data: {
+              vp: 'phone',
+              started: now - 1000,
+              e: [
+                ['start', 0],
+                ['ms', 0, 'run started'],
+                ['ms', 900, 'ending reached'],
+                ['end', 900],
+              ],
+            },
+          }),
+        ),
+        now,
+      );
+      expect(events.ok && events.record.data).toEqual({
+        vp: 'phone',
+        started: now - 1000,
+        e: [
+          ['start', 0],
+          ['ms', 0, 'run started'],
+          ['ms', 900, 'ending reached'],
+          ['end', 900],
+        ],
+      });
+      expect(events.ok && events.record.runSource).toBe('agent');
+    }
+    expect(parseLinked(JSON.stringify(envelope({ game: 'not-a-game' })), now)).toEqual({
+      ok: false,
+      error: 'bad game',
+    });
+  });
+});
+
 function setup() {
   const store = new Map<
     string,
@@ -88,6 +136,34 @@ function setup() {
 }
 
 describe('linked lab records', () => {
+  it('stores a prototype run and its events from play.adamwhite.work', async () => {
+    const { post } = setup();
+    const at = Date.now();
+    for (const [id, kind, data] of [
+      ['e'.repeat(32), 'run', { format: 'kit-lab/1', outcome: 'dark', summary: { embers: 7 } }],
+      [
+        'f'.repeat(32),
+        'events',
+        {
+          vp: 'phone',
+          started: at - 500,
+          e: [
+            ['start', 0],
+            ['ms', 0, 'run started'],
+            ['end', 500],
+          ],
+        },
+      ],
+    ] as const) {
+      const response = await post(envelope({ id, game: 'lantern', kind, at, data }), {
+        Origin: 'https://play.adamwhite.work',
+      });
+      expect(response.status).toBe(200);
+      expect(await response.json()).toEqual({ ok: true, id });
+      expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://play.adamwhite.work');
+    }
+  });
+
   it('validates identities, dates, chunks and structural bounds before accepting payloads', () => {
     const now = Date.now();
     expect(parseLinked(JSON.stringify(envelope()), now).ok).toBe(true);
