@@ -2,13 +2,7 @@ import { GAMES, type Game } from '../games.ts';
 
 /** The lab reads the site's ranking and status; it never maintains another list. */
 export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[] = GAMES.map(
-  ({ id, name, href, rank, status }) => ({
-    id,
-    name,
-    href,
-    rank,
-    status,
-  }),
+  ({ id, name, href, rank, status }) => ({ id, name, href, rank, status }),
 );
 
 /**
@@ -125,10 +119,7 @@ export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms:
     ms: ['ending:win', 'ending:loss'],
   },
 };
-const basic = {
-  scr: ['title', 'play', 'ending'],
-  ms: ['run started', 'ending reached'],
-};
+const basic = { scr: ['title', 'play', 'ending'], ms: ['run started', 'ending reached'] };
 export function declaredLabel(game: string, kind: string, value: unknown): string | undefined {
   if (typeof value !== 'string' || (kind !== 'scr' && kind !== 'ms')) return undefined;
   const names = EVENT_LABELS[game] ?? basic;
