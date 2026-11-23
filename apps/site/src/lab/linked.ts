@@ -1,6 +1,6 @@
 /** Linked lab records: validated envelopes and private index entries. No platform state or headers. */
 import { boundedRunJson, cleanText, parseBatch } from './core.ts';
-import { LAB_GAMES } from './games.ts';
+import { LAB_GAME_IDS } from './games.ts';
 
 export const LINKED_LIMITS = {
   compressed: 256 * 1024,
@@ -34,7 +34,7 @@ export type LinkedMeta = Omit<LinkedEnvelope, 'v' | 'data' | 'privacyOverride'> 
 export const linkedKey = (r: LinkedEnvelope) => `linked/${r.player}/${r.id}.json.gz`;
 export const linkedIndexKey = (day: string) => `private/linked-index/${day}.json`;
 const HEX = /^[a-f0-9]{32}$/;
-const games = new Set(LAB_GAMES.map((g) => g.id));
+const games = LAB_GAME_IDS;
 const kinds = new Set(['events', 'run', 'save', 'logs', 'note']);
 
 export function parseLinked(

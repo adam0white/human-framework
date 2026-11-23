@@ -8,7 +8,7 @@
  * Privacy posture: docs/lab/privacy.md. Nothing here reads or stores an IP address, user agent or location.
  */
 
-import { declaredLabel, LAB_GAMES } from './games.ts';
+import { declaredLabel, LAB_GAME_IDS } from './games.ts';
 
 /** Event kinds: session start, milestone, screen shown, error, session end. */
 export type EventKind = 'start' | 'ms' | 'scr' | 'err' | 'end';
@@ -74,7 +74,7 @@ export const LIMITS = {
   sessionMs: 12 * 3600 * 1000,
 } as const;
 
-const GAME_IDS = new Set(LAB_GAMES.map((g) => g.id));
+const GAME_IDS = LAB_GAME_IDS;
 const SESSION_ID = /^[a-z0-9]{8,32}$/;
 const KINDS: ReadonlySet<string> = new Set(['start', 'ms', 'scr', 'err', 'end']);
 const VIEWPORTS: ReadonlySet<string> = new Set(['phone', 'tablet', 'desktop']);
