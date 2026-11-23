@@ -100,7 +100,7 @@ export const GAMES: Game[] = [
     line: 'You run a tea garden by a fountain for two weeks. The news you share can change as people repeat it.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
     labNote:
-      'Archived 2026-11-23: same street, cast and subject as The Stairwell; its code is kept for reuse. Still served at its URL until the games deploy.',
+      'Archived 2026-11-23: same street, cast and subject as The Stairwell; its code is kept for reuse.',
   },
   {
     id: 'goodhands',
@@ -112,7 +112,7 @@ export const GAMES: Game[] = [
     line: 'You run a small placement agency in Izmir during November. Applicants may leave important things out in their interviews.',
     faculties: ['Memory and belief', 'Relationships', 'Habits and character'],
     labNote:
-      'Archived 2026-11-23: the largest game to maintain and it opens on tabs and notes; the owner sees potential, so its code is kept for reuse. Still served at its URL until the games deploy.',
+      'Archived 2026-11-23: the largest game to maintain and it opens on tabs and notes; the owner sees potential, so its code is kept for reuse.',
   },
   {
     id: 'valley',
@@ -125,7 +125,7 @@ export const GAMES: Game[] = [
     line: 'You hold an absent landlord’s seal. Hear household requests and decide how to answer.',
     faculties: ['Will', 'Memory and belief', 'Relationships'],
     labNote:
-      'Archived 2026-11-23: one morning of a larger design, and the heading prints over the map on a phone. Still served at its URL until the games deploy.',
+      'Archived 2026-11-23: one morning of a larger design, and the heading prints over the map on a phone.',
   },
   {
     id: 'voice',
@@ -164,7 +164,7 @@ export const GAMES: Game[] = [
     line: 'You run a repair workshop. Your neighbours can watch, learn and choose whether to help.',
     faculties: ['Habits and character', 'Memory and belief', 'Will'],
     labNote:
-      'Archived 2026-11-23: frozen since 2026-10-20 with no owner verdict; testers found weak pressure. Still served at its URL.',
+      'Archived 2026-11-23: frozen since 2026-10-20 with no owner verdict; testers found weak pressure.',
   },
   {
     id: 'neighbours',
@@ -228,7 +228,7 @@ export const GAMES: Game[] = [
     line: 'Guide Elif through five childhood episodes, with narrated years between them. Show her work, then let her decide what to do alone.',
     faculties: ['A whole life', 'Memory and belief', 'Will'],
     labNote:
-      'Archived 2026-11-23: reads as a worksheet, with the same three choices each afternoon; no owner verdict. Still served at its URL until the games deploy.',
+      'Archived 2026-11-23: reads as a worksheet, with the same three choices each afternoon; no owner verdict.',
   },
   {
     id: 'days',
@@ -239,8 +239,7 @@ export const GAMES: Game[] = [
     href: 'https://play.adamwhite.work/days/',
     line: 'A daughter has three days of leave, an uncertain account and a promised visit. Choose what to check, what to share and when to ask for help.',
     faculties: ['Relationships', 'Body', 'Memory and belief'],
-    labNote:
-      'Archived 2026-11-23: choice text is hard to read over the picture; no owner verdict. Still served at its URL until the games deploy.',
+    labNote: 'Archived 2026-11-23: choice text is hard to read over the picture; no owner verdict.',
   },
   {
     id: 'lefthand',

@@ -6,8 +6,8 @@ export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[]
 );
 
 /**
- * Prototypes in adam0white/games (`prototypes/<slug>/`, served at play.adamwhite.work/proto/<slug>/) whose play
- * records the lab accepts. They send through that repository's `prototypes/kit/lab.js`. They are not HF games, so
+ * Experiments in adam0white/games (`experiments/<slug>/`, served at play.adamwhite.work/<slug>/) whose play
+ * records the lab accepts. They send through that repository's `experiments/kit/lab.js`. They are not HF games, so
  * they stay out of GAMES: no shelf entry, release receipt or dashboard card. Their events use the basic labels.
  */
 export const LAB_PROTOTYPES: readonly string[] = ['lantern', 'ant-promotion'];
