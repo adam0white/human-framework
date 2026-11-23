@@ -25,7 +25,7 @@ const envelope = (extra: Record<string, unknown> = {}) => ({
 describe('prototype records', () => {
   it('accepts the registered prototypes and still refuses unknown games', () => {
     const now = Date.now();
-    for (const game of ['lantern', 'ant-promotion', 'grapevine', 'fixit', 'ducklings']) {
+    for (const game of ['lantern', 'ant-promotion', 'grapevine', 'fixit', 'ducklings', 'borrowed']) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
         now,
