@@ -49,13 +49,27 @@ describe('ranked games', () => {
 
   it('keeps archived games off the public list and numbers the rest without gaps', () => {
     expect(GAMES.filter((g) => g.listed === false).map((g) => g.id)).toEqual([
+      'hearsay',
+      'goodhands',
+      'valley',
       'repair',
       'neighbours',
       'commonstead',
+      'child',
+      'days',
     ]);
     const html = renderToStaticMarkup(createElement(GameList, { games: PUBLIC_GAMES }));
     expect(html.match(/<li value="\d+">/g)).toEqual(PUBLIC_GAMES.map((_, i) => `<li value="${i + 1}">`));
-    for (const id of ['smallworks', 'neighbours', 'commonstead'])
+    for (const id of [
+      'hearsay',
+      'goodhands',
+      'valley',
+      'smallworks',
+      'neighbours',
+      'commonstead',
+      'child',
+      'days',
+    ])
       expect(html).not.toContain(`play.adamwhite.work/${id}/`);
     expect(html).toContain('play.adamwhite.work/murmur/');
   });
