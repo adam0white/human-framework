@@ -55,6 +55,7 @@ describe('ranked games', () => {
       'repair',
       'neighbours',
       'commonstead',
+      'smoke',
       'child',
       'days',
     ]);
@@ -67,6 +68,7 @@ describe('ranked games', () => {
       'smallworks',
       'neighbours',
       'commonstead',
+      'smoke',
       'child',
       'days',
     ])
