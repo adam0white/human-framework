@@ -201,12 +201,14 @@ export const GAMES: Game[] = [
   },
   {
     id: 'smoke',
+    listed: false,
     rank: 16,
     status: 'active',
     name: 'Smoke on the Stairs',
     href: 'https://play.adamwhite.work/smoke/',
     line: 'Lead four neighbours down a smoke-filled stairwell. They can refuse you, find a route, or help each other.',
     faculties: ['Will', 'Relationships', 'Body'],
+    labNote: 'Archived 2026-11-23: an outside tester answered "Drop"; its code is kept for reuse.',
   },
   {
     id: 'word',
