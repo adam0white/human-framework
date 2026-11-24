@@ -23,6 +23,7 @@ export const LAB_PROTOTYPES: readonly string[] = [
   'sling',
   'duel',
   'harvest',
+  'boat',
 ];
 /** Every game id the lab accepts records for. */
 export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);
