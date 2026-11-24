@@ -66,6 +66,10 @@ Done means (coordinator proposals, owner may change):
 - **Do not overwrite another agent's work;** use a separate worktree (`npm run wt -- add <repo-dir> <name>`) or branch. Extracts go to `~/code/.lab-scratch/`. HF releases are serialized.
 - **Stack:** pnpm 12.16.1, Node 26.12.0, TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.5, Vitest 5.1.0, Biome 2.6.5, React 19.3.1, Wrangler 4.164.0, Playwright 1.64.1, Canvas 2D.
 
+## Worker observability (owner direction, 2026-11-24)
+
+Every Worker in this project that runs code has Workers Observability logs, traces and Cloudflare Issues on; a watcher on the lab's Mac starts a Claude fix run for each new issue. The rule, the config block, what Cloudflare stores and the watcher are in the games repository: [workers/OBSERVABILITY.md](https://github.com/adam0white/games/blob/main/workers/OBSERVABILITY.md). This repository's Worker is a recorded exception: `wrangler.jsonc` keeps `observability.enabled: false`, because the public lab privacy page (`apps/site/lab/privacy/index.html`) says Worker request logs are off and that no user agent is collected. Turning logs, traces or Issues on here needs an owner decision and a matching change to that page in the same pull request. A new Worker in this repository starts from the games template with everything on.
+
 ## Delivery
 
 - `adam0white/human-framework` is public; `main` requires `ci`. MIT for code; CC BY 4.0 for `docs/`, `research/`, `archive/research/`, `archive/v0/docs/`.
