@@ -33,6 +33,9 @@ describe('prototype records', () => {
       'ducklings',
       'borrowed',
       'crumbwar',
+      'breath',
+      'matchmaker',
+      'sling',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
