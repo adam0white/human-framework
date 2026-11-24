@@ -2,7 +2,7 @@
 
 > Current-client clarification, 2026-10-25. Automatic records do not add a name; Feedback can include an optional name, and duplicate names do not merge identities. Feedback has verdict, note, optional name and Submit on one page. Participating games continue fictional people automatically on this device, with no separate continuing-person switch or consent gate. One Recording switch controls recording and linkage; character analysis still requires separate opt-in. Continuing-person state can connect earlier recordings after an identity reset. Central outgoing links may carry a short-lived recording-identity fragment that the destination validates and removes. Game adoption remains separate. The older “no name”, “Send word” and “separately enable” statements below require these corrections.
 
-Updated 2026-10-23. This is the text source for [/lab/privacy/](https://human.adamwhite.work/lab/privacy/).
+Updated 2026-11-24 (request logs). This is the text source for [/lab/privacy/](https://human.adamwhite.work/lab/privacy/).
 
 ## Automatic linked play records
 
@@ -10,7 +10,7 @@ The first-visit notice says: “The lab records your play and links it across ga
 
 Games using the new lab client send play events (start/end, elapsed time, named screens and milestones, viewport class), client error and warning text, game log lines, replay exports and saves automatically while telemetry is on. Collection is on by default. Feedback text is sent only when you press Submit. Game exports can include seed, inputs, game time, simulated people and world state. The lab does not record unrelated typing or browser activity. Do not put personal details in feedback or game fields that enter a save.
 
-Each record includes a random player id, session id and run id, a content-derived record id, game, record kind, timestamp, build commit, HF version, game version and payload. These ids connect events, logs, feedback, saves and replays. They do not establish who a person is. The new protocol stores no name, email, account, cookie, IP address, user agent or device fingerprint.
+Each record includes a random player id, session id and run id, a content-derived record id, game, record kind, timestamp, build commit, HF version, game version and payload. These ids connect events, logs, feedback, saves and replays. They do not establish who a person is. A play record holds no name, email, account, cookie, IP address, user agent or device fingerprint. Cloudflare’s short-lived request logs are described under hosting below.
 
 The player id is stored in localStorage on human.adamwhite.work. An embedded identity page shares it with approved game origins through origin-checked messages. This links visits across those games in the same browser when the embedded page can use its storage. Browser restrictions or a blocked identity page may prevent that link; a fallback id then covers only the game's own origin. Separate browsers, cleared storage and private sessions are not automatically linked. Session and run ids identify a visit and a particular playthrough, respectively.
 
@@ -42,6 +42,6 @@ Automatic collection does not opt you into the player character test. That test 
 
 ## Hosting and other services
 
-Cloudflare sees an IP address to serve a request. The lab uses it in memory for rate limits and does not store or log it. Worker request logs are off. Cloudflare Web Analytics is a separate cookieless page-view counter. Fonts may come from Google Fonts. These services are separate from linked play collection.
+Cloudflare sees an IP address to serve a request. The lab uses it in memory for rate limits and does not add it to a play record. Since 2026-11-24 Cloudflare request logs, traces and error reports are on for the lab endpoints (addresses under /lab/api/ and /lab/data.json), so that faults are found and fixed. For each request to those endpoints Cloudflare keeps, for seven days, the time, the address path without its query string, the response status, the IP address, the user agent and other request headers, and the approximate location Cloudflare derives from the IP address. They do not contain the request body, so they hold no player id, session id, feedback or save. Only the lab owner and the lab’s agents can read them. Cloudflare Web Analytics is a separate cookieless page-view counter. Fonts may come from Google Fonts. These services are separate from linked play collection.
 
 The [client](https://github.com/adam0white/human-framework/tree/main/packages/lab-client) and [endpoint](https://github.com/adam0white/human-framework/blob/main/apps/site/worker/lab.ts) are open source. Games adopt the new client separately, so a game still using the older dialog follows the legacy behavior described above.

@@ -29,6 +29,14 @@
   ],
   // Every ten minutes: advance bounded aggregation/deletion and one private run-index page.
   "triggers": { "crons": ["*/10 * * * *"] },
-  // No request logs: the lab must not keep addresses or headers.
-  "observability": { "enabled": false }
+  // Logs, traces and Issues on (owner decision, 2026-11-24; AGENTS.md "Worker observability"). Request logs hold
+  // the client address and headers for seven days; the privacy page says so. The code logs no ids or payloads.
+  "upload_source_maps": true,
+  "observability": {
+    "enabled": true,
+    "redact_query_string": true,
+    "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.1 },
+    "issues": { "enabled": true }
+  }
 }

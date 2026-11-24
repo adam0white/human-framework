@@ -13,8 +13,15 @@ export default defineConfig({
     entrypoint: './apps/site/worker/lab.ts',
     workersDev: false,
     previewUrls: false,
-    // No request logs: the lab must not keep addresses or headers.
-    observability: { enabled: false },
+    // Logs, traces and Issues on (owner decision, 2026-11-24; AGENTS.md "Worker observability"). Request logs hold
+    // the client address and headers for seven days; the privacy page says so. The code logs no ids or payloads.
+    observability: {
+      enabled: true,
+      redactQueryString: true,
+      logs: { enabled: true, invocationLogs: true, headSamplingRate: 1 },
+      traces: { enabled: true, headSamplingRate: 0.1 },
+      issues: { enabled: true },
+    },
     // Static assets come from apps/site/dist through Vite's publicDir (vite.config.ts).
     assets: {
       notFoundHandling: 'none',
