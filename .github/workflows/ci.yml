@@ -111,7 +111,7 @@ jobs:
         run: npm run build -w packages/human
       - run: npx vitest run --maxWorkers=2 apps/site/src/voice/sim/hf4-game.test.ts
         env:
-          HF_WHOLE_PROOF: '1'
+          HF_WHOLE_PROOF: "1"
 
   ci:
     name: ci
