@@ -51,7 +51,9 @@ type WholeProof = {
 // Both phases are required. Only serialized evidence survives capture; no warm Run is retained for replay.
 // Each phase has a 15-minute functional timeout. Printed elapsed times remain separate
 // evidence; completing replay does not establish a product-performance budget.
-describe('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, () => {
+// The two phases take about 20 minutes on a CI runner, more than every other test in the repository together.
+// They run nightly and by hand (the whole-proof job in .github/workflows/ci.yml), and locally with HF_WHOLE_PROOF=1.
+describe.skipIf(!process.env.HF_WHOLE_PROOF)('whole mounted HF4 file proof', { concurrent: false, shuffle: false }, () => {
   let captured: WholeProof | undefined;
   test('capture: plays a real choice through the complete month, report and serialized file', async () => {
     const started = performance.now();
