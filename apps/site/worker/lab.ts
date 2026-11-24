@@ -8,8 +8,9 @@
  *   GET  /lab/data.json    public lab data: curated feedback, live game builds, event aggregates, run counts
  *
  * Storage is the private R2 bucket `hf-lab` (binding LAB). Nothing is public in R2. Privacy posture:
- * apps/site/lab/privacy/index.html. This Worker never stores or logs an IP address, user agent, cookie or location; the
- * client address is used only as an in-memory rate-limit key. Validation and aggregation: src/lab/core.ts.
+ * apps/site/lab/privacy/index.html. This Worker's code never stores or logs an IP address, user agent, cookie or location; the
+ * client address is used only as an in-memory rate-limit key. Cloudflare request logs and traces are on (AGENTS.md,
+ * "Worker observability") and keep request metadata and R2 object keys for seven days. Validation and aggregation: src/lab/core.ts.
  */
 
 import {
