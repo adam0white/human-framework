@@ -53,6 +53,7 @@ describe('prototype records', () => {
       'night-splitlight',
       'wild-pour',
       'wild2-face-shift',
+      'small',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
