@@ -28,6 +28,19 @@ export const LAB_PROTOTYPES: readonly string[] = [
   'nightshift',
   'flock',
   'vine',
+  // Lab pages that stay in the lab (adam0white/games `experiments/lab/<name>/`); each sends under its folder name.
+  'thankful',
+  'pitch',
+  'ring',
+  'night-bells',
+  'night-channels',
+  'night-podwire',
+  'night-rubbing',
+  'night-saltplate',
+  'night-sand',
+  'night-splitlight',
+  'wild-pour',
+  'wild2-face-shift',
 ];
 /** Every game id the lab accepts records for. */
 export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);

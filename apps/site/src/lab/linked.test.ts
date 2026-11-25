@@ -41,6 +41,18 @@ describe('prototype records', () => {
       'boat',
       'alibi',
       'nightshift',
+      'thankful',
+      'pitch',
+      'ring',
+      'night-bells',
+      'night-channels',
+      'night-podwire',
+      'night-rubbing',
+      'night-saltplate',
+      'night-sand',
+      'night-splitlight',
+      'wild-pour',
+      'wild2-face-shift',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
