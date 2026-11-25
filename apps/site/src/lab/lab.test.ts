@@ -428,6 +428,25 @@ const post = (path: string, body: BodyInit, headers: Record<string, string> = {}
   });
 
 describe('lab worker', () => {
+  it('answers a miss itself and never asks the assets for the path', async () => {
+    const { env } = fakeEnv();
+    const asked = vi.fn();
+    Object.assign(env.ASSETS, { fetch: asked });
+    for (const path of [
+      '/.env',
+      '/%2f%2eaws%2fcredentials',
+      '/.git/config',
+      '/wp-login.php',
+      '/nope',
+      '/lab/api/nope',
+    ]) {
+      const res = await call(new Request(`https://human.adamwhite.work${path}`), env);
+      expect(res.status, path).toBe(404);
+      expect(res.headers.get('X-Content-Type-Options'), path).toBe('nosniff');
+    }
+    expect(asked).not.toHaveBeenCalled();
+  });
+
   it('bounds the public rebuild below fifty total R2 and release subrequests', async () => {
     vi.resetModules();
     const freshWorker = (await import('../../worker/lab.ts')).default;

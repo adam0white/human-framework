@@ -937,7 +937,9 @@ export default {
         return reply(500, { error: 'The notebook could not store this.' }, origin);
       }
     }
-    return env.ASSETS.fetch(req);
+    // Static assets and redirects are matched before the Worker, so anything else is a miss. Asking the assets
+    // again made Cloudflare Issues report each scanner probe as a security issue.
+    return reply(404, null, null);
   },
 
   /** Every ten minutes: one bounded retention step and one private-index page. */
