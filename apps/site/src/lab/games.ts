@@ -45,6 +45,9 @@ export const LAB_PROTOTYPES: readonly string[] = [
   'small',
   // A Unity WebGL build (`experiments/exile/`); its page hands the build's events to kit/lab.js.
   'exile',
+  // Cinderhill (`experiments/cinderhill/`) and its tournament lab page (`experiments/lab/cinderhill-tournament/`).
+  'cinderhill',
+  'cinderhill-tournament',
 ];
 /** Every game id the lab accepts records for. */
 export const LAB_GAME_IDS: ReadonlySet<string> = new Set([...LAB_GAMES.map((g) => g.id), ...LAB_PROTOTYPES]);

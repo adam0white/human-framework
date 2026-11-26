@@ -55,6 +55,8 @@ describe('prototype records', () => {
       'wild2-face-shift',
       'small',
       'exile',
+      'cinderhill',
+      'cinderhill-tournament',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
@@ -191,6 +193,46 @@ describe('linked lab records', () => {
       expect(response.status).toBe(200);
       expect(await response.json()).toEqual({ ok: true, id });
       expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://play.adamwhite.work');
+    }
+  });
+
+  it('stores Cinderhill records sent the way a phone with Global Privacy Control sends them', async () => {
+    // Firefox on Android sends Sec-GPC: 1; kit/lab.js then records only after the player ticks the switch,
+    // and marks the record privacyOverride. These were refused with 400 "bad game" before the slugs were added.
+    const { store, post } = setup();
+    const at = Date.now();
+    const headers = { Origin: 'https://play.adamwhite.work', 'Sec-GPC': '1' };
+    let n = 0;
+    for (const game of ['cinderhill', 'cinderhill-tournament']) {
+      const run = {
+        format: 'kit-lab/1',
+        started: at - 5000,
+        ended: at,
+        outcome: 'left',
+        summary: { ticks: 120 },
+        start: { ants: 40 },
+        events: [{ t: 900, type: 'order', data: { type: 'dig' } }],
+      };
+      const events = {
+        vp: 'phone',
+        started: at - 5000,
+        e: [
+          ['start', 0],
+          ['ms', 0, 'run started'],
+          ['end', 5000],
+        ],
+      };
+      for (const [kind, data] of [
+        ['run', run],
+        ['events', events],
+      ] as const) {
+        const id = (++n).toString(16).padStart(32, '0');
+        expect((await post(envelope({ id, game, kind, at, data }), headers)).status).toBe(204);
+        const response = await post(envelope({ id, game, kind, at, data, privacyOverride: true }), headers);
+        expect(response.status).toBe(200);
+        expect(await response.json()).toEqual({ ok: true, id });
+        expect(store.has(`linked/${'b'.repeat(32)}/${id}.json.gz`)).toBe(true);
+      }
     }
   });
 
