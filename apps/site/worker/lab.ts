@@ -460,6 +460,23 @@ export async function cleanupLinked(env: Env, now: number): Promise<void> {
   }
 }
 
+/**
+ * Makes a refused linked record visible. Every refusal logs its reason code, plus the game id when the id is
+ * slug-shaped (no player, session or run id, no payload). A record for a game the lab does not list also raises one
+ * Error with a fixed message, so Cloudflare Issues groups every such refusal into one issue, which starts the
+ * project's issue routine (games workers/OBSERVABILITY.md). A page sending under an unregistered slug loses play.
+ */
+export function refusedLinked(error: string, text: string): void {
+  let game: string | undefined;
+  try {
+    const raw = JSON.parse(text) as { game?: unknown };
+    if (typeof raw?.game === 'string' && /^[a-z0-9-]{1,40}$/.test(raw.game)) game = raw.game;
+  } catch {}
+  console.warn(JSON.stringify({ lab: 'linked-refused', error, ...(game ? { game } : {}) }));
+  if (error === 'bad game' && game)
+    console.error(new Error('Lab refused a record for a game it does not list (see LAB_PROTOTYPES)'));
+}
+
 async function postLinked(req: Request, env: Env, origin: string | null): Promise<Response> {
   if (
     !(await env.EVENTS_LIMIT.limit({ key: limitKey(req, 'linked') })).success ||
@@ -479,11 +496,15 @@ async function postLinked(req: Request, env: Env, origin: string | null): Promis
     if (!inflated) return reply(413, null, origin);
     text = new TextDecoder('utf-8', { fatal: true }).decode(inflated);
   } catch {
+    refusedLinked('Expected gzip-compressed JSON.', '');
     return reply(400, { error: 'Expected gzip-compressed JSON.' }, origin);
   }
   const now = Date.now();
   const parsed = parseLinked(text, now);
-  if (!parsed.ok) return reply(400, { error: parsed.error }, origin);
+  if (!parsed.ok) {
+    refusedLinked(parsed.error, text);
+    return reply(400, { error: parsed.error }, origin);
+  }
   const record = parsed.record;
   // A note is an explicit submission, including pending notes from older clients.
   // Privacy signals still suppress every kind of automatic recording.

@@ -57,6 +57,7 @@ describe('prototype records', () => {
       'exile',
       'cinderhill',
       'cinderhill-tournament',
+      'cinderhill-battle',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
@@ -203,7 +204,7 @@ describe('linked lab records', () => {
     const at = Date.now();
     const headers = { Origin: 'https://play.adamwhite.work', 'Sec-GPC': '1' };
     let n = 0;
-    for (const game of ['cinderhill', 'cinderhill-tournament']) {
+    for (const game of ['cinderhill', 'cinderhill-tournament', 'cinderhill-battle']) {
       const run = {
         format: 'kit-lab/1',
         started: at - 5000,
@@ -233,6 +234,27 @@ describe('linked lab records', () => {
         expect(await response.json()).toEqual({ ok: true, id });
         expect(store.has(`linked/${'b'.repeat(32)}/${id}.json.gz`)).toBe(true);
       }
+    }
+  });
+
+  it('logs why a record was refused and raises one fixed error for an unlisted game', async () => {
+    const { post } = setup();
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      const headers = { Origin: 'https://play.adamwhite.work' };
+      expect((await post(envelope({ game: 'not-listed-yet' }), headers)).status).toBe(400);
+      expect((await post(envelope({ game: 'pass', at: 1 }), headers)).status).toBe(400);
+      expect(warn.mock.calls.map(([line]) => JSON.parse(String(line)))).toEqual([
+        { lab: 'linked-refused', error: 'bad game', game: 'not-listed-yet' },
+        { lab: 'linked-refused', error: 'bad time', game: 'pass' },
+      ]);
+      expect(error).toHaveBeenCalledTimes(1);
+      expect(String(error.mock.calls[0]?.[0])).not.toContain('not-listed-yet');
+      expect(JSON.stringify(warn.mock.calls)).not.toContain('b'.repeat(32));
+    } finally {
+      warn.mockRestore();
+      error.mockRestore();
     }
   });
 
