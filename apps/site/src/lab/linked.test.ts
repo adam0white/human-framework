@@ -197,6 +197,41 @@ describe('linked lab records', () => {
     }
   });
 
+  it('stores every part of a long kit run with its input trace, whole', async () => {
+    // kit/lab.js (games repository) sends a long run as numbered run records under one runId; each part holds
+    // up to about 64 KB of game events and trace. A part at four times that is still stored unchanged.
+    const { store, post } = setup();
+    const at = Date.now();
+    const trace = Array.from({ length: 12000 }, (_, i) =>
+      i % 50 === 0 ? [i * 50, 'b', 'Play again', 'again'] : [i * 50, 'm', (i * 7) % 1000, (i * 13) % 1000],
+    );
+    for (const part of [0, 1]) {
+      const id = (part + 1).toString(16).padStart(32, '0');
+      const data = {
+        format: 'kit-lab/1',
+        part,
+        started: at - 600000,
+        ended: at,
+        outcome: part ? 'dawn' : null,
+        summary: part ? { embers: 7 } : null,
+        start: { night: 1 },
+        events: [{ t: 900, type: 'buy', data: { pack: 'boat' } }],
+        trace,
+        env: { device: 'phone', vp: 'phone', w: 390, h: 844, dpr: 3, touch: true, coarse: true },
+        ...(part ? { final: true, parts: 2 } : {}),
+      };
+      expect(JSON.stringify(data).length).toBeGreaterThan(200 * 1024);
+      const response = await post(envelope({ id, game: 'lantern', kind: 'run', at, data }), {
+        Origin: 'https://play.adamwhite.work',
+      });
+      expect(response.status).toBe(200);
+      const stored = JSON.parse(
+        gunzipSync(required(store.get(`linked/${'b'.repeat(32)}/${id}.json.gz`)).bytes).toString(),
+      );
+      expect(stored.data).toEqual(data);
+    }
+  });
+
   it('stores Cinderhill records sent the way a phone with Global Privacy Control sends them', async () => {
     // Firefox on Android sends Sec-GPC: 1; kit/lab.js then records only after the player ticks the switch,
     // and marks the record privacyOverride. These were refused with 400 "bad game" before the slugs were added.
