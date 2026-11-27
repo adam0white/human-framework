@@ -58,6 +58,8 @@ describe('prototype records', () => {
       'cinderhill',
       'cinderhill-tournament',
       'cinderhill-battle',
+      'flame-a',
+      'flame-b',
     ]) {
       const run = parseLinked(
         JSON.stringify(envelope({ game, data: { format: 'kit-lab/1', outcome: 'dawn' } })),
