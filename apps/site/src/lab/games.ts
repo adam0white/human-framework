@@ -49,6 +49,9 @@ export const LAB_PROTOTYPES: readonly string[] = [
   'cinderhill',
   'cinderhill-tournament',
   'cinderhill-battle',
+  // Pass the Flame, two builds of one brief for the owner to compare (`experiments/lab/flame-a/`, `flame-b/`).
+  'flame-a',
+  'flame-b',
   // Sky Kitchen (`experiments/kitchen/`): catch falling ingredients, cook, serve at the register.
   'kitchen',
 ];
